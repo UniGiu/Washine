@@ -4,10 +4,13 @@
 ## Piano
 
 ###  1. Introduzione
+
 Nell'introduzione al piano di progetto, vengono forniti il background e la storia
 del progetto, insieme ai suoi obiettivi, i risultati del progetto, i nomi delle persone
 responsabili e una sintesi del progetto.
+
 ###  2. Modello di processo
+
 Nel Capitolo 1 è stato introdotto un semplice modello del ciclo di vita
 per discutere le varie attività da affrontare in un progetto di sviluppo software. Esistono
 molte varianti di questo modello di processo, alcune delle quali sono discusse nel Capitolo 3.
@@ -16,7 +19,9 @@ intraprendere, quali pietre miliari possono essere identificate, come si accerta
 miliari vengono raggiunte e quali sono i percorsi critici. Diversi tipi di progetti hanno
 caratteristiche diverse e quindi richiedono modelli di processo diversi.
 Ad esempio, il project plan potrebbe stabilire che si utilizzerà un processo agile SCRUM.
+
 ###  3. Organizzazione del progetto 
+
 Il rapporto del progetto con altri enti e l'organizzazione del
 progetto stesso sono trattati in questa rubrica. Il progetto avrà una relazione con
 l'organizzazione utente, l'organizzazione madre ed eventualmente con altre organizzazioni. I
@@ -29,7 +34,9 @@ identificare le responsabilità di ciascuno di essi. Se ci sono lacune nelle con
 richieste per ricoprire uno di questi ruoli, è necessario identificare la formazione e
 l'istruzione necessarie per colmare queste lacune. Diverse forme di organizzazione del
 team sono discusse nel Capitolo 5 .
+
 ###  4. Standard, linee guida, procedure 
+
 I progetti software sono grandi progetti. Di solito, molte
 persone sono coinvolte. Occorre quindi una forte disciplina di lavoro, in cui ogni persona
 coinvolta segua gli standard, le linee guida e le procedure concordate. Oltre ad essere
@@ -43,10 +50,13 @@ Per esempio un progetto potrebbe dichiarare di seguire le convenzioni per la
 programmazione Java come definite da Oracle1
 .
 ###  5. Attività di gestione
+
 sono guidate da obiettivi e priorità fissati per il progetto. Ad esempio, la
 direzione dovrà presentare relazioni periodiche sullo stato e sullo stato di avanzamento del
 progetto. Dovrà anche seguire alcune priorità nel bilanciamento di requisiti, tempi e costi.
+
 ### 6. Rischi
+
 I potenziali rischi devono essere identificati il prima possibile. Ci saranno sempre dei
 rischi: l'hardware potrebbe non essere consegnato in tempo, il personale qualificato
 potrebbe non essere disponibile quando necessario, le informazioni critiche potrebbero
@@ -55,11 +65,15 @@ sviluppo software funzioni sempre senza intoppi. Anche in campi consolidati, com
 delle costruzioni, c'è sempre qualcosa che non va. Si dovrebbe diagnosticare precocemente
 i rischi di un progetto software e fornire misure per affrontarli; vedere anche il capitolo 8 .
 Più incerti sono i vari aspetti del progetto, maggiori sono i rischi.
+
 ### 7. Personale In momenti diversi,
+
 il progetto richiederà diverse quantità di personale, con
 competenze diverse. L'inizio, la durata, l'importo e la competenza delle categorie di
 personale sono elencati in questa voce.
+
 ### 8. Metodi e tecniche
+
 In questa sezione vengono forniti i metodi e le tecniche da utilizzare
 durante l'ingegneria dei requisiti, la progettazione, l'implementazione e le prove. In genere,
 qui viene descritto anche il modo in cui viene gestito il controllo della versione e della
@@ -72,7 +86,9 @@ test. Pertanto, questa attività deve essere pianificata con attenzione. L'ordin
 componenti vengono integrati e testati deve essere indicato esplicitamente. Inoltre,
 devono essere indicate le procedure da seguire durante i test di accettazione, ovvero i
 test sotto la supervisione dell'utente. I test sono discussi nel Capitolo 13.
+
 ### 9. Garanzia di qualità
+
 Quale organizzazione e procedure verranno utilizzate per garantire che il
 software in fase di sviluppo soddisfi i requisiti di qualità dichiarati? I molti aspetti di un Piano
 di Assicurazione della Qualità possono anche essere trattati in un documento separato. Il 
@@ -84,22 +100,29 @@ Per esempio un progetto potrebbe dichiarare di seguire le convenzioni per la
 programmazione Java come definite da Oracle1
 .
 ### 10. Pacchetti di lavoro (workpackages) 
+
 I progetti più grandi devono essere suddivisi in attività,
 parti gestibili che possono essere allocate ai singoli membri del team. Ciascuna di queste
 attività deve essere identificata nel piano di progetto. La scomposizione gerarchica del
 progetto è rappresentata in una struttura di scomposizione del lavoro (vedi anche Sezione
 8.4 ).
+
 ### 11. Risorse 
+
 Durante il progetto sono necessarie molte risorse. L'hardware, i cicli della CPU e gli
 strumenti necessari per supportare il progetto sono elencati in questa voce. Occorre inoltre
 indicare il personale necessario per le varie fasi del processo.
+
 ### 12. Budget e programma 
+
 Il budget totale per il progetto deve essere assegnato alle varie attività
 come indicato nella struttura di ripartizione del lavoro. Anche le attività devono essere
 programmate in tempo, ad esempio utilizzando un grafico PERT (vedi Sezione 8.4 ). In questa
 rubrica è indicato anche il modo in cui vengono tracciate le risorse e le altre spese. Il tema
 della stima dei costi e dei tempi è trattato ampiamente nel Capitolo 7 .
+
 ### 13. Cambiamenti
+
 È stato affermato in precedenza che i cambiamenti sono inevitabili. Bisogna
 garantire che questi cambiamenti siano gestiti in modo ordinato. Sono quindi necessarie
 procedure chiare su come verranno gestite le modifiche proposte. Se il processo è agile, ogni
