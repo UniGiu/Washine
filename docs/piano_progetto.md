@@ -2,20 +2,20 @@
 # Piano di progetto
 ## Indice
 
-1. [Introduzione](#introduzione)
-2. [Modello di processo](#modello-di-processo)
-3. [Organizzazione del progetto](#organizzazione-del-progetto)
-4. [Standard, linee guida, procedure](#standard-linee-guida-procedure)
-5. [Attività di gestione](#attività-di-gestione)
-6. [Rischi](#rischi)
-7. [Personale](#personale)
-8. [Metodi e tecniche](#metodi-e-tecniche)
-9. [Garanzia di qualità](#garanzia-di-qualità)
-10. [Pacchetti di lavoro (workpackages) ](#pacchetti-di-lavoro-workpackages )
-11. [Risorse](#risorse)
-12. [Budget e programma](#budget-e-programma)
-13. [Cambiamenti](#cambiamenti)
-14. [Consegna](#consegna)
+1. [Introduzione](#1-introduzione)
+2. [Modello di processo](#2-modello-di-processo)
+3. [Organizzazione del progetto](#3-organizzazione-del-progetto)
+4. [Standard, linee guida, procedure](#4-standard-linee-guida-procedure)
+5. [Attività di gestione](#5-attività-di-gestione)
+6. [Rischi](#6-rischi)
+7. [Personale](#7-personale)
+8. [Metodi e tecniche](#8-metodi-e-tecniche)
+9. [Garanzia di qualità](#9-garanzia-di-qualità)
+10. [Pacchetti di lavoro (workpackages) ](#10-pacchetti-di-lavoro-workpackages )
+11. [Risorse](#11-risorse)
+12. [Budget e programma](#12-budget-e-programma)
+13. [Cambiamenti](#13-cambiamenti)
+14. [Consegna](#14-consegna)
 
 ## Piano
 
