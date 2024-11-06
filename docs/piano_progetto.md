@@ -5,13 +5,37 @@
 
 ###  1. Introduzione
 
-Nell'introduzione al piano di progetto, vengono forniti il background e la storia
-del progetto, insieme ai suoi obiettivi, i risultati del progetto, i nomi delle persone
-responsabili e una sintesi del progetto.
+
+
+> Nell'introduzione al piano di progetto, vengono forniti il background e la storia del progetto, insieme ai suoi obiettivi, i risultati del progetto, i nomi delle persone responsabili e una sintesi del progetto.
+
+#### Background, storia, e obiettivi
+
+Il progetto nasce come progetto per l'esame universitario di Ingegneria del Software.  
+Rispetto ad un progetto commerciale questo ha quindi caratteristiche diverse per contesto e durata: si tratta di 3/4 studenti che in un paio di mesi devono documentare e sviluppare un software con strumenti previsti a priori seguendo metodologie e pratiche per loro nuove. L'obiettivo è sperimentare insieme quanto visto e studiato durante il corso e dimostrare di averlo ben compreso e messo in pratica con efficacia.
+
+#### Risultati del progetto
+
+Ci sono riusciti? Questa parte è ancora da scrivere, speriamo di sì!
+
+#### Persone coinvolte
+
+-   Suardi Paolo, mat 1087357
+-   Tilli Giuseppe, mat 1086587
+-   Toffalori Chiara, mat 1080710
+
+#### Sintesi del progetto
+
+**Washine** è un applicazione web open source che permette di organizzare la condivisione tra più utenti di un lavaggio di una lavatrice domestica o a gettoni. 
+Il software si rivolge a piccole comunità di utenti accumunati dalla prossimità geografica e un legame di reciproca conoscenza e fiducia (amici, condomini, colleghi di lavoro, parrocchiani, frequentatori di un bar, studenti fuori sede, abitanti di un quartiere...).  Una seconda fase, anche in virtù della natura open source del progetto, potrebbe portare ad allargare la base di utenza e prevedere configurazioni del prodotto per finalità commerciali.  
+
+Idealmente l'applicazione si propone di ridurre i consumi energetici globali relativi ai lavaggi e alla produzione di macchine lavatrici e di rafforzare i legami di comunità.
+
+Nello specifico attraverso un database e un'interfaccia web viene fornita agli utenti la possibilità di programmare un lavaggio di indumenti specificandone le caratteristiche (tipologia indumenti, colori, peso disponibile, tipo di detergente, asciugatrice, quota spese, meeting point, utenti abilitati a visualizzare l'offerta ecc...) oppure di prenotare un lavaggio tra quelli disponibili (per le comunità di cui si fa parte, per essere inclusi da chi offre il lavaggio o per geolocalizzazione approssimata) specificando la quota di indumenti (peso) che si vuole prenotare. *Ci potrebbe essere poi un utente Amministratore che può monitorare l'attività degli utenti e intervenire in casi particolari grazie a dei privilegi, se riusciamo a fare in modo che sia inutile è meglio*.
 
 ###  2. Modello di processo
 
-Nel Capitolo 1 è stato introdotto un semplice modello del ciclo di vita
+> Nel Capitolo 1 è stato introdotto un semplice modello del ciclo di vita
 per discutere le varie attività da affrontare in un progetto di sviluppo software. Esistono
 molte varianti di questo modello di processo, alcune delle quali sono discusse nel Capitolo 3.
 Per ogni progetto si deve decidere l'esatto modello di processo da seguire: quali attività
@@ -22,7 +46,7 @@ Ad esempio, il project plan potrebbe stabilire che si utilizzerà un processo ag
 
 ###  3. Organizzazione del progetto 
 
-Il rapporto del progetto con altri enti e l'organizzazione del
+> Il rapporto del progetto con altri enti e l'organizzazione del
 progetto stesso sono trattati in questa rubrica. Il progetto avrà una relazione con
 l'organizzazione utente, l'organizzazione madre ed eventualmente con altre organizzazioni. I
 potenziali utenti saranno, di volta in volta, coinvolti nel progetto. Il piano del progetto
@@ -37,7 +61,7 @@ team sono discusse nel Capitolo 5 .
 
 ###  4. Standard, linee guida, procedure 
 
-I progetti software sono grandi progetti. Di solito, molte
+> I progetti software sono grandi progetti. Di solito, molte
 persone sono coinvolte. Occorre quindi una forte disciplina di lavoro, in cui ogni persona
 coinvolta segua gli standard, le linee guida e le procedure concordate. Oltre ad essere
 dichiarati sulla carta, molti di questi possono essere supportati o applicati da strumenti. Di
@@ -51,13 +75,13 @@ programmazione Java come definite da Oracle1
 .
 ###  5. Attività di gestione
 
-sono guidate da obiettivi e priorità fissati per il progetto. Ad esempio, la
+> sono guidate da obiettivi e priorità fissati per il progetto. Ad esempio, la
 direzione dovrà presentare relazioni periodiche sullo stato e sullo stato di avanzamento del
 progetto. Dovrà anche seguire alcune priorità nel bilanciamento di requisiti, tempi e costi.
 
 ### 6. Rischi
 
-I potenziali rischi devono essere identificati il prima possibile. Ci saranno sempre dei
+> I potenziali rischi devono essere identificati il prima possibile. Ci saranno sempre dei
 rischi: l'hardware potrebbe non essere consegnato in tempo, il personale qualificato
 potrebbe non essere disponibile quando necessario, le informazioni critiche potrebbero
 mancare quando è necessario e così via. È piuttosto ingenuo supporre che un progetto di
@@ -68,13 +92,13 @@ Più incerti sono i vari aspetti del progetto, maggiori sono i rischi.
 
 ### 7. Personale In momenti diversi,
 
-il progetto richiederà diverse quantità di personale, con
+> il progetto richiederà diverse quantità di personale, con
 competenze diverse. L'inizio, la durata, l'importo e la competenza delle categorie di
 personale sono elencati in questa voce.
 
 ### 8. Metodi e tecniche
 
-In questa sezione vengono forniti i metodi e le tecniche da utilizzare
+> In questa sezione vengono forniti i metodi e le tecniche da utilizzare
 durante l'ingegneria dei requisiti, la progettazione, l'implementazione e le prove. In genere,
 qui viene descritto anche il modo in cui viene gestito il controllo della versione e della
 configurazione per i componenti software. Gran parte della documentazione tecnica sarà
@@ -89,7 +113,7 @@ test sotto la supervisione dell'utente. I test sono discussi nel Capitolo 13.
 
 ### 9. Garanzia di qualità
 
-Quale organizzazione e procedure verranno utilizzate per garantire che il
+> Quale organizzazione e procedure verranno utilizzate per garantire che il
 software in fase di sviluppo soddisfi i requisiti di qualità dichiarati? I molti aspetti di un Piano
 di Assicurazione della Qualità possono anche essere trattati in un documento separato. Il 
 documentazione, come valutare la qualità della documentazione, come garantire
@@ -101,7 +125,7 @@ programmazione Java come definite da Oracle1
 .
 ### 10. Pacchetti di lavoro (workpackages) 
 
-I progetti più grandi devono essere suddivisi in attività,
+> I progetti più grandi devono essere suddivisi in attività,
 parti gestibili che possono essere allocate ai singoli membri del team. Ciascuna di queste
 attività deve essere identificata nel piano di progetto. La scomposizione gerarchica del
 progetto è rappresentata in una struttura di scomposizione del lavoro (vedi anche Sezione
@@ -109,13 +133,13 @@ progetto è rappresentata in una struttura di scomposizione del lavoro (vedi anc
 
 ### 11. Risorse 
 
-Durante il progetto sono necessarie molte risorse. L'hardware, i cicli della CPU e gli
+> Durante il progetto sono necessarie molte risorse. L'hardware, i cicli della CPU e gli
 strumenti necessari per supportare il progetto sono elencati in questa voce. Occorre inoltre
 indicare il personale necessario per le varie fasi del processo.
 
 ### 12. Budget e programma 
 
-Il budget totale per il progetto deve essere assegnato alle varie attività
+> Il budget totale per il progetto deve essere assegnato alle varie attività
 come indicato nella struttura di ripartizione del lavoro. Anche le attività devono essere
 programmate in tempo, ad esempio utilizzando un grafico PERT (vedi Sezione 8.4 ). In questa
 rubrica è indicato anche il modo in cui vengono tracciate le risorse e le altre spese. Il tema
@@ -123,7 +147,7 @@ della stima dei costi e dei tempi è trattato ampiamente nel Capitolo 7 .
 
 ### 13. Cambiamenti
 
-È stato affermato in precedenza che i cambiamenti sono inevitabili. Bisogna
+> È stato affermato in precedenza che i cambiamenti sono inevitabili. Bisogna
 garantire che questi cambiamenti siano gestiti in modo ordinato. Sono quindi necessarie
 procedure chiare su come verranno gestite le modifiche proposte. Se il processo è agile, ogni
 iterazione comporta modifiche e queste vengono gestite in modo leggero. In realtà, non sono
@@ -135,6 +159,8 @@ documentazione inadeguata e superamento di costi e tempi. Poiché le modifiche p
 versioni diverse sia della documentazione che del codice, le procedure da seguire per gestire
 tali modifiche vengono spesso gestite nel contesto di un piano di controllo della
 configurazione.
+> 
 ### 14. Consegna
-Devono essere indicate le procedure da seguire per la consegna dell'impianto al
+
+> Devono essere indicate le procedure da seguire per la consegna dell'impianto al
 cliente.
