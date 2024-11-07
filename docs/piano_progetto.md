@@ -59,6 +59,29 @@ intraprendere, quali pietre miliari possono essere identificate, come si accerta
 miliari vengono raggiunte e quali sono i percorsi critici. Diversi tipi di progetti hanno
 caratteristiche diverse e quindi richiedono modelli di processo diversi.
 Ad esempio, il project plan potrebbe stabilire che si utilizzerà un processo agile SCRUM.
+>
+ Per lo sviluppo di Washine abbiamo deciso di adottare il modello RAD (Rapid Application Development). Questo modello fa uso di un approccio incrementale e iterativo, 
+ promuove il riutilizzo e l'uso di strumenti automatizzati e sottolinea l'importanza del coinvolgimento del cliente. RAD si concentra su cicli di sviluppo brevi e, al 
+ contrario della maggior parte degli altri metodi di sviluppo, prevede che venga prima fissato un periodo di tempo (time box) all'interno del quale il progetto cercherà di 
+ realizzare una o più funzionalità. 
+
+ #### Fasi principali
+ Le attività previste dal modello RAD per il progetto sono:
+ 1.  **Pianificazione dei requisiti**
+ 2.  **Progettazione dell'applicazione**
+ 3.  **Costruzione**
+ 4.  **Taglio**
+
+ Lo scopo della prima fase è quello di ottenere i requisiti giusti la prima volta e di definirne una priorità nonchè quello di produrre una specifica dei requisiti 
+ dettagliata. Le fasi intermedie prevedono una continua iterazione che ha l'obiettivo di avere sempre una versione funzionante del prodotto, mentre la fase di taglio 
+ consiste nel collaudo finale del sistema. Il testing e la validazione riguardano tutte le fasi del ciclo di vita del progetto.
+   
+ #### Vantaggi del modello RAD per il progetto 
+ La scelta del modello RAD è particolarmente adatta per il nostro progetto per i sequenti motivi:
+ -  Il numero relativamente ridotto dei membri del nostro team risulta adatto con l'approccio usato in RAD
+ -  La riduzione dei tempi di sviluppo appare particolarmente vantaggiosa per la rapidità richiesta dal progetto
+ -  La struttura iterativa permette di adattare i requisiti e le funzionalità al cambiamento garantendo una maggiore flessibilità
+ -  La possibilità di realizzare più versioni incrementali del sistema riduce il rischio di fraintendimenti sui requisiti e permette di avere un prodotto sempre funzionante 
 
 ###  3. Organizzazione del progetto 
 
