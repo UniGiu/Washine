@@ -78,9 +78,13 @@ team sono discusse nel Capitolo 5 .
 
 ## Team
 
-Anche se la scelta del modello di processo RAD preveda un team SWAT questo nel nostro caso non è di fatto completamente praticabile possibile poiché i membri del team non sono particolarmente skilled con gli advanced tools e sia le persone che i tools sono dati a priori.à
-Tra i modelli organizzativi presi in considerazione quello più adatto alla nostra situazione sembra essere quello a matrice. Infatti il software è il sottoprodotto della nostra attività, forse neanche il più importante e tutti noi nella nostra attività di studenti siamo impegnati in altri progetti nei quali non collaboriamo e che in un certo senso competono per l'uso del nostro tempo.
-Considerando la gestione del progetto come un'attività colletiva perché tutti abbiamo l'obiettivo di fare il progetto e superare l'esame e che ciascuna unità base "specializzata" persegue l'obiettivo dell'ampliamento delle conoscenze e competenze (che è il vero scopo del progetto, la specializzazione in questo caso è in divenire).
+Anche se la scelta del modello di processo RAD prevede un team SWAT questo nel nostro caso non è di fatto completamente praticabile poiché i membri del team non sono particolarmente skilled con gli advanced tools e sia le persone che i tools sono dati a priori e non sostituibili con altri.  
+
+Tra i modelli organizzativi presi in considerazione quello più adatto alla nostra situazione sembra essere quello a matrice. Infatti il software in sé è il sottoprodotto della nostra attività di studenti di ingegneria e in particolare dello studio di ingegneria del software (e forse non è neanche la sua parte più importante). Tutti noi nella nostra attività di studenti siamo impegnati in altri progetti per i quali non stiamo collaborando e che in un certo senso competono con questo per l'uso del nostro tempo.  
+
+Un altro argomento a favore dell'organizzazione a matrice è la considerazione che ciascuna unità base "specializzata" persegue l'obiettivo di lungo periodo dell'ampliamento delle proprie conoscenze e competenze - il vero scopo del progetto e dei nostri studi - e che il project management (qui attività colletiva) ha l'obiettivo di finire il progetto e permettere di superare a tutti l'esame presto e bene. La specializzazione delle unità base in questo caso è in divenire.  
+
+Prendendo in considerazione altre forme organizzative sicuramente ci verrà spontaneo fare brevi e frequenti riunioni come i team agili, siamo nella stessa aula spesso tra una lezione e l'altra. Probabilmente in molti casi ci troveremo in anche una forma molto blanda del modello programmatore esperto poichè siamo in numero molto ridotto e sarà utile che tutti siano per lo meno al corrente di come procedomno le varie parti.
 
 ###  4. Standard, linee guida, procedure 
 
