@@ -27,7 +27,7 @@
 #### Background, storia, e obiettivi
 
 Il progetto nasce come progetto per l'esame universitario di Ingegneria del Software.  
-Rispetto ad un progetto commerciale questo ha quindi caratteristiche diverse per contesto e durata: si tratta di 3/4 studenti che in un paio di mesi devono documentare e sviluppare un software con strumenti previsti a priori seguendo metodologie e pratiche per loro nuove. L'obiettivo è sperimentare insieme quanto visto e studiato durante il corso e dimostrare di averlo ben compreso e messo in pratica con efficacia.
+Rispetto ad un progetto commerciale questo ha quindi caratteristiche diverse per contesto e durata: si tratta di 3/4 studenti che in un paio di mesi devono documentare e sviluppare un software con strumenti dati a priori seguendo metodologie e pratiche per loro nuove. L'obiettivo è sperimentare insieme quanto visto e studiato durante il corso e dimostrare di averlo ben compreso e messo in pratica con efficacia.
 
 #### Risultati del progetto
 
@@ -41,12 +41,12 @@ Ci sono riusciti? Questa parte è ancora da scrivere, speriamo di sì!
 
 #### Sintesi del progetto
 
-**Washine** è un applicazione web open source che permette di organizzare e favorire la condivisione tra più utenti di un lavaggio di una lavatrice domestica o a gettoni. 
-Il software si rivolge a piccole comunità di utenti accumunati dalla prossimità geografica e un legame di reciproca conoscenza e fiducia (amici, condomini, colleghi di lavoro, parrocchiani, frequentatori di un bar, studenti fuori sede, abitanti di un quartiere...).  Una seconda fase, anche in virtù della natura open source del progetto, potrebbe portare ad allargare la base di utenza e prevedere configurazioni del prodotto per finalità commerciali.  
+**Washine** è un applicazione web open source che permette di organizzare e favorire la condivisione di un lavaggio di una lavatrice domestica o a gettoni. 
+Il software si rivolge a piccole comunità di utenti accumunati dalla prossimità geografica e da un legame di reciproca conoscenza e fiducia (amici, condomini, colleghi di lavoro, parrocchiani, frequentatori di un bar, studenti fuori sede, abitanti di un quartiere...).  Una seconda fase, anche in virtù della natura open source del progetto, potrebbe portare ad allargare la base di utenza e prevedere configurazioni del prodotto anche per finalità commerciali.  
 
 Idealmente l'applicazione si propone di ridurre i consumi energetici globali relativi ai lavaggi e alla produzione di macchine lavatrici e di rafforzare i legami di comunità.
 
-Nello specifico attraverso un database e un'interfaccia web viene fornita agli utenti la possibilità di programmare un lavaggio di indumenti specificandone le caratteristiche (tipologia indumenti, colori, peso disponibile, tipo di detergente, asciugatrice, quota spese, meeting point, utenti abilitati a visualizzare l'offerta ecc...) oppure di prenotare un lavaggio tra quelli disponibili (per le comunità di cui si fa parte, per essere inclusi da chi offre il lavaggio o per geolocalizzazione approssimata) specificando la quota di indumenti (peso) che si vuole prenotare. *Ci dovrebbe essere poi un utente Amministratore che può monitorare l'attività degli utenti e intervenire in casi particolari grazie a dei privilegi, se riusciamo a fare in modo che sia un ruolo inutile è meglio*.
+Nello specifico attraverso un database e un'interfaccia web viene fornita agli utenti la possibilità di programmare un lavaggio di indumenti specificandone le caratteristiche (tipologia indumenti, colori, peso disponibile, tipo di detergente, asciugatrice, quota spese, meeting point, utenti abilitati a visualizzare l'offerta ecc...) oppure di partecipare a un lavaggio tra quelli disponibili (per le comunità di cui si fa parte, per essere stati inclusi da chi offre il lavaggio o per geolocalizzazione approssimata) specificando la quota di indumenti (peso) che si vuole prenotare. *Ci dovrebbe essere poi un utente Amministratore che può monitorare l'attività degli utenti e intervenire in casi particolari grazie a dei privilegi, se riusciamo a fare in modo che sia un ruolo inutile è meglio, magari riducendo gli elementi che possono richiedere un'attività di sorveglianza e moderazione e attribuendo le residue funzionalità al ruolo di chi offre il lavaggio*.
 
 ###  2. Modello di processo
 
