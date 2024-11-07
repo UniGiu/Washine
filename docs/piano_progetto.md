@@ -76,6 +76,12 @@ richieste per ricoprire uno di questi ruoli, è necessario identificare la forma
 l'istruzione necessarie per colmare queste lacune. Diverse forme di organizzazione del
 team sono discusse nel Capitolo 5 .
 
+## Team
+
+Anche se la scelta del modello di processo RAD preveda un team SWAT questo nel nostro caso non è di fatto completamente praticabile possibile poiché i membri del team non sono particolarmente skilled con gli advanced tools e sia le persone che i tools sono dati a priori.à
+Tra i modelli organizzativi presi in considerazione quello più adatto alla nostra situazione sembra essere quello a matrice. Infatti il software è il sottoprodotto della nostra attività, forse neanche il più importante e tutti noi nella nostra attività di studenti siamo impegnati in altri progetti nei quali non collaboriamo e che in un certo senso competono per l'uso del nostro tempo.
+Considerando la gestione del progetto come un'attività colletiva perché tutti abbiamo l'obiettivo di fare il progetto e superare l'esame e che ciascuna unità base "specializzata" persegue l'obiettivo dell'ampliamento delle conoscenze e competenze (che è il vero scopo del progetto, la specializzazione in questo caso è in divenire).
+
 ###  4. Standard, linee guida, procedure 
 
 [Indice ^](#indice)
