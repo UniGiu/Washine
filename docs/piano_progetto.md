@@ -213,5 +213,6 @@ configurazione.
 ### 14. Consegna
 
 [Indice ^](#indice)
-> Devono essere indicate le procedure da seguire per la consegna dell'impianto al
-cliente.
+> Devono essere indicate le procedure da seguire per la consegna dell'impianto al cliente.
+
+La consegna consiste nella condivisione del codice sorgente e della documentazione del progetto con i docenti, ossia nella loro associazione come collaboratori alla repository sulla piattaforma Github almeno un mese prima del primo appello d'esame.
