@@ -128,7 +128,14 @@ saranno descritti in documenti separati, come il Piano di controllo della config
 il Piano di garanzia della qualità.
 Per esempio un progetto potrebbe dichiarare di seguire le convenzioni per la
 programmazione Java come definite da Oracle1
-.
+>
+Allo scopo di mantenere uno stile di codifica unificato, facilitare la manutenzione, migliorare la leggibilità del software e quindi velocizzare il lavoro nel suo complesso abbiamo deciso di uniformarci alle regole previste dalla [Google Java Style Guide][], uno standard ad ampio spettro, che va dalla prescrizione relativa alla formattazione del codice fino alla nomenclatura di classi, package e metodi...
+
+In relazione a tale scelta si è deciso di utilizzare [google-java-format][], un programma che, sotto forma di plug-in, riformatta il codice rendendolo compatibile con lo standard.
+
+[Google Java Style Guide]: https://google.github.io/styleguide/javaguide.html
+[google-java-format]:https://github.com/google/google-java-format/tree/master
+
 ###  5. Attività di gestione
 
 [Indice ^](#indice)
