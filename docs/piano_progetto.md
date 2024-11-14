@@ -209,7 +209,7 @@ progetto è rappresentata in una struttura di scomposizione del lavoro (vedi anc
 - Database
 - Core
 
-Per la parte di produzione della documentazione piuttosto che suddividere il lavoro per documento-argomento (piano di progetto, specifica dei requisiti...) preferiamo praticare la condivisione delle responsabilità assegnandoci parti di documento in base alle preferenze e al carico di lavoro e della necessità del momento. Una prima versione dei documenti necessari verrà stesa con scadenza decisa in previsione del loro utilizzo nella produzione o in concomitanza con le lavorazioni attinenti lasciando comunque la possibilità di iterazioni che permettano correzioni, modifiche e integrazioni. 
+Per la parte di produzione della documentazione piuttosto che suddividere il lavoro per documento-argomento (piano di progetto, specifica dei requisiti...) preferiamo la condivisione orizzontale delle responsabilità assegnandoci parti di documento in base alle preferenze, al carico di lavoro e alla necessità del momento. Una prima versione dei documenti verrà stesa con scadenza decisa in previsione del loro utilizzo nella produzione o in concomitanza con le lavorazioni attinenti. Rimanrrà la possibilità di iterazioni che permettano correzioni, modifiche e integrazioni. 
 
 ### 11. Risorse 
 
