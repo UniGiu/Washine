@@ -200,7 +200,7 @@ attività deve essere identificata nel piano di progetto. La scomposizione gerar
 progetto è rappresentata in una struttura di scomposizione del lavoro (vedi anche Sezione
 8.4 ).
 
- Il nostro progetto non è particolarmente grande, è sicuramente utile una divisione esplicita delle parti che possono essere
+ Il nostro progetto non è particolarmente grande, ma per la parte di produzione di codice è sicuramente utile una divisione esplicita delle parti che possono essere
  allocate ai membri del team, anche in considerazione delle caratteristiche organizzative del progetto.
  La gerarchia è individuata in base alle specialità delle nostre unità base (la cui consistenza verrà poi definita da una stima del carico di lavoro richiesto).
 - Interfaccia web domanda
@@ -208,6 +208,8 @@ progetto è rappresentata in una struttura di scomposizione del lavoro (vedi anc
 - Interfaccia web componenti comuni
 - Database
 - Core
+
+> Per la parte di produzione della documentazione piuttosto che suddividere il lavoro per documento-argomento (piano di progetto, specifica dei requisiti...) preferiamo praticare la condivisione delle responsabilità assegnandoci parti di documento in base alle preferenze e al carico di lavoro e della necessità del momento. Una prima versione dei documenti necessari verrà stesa con scadenza decisa in previsione del loro utilizzo nella produzione o in concomitanza con le lavorazioni attinenti lasciando comunque la possibilità di iterazioni che permettano correzioni, modifiche e integrazioni. 
 
 ### 11. Risorse 
 
