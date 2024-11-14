@@ -79,9 +79,9 @@ Ad esempio, il project plan potrebbe stabilire che si utilizzerà un processo ag
  #### Vantaggi del modello RAD per il progetto 
  La scelta del modello RAD è particolarmente adatta per il nostro progetto per i sequenti motivi:
  -  Il numero relativamente ridotto dei membri del nostro team risulta adatto all'approccio usato in RAD
- -  La riduzione dei tempi di sviluppo appare particolarmente vantaggiosa per la rapidità richiesta dal progetto che ha una scadenza assoluta definita a priori.
- -  La struttura iterativa permette di adattare i requisiti e le funzionalità al cambiamento garantendo una maggiore flessibilità e di poter rivedere le nostre scelte tempestivamente.
- -  La possibilità di realizzare più versioni incrementali del sistema riduce il rischio di fraintendimenti sui requisiti e permette di avere un prodotto sempre funzionante.
+ -  La riduzione dei tempi di sviluppo appare particolarmente vantaggiosa per la rapidità richiesta dal progetto che ha una scadenza assoluta definita a priori
+ -  La struttura iterativa permette di adattare i requisiti e le funzionalità al cambiamento garantendo una maggiore flessibilità e di poter rivedere le nostre scelte tempestivamente
+ -  La possibilità di realizzare più versioni incrementali del sistema riduce il rischio di fraintendimenti sui requisiti e permette di avere un prodotto sempre funzionante
 
 ###  3. Organizzazione del progetto 
 
@@ -200,9 +200,9 @@ attività deve essere identificata nel piano di progetto. La scomposizione gerar
 progetto è rappresentata in una struttura di scomposizione del lavoro (vedi anche Sezione
 8.4 ).
 
-> Il nostro progetto non è particolarmente grande, è sicuramente utile una divisione esplicita delle parti che possono essere
-allocate ai membri del team, anche in considerazione delle caratteristiche organizzative del progetto.
-> La gerarchia è individuata in base alle specialità delle nostre unità base (la cui consistenza verrà poi definita da una stima del carico di lavoro richiesto).
+ Il nostro progetto non è particolarmente grande, è sicuramente utile una divisione esplicita delle parti che possono essere
+ allocate ai membri del team, anche in considerazione delle caratteristiche organizzative del progetto.
+ La gerarchia è individuata in base alle specialità delle nostre unità base (la cui consistenza verrà poi definita da una stima del carico di lavoro richiesto).
 - Interfaccia web domanda
 - Interfaccia web offerta
 - Interfaccia web componenti comuni
