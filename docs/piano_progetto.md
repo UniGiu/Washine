@@ -162,6 +162,18 @@ Più incerti sono i vari aspetti del progetto, maggiori sono i rischi.
 competenze diverse. L'inizio, la durata, l'importo e la competenza delle categorie di
 personale sono elencati in questa voce.
 
+Siamo in 3 persone e a meno che qualcuno abbandoni il progetto saremo in 3, sempre gli stessi, dall'inizio alla fine.
+Una stima sommaria della ripartizione ed estensione delle necessità di personale potrebbe essere questa:
+
+| Competenza                         | durata      | ore tot | importo |
+| :--------------------------------- | :---------: | ------: | :------ | 
+| Teoria ingegneria del software (Documentazione, requisiti e design) | 6 settimane | 60      | 3       |
+| Sviluppo e test Java                      | 3 settimane | 16      | 2       |
+| Sviluppo  e test Vaadim + Java             | 4 settimane | 32      | 3       |
+| COTS Vaadim                        | 1 settimane | 4       | 1       |
+| Sviluppo e test jOOQ  + Java              | 1 settimana | 8       | 1       |
+
+
 ### 8. Metodi e tecniche
 
 [Indice ^](#indice)
