@@ -78,10 +78,10 @@ Ad esempio, il project plan potrebbe stabilire che si utilizzerà un processo ag
    
  #### Vantaggi del modello RAD per il progetto 
  La scelta del modello RAD è particolarmente adatta per il nostro progetto per i sequenti motivi:
- -  Il numero relativamente ridotto dei membri del nostro team risulta adatto con l'approccio usato in RAD
- -  La riduzione dei tempi di sviluppo appare particolarmente vantaggiosa per la rapidità richiesta dal progetto
- -  La struttura iterativa permette di adattare i requisiti e le funzionalità al cambiamento garantendo una maggiore flessibilità
- -  La possibilità di realizzare più versioni incrementali del sistema riduce il rischio di fraintendimenti sui requisiti e permette di avere un prodotto sempre funzionante 
+ -  Il numero relativamente ridotto dei membri del nostro team risulta adatto all'approccio usato in RAD
+ -  La riduzione dei tempi di sviluppo appare particolarmente vantaggiosa per la rapidità richiesta dal progetto che ha una scadenza assoluta definita a priori
+ -  La struttura iterativa permette di adattare i requisiti e le funzionalità al cambiamento garantendo una maggiore flessibilità e di poter rivedere le nostre scelte tempestivamente
+ -  La possibilità di realizzare più versioni incrementali del sistema riduce il rischio di fraintendimenti sui requisiti e permette di avere un prodotto sempre funzionante
 
 ###  3. Organizzazione del progetto 
 
@@ -108,7 +108,7 @@ A questo stadio inoltre (di fatto sarà l'unico stadio) il progetto che definiam
 
 La scelta del modello di processo RAD prevede un team SWAT. Questo nel nostro caso non è di fatto completamente praticabile poiché i membri del team non sono particolarmente skilled con gli advanced tools e sia le persone che i tools sono dati a priori e non sostituibili con altri. Partendo da questa assunzione proveremo comunque ad agire da team SWAT, faremo brevi e frequenti riunioni quando saremo nella stessa aula tra una lezione e l'altra. La messaggistica online si presta, tra le altre cose, a una continua sessione di brainstorming.
 
-Come tutti i principianti non ci verrà difficile sentirci orgogliosi del nostro lavoro come i veri team SWAT, ma poiché lo sviluppo di Washine non è la nostra unica occupazione e non abbiamo tutti gli stessi orari ci troveremo a lavorare in part-time. Tra i modelli organizzativi presi in considerazione quello a matrice sembra il più adatto ad essere integrato nel nostro per gestire questa situazione. Inoltre una caratteristica dell'organizzazione a matrice è la ricerca di un equilibrio tra l'obiettivo di ampliamento delle proprie conoscenze e competenze - il vero scopo del progetto e dei nostri studi - e quello di finire il progetto nei tempi previsti e permettere di superare a tutti l'esame presto e bene.
+Come tutti i principianti non ci verrà difficile sentirci orgogliosi del nostro lavoro come i veri team SWAT, ma poiché lo sviluppo di Washine non è la nostra unica occupazione e non abbiamo tutti gli stessi orari ci troveremo a lavorare in part-time. Tra i modelli organizzativi presi in considerazione quello a matrice sembra il più adatto ad integrare lo SWAT per gestire questa situazione. Inoltre una caratteristica dell'organizzazione a matrice è la ricerca di un equilibrio tra l'obiettivo di ampliamento delle proprie conoscenze e competenze - il vero scopo del progetto e dei nostri studi - e quello di finire il progetto nei tempi previsti e permettere di superare a tutti l'esame presto e bene.
 Ruoli e responsabilità saranno quindi attribuiti con l'assegnazione di una o più persone alle diverse specializzazioni in base alle necessità. Vale anche qui la considerazione che la specializzazione delle unità base in questo caso è in divenire, definita a partire delle responsabilità assegnate.
 
 Probabilmente in certi casi ci riconosceremo quindi anche in una forma molto blanda del modello programmatore capo: alcune unità base specializzate saranno formate da più persone (tra le poche che compongono il team) tra le quali una responsabile di una parte di codice in accoppiata o assistita da un'altra, e una terza che farà da revisore e si prenderà carico di svolgere anche il ruolo del bibliotecario.
@@ -200,6 +200,15 @@ attività deve essere identificata nel piano di progetto. La scomposizione gerar
 progetto è rappresentata in una struttura di scomposizione del lavoro (vedi anche Sezione
 8.4 ).
 
+ Il nostro progetto non è particolarmente grande, è sicuramente utile una divisione esplicita delle parti che possono essere
+ allocate ai membri del team, anche in considerazione delle caratteristiche organizzative del progetto.
+ La gerarchia è individuata in base alle specialità delle nostre unità base (la cui consistenza verrà poi definita da una stima del carico di lavoro richiesto).
+- Interfaccia web domanda
+- Interfaccia web offerta
+- Interfaccia web componenti comuni
+- Database
+- Core
+
 ### 11. Risorse 
 
 [Indice ^](#indice)
@@ -237,4 +246,4 @@ configurazione.
 [Indice ^](#indice)
 > Devono essere indicate le procedure da seguire per la consegna dell'impianto al cliente.
 
-La consegna consiste nella condivisione del codice sorgente e della documentazione del progetto con i docenti, ossia nella loro associazione come collaboratori alla repository sulla piattaforma Github almeno un mese prima del primo appello d'esame.
+Una pre-releas del progetto consisterà nella condivisione del codice sorgente e della documentazione con i docenti sulla piattaforma Github a partite da un mese dal primo appello d'esame. La versione finale e la sua presentazione verranno consegnate in prossimità dell'esame orale.
