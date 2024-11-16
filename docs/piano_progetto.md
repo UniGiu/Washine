@@ -27,11 +27,13 @@
 #### Background, storia, e obiettivi
 
 Questo progetto è stato concepito come parte dell'esame universitario di Ingegneria del Software.  
-Rispetto ad un progetto commerciale presenta quindi caratteristiche diverse per contesto e durata: si tratta di 3 studenti che in un paio di mesi devono documentare e sviluppare un software con strumenti dati a priori seguendo metodologie e pratiche per loro nuove. L'obiettivo è sperimentare insieme quanto visto e studiato durante il corso e dimostrare aver ben compreso e messo in pratica con efficacia le competenze necessarie per lo sviluppo di un progetto software.
+Rispetto ad un progetto tipico presenta quindi caratteristiche diverse per contesto e durata: si tratta di 3 studenti che in un paio di mesi devono documentare e sviluppare un software con strumenti dati a priori seguendo metodologie e pratiche per loro nuove.  
+L'obiettivo è sperimentare insieme quanto visto e studiato durante il corso e dimostrare aver ben compreso e messo in pratica con efficacia le competenze necessarie per lo sviluppo di un progetto software.  
+Questo consisterà nel provare a fare tutto nel tempo e con il numero di ore previsti e poi rivedere se e come lo abbiamo fatto.
 
 #### Risultati del progetto
 
-Ci sono riusciti? Questa parte è ancora da scrivere, speriamo di sì!
+Ci siamo riusciti? Questa parte è ancora da scrivere, speriamo di sì!
 
 #### Persone coinvolte
 
@@ -41,12 +43,18 @@ Ci sono riusciti? Questa parte è ancora da scrivere, speriamo di sì!
 
 #### Sintesi del progetto
 
-**Washine** è un applicazione web open source progettata per facilitare l'organizzazione e la condivisione del lavaggio di indumenti tramite lavatrici domestiche o a gettoni. 
-Il software si rivolge a piccole comunità di utenti accumunati dalla prossimità geografica e da un legame di reciproca conoscenza e fiducia (amici, condomini, colleghi di lavoro, parrocchiani, frequentatori di un bar, studenti fuori sede, abitanti di un quartiere...). In una seconda fase, anche in virtù della natura open source del progetto, potrebbe essere prevista un'estensione della base di utenza e un'aumento di configurazioni del prodotto anche per finalità commerciali.  
+Washine è un applicazione web free open source progettata per facilitare l'organizzazione e la condivisione del lavaggio di indumenti tramite lavatrici domestiche o a gettoni. 
+Il software viene fornito agli utenti come applicazione web in modo tale che questi possano pianificare un lavaggio condiviso di indumenti specificandone le caratteristiche oppure partecipare a un lavaggio già pianificato tra quelli disponibili all'interno delle proprie comunità specificando la quota di indumenti (peso).  
+Inoltre è previsto un utente Amministratore che può monitorare l'attività degli utenti e intervenire in casi particolari. L'applicazione sarà progettata in modo tale che l'intervento dell'amministratore sia minimo e con ruolo prevalente di facilitatore e supporto tecnico, con ridotta attività di sorveglianza. Le responsabilità di amministrazione degli utenti saranno attribuite principalmente all'organizzatore del lavaggio.
 
-Idealmente l'applicazione ha come scopo quello di ridurre i consumi energetici globali relativi ai lavaggi e alla produzione di macchine lavatrici e nel mentre permette di rafforzare i legami sociali all'interno di piccole comunità.
+L'applicazione ha come scopo quello di ridurre i consumi energetici relativi ai lavaggi e alla produzione di macchine lavatrici e di rafforzare i legami sociali all'interno di piccole comunità. Non ci aspettiamo che Washine sia la soluzione definitiva ai gravi problemi dell'isolamento sociale, della povertà, della disponibilità di energia e del ruolo del suo utilizzo nel deterioramento dell'habitat umano.  
+Il progetto infatti si propone solo di mettere a disposizione di chiunque sia interressato uno strumento per facilitare una pratica di utilità sociale e di poter essere fonte di ispirazione e di incoraggiamento per iniziative simili.
 
-L'applicazione munita di database e interfaccia web viene fornita agli utenti in modo tale che possano pianificare un lavaggio condivisio di indumenti specificandone le caratteristiche (tipologia indumenti, colori, peso disponibile, tipo di detergente, asciugatrice, quota spese, meeting point, utenti abilitati a visualizzare l'offerta ecc...). Altrimenti, gli viene permesso di partecipare a un lavaggio già pianificato tra quelli disponibili all'interno delle proprie comunità (definite o per appartenza o per prossimità geografica) specificando la quota di indumenti (peso) vogliono prenotare. *Inoltre è previsto un utente Amministratore che può monitorare l'attività degli utenti e intervenire in casi particolari. L'applicazione sarà progettata in modo tale che l'intervento dell'amministratore sia minimo, assegnando le responsabilità principali all'organizzatore del lavaggio e riducendo gli elementi che richiedono un'attività di sorveglianza.  *.
+L'applicazione si rivolge a piccole comunità di utenti finali accumunati dalla prossimità geografica e da un legame di reciproca conoscenza e fiducia (amici, condomini, colleghi di lavoro, parrocchiani, frequentatori di un bar, studenti fuori sede, abitanti di un quartiere...). Successivamente, anche in virtù della natura free open source del progetto, potrebbe essere prevista un'estensione della base di utenza e un'aumento di configurazioni del prodotto anche per finalità commerciali e di micro imprenditorialità (ad esempio supportare l'attività di lavandaio con una funzionalità di ritiro e consegna a domicilio degli indumenti ecc).
+
+L'applicazione non è pensata per la scalabilità verticale, ma per quella orizzontale: le scelte della licenza free open source e di ridurre le attività di amministrazione al minimo indispensabile sono state prese per favorire più installazioni il più possibile sostenibili in termini economici e di impegno richiesto. Ciascuna installazione avrebbe un numero di utenti limitato (utenti non necessariamente in relazione diretta con chi fornisce l'applicazione) e potrebbe essere riconfigurata e riadattata a servire esigenze e bisogni specifici relativi al contesto culturale e sociale di utilizzo. La sostenibilità dovrebbe essere accompagnata da altrettanta accessibilità in termini di infrastruttura e competenze necessarie per la manutenzione.
+
+L'applicazione è ipotizzata come integrata in un ecosistema tecnologico più vasto e non persegue la user retention, perciò eviteremo la replicazione di elementi funzionali già presenti nel contesto, rendendo l'applicazione più leggera e usabile. Ad esempio il flusso comunicativo tra gli utenti non avverrà tramite un sistema dedicato: gli utenti si conoscono tra di loro e hanno già un modo preferito di interagire quando si frequentano o tramite applicazioni di messaggistica istantanea o con telefonate o sms. Non c'è bisogno di obbligarli ad apprendere e utilizzare un sistema in più, l'applicazione si limiterà a inviare email per il recupero delle password o altre comunicazioni di servizio strettamente necesssarie.  
 
 ###  2. Modello di processo
 
