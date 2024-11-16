@@ -148,9 +148,12 @@ progetto. Dovrà anche seguire alcune priorità nel bilanciamento di requisiti, 
 Il lavoro è organizzato  in timebox, ciascuno dei quali sarà allineato con una delle fasi specifiche del progetto.
 Alla scadenza di un time box il team si riunirà per valutare i progressi compiuti rispetto agli obiettivi, identificare eventuali problemi emersi e ridefinire i passi successivi per l’avanzamento.
 
-Per assicurare il rispetto delle scadenze verrà utilizzato un foglio condiviso contentente un calendario suddiviso in settimane, con l'indicazione degli obiettivi specifici da raggiungere entro la fine di ciascun periodo. Questo aiuterà ogni membro a mantenere il proprio lavoro allineato con le priorità del progetto.
+Per assicurare il rispetto delle scadenze verrà utilizzato un foglio condiviso contentente un calendario suddiviso in settimane, con l'indicazione degli obiettivi specifici da raggiungere entro la fine di ciascun periodo. 
 
-Inoltre l'andamento del progetto verrà sempre monitorato, ogni membro del team notificherà agli altri membri le modifiche apportate tramite Github, garantendo che tutti rimangano aggiornati e che il lavoro si integri correttamente.
+Verrà inoltre utilizzato il Kanban board per gestire il flusso di lavoro durante lo sviluppo del software che permette di fornire una panoramica di tutte le attività e il loro stato attuale. L'andamento del progetto risulterà quindi sempre monitorato, i membri del team potranno vedre chi è responsabile di ciascuna attività e comunicare tramite issue.
+
+Questo aiuterà ogni membro a mantenere il proprio lavoro allineato con le priorità del progetto, garantendo che tutti rimangano aggiornati e che il lavoro si integri correttamente.
+
 
 ### 6. Rischi
 
