@@ -163,6 +163,18 @@ delle costruzioni, c'è sempre qualcosa che non va. Si dovrebbe diagnosticare pr
 i rischi di un progetto software e fornire misure per affrontarli; vedere anche il capitolo 8 .
 Più incerti sono i vari aspetti del progetto, maggiori sono i rischi.
 
+Trattandosi di un progetto da sviluppare in ambito universitario i potenziali rischi sono per lo più di natura organizzativa. Uno dei 
+principali ostacoli alla buona riuscita del progetto è la necessità di conciliare il lavoro sul progetto con altri impegni, compresi 
+quelli accademici per altri corsi: questo può tradursi nella difficoltà di rispettare i tempi e i requisiti richiesti e prescelti per 
+la consegna, o di garantire un'adeguata partecipazione di tutti i membri in modo continuo.
+
+Un altro possibile problema è l'eventualità che un membro del team abbandoni il progetto senza o con insufficente preavviso 
+sovraccaricando gli altri membri e compromettendo la scadenza. Anche la comunicazione e il coordinamento sono elementi fondamentali 
+in un progetto di questo tipo e la loro mancanza può rallentare tutto il processo e l'avanzamento del lavoro. 
+
+Ci sono poi le eventuali difficoltà legate all'uso di strumenti e metodi nuovi la cui padronanza potrebbe richiedere tempi più lunghi 
+di quelli preventivati.
+
 ### 7. Personale 
 
 [Indice ^](#indice)
