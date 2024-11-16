@@ -46,7 +46,9 @@ Il software si rivolge a piccole comunità di utenti accumunati dalla prossimit�
 
 Idealmente l'applicazione ha come scopo quello di ridurre i consumi energetici globali relativi ai lavaggi e alla produzione di macchine lavatrici e nel mentre permette di rafforzare i legami sociali all'interno di piccole comunità.
 
-L'applicazione munita di database e interfaccia web viene fornita agli utenti in modo tale che possano pianificare un lavaggio condivisio di indumenti specificandone le caratteristiche (tipologia indumenti, colori, peso disponibile, tipo di detergente, asciugatrice, quota spese, meeting point, utenti abilitati a visualizzare l'offerta ecc...). Altrimenti, gli viene permesso di partecipare a un lavaggio già pianificato tra quelli disponibili all'interno delle proprie comunità (definite o per appartenza o per prossimità geografica) specificando la quota di indumenti (peso) vogliono prenotare. *Inoltre è previsto un utente Amministratore che può monitorare l'attività degli utenti e intervenire in casi particolari. L'applicazione sarà progettata in modo tale che l'intervento dell'amministratore sia minimo, assegnando le responsabilità principali all'organizzatore del lavaggio e riducendo gli elementi che richiedono un'attività di sorveglianza.  *.
+L'applicazione munita di database e interfaccia web viene fornita agli utenti in modo tale che possano pianificare un lavaggio condivisio di indumenti specificandone le caratteristiche (tipologia indumenti, colori, peso disponibile, tipo di detergente, asciugatrice, quota spese, meeting point, utenti abilitati a visualizzare l'offerta ecc...). Altrimenti, gli viene permesso di partecipare a un lavaggio già pianificato tra quelli disponibili all'interno delle proprie comunità (definite o per appartenza o per prossimità geografica) specificando la quota di indumenti (peso) vogliono prenotare. 
+
+*Inoltre è previsto un utente Amministratore che può monitorare l'attività degli utenti e intervenire in casi particolari. L'applicazione sarà progettata in modo tale che l'intervento dell'amministratore sia minimo, assegnando le responsabilità principali all'organizzatore del lavaggio e riducendo gli elementi che richiedono un'attività di sorveglianza.*.
 
 ###  2. Modello di processo
 
@@ -142,6 +144,13 @@ In relazione a tale scelta si è deciso di utilizzare [google-java-format][], un
 > sono guidate da obiettivi e priorità fissati per il progetto. Ad esempio, la
 direzione dovrà presentare relazioni periodiche sullo stato e sullo stato di avanzamento del
 progetto. Dovrà anche seguire alcune priorità nel bilanciamento di requisiti, tempi e costi.
+>
+Il lavoro è organizzato  in timebox, ciascuno dei quali sarà allineato con una delle fasi specifiche del progetto.
+Alla scadenza di un time box il team si riunirà per valutare i progressi compiuti rispetto agli obiettivi, identificare eventuali problemi emersi e ridefinire i passi successivi per l’avanzamento.
+
+Per assicurare il rispetto delle scadenze verrà utilizzato un foglio condiviso contentente un calendario suddiviso in settimane, con l'indicazione degli obiettivi specifici da raggiungere entro la fine di ciascun periodo. Questo aiuterà ogni membro a mantenere il proprio lavoro allineato con le priorità del progetto.
+
+Inoltre l'andamento del progetto verrà sempre monitorato, ogni membro del team notificherà agli altri membri le modifiche apportate tramite Github, garantendo che tutti rimangano aggiornati e che il lavoro si integri correttamente.
 
 ### 6. Rischi
 
