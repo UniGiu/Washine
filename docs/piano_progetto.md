@@ -145,14 +145,13 @@ In relazione a tale scelta si è deciso di utilizzare [google-java-format][], un
 direzione dovrà presentare relazioni periodiche sullo stato e sullo stato di avanzamento del
 progetto. Dovrà anche seguire alcune priorità nel bilanciamento di requisiti, tempi e costi.
 >
-Il lavoro è organizzato  in timebox, ciascuno dei quali sarà allineato con una delle fasi specifiche del progetto.
-Alla scadenza di un time box il team si riunirà per valutare i progressi compiuti rispetto agli obiettivi, identificare eventuali problemi emersi e ridefinire i passi successivi per l’avanzamento.
+Il lavoro è organizzato  in timebox, ciascuno dei quali sarà allineato con una delle fasi specifiche del progetto. Durante ciascun timebox, rimarremo in contatto tramite messaggi online e brevi discussioni organizzate tra una lezione e l’altra, per confrontarci rapidamente sulle attività in corso e risolvere eventuali dubbi. Alla scadenza invece ci riuniremo per valutare i progressi compiuti rispetto agli obiettivi, identificare eventuali problemi emersi e ridefinire i passi successivi per l’avanzamento.
 
-Per assicurare il rispetto delle scadenze verrà utilizzato un foglio condiviso contentente un calendario suddiviso in settimane, con l'indicazione degli obiettivi specifici da raggiungere entro la fine di ciascun periodo. 
+Per assicurare il rispetto delle scadenze utilizzeremo un foglio condiviso contentente un calendario suddiviso in settimane, con l'indicazione degli obiettivi specifici da raggiungere entro la fine di ciascun periodo. 
 
-Verrà inoltre utilizzato il Kanban board per gestire il flusso di lavoro durante lo sviluppo del software che permette di fornire una panoramica di tutte le attività e il loro stato attuale. L'andamento del progetto risulterà quindi sempre monitorato, i membri del team potranno vedre chi è responsabile di ciascuna attività e comunicare tramite issue.
+Utilizzeremo inoltre la Kanban board per gestire il flusso di lavoro durante lo sviluppo del software che permette di fornire una panoramica di tutte le attività e il loro stato attuale. L'andamento del progetto risulterà quindi sempre monitorato, i membri del team potranno vedere chi è responsabile di ciascuna attività e comunicare tramite issue.
 
-Questo aiuterà ogni membro a mantenere il proprio lavoro allineato con le priorità del progetto, garantendo che tutti rimangano aggiornati e che il lavoro si integri correttamente.
+Questo ci aiuterò a mantenere il lavoro allineato con le priorità del progetto, garantendo che tutti rimangano aggiornati e che il lavoro si integri correttamente.
 
 
 ### 6. Rischi
@@ -241,6 +240,18 @@ Per la parte di produzione della documentazione piuttosto che suddividere il lav
 > Durante il progetto sono necessarie molte risorse. L'hardware, i cicli della CPU e gli
 strumenti necessari per supportare il progetto sono elencati in questa voce. Occorre inoltre
 indicare il personale necessario per le varie fasi del processo.
+>
+Per lo sviluppo del software vennarro utilizzati i seguenti strumenti:
+
+- Eclipse: utilizzato come IDE principale per la programmazione e lo sviluppo del codice.
+- Papyrus: impiegato per la modellazione e la creazione dei diagrammi UML necessari alla progettazione.
+- GitHub: utilizzato per il Configuration Management e la gestione collaborativa del codice sorgente.
+- SQLite: scelto per la creazione e gestione del database embedded.
+- Vaadin: framework open source adottato per lo sviluppo di interfacce utente (UI) scalabili e intuitive.
+  
+Per quanto riguarda il personale il team verrà suddiviso in:
+- coordinatore del progetto, il quale sarà responsabile della pianificazione e monitoraggio scadenze
+- sviluppatori, responsabili della programmazione
 
 ### 12. Budget e programma 
 
