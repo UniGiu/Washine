@@ -107,16 +107,16 @@ richieste per ricoprire uno di questi ruoli, è necessario identificare la forma
 l'istruzione necessarie per colmare queste lacune. Diverse forme di organizzazione del
 team sono discusse nel Capitolo 5 .
 
-## Entità coinvolte
+#### Entità coinvolte
 
 Il progetto si coinvolge i docenti per la valutazione finale e nel fornire un riscontro e supporto nelle fasi intermedie.
 A questo stadio inoltre (di fatto sarà l'unico stadio) il progetto che definiamo open source non ha ancora una base di utenti reali a cui fare riferimento. Ci troveremo noi stessi a interpretare il ruolo di un set utenti tipo ogni qual volta ce ne sarà bisogno. In questa situazione c'è il rischio che gli utenti immaginari non siano molto rappresentativi di quelli realmente interessati all'applicazione, ma anche il vantaggio di averli sempre con noi per il JRP e i JAD previsti dal RAD.
 
-## Team
+#### Team
 
-La scelta del modello di processo RAD prevede un team SWAT. Questo nel nostro caso non è di fatto completamente praticabile poiché i membri del team non sono particolarmente skilled con gli advanced tools e sia le persone che i tools sono dati a priori e non sostituibili con altri. Partendo da questa assunzione proveremo comunque ad agire da team SWAT, faremo brevi e frequenti riunioni quando saremo nella stessa aula tra una lezione e l'altra. La messaggistica online si presta, tra le altre cose, a una continua sessione di brainstorming.
+La scelta del modello di processo RAD prevede un team SWAT. Questo nel nostro caso non è di fatto completamente praticabile poiché i membri del team non sono particolarmente skilled con gli advanced tools e sia le persone che i tools sono dati a priori e non sostituibili con altri se ce ne fosse bisogno. Partendo da questa assunzione proveremo comunque ad agire da team SWAT, faremo brevi e frequenti riunioni quando saremo nella stessa aula tra una lezione e l'altra. La messaggistica online si presta, tra le altre cose, a una continua sessione di brainstorming.
 
-Come tutti i principianti non ci verrà difficile sentirci orgogliosi del nostro lavoro come i veri team SWAT, ma poiché lo sviluppo di Washine non è la nostra unica occupazione e non abbiamo tutti gli stessi orari ci troveremo a lavorare in part-time. Tra i modelli organizzativi presi in considerazione quello a matrice sembra il più adatto ad integrare lo SWAT per gestire questa situazione. Inoltre una caratteristica dell'organizzazione a matrice è la ricerca di un equilibrio tra l'obiettivo di ampliamento delle proprie conoscenze e competenze - il vero scopo del progetto e dei nostri studi - e quello di finire il progetto nei tempi previsti e permettere di superare a tutti l'esame presto e bene.
+Come tutti i principianti non ci verrà difficile sentirci orgogliosi del nostro lavoro come i veri team SWAT, ma poiché lo sviluppo di Washine non è la nostra unica occupazione e non abbiamo tutti gli stessi orari ci troveremo a lavorare in part-time. Tra i modelli organizzativi presi in considerazione quello a matrice sembra il più adatto ad integrare lo SWAT per gestire questa situazione. Inoltre una caratteristica dell'organizzazione a matrice è la ricerca di un equilibrio tra l'obiettivo di ampliamento delle proprie conoscenze e competenze - il vero scopo del progetto e dei nostri studi - e quello di finire il progetto nei tempi previsti e permettere a tutti di superarel'esame presto e bene.
 Ruoli e responsabilità saranno quindi attribuiti con l'assegnazione di una o più persone alle diverse specializzazioni in base alle necessità. Vale anche qui la considerazione che la specializzazione delle unità base in questo caso è in divenire, definita a partire delle responsabilità assegnate.
 
 Probabilmente in certi casi ci riconosceremo quindi anche in una forma molto blanda del modello programmatore capo: alcune unità base specializzate saranno formate da più persone (tra le poche che compongono il team) tra le quali una responsabile di una parte di codice in accoppiata o assistita da un'altra, e una terza che farà da revisore e si prenderà carico di svolgere anche il ruolo del bibliotecario.
@@ -194,7 +194,7 @@ Una stima sommaria della ripartizione ed estensione delle necessità di personal
 | :--------------------------------- | :---------: | ------: | :------ | 
 | Teoria ingegneria del software (Documentazione, requisiti e design) | 6 settimane | 60      | 3       |
 | Sviluppo e test Java                      | 3 settimane | 16      | 2       |
-| Sviluppo  e test Vaadim + Java             | 4 settimane | 32      | 3       |
+| Sviluppo e test Vaadim + Java             | 4 settimane | 32      | 3       |
 | COTS Vaadim                        | 1 settimane | 4       | 1       |
 | Sviluppo e test jOOQ  + Java              | 1 settimana | 8       | 1       |
 
@@ -227,7 +227,10 @@ saranno descritti in documenti separati, come il Piano di controllo della config
 il Piano di garanzia della qualità.
 Per esempio un progetto potrebbe dichiarare di seguire le convenzioni per la
 programmazione Java come definite da Oracle1
-.
+
+Documenteremo quali criteri di qualità del software e dei processi abbiamo preso come riferimento e quali compromessi abbiamo trovato per soddisfarli al meglio nel contesto.
+
+
 ### 10. Pacchetti di lavoro (workpackages) 
 
 [Indice ^](#indice)
