@@ -288,6 +288,11 @@ programmate in tempo, ad esempio utilizzando un grafico PERT (vedi Sezione 8.4 )
 rubrica è indicato anche il modo in cui vengono tracciate le risorse e le altre spese. Il tema
 della stima dei costi e dei tempi è trattato ampiamente nel Capitolo 7 .
 
+Non essendoci risorse finanziarie a disposizione l'unica risorsa che possiamo allocare è il nostro tempo. Ci siamo dati come budget
+40 ore a persona ripartite come nello schema del punto [Personale](#7-personale) anche se vista la nostra mancanza di esperienza nei metodi e negli strumenti
+la nostra stima è molto approssimativa e probabilmente le ore dedicate alle diverse attività saranno di più e diversamente distribuite. 
+Abbiamo preparato un foglio di calcolo dove tracciamo e monitoriamo le ore spese e dove possiamo vedere se siamo in ritardo o anticipo rispetto alla programmazione per settimane. L'unità di tempo di riferimento per la programmazione è la settimana soprattutto per aderire alla scansione del tempo del resto delle nostre attività universitarie.
+
 ### 13. Cambiamenti
 
 [Indice ^](#indice)
