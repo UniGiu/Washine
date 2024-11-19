@@ -44,7 +44,7 @@ Ci siamo riusciti? Questa parte è ancora da scrivere, speriamo di sì!
 #### Sintesi del progetto
 
 Washine è un applicazione web free open source progettata per facilitare l'organizzazione e la condivisione del lavaggio di indumenti tramite lavatrici domestiche o a gettoni. 
-Il software viene fornito agli utenti come applicazione web in modo tale che questi possano pianificare un lavaggio condiviso di indumenti specificandone le caratteristiche oppure partecipare a un lavaggio già pianificato tra quelli disponibili all'interno delle proprie comunità specificando la quota di indumenti (peso).  
+Il software viene fornito agli utenti come applicazione web in modo tale che questi possano pianificare un lavaggio condiviso di indumenti specificandone le caratteristiche oppure partecipare a un lavaggio già pianificato tra quelli disponibili specificando la quota di indumenti (peso).  
 Inoltre è previsto un utente Amministratore che può monitorare l'attività degli utenti e intervenire in casi particolari. L'applicazione sarà progettata in modo tale che l'intervento dell'amministratore sia minimo e con ruolo prevalente di facilitatore e supporto tecnico, con ridotta attività di sorveglianza. Le responsabilità di amministrazione degli utenti saranno attribuite principalmente all'organizzatore del lavaggio.
 
 L'applicazione ha come scopo quello di ridurre i consumi energetici relativi ai lavaggi e alla produzione di macchine lavatrici e di rafforzare i legami sociali all'interno di piccole comunità. Non ci aspettiamo che Washine sia la soluzione definitiva ai gravi problemi dell'isolamento sociale, della povertà, della disponibilità di energia e del ruolo del suo utilizzo nel deterioramento dell'habitat umano.  
@@ -70,8 +70,7 @@ Ad esempio, il project plan potrebbe stabilire che si utilizzerà un processo ag
 >
  Per lo sviluppo di Washine abbiamo deciso di adottare il modello RAD (Rapid Application Development). Questo modello fa uso di un approccio incrementale e iterativo, 
  promuove il riutilizzo e l'uso di strumenti automatizzati e sottolinea l'importanza del coinvolgimento del cliente. RAD si concentra su cicli di sviluppo brevi e, al 
- contrario della maggior parte degli altri metodi di sviluppo, prevede che venga prima fissato un periodo di tempo (time box) all'interno del quale il progetto cercherà di 
- realizzare una o più funzionalità. 
+ contrario della maggior parte degli altri metodi di sviluppo, prevede che vengano fissati dei periodi di tempo (time box) all'interno dei quali cercheremo di realizzare funzionalità in base a priorità assegnate.
 
  #### Fasi principali
  Le attività previste dal modello RAD per il progetto sono:
@@ -80,9 +79,6 @@ Ad esempio, il project plan potrebbe stabilire che si utilizzerà un processo ag
  3.  **Costruzione**
  4.  **Taglio**
 
- Lo scopo della prima fase è quello di ottenere i requisiti giusti la prima volta e di definirne una priorità nonchè quello di produrre una specifica dei requisiti 
- dettagliata. Le fasi intermedie prevedono una continua iterazione che ha l'obiettivo di avere sempre una versione funzionante del prodotto, mentre la fase di taglio 
- consiste nel collaudo finale del sistema. Il testing e la validazione riguardano tutte le fasi del ciclo di vita del progetto.
    
  #### Vantaggi del modello RAD per il progetto 
  La scelta del modello RAD è particolarmente adatta per il nostro progetto per i sequenti motivi:
@@ -109,14 +105,14 @@ team sono discusse nel Capitolo 5 .
 
 #### Entità coinvolte
 
-Il progetto si coinvolge i docenti per la valutazione finale e nel fornire un riscontro e supporto nelle fasi intermedie.
-A questo stadio inoltre (di fatto sarà l'unico stadio) il progetto che definiamo open source non ha ancora una base di utenti reali a cui fare riferimento. Ci troveremo noi stessi a interpretare il ruolo di un set utenti tipo ogni qual volta ce ne sarà bisogno. In questa situazione c'è il rischio che gli utenti immaginari non siano molto rappresentativi di quelli realmente interessati all'applicazione, ma anche il vantaggio di averli sempre con noi per il JRP e i JAD previsti dal RAD.
+Il progetto coinvolge i docenti per la valutazione finale e nel fornire un riscontro e supporto nelle fasi intermedie.
+Il progetto che definiamo open source non ha ancora una base di utenti reali a cui fare riferimento. Ci troveremo noi stessi a interpretare il ruolo di un set utenti tipo ogni qual volta ce ne sarà bisogno. In questa situazione c'è il rischio che gli utenti immaginari non siano molto rappresentativi di quelli realmente interessati all'applicazione, ma anche il vantaggio di averli sempre con noi per il JRP e i JAD previsti dal RAD.
 
 #### Team
 
 La scelta del modello di processo RAD prevede un team SWAT. Questo nel nostro caso non è di fatto completamente praticabile poiché i membri del team non sono particolarmente skilled con gli advanced tools e sia le persone che i tools sono dati a priori e non sostituibili con altri se ce ne fosse bisogno. Partendo da questa assunzione proveremo comunque ad agire da team SWAT, faremo brevi e frequenti riunioni quando saremo nella stessa aula tra una lezione e l'altra. La messaggistica online si presta, tra le altre cose, a una continua sessione di brainstorming.
 
-Come tutti i principianti non ci verrà difficile sentirci orgogliosi del nostro lavoro come i veri team SWAT, ma poiché lo sviluppo di Washine non è la nostra unica occupazione e non abbiamo tutti gli stessi orari ci troveremo a lavorare in part-time. Tra i modelli organizzativi presi in considerazione quello a matrice sembra il più adatto ad integrare lo SWAT per gestire questa situazione. Inoltre una caratteristica dell'organizzazione a matrice è la ricerca di un equilibrio tra l'obiettivo di ampliamento delle proprie conoscenze e competenze - il vero scopo del progetto e dei nostri studi - e quello di finire il progetto nei tempi previsti e permettere a tutti di superarel'esame presto e bene.
+Come tutti i principianti non ci verrà difficile sentirci orgogliosi del nostro lavoro come i veri team SWAT, ma poiché lo sviluppo di Washine non è la nostra unica occupazione e non abbiamo tutti gli stessi orari ci troveremo a lavorare in part-time. Tra i modelli organizzativi presi in considerazione quello a matrice sembra il più adatto ad integrare lo SWAT per gestire questa situazione. 
 Ruoli e responsabilità saranno quindi attribuiti con l'assegnazione di una o più persone alle diverse specializzazioni in base alle necessità. Vale anche qui la considerazione che la specializzazione delle unità base in questo caso è in divenire, definita a partire delle responsabilità assegnate.
 
 Probabilmente in certi casi ci riconosceremo quindi anche in una forma molto blanda del modello programmatore capo: alcune unità base specializzate saranno formate da più persone (tra le poche che compongono il team) tra le quali una responsabile di una parte di codice in accoppiata o assistita da un'altra, e una terza che farà da revisore e si prenderà carico di svolgere anche il ruolo del bibliotecario.
@@ -143,8 +139,10 @@ regole previste dalla [Google Java Style Guide][], uno standard ad ampio spettro
 In relazione a tale scelta si è deciso di utilizzare [google-java-format][], un programma che, sotto forma di plug-in, riformatta il codice rendendolo compatibile con lo standard.
 
 Come linea guida generale faremo largo uso delle branches, tramite Github, per mantenere il branch principale privo di errori e per evitare di aggiungere modifiche indesiderate o non testate nel codice 
-principale; per piccoli cambiamenti ai documenti o al codice lavoreremo principalmente su branch secondari dedicati a quella specifica modifica o funzionalità per poi fare il merge con il branch main a 
+principale; per cambiamenti ai documenti o al codice lavoreremo principalmente su branch secondari dedicati a quella specifica modifica o funzionalità per poi fare il merge con il branch main a 
 lavoro finito, una volta verificato che non ci sono conflitti e che la modifica non introduce problemi prima inesistenti.
+
+Per l'aggiornamento della documentazione e attività di approvazione di proposte utilizzeremo un approccio che segue la maggioranza: essendo in tre la proposta deve essere approvata almento da due membri.
 
 [Google Java Style Guide]: https://google.github.io/styleguide/javaguide.html
 [google-java-format]:https://github.com/google/google-java-format/tree/master
@@ -164,6 +162,7 @@ Utilizzeremo inoltre la Kanban board per gestire il flusso di lavoro durante lo 
 
 Questo ci aiuterò a mantenere il lavoro allineato con le priorità del progetto, garantendo che tutti rimangano aggiornati e che il lavoro si integri correttamente.
 
+Non verranno verbalizzate le riunioni e la gestione sarà piuttosto informale e collettiva.
 
 ### 6. Rischi
 
@@ -203,8 +202,8 @@ Una stima sommaria della ripartizione ed estensione delle necessità di personal
 | :--------------------------------- | :---------: | ------: | :------ | 
 | Teoria ingegneria del software (Documentazione, requisiti e design) | 6 settimane | 60      | 3       |
 | Sviluppo e test Java                      | 3 settimane | 16      | 2       |
-| Sviluppo e test Vaadim + Java             | 4 settimane | 32      | 3       |
-| COTS Vaadim                        | 1 settimane | 4       | 1       |
+| Sviluppo e test Vaadin + Java             | 4 settimane | 32      | 3       |
+| COTS Vaadin                        | 1 settimane | 4       | 1       |
 | Sviluppo e test jOOQ  + Java              | 1 settimana | 8       | 1       |
 
 
@@ -223,6 +222,12 @@ test. Pertanto, questa attività deve essere pianificata con attenzione. L'ordin
 componenti vengono integrati e testati deve essere indicato esplicitamente. Inoltre,
 devono essere indicate le procedure da seguire durante i test di accettazione, ovvero i
 test sotto la supervisione dell'utente. I test sono discussi nel Capitolo 13.
+>
+
+- Ingegneria requisiti: brainstorming e casi d'uso
+- Progettazione: UML, metriche, design pattern
+- Implementazione: Github, prototipazione incrementale
+- Test: unitari, di integrazione
 
 ### 9. Garanzia di qualità
 
@@ -257,8 +262,9 @@ progetto è rappresentata in una struttura di scomposizione del lavoro (vedi anc
 - Interfaccia web componenti comuni
 - Database
 - Core
+- Istruzioni e informazioni per gli utenti
 
-Per la parte di produzione della documentazione piuttosto che suddividere il lavoro per documento-argomento (piano di progetto, specifica dei requisiti...) preferiamo la condivisione orizzontale delle responsabilità assegnandoci parti di documento in base alle preferenze, al carico di lavoro e alla necessità del momento. Una prima versione dei documenti verrà stesa con scadenza decisa in previsione del loro utilizzo nella produzione o in concomitanza con le lavorazioni attinenti. Rimanrrà la possibilità di iterazioni che permettano correzioni, modifiche e integrazioni. 
+Per la parte di produzione della documentazione piuttosto che suddividere il lavoro per documento-argomento (piano di progetto, specifica dei requisiti...) preferiamo la condivisione orizzontale delle responsabilità assegnandoci parti di documento in base alle preferenze, al carico di lavoro e alla necessità del momento. Una prima versione dei documenti verrà stesa con scadenza decisa in previsione del loro utilizzo nella produzione o in concomitanza con le lavorazioni attinenti. Rimarrà la possibilità di iterazioni che permettano correzioni, modifiche e integrazioni. 
 
 ### 11. Risorse 
 
@@ -267,7 +273,7 @@ Per la parte di produzione della documentazione piuttosto che suddividere il lav
 strumenti necessari per supportare il progetto sono elencati in questa voce. Occorre inoltre
 indicare il personale necessario per le varie fasi del processo.
 >
-Per lo sviluppo del software vennarro utilizzati i seguenti strumenti:
+Ognuno utilizzerà il proprio hardware e porterà avanti lo sviluppo del software utilizzando i seguenti strumenti:
 
 - Eclipse: utilizzato come IDE principale per la programmazione e lo sviluppo del codice.
 - Papyrus: impiegato per la modellazione e la creazione dei diagrammi UML necessari alla progettazione.
@@ -275,9 +281,7 @@ Per lo sviluppo del software vennarro utilizzati i seguenti strumenti:
 - SQLite: scelto per la creazione e gestione del database embedded.
 - Vaadin: framework open source adottato per lo sviluppo di interfacce utente (UI) scalabili e intuitive.
   
-Per quanto riguarda il personale il team verrà suddiviso in:
-- coordinatore del progetto, il quale sarà responsabile della pianificazione e monitoraggio scadenze
-- sviluppatori, responsabili della programmazione
+Per quanto riguarda il personale il team non verrà suddiviso in maniera gerarchica, le responsabilità verranno assegnate e riassegnate in base alle necessità.
 
 ### 12. Budget e programma 
 
@@ -308,10 +312,12 @@ documentazione inadeguata e superamento di costi e tempi. Poiché le modifiche p
 versioni diverse sia della documentazione che del codice, le procedure da seguire per gestire
 tali modifiche vengono spesso gestite nel contesto di un piano di controllo della
 configurazione.
-> 
+>
+Essendo un gruppo ristretto non è presente un comitato per l'accettazione delle modifiche, i cambiamenti vengono approvati in modo rapido in base alla maggioranza. Sarà quindi un processo informale a cui seguirà documentazione.
+
 ### 14. Consegna
 
 [Indice ^](#indice)
 > Devono essere indicate le procedure da seguire per la consegna dell'impianto al cliente.
 
-Una pre-releas del progetto consisterà nella condivisione del codice sorgente e della documentazione con i docenti sulla piattaforma Github a partite da un mese dal primo appello d'esame. La versione finale e la sua presentazione verranno consegnate in prossimità dell'esame orale.
+Una pre-release del progetto consisterà nella condivisione del codice sorgente e della documentazione con i docenti sulla piattaforma Github a partite da un mese dal primo appello d'esame. La versione finale e la sua presentazione verranno consegnate in prossimità dell'esame orale (24/12/2024).
