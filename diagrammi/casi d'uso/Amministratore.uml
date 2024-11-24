@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_99cGwKpzEe-vXoZHaxps-w" name="Amministratore">
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_9-z_wKpzEe-vXoZHaxps-w">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Package" xmi:id="_HShm0Kp0Ee-vXoZHaxps-w" name="Washine">
+    <ownedComment xmi:type="uml:Comment" xmi:id="_7MglUKp1Ee-vXoZHaxps-w">
+      <body>Extension point:&#xD;
+Eliminare un lavaggio&#xD;
+Condition:&#xD;
+Lavaggio erroneo</body>
+    </ownedComment>
+    <ownedComment xmi:type="uml:Comment" xmi:id="_KgOnAKp2Ee-vXoZHaxps-w">
+      <body>Extension point:&#xD;
+Bloccare un utente&#xD;
+Condition: &#xD;
+Utente non rispetta i TdS</body>
+    </ownedComment>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_L_JuAKp0Ee-vXoZHaxps-w" name="Visualizza elenco lavaggi">
+      <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_sYt2UKp0Ee-vXoZHaxps-w" name="ExtensionPoint1"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_TyUIUKp0Ee-vXoZHaxps-w" name="Elimina lavaggio">
+      <extend xmi:type="uml:Extend" xmi:id="_sYsBIKp0Ee-vXoZHaxps-w" visibility="public" extendedCase="_L_JuAKp0Ee-vXoZHaxps-w" extensionLocation="_sYt2UKp0Ee-vXoZHaxps-w"/>
+      <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_oSkgUKp0Ee-vXoZHaxps-w" name="ExtensionPoint1"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_zUUWgKp0Ee-vXoZHaxps-w" name="Visualizza lista utenti">
+      <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_5tRcoKp0Ee-vXoZHaxps-w" name="ExtensionPoint1"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_2x-JIKp0Ee-vXoZHaxps-w" name="Blocca utente">
+      <extend xmi:type="uml:Extend" xmi:id="_5tQOgKp0Ee-vXoZHaxps-w" extendedCase="_zUUWgKp0Ee-vXoZHaxps-w" extensionLocation="_5tRcoKp0Ee-vXoZHaxps-w"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_HDoZwKp1Ee-vXoZHaxps-w" name="Riabilita utente">
+      <include xmi:type="uml:Include" xmi:id="_SLQOcKp1Ee-vXoZHaxps-w" addition="_LqOxcKp1Ee-vXoZHaxps-w"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_LqOxcKp1Ee-vXoZHaxps-w" name="Visualizza lista utenti bloccati"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_IwsN8Kp0Ee-vXoZHaxps-w" name="Amministratore"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_uP5aYKp0Ee-vXoZHaxps-w" memberEnd="_uP6ogap0Ee-vXoZHaxps-w _uP6ogqp0Ee-vXoZHaxps-w">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_uP6BcKp0Ee-vXoZHaxps-w" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_uP6ogKp0Ee-vXoZHaxps-w" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_uP6ogap0Ee-vXoZHaxps-w" name="amministratore" type="_IwsN8Kp0Ee-vXoZHaxps-w" association="_uP5aYKp0Ee-vXoZHaxps-w"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_uP6ogqp0Ee-vXoZHaxps-w" name="visualizza elenco lavaggi" type="_L_JuAKp0Ee-vXoZHaxps-w" association="_uP5aYKp0Ee-vXoZHaxps-w"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_VPLScKp1Ee-vXoZHaxps-w" memberEnd="_VPNusKp1Ee-vXoZHaxps-w _VPOVwKp1Ee-vXoZHaxps-w">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_VPNHoKp1Ee-vXoZHaxps-w" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_VPNHoap1Ee-vXoZHaxps-w" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_VPNusKp1Ee-vXoZHaxps-w" name="amministratore" type="_IwsN8Kp0Ee-vXoZHaxps-w" association="_VPLScKp1Ee-vXoZHaxps-w"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_VPOVwKp1Ee-vXoZHaxps-w" name="visualizza lista utenti" type="_zUUWgKp0Ee-vXoZHaxps-w" association="_VPLScKp1Ee-vXoZHaxps-w"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_WQOfwKp1Ee-vXoZHaxps-w" memberEnd="_WQPG0qp1Ee-vXoZHaxps-w _WQPG06p1Ee-vXoZHaxps-w">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_WQPG0Kp1Ee-vXoZHaxps-w" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_WQPG0ap1Ee-vXoZHaxps-w" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_WQPG0qp1Ee-vXoZHaxps-w" name="amministratore" type="_IwsN8Kp0Ee-vXoZHaxps-w" association="_WQOfwKp1Ee-vXoZHaxps-w"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_WQPG06p1Ee-vXoZHaxps-w" name="riabilita utente" type="_HDoZwKp1Ee-vXoZHaxps-w" association="_WQOfwKp1Ee-vXoZHaxps-w"/>
+  </packagedElement>
+</uml:Model>
