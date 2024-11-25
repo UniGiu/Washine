@@ -1,6 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_SvvyoKslEe-Pz8Xay3UF0Q" name="Parrocchiano">
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_SvvyoKslEe-Pz8Xay3UF0Q" name="Parrocchiano">
   <packageImport xmi:type="uml:PackageImport" xmi:id="_SxoB8KslEe-Pz8Xay3UF0Q">
     <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
   </packageImport>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_bQS9wKstEe--ZuDPDOfc0Q" name="Parrocchiano"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_dLkXoKstEe--ZuDPDOfc0Q" name="Washine">
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_erLJMKstEe--ZuDPDOfc0Q" name="Inserisci carico aggiuntivo per utente non registrato"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_fV120KstEe--ZuDPDOfc0Q" name="Inserisci margine di tempo per il ritiro del carico"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_f55mIKstEe--ZuDPDOfc0Q" name="Programmazione calendario lavaggi"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_jy4_AKsvEe-eydji7K-ufw" memberEnd="_jzFMQKsvEe-eydji7K-ufw _jzFMQasvEe-eydji7K-ufw">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jzD-IKsvEe-eydji7K-ufw" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_jzD-IasvEe-eydji7K-ufw" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_jzFMQKsvEe-eydji7K-ufw" name="inserisci carico aggiuntivo per utente non registrato" type="_erLJMKstEe--ZuDPDOfc0Q" association="_jy4_AKsvEe-eydji7K-ufw"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_jzFMQasvEe-eydji7K-ufw" name="parrocchiano" type="_bQS9wKstEe--ZuDPDOfc0Q" association="_jy4_AKsvEe-eydji7K-ufw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_n4N1oKsvEe-eydji7K-ufw" memberEnd="_n4Q48KsvEe-eydji7K-ufw _n4Q48asvEe-eydji7K-ufw">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_n4Pq0KsvEe-eydji7K-ufw" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_n4QR4KsvEe-eydji7K-ufw" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_n4Q48KsvEe-eydji7K-ufw" name="parrocchiano" type="_bQS9wKstEe--ZuDPDOfc0Q" association="_n4N1oKsvEe-eydji7K-ufw"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_n4Q48asvEe-eydji7K-ufw" name="inserisci margine di tempo per il ritiro del carico" type="_fV120KstEe--ZuDPDOfc0Q" association="_n4N1oKsvEe-eydji7K-ufw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_poncQKsvEe-eydji7K-ufw" memberEnd="_pooqYKsvEe-eydji7K-ufw _pooqYasvEe-eydji7K-ufw">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_pooDUKsvEe-eydji7K-ufw" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_pooDUasvEe-eydji7K-ufw" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_pooqYKsvEe-eydji7K-ufw" name="parrocchiano" type="_bQS9wKstEe--ZuDPDOfc0Q" association="_poncQKsvEe-eydji7K-ufw"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_pooqYasvEe-eydji7K-ufw" name="programmazione calendario lavaggi" type="_f55mIKstEe--ZuDPDOfc0Q" association="_poncQKsvEe-eydji7K-ufw"/>
+  </packagedElement>
 </uml:Model>
