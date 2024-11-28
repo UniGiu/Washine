@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_ZKcBgKtOEe-uiOSEq9uN-g" name="Base" visibility="public">
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_ZQXqYKtOEe-uiOSEq9uN-g">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Package" xmi:id="_jYZqUKtOEe-uiOSEq9uN-g" name="Washine">
+    <ownedComment xmi:type="uml:Comment" xmi:id="_k9j3oK16Ee-jlrrU2UHFgg">
+      <body>Extension Point: Inserimento info ritiro
+Condition
+La configurazione del lavaggio permette di indicare al lavandaio dove e quando ritirare il carico</body>
+    </ownedComment>
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_R9oVMKtREe-uiOSEq9uN-g" name="Enumeration12"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_0w8qIK11Ee-jlrrU2UHFgg" name="Adesione a comunità Utente Lavandaio">
+      <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_CLp7wK12Ee-jlrrU2UHFgg" name="ExtensionPoint1"/>
+      <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_VNAQUK13Ee-jlrrU2UHFgg" name="ExtensionPoint2"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_8f2PgK11Ee-jlrrU2UHFgg" name="Consultazione lavaggi">
+      <extend xmi:type="uml:Extend" xmi:id="_CLoGkK12Ee-jlrrU2UHFgg" extendedCase="_0w8qIK11Ee-jlrrU2UHFgg" extensionLocation="_CLp7wK12Ee-jlrrU2UHFgg"/>
+      <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_KT7qcK12Ee-jlrrU2UHFgg" name="ExtensionPoint2"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_F5YKsK12Ee-jlrrU2UHFgg" name="Partecipazione a lavaggi">
+      <extend xmi:type="uml:Extend" xmi:id="_KT7DYK12Ee-jlrrU2UHFgg" extendedCase="_8f2PgK11Ee-jlrrU2UHFgg" extensionLocation="_KT7qcK12Ee-jlrrU2UHFgg"/>
+      <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_OZtFoK15Ee-jlrrU2UHFgg" name="ExtensionPoint2"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_MIdjIK12Ee-jlrrU2UHFgg" name="Inserimento carico">
+      <include xmi:type="uml:Include" xmi:id="_S95J4K12Ee-jlrrU2UHFgg" addition="_F5YKsK12Ee-jlrrU2UHFgg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_L_5AgK13Ee-jlrrU2UHFgg" name="Uscita comunità">
+      <extend xmi:type="uml:Extend" xmi:id="_VM_pQK13Ee-jlrrU2UHFgg" extendedCase="_0w8qIK11Ee-jlrrU2UHFgg" extensionLocation="_VNAQUK13Ee-jlrrU2UHFgg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_Q22S8K14Ee-jlrrU2UHFgg" name="Rimborso spese"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_4H20MK14Ee-jlrrU2UHFgg" name="Inserimento info di ritiro">
+      <extend xmi:type="uml:Extend" xmi:id="_OZr3gK15Ee-jlrrU2UHFgg" extendedCase="_F5YKsK12Ee-jlrrU2UHFgg" extensionLocation="_OZtFoK15Ee-jlrrU2UHFgg"/>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_ub9eYKtOEe-uiOSEq9uN-g" name="Utente Base"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_7Ih3QK11Ee-jlrrU2UHFgg"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_0UFAkK14Ee-jlrrU2UHFgg"/>
+</uml:Model>
