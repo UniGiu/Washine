@@ -1,4 +1,5 @@
 **GLOSSARIO**
+
 \-	**lavaggio**: insieme di informazioni relative a un lavaggio programmato da un lavandaio con carichi degli utenti   
 \-	**carico**: quantità di vestiti in kg portata da ogni utente in un lavaggio  
 \-	**comunità**: insieme di utente accomunati da un lavandaio   
@@ -37,6 +38,91 @@ Abbiamo inoltre individuato 3 ruoli:
 | Admin | Per qualche motivo ha deciso di installare Washine su un server e offrire il servizio, ma non è necessariamente esperto di informatica e pur non essendo un richiestissimo ingegnere informatico non ha molto tempo da dedicare alla gestione dell’applicazione. La sua attività principalmente si limita  a saltuari aggiornamenti e a considerare eventuali problematiche tecniche segnalate dagli utenti. Quando strettamente necessario può intervenire sulle attività degli utenti rimuovendo lavaggi, eliminando utenti. Può limitare l’accesso a un insieme ristretto di utenti, o impedirlo ad altri. Può essere | Monitorare e tracciare l’utilizzo dell’applicazione Installare e configurare l’applicazione con competenze basse Accedere al codice dell’applicazione Eliminare lavaggi Eliminare o resettare utenti Regolare l’accesso tramite una lista nera/bianca di utenti |
 
 Una volta terminato questo passaggio, abbiamo identificato i requisiti comuni tra tutti e quelli tra loro contrastanti in modo da considerare quelli più rilevanti (e se necessario trovare dei compromessi) per soddisfare le necessità principali di ogni utente.  
+
+Convenzioni di numerazione dei requisiti  
+La specifica è suddivisa in requisiti il cui formato è:  
+XXX.n.y  
+Dove:  
+XXX \= codice di tre lettere che indica il tipo di requisito  
+n \= numero del requisito 1-9999  
+y \= numero del sottorequisito 1-99 se presente
+
+| Codice | Tipo di requisito |
+| :---- | :---- |
+| GUI | Requisiti GUI |
+| FUN | Requisiti funzionali |
+| QLT | Requisiti di qualità |
+| PRF | Requisiti di performance |
+
+
+| ID | Requisito/motivazione | Riferimento |
+| :---- | :---- | :---- |
+| FUN.1 | Il sistema deve permettere al lavandaio di offrire ai lavatori l’adesione alla sua comunità e la loro disconnessione. Motivazione: Il lavandaio è colui che gestisce l’accesso alla sua comunità. |  |
+| FUN 1.1 | Il sistema deve permettere agli utenti di accedere con la propria identità. |  |
+| FUN.2 | Il sistema deve permettere al lavandaio di identificare i lavatori della sua comunità. |  |
+| FUN.3 | Il sistema deve permettere al lavandaio di selezionare i membri della comunità che possono vedere un lavaggio e accedervi. |  |
+| FUN.3.1 | Il sistema deve permettere al lavandaio di creare dei gruppi di utenti “scorciatoia” per assegnare  a un lavaggio |  |
+| FUN.4 | Il sistema deve permettere al lavandaio di proporre dei lavaggi. I lavaggi rimarranno modificabili fino a che non ci sarà un partecipante. |  |
+| FUN.4.1 | Il sistema deve permettere al lavandaio di inserire le informazioni sul lavaggio necessarie al lavatore per decidere se parteciparvi. Informazioni necessarie: temperatura del lavaggio tipologia dei vestiti colore dei capi  data, ora e durata del lavaggio detersivi usati per il lavaggio il lavaggio prevede intimo  costi e modalità del rimborso spese capacità di carico  carico iniziale tempo di visibilità del lavaggio  |  |
+| FUN.4.2 | Il sistema deve permettere al lavandaio di decidere la complessità delle informazioni sul lavaggio. Informazioni opzionali: indirizzi di ritiro o di consegna del carico orari e intervalli di disponibilità per il ritiro o la consegna asciugatura e tipologia asciugatura servizio di stiratura carico massimo per lavatore data di apertura e chiusura di accesso al lavaggio  |  |
+| FUN.5 | Il sistema deve permettere di stimare il peso di un carico dati la tipologia e il numero dei capi. |  |
+| FUN.6 | Il sistema deve permettere al lavandaio di aggiungere carichi per lavatore non formalmente registrato. |  |
+| FUN.7 | Il sistema deve dare al lavatore uno strumento per visualizzare e identificare le comunità di appartenenza |  |
+| FUN.7.1 | Il sistema deve permettere a un lavatore di uscire da una comunità. |  |
+| FUN.7.2 | Il sistema deve permettere a un lavatore di partecipare a un lavaggio e di ritirare la propria partecipazione. |  |
+| FUN.8 | Il sistema deve dare informazioni per interpretare le etichette dei vestiti. |  |
+| FUN.9 | Il sistema deve permettere al lavandaio di risalire ai proprietari degli indumenti. |  |
+| FUN.10  | Il sistema deve permettere all’amministratore di visualizzare la lista dei lavaggi attivi. |  |
+| FUN.10.1 | Il sistema deve permettere all’amministratore di eliminare un lavaggio attivo. |  |
+| FUN.11 | Il sistema deve permettere all’amministratore di visualizzare la lista degli utenti. |  |
+| FUN.11.1 | Il sistema deve permettere all’amministratore di bloccare e rimuovere un utente. |  |
+| FUN.12  | Il sistema deve permettere all’amministratore di visualizzare la lista degli utenti bloccati. |  |
+| FUN.12.1 | Il sistema deve permettere all’amministratore di riabilitare un utente bloccato. |  |
+| FUN.13 | Il sistema deve permettere all’amministratore di tracciare l’attività del sistema. |  |
+| FUN.14 | Il sistema deve fornire informazioni sul suo corretto utilizzo |  |
+| FUN.15 | Il sistema deve fornire un’interfaccia a cui connetterlo con diversi altri componenti software che ne consentano l’utilizzo (GUI web, app, agente AI). |  |
+|  FUN.16 | Il sistema deve permettere al lavandaio di visualizzare le informazioni relative ai lavaggi che ha in programma e ai partecipanti di ciascun lavaggio. |  |
+
+| ID | Requisito/Motivazione | Riferimento |
+| :---- | :---- | :---- |
+| GUI.1 | La GUI deve implementare le seguenti viste: |  |
+| GUI.1.1 | Login:permette all’utente di accedere al sistema. | FUN 1.1 |
+| GUI.1.2 | Informazioni sulle etichette: permette all’utente di visualizzare i simboli delle etichette e la loro spiegazione. | FUN 8 |
+| GUI.1.3 | Calcolatore peso carichi: permette all’utente di calcolare il peso di un insieme di vestiti. | FUN 5 |
+| GUI.1.4 | Help: fornisce istruzioni su come utilizzare l’applicazione. | FUN 14 |
+| GUI.1.5 | Home: fornisce un riepilogo delle attività dell’utente e delle comunità a cui ha aderito. |  |
+| GUI.1.6 | Profilo personale: fornisce la possibilità all’utente di cambiare le proprie credenziali di accesso(e-mail e password). |  |
+| GUI.1.7 | Lavaggi disponibili: fornisce l’elenco dei lavaggi a cui è possibile partecipare divisi per comunità. | FUN.7 |
+| GUI.1.8 | Il mio lavaggio: fornisce l’elenco dei lavaggi programmati dall’utente. |  |
+| GUI.1.9 | Amministratore: fornisce l’accesso alle attività di amministrazione. |  |
+| GUI.1.10 | Amministrazioni utenti: permette all’amministratore di cercare, visualizzare e modificare le informazioni e lo stato degli utenti. | FUN 11 |
+| GUI.1.11 | Amministrazione lavaggi: permette all’amministratore di cercare, visualizzare e modificare le informazioni e lo stato dei lavaggi attivi. | FUN 10 |
+| GUI.1.12 | Log:permette all’amministratore di accedere al log. | FUN.13 |
+| GUI.1.13 | Gestione lavaggio: permette al lavandaio di creare e modificare un lavaggio. | FUN.2  FUN.3  FUN.4  FUN.6 |
+| GUI.1.14 | Partecipazione lavaggio: permette al lavatore di partecipare a un lavaggio specificando il peso del proprio carico  |  |
+| GUI.1.15 | Calendario: permette agli utenti di visualizzare un calendario con indicati i lavaggi programmati e quelli a cui si partecipa o si può partecipare, con la possibilità di entrare nel dettaglio. |  |
+| GUI.1.16 | Adesioni: permette l’adesione di un lavatore a una comunità o la creazione di un codice monouso per la partecipazione |  |
+| GUI.1.17 | Registrazione: permette agli utenti di registrarsi tramite email e password |  |
+| GUI.1.18 | Password smarrita: permette agli utenti di recuperare la password persa tramite email |  |
+
+
+| ID | Requisito/Spiegazione | Riferimento |
+| :---- | :---- | :---- |
+| QLT.1 | Manutenibilità | ISO 9126 |
+| QLT.1.1 | Analizzabilità Spiegazione: Qualsiasi carenza o guasto nel sistema deve essere facilmente diagnosticabile, pertanto, per aumentare la analizzabilità del software, il codice deve essere di facile lettura. A tal fine la gran parte del codice deve essere commentata in lingua inglese, di modo che tutti possano interpretarlo rapidamente. | ISO 9126 |
+| QLT.1.2 | Stabilità Spiegazione: Per evitare effetti imprevisti dati dalle modifiche il sistema deve sempre avere una versione funzionante. E’ per questo che una modifica, prima di essere introdotta nel branch main deve essere testata nel proprio branch secondario. | ISO 9126 |
+| QLT.1.3 | Conformità alla manutenibilità Spiegazione: Il sistema aderisce allo standard di codifica di Google per la scrittura di codice java. | ISO 9126  |
+| QLT.2 | Usabilità | ISO 9126 |
+| QLT.2.1 | Comprensibilità Spiegazione: Il sistema deve essere di facile comprensione: fin dal primo utilizzo si propone di fornire all’utente tutte le informazione e gli strumenti per usufruire al meglio delle sue funzionalità (grazie anche alla sua interfaccia grafica intuitiva) | ISO 9126 GUI 1 |
+| QLT.2.2 | Apprendibilità Spiegazione: Il sistema deve fornire una serie di istruzioni sia come pagina di Help sia contestuali all’interfaccia | ISO 9126 GUI 1 |
+| QLT.3 | Portabilità |  |
+| QLT.3.1 | Installabilità: Spiegazione:Il sistema deve poter essere installato nella maggior parte degli ambienti disponibili | ISO 9126 |
+
+ | ID | Requisito/Spiegazione | Riferimento |
+| :---- | :---- | :---- |
+| PRF.1 | Efficienza temporale Spiegazione: Il sistema deve rispondere molto velocemente alle richieste dell’utente (mettiamo i secondi?) |  |
+| PRF.2 | Stabilità Spiegazione: Il sistema mantenere l’integrità anche con un elevato numero di utenti  |  |
+|  |  |  |
    
 Abbiamo poi adottato il modello MoSCow per classificare i requisiti, garantendo una corretta implementazione e gestione delle priorità.  
    
