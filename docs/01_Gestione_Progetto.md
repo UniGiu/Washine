@@ -14,7 +14,7 @@ Queste scadenze sono state successivamente riviste e adattate a  eventuali impre
 Le principali attività e scadenze sono state:
 
 - 11/11 conclusione project plan  
-- 28/11 termine definizione dei requisiti e produzione della relativa documentazione (2 - specifica dei requisiti). Inizialmente era pianificata al 25/11 ma è stata posticipata a causa di difficoltà di coordinamento del team.  
+- 03/12 termine definizione dei requisiti e produzione della relativa documentazione (02 - specifica dei requisiti). Inizialmente era pianificata al 25/11 ma è stata posticipata a causa di difficoltà di coordinamento del team.  
 - 24/12 revisione project plan e invio per approvazione  
 - 13/01 fine sviluppo del software 
 
