@@ -1,8 +1,15 @@
 # Specifica dei requisiti
 ## Indice
 
-## Definizioni
+1. [Definizioni](#1-definizioni)
+2. [Elicitazione dei requisiti](#2-elicitazione-dei-requisiti)
+3. [Requisiti](#3-requisiti)
+    3.1. [Convenzioni di numerazione dei requisiti](#3.1-convenzioni-di-numerazione-dei-requisiti)
+    
+5. [Priorità dei requisiti](#4-priorità-dei-requisiti)
+## 1. Definizioni
 
+[Indice ^](#indice)
 | Termine | Definizione |
 | ----- | ----- |
 | adesione | Ingresso di un utente in una comunità |
@@ -20,8 +27,9 @@
 | partecipante | Utente che inserisce un carico nel sistema  |
 | partecipare a un lavaggio | Aggiungere il proprio carico al lavaggio  |
 
-## Elicitazione dei requisiti
+## 2. Elicitazione dei requisiti
 
+[Indice ^](#indice)
 L’elicitazione dei requisiti è avvenuta attraverso un’analisi dello scenario. Durante una sessione di brainstorming ci siamo concentrati sull’identificazione dei potenziali profili di utenti tipo della nostra applicazione. Il nostro obiettivo era di individuare i bisogni principali per ciascuno, comprendendo le loro necessità e traducendole in requisiti.
 
 Abbiamo definito 6 potenziali profili utente:  
@@ -46,8 +54,9 @@ Abbiamo inoltre individuato 3 ruoli:
 
 Una volta terminato questo passaggio, abbiamo identificato i requisiti comuni tra tutti gli utenti e quelli tra loro contrastanti in modo da considerare i più rilevanti (e se necessario trovare dei compromessi) per soddisfare le necessità principali di ogni utente.
 
-##  Requisiti
+##  3. Requisiti
 
+[Indice ^](#indice)
 ### Convenzioni di numerazione dei requisiti
 
 La specifica è suddivisa in requisiti il cui formato è:  
@@ -149,8 +158,9 @@ y \= numero del sottorequisito 1-99 se presente
 | PRF.1 | Efficienza temporale Spiegazione: Il sistema deve rispondere velocemente alle richieste dell’utente. Poiché gli attori sono tutti umani il tempo di risposta non è un aspetto altamente critico per le transizioni tra le viste, ma è comunque importante che sia dimensionato all’essere umano e in generale dovrebbe essere inferiore al secondo per le operazioni di configurazione dei lavaggi e del carico. | ISO 9126 |
 | PRF.2 | Stabilità Spiegazione: Il sistema mantenere l’integrità anche con un elevato numero di utenti.  | ISO 9126 |
 
-## Priorità dei requisiti
+## 4. Priorità dei requisiti
 
+[Indice ^](#indice)
 Abbiamo poi adottato il modello MoSCow per classificare i requisiti, garantendo una corretta implementazione e gestione delle priorità.  
    
  
