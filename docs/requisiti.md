@@ -1,5 +1,5 @@
 # Specifica dei requisiti
-## Inidice
+## Indice
 
 ## Definizioni
 
@@ -45,5 +45,55 @@ Abbiamo inoltre individuato 3 ruoli:
 | Admin | Per qualche motivo ha deciso di installare Washine su un server e offrire il servizio, ma non è necessariamente esperto di informatica e pur non essendo un richiestissimo ingegnere informatico non ha molto tempo da dedicare alla gestione dell’applicazione. La sua attività principalmente si limita  a saltuari aggiornamenti e a considerare eventuali problematiche tecniche segnalate dagli utenti. Quando strettamente necessario può intervenire sulle attività degli utenti rimuovendo lavaggi, eliminando utenti. Può limitare l’accesso a un insieme ristretto di utenti, o impedirlo ad altri. Può essere | Monitorare e tracciare l’utilizzo dell’applicazione Installare e configurare l’applicazione con competenze basse Accedere al codice dell’applicazione Eliminare lavaggi Eliminare o resettare utenti Regolare l’accesso tramite una lista nera/bianca di utenti |
 
 Una volta terminato questo passaggio, abbiamo identificato i requisiti comuni tra tutti gli utenti e quelli tra loro contrastanti in modo da considerare i più rilevanti (e se necessario trovare dei compromessi) per soddisfare le necessità principali di ogni utente.
-   
 
+##  Requisiti
+
+### Convenzioni di numerazione dei requisiti
+
+La specifica è suddivisa in requisiti il cui formato è:  
+XXX.n.y  
+Dove:  
+XXX \= codice di tre lettere che indica il tipo di requisito  
+n \= numero del requisito 1-9999  
+y \= numero del sottorequisito 1-99 se presente
+
+| Codice | Tipo di requisito |
+| :---- | :---- |
+| FUN | Requisiti funzionali |
+| GUI | Requisiti GUI |
+| PRF | Requisiti di performance |
+| QLT | Requisiti di qualità |
+
+### Requisiti funzionali
+
+| ID | Requisito/motivazione | Riferimento |
+| :---- | :---- | :---- |
+| FUN.1 | Il sistema deve permettere al lavandaio di offrire ai partecipanti l’adesione alla sua comunità e la loro disconnessione. Motivazione: Il lavandaio è colui che gestisce l’accesso alla sua comunità. |  |
+| FUN 1.1 | Il sistema deve permettere agli utenti di accedere con la propria identità. |  |
+| FUN.2 | Il sistema deve permettere al lavandaio di identificare i partecipanti della sua comunità. |  |
+| FUN.3 | Il sistema deve permettere al lavandaio di selezionare i membri della comunità che possono vedere un lavaggio e accedervi. |  |
+| FUN.3.1 | Il sistema deve permettere al lavandaio di creare dei gruppi di utenti “scorciatoia” per assegnare  a un lavaggio |  |
+| FUN.4 | Il sistema deve permettere al lavandaio di proporre dei lavaggi. I lavaggi rimarranno modificabili fino a che non ci sarà un partecipante. |  |
+| FUN.4.1 | Il sistema deve permettere al lavandaio di inserire le informazioni sul lavaggio necessarie al partecipante per decidere se parteciparvi.  Informazioni necessarie: <ul>  <li>temperatura del lavaggio</li> <li>tipologia dei vestiti</li> <li>colore dei capi</li> <li>data, ora e durata del lavaggio</li> <li>detersivi usati per il lavaggio</li> <li>il lavaggio prevede intimo</li> <li>modalità ed entità del rimborso spese</li> <li>capacità di carico</li> <li>carico iniziale</li> <li>tempo di visibilità del lavaggio</li></ul>|  |
+| FUN.4.2 | Il sistema deve permettere al lavandaio di decidere la complessità delle informazioni sul lavaggio.  Informazioni opzionali: <ul>  <li>indirizzi di ritiro o di consegna del carico</li> <li>orari e intervalli di disponibilità per il ritiro o la consegna</li> <li>asciugatura e tipologia asciugatura</li> <li>servizio di stiratura carico massimo per partecipante</li> <li>data di apertura e chiusura di accesso al lavaggio</li></ul>  Motivazione: Con le informazioni opzionali il Lavandaio può modulare la tipologia di lavaggio offerto. |  |
+| FUN.5 | Il sistema deve permettere di stimare il peso di un carico dati la tipologia e il numero dei capi. Motivazione: Il peso dei capi è un’informazione che potrebbe essere difficile da ottenere con gli strumenti di misura a disposizione degli utenti e una stima soggettiva potrebbe essere molto errata. |  |
+| FUN.6 | Il sistema deve permettere al lavandaio di aggiungere carichi per partecipante non formalmente registrato. Motivazione: Utilizzo Parrocchiani |  |
+| FUN.7 | Il sistema deve dare al partecipante uno strumento per visualizzare e identificare le comunità di appartenenza. |  |
+| FUN.7.1 | Il sistema deve permettere a un partecipante di uscire da una comunità. |  |
+| FUN.7.2 | Il sistema deve permettere a un partecipante di partecipare a un lavaggio e di ritirare la propria partecipazione. |  |
+| FUN.8 | Il sistema deve dare informazioni per interpretare le etichette dei vestiti. Motivazione: Molti tipi di lavaggi non sono adatti per alcuni tipi di vestiti e viceversa. |  |
+| FUN.9 | Il sistema deve permettere al lavandaio di risalire ai proprietari degli indumenti. Motivazione: Utilizzo parrocchiani |  |
+| FUN.10  | Il sistema deve permettere all’amministratore di visualizzare la lista dei lavaggi attivi. |  |
+| FUN.10.1 | Il sistema deve permettere all’amministratore di eliminare un lavaggio attivo. |  |
+| FUN.11 | Il sistema deve permettere all’amministratore di visualizzare la lista degli utenti. |  |
+| FUN.11.1 | Il sistema deve permettere all’amministratore di bloccare e rimuovere un utente. |  |
+| FUN.12  | Il sistema deve permettere all’amministratore di visualizzare la lista degli utenti bloccati. |  |
+| FUN.12.1 | Il sistema deve permettere all’amministratore di riabilitare un utente bloccato. |  |
+| FUN.13 | Il sistema deve permettere all’amministratore di tracciare l’attività del sistema. |  |
+| FUN.14 | Il sistema deve fornire informazioni sul suo corretto utilizzo |  |
+| FUN.15 | Il sistema deve fornire un’interfaccia a cui connetterlo con diversi altri componenti software che ne consentano l’utilizzo (GUI web, app, agente AI). Motivazione: aumentare la portabilità |  |
+|  FUN.16 | Il sistema deve permettere al lavandaio di visualizzare le informazioni relative ai lavaggi che ha in programma e ai partecipanti di ciascun lavaggio. |  |
+| FUN.17 | Il sistema deve permettere al lavandaio di programmare un calendario lavaggi Motivazione: Utilizzo parrocchiani |  |
+| FUN.17.1 | Il sistema deve permettere al lavandaio di aggiungere lavaggi al calendario |  |
+| FUN.17.2 | Il sistema deve permettere al lavandaio di rimuovere lavaggi dal calendario |  |
+| FUN.17.3 | Il sistema deve permettere al lavandaio di programmare le finestre temporali di accesso ai lavaggi programmati |  |
