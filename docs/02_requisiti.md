@@ -139,7 +139,7 @@ y \= numero del sottorequisito 1-99 se presente
 | ID | Requisito/Spiegazione | Riferimento |
 | :---- | :---- | :---- |
 | QLT.1 | Manutenibilità | ISO 9126 |
-| QLT.1.1 | Analizzabilità<br> **Spiegazione:**  Qualsiasi carenza o guasto nel sistema deve essere facilmente diagnosticabile, pertanto, per aumentare la analizzabilità del software, il codice deve essere di facile lettura. A tal fine la gran parte del codice deve essere commentata in lingua inglese, di modo che tutti possano interpretarlo rapidamente. | ISO 9126 |
+| QLT.1.1 | Analizzabilità<br> **Spiegazione:**  Qualsiasi carenza o guasto nel sistema deve essere facilmente diagnosticabile, pertanto, per aumentare la analizzabilità del software, il codice deve essere di facile lettura. A tal fine la gran parte del codice deve essere commentata in lingua inglese, di modo che tutti possano interpretarlo rapidamente e seguire lo standard Google Java Style Guide. | ISO 9126 |
 | QLT.1.2 | Stabilità<br> **Spiegazione:**  Per evitare effetti imprevisti dati dalle modifiche il sistema deve sempre avere una versione funzionante. E’ per questo che una modifica, prima di essere introdotta nel branch main deve essere testata nel proprio branch secondario. | ISO 9126 |
 | QLT.1.3 | Conformità alla manutenibilità<br> **Spiegazione:**  Il sistema aderisce allo standard di codifica di Google per la scrittura di codice java. | ISO 9126  |
 | QLT.2 | Usabilità | ISO 9126 |
