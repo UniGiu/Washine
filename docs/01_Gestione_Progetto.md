@@ -19,3 +19,5 @@ Le principali attività e scadenze sono state:
 - 13/01 fine sviluppo del software 
 
 **Configuration Management**
+
+**People Management and Team Organization**
