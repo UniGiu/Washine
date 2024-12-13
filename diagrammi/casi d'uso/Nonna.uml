@@ -5,7 +5,11 @@
   </packageImport>
   <packagedElement xmi:type="uml:Package" xmi:id="_jYZqUKtOEe-uiOSEq9uN-g" name="Washine">
     <packagedElement xmi:type="uml:UseCase" xmi:id="_w5aYQKtOEe-uiOSEq9uN-g" name="Identificazione"/>
-    <packagedElement xmi:type="uml:UseCase" xmi:id="_3mX_gKtOEe-uiOSEq9uN-g" name="Inserimento caratteristiche lavaggio"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_3mX_gKtOEe-uiOSEq9uN-g" name="Inserimento caratteristiche lavaggio">
+      <include xmi:type="uml:Include" xmi:id="_-eTv0Ll0Ee-RT5QRwGLYSw" addition="_e--hEKtQEe-uiOSEq9uN-g"/>
+      <include xmi:type="uml:Include" xmi:id="__GLoILl0Ee-RT5QRwGLYSw" addition="_PWMY4KtREe-uiOSEq9uN-g"/>
+      <include xmi:type="uml:Include" xmi:id="__pDrsLl0Ee-RT5QRwGLYSw" addition="_qQAwcKtQEe-uiOSEq9uN-g"/>
+    </packagedElement>
     <packagedElement xmi:type="uml:UseCase" xmi:id="_7edrYKtOEe-uiOSEq9uN-g" name="Inserimento carico iniziale">
       <include xmi:type="uml:Include" xmi:id="_mjxSwKtREe-uiOSEq9uN-g" addition="_2NaWkKtQEe-uiOSEq9uN-g"/>
     </packagedElement>
@@ -27,20 +31,6 @@
     <ownedEnd xmi:type="uml:Property" xmi:id="_0lm9MKtOEe-uiOSEq9uN-g" name="identificazione" type="_w5aYQKtOEe-uiOSEq9uN-g" association="_0lJqMKtOEe-uiOSEq9uN-g"/>
     <ownedEnd xmi:type="uml:Property" xmi:id="_0lpZcKtOEe-uiOSEq9uN-g" name="nonna pina" type="_ub9eYKtOEe-uiOSEq9uN-g" association="_0lJqMKtOEe-uiOSEq9uN-g"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_NC0dgKtQEe-uiOSEq9uN-g" memberEnd="_NDE8MKtQEe-uiOSEq9uN-g _NDJ0sKtQEe-uiOSEq9uN-g">
-    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_NDAqwKtQEe-uiOSEq9uN-g" source="org.eclipse.papyrus">
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_NDCf8KtQEe-uiOSEq9uN-g" key="nature" value="UML_Nature"/>
-    </eAnnotations>
-    <ownedEnd xmi:type="uml:Property" xmi:id="_NDE8MKtQEe-uiOSEq9uN-g" name="inserimento caratteristiche" type="_3mX_gKtOEe-uiOSEq9uN-g" association="_NC0dgKtQEe-uiOSEq9uN-g"/>
-    <ownedEnd xmi:type="uml:Property" xmi:id="_NDJ0sKtQEe-uiOSEq9uN-g" name="nonna pina" type="_ub9eYKtOEe-uiOSEq9uN-g" association="_NC0dgKtQEe-uiOSEq9uN-g"/>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_NrSLsKtQEe-uiOSEq9uN-g" memberEnd="_Nrdx4KtQEe-uiOSEq9uN-g _NrgOIKtQEe-uiOSEq9uN-g">
-    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_NrbVoKtQEe-uiOSEq9uN-g" source="org.eclipse.papyrus">
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Nrb8sKtQEe-uiOSEq9uN-g" key="nature" value="UML_Nature"/>
-    </eAnnotations>
-    <ownedEnd xmi:type="uml:Property" xmi:id="_Nrdx4KtQEe-uiOSEq9uN-g" name="inserimento carico iniziale" type="_7edrYKtOEe-uiOSEq9uN-g" association="_NrSLsKtQEe-uiOSEq9uN-g"/>
-    <ownedEnd xmi:type="uml:Property" xmi:id="_NrgOIKtQEe-uiOSEq9uN-g" name="nonna pina" type="_ub9eYKtOEe-uiOSEq9uN-g" association="_NrSLsKtQEe-uiOSEq9uN-g"/>
-  </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="_SHX8gKtQEe-uiOSEq9uN-g" memberEnd="_SIIxgKtQEe-uiOSEq9uN-g _SINC8KtQEe-uiOSEq9uN-g">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_SH7WIKtQEe-uiOSEq9uN-g" source="org.eclipse.papyrus">
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_SICD0KtQEe-uiOSEq9uN-g" key="nature" value="UML_Nature"/>
@@ -48,46 +38,39 @@
     <ownedEnd xmi:type="uml:Property" xmi:id="_SIIxgKtQEe-uiOSEq9uN-g" name="inserimento data e ora lavaggio " type="__YVf8KtOEe-uiOSEq9uN-g" association="_SHX8gKtQEe-uiOSEq9uN-g"/>
     <ownedEnd xmi:type="uml:Property" xmi:id="_SINC8KtQEe-uiOSEq9uN-g" name="nonna pina" type="_ub9eYKtOEe-uiOSEq9uN-g" association="_SHX8gKtQEe-uiOSEq9uN-g"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_-DQRcKtQEe-uiOSEq9uN-g" memberEnd="_-EJCQKtQEe-uiOSEq9uN-g _-EOh0KtQEe-uiOSEq9uN-g">
-    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-D8N8KtQEe-uiOSEq9uN-g" source="org.eclipse.papyrus">
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_-EEw0KtQEe-uiOSEq9uN-g" key="nature" value="UML_Nature"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_sPbokLlIEe-RT5QRwGLYSw" memberEnd="_sQib0LlIEe-RT5QRwGLYSw _sQmGMLlIEe-RT5QRwGLYSw">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_sQL2gLlIEe-RT5QRwGLYSw" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_sQYDwLlIEe-RT5QRwGLYSw" key="nature" value="UML_Nature"/>
     </eAnnotations>
-    <ownedEnd xmi:type="uml:Property" xmi:id="_-EJCQKtQEe-uiOSEq9uN-g" name="creazione codice comunità" type="_uhRKQKtQEe-uiOSEq9uN-g" association="_-DQRcKtQEe-uiOSEq9uN-g"/>
-    <ownedEnd xmi:type="uml:Property" xmi:id="_-EOh0KtQEe-uiOSEq9uN-g" name="nonna pina" type="_ub9eYKtOEe-uiOSEq9uN-g" association="_-DQRcKtQEe-uiOSEq9uN-g"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_sQib0LlIEe-RT5QRwGLYSw" name="inserimento carico iniziale" type="_7edrYKtOEe-uiOSEq9uN-g" association="_sPbokLlIEe-RT5QRwGLYSw"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_sQmGMLlIEe-RT5QRwGLYSw" name="nonna pina" type="_ub9eYKtOEe-uiOSEq9uN-g" association="_sPbokLlIEe-RT5QRwGLYSw"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_DieTMKtREe-uiOSEq9uN-g" memberEnd="_DjYSIKtREe-uiOSEq9uN-g _DjdxsKtREe-uiOSEq9uN-g">
-    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_DjME4KtREe-uiOSEq9uN-g" source="org.eclipse.papyrus">
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_DjUAsKtREe-uiOSEq9uN-g" key="nature" value="UML_Nature"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_te5FULlIEe-RT5QRwGLYSw" memberEnd="_tfCPQLlIEe-RT5QRwGLYSw _tfC2ULlIEe-RT5QRwGLYSw">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_tfBBILlIEe-RT5QRwGLYSw" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_tfBoMLlIEe-RT5QRwGLYSw" key="nature" value="UML_Nature"/>
     </eAnnotations>
-    <ownedEnd xmi:type="uml:Property" xmi:id="_DjYSIKtREe-uiOSEq9uN-g" name="specifica possibile intimo" type="_e--hEKtQEe-uiOSEq9uN-g" association="_DieTMKtREe-uiOSEq9uN-g"/>
-    <ownedEnd xmi:type="uml:Property" xmi:id="_DjdxsKtREe-uiOSEq9uN-g" name="nonna pina" type="_ub9eYKtOEe-uiOSEq9uN-g" association="_DieTMKtREe-uiOSEq9uN-g"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_tfCPQLlIEe-RT5QRwGLYSw" name="inserimento caratteristiche lavaggio" type="_3mX_gKtOEe-uiOSEq9uN-g" association="_te5FULlIEe-RT5QRwGLYSw"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_tfC2ULlIEe-RT5QRwGLYSw" name="nonna pina" type="_ub9eYKtOEe-uiOSEq9uN-g" association="_te5FULlIEe-RT5QRwGLYSw"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_aDJDwKtREe-uiOSEq9uN-g" memberEnd="_aD4DkKtREe-uiOSEq9uN-g _aD8VAKtREe-uiOSEq9uN-g">
-    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_aDqoMKtREe-uiOSEq9uN-g" source="org.eclipse.papyrus">
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_aDwu0KtREe-uiOSEq9uN-g" key="nature" value="UML_Nature"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_3DMGELlIEe-RT5QRwGLYSw" memberEnd="_3ECaoLlIEe-RT5QRwGLYSw _3EGsELlIEe-RT5QRwGLYSw">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_3D4CkLlIEe-RT5QRwGLYSw" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_3D-wQLlIEe-RT5QRwGLYSw" key="nature" value="UML_Nature"/>
     </eAnnotations>
-    <ownedEnd xmi:type="uml:Property" xmi:id="_aD4DkKtREe-uiOSEq9uN-g" name="servizio opzioni lavaggio" type="_PWMY4KtREe-uiOSEq9uN-g" association="_aDJDwKtREe-uiOSEq9uN-g"/>
-    <ownedEnd xmi:type="uml:Property" xmi:id="_aD8VAKtREe-uiOSEq9uN-g" name="nonna pina" type="_ub9eYKtOEe-uiOSEq9uN-g" association="_aDJDwKtREe-uiOSEq9uN-g"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_3ECaoLlIEe-RT5QRwGLYSw" name="creazione codice comunità" type="_uhRKQKtQEe-uiOSEq9uN-g" association="_3DMGELlIEe-RT5QRwGLYSw"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_3EGsELlIEe-RT5QRwGLYSw" name="nonna pina" type="_ub9eYKtOEe-uiOSEq9uN-g" association="_3DMGELlIEe-RT5QRwGLYSw"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_dXGu4KtREe-uiOSEq9uN-g" memberEnd="_dYE_QKtREe-uiOSEq9uN-g _dYKe0KtREe-uiOSEq9uN-g">
-    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_dX4yAKtREe-uiOSEq9uN-g" source="org.eclipse.papyrus">
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_dYAt0KtREe-uiOSEq9uN-g" key="nature" value="UML_Nature"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_EhHm0Ll1Ee-RT5QRwGLYSw" memberEnd="_EhVpQLl1Ee-RT5QRwGLYSw _EhW3YLl1Ee-RT5QRwGLYSw">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_EhR-4Ll1Ee-RT5QRwGLYSw" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_EhT0ELl1Ee-RT5QRwGLYSw" key="nature" value="UML_Nature"/>
     </eAnnotations>
-    <ownedEnd xmi:type="uml:Property" xmi:id="_dYE_QKtREe-uiOSEq9uN-g" name="specifica capienza massima" type="_qQAwcKtQEe-uiOSEq9uN-g" association="_dXGu4KtREe-uiOSEq9uN-g"/>
-    <ownedEnd xmi:type="uml:Property" xmi:id="_dYKe0KtREe-uiOSEq9uN-g" name="nonna pina" type="_ub9eYKtOEe-uiOSEq9uN-g" association="_dXGu4KtREe-uiOSEq9uN-g"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_EhVpQLl1Ee-RT5QRwGLYSw" name="servizio asciugatura" type="_I9ejUKtREe-uiOSEq9uN-g" association="_EhHm0Ll1Ee-RT5QRwGLYSw"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_EhW3YLl1Ee-RT5QRwGLYSw" name="nonna pina" type="_ub9eYKtOEe-uiOSEq9uN-g" association="_EhHm0Ll1Ee-RT5QRwGLYSw"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_fA4wIKtREe-uiOSEq9uN-g" memberEnd="_fA_d0KtREe-uiOSEq9uN-g _fBAE4KtREe-uiOSEq9uN-g">
-    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_fA-PsKtREe-uiOSEq9uN-g" source="org.eclipse.papyrus">
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_fA-2wKtREe-uiOSEq9uN-g" key="nature" value="UML_Nature"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_FX6r8Ll1Ee-RT5QRwGLYSw" memberEnd="_FYAykLl1Ee-RT5QRwGLYSw _FYCAsLl1Ee-RT5QRwGLYSw">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_FYALgLl1Ee-RT5QRwGLYSw" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_FYALgbl1Ee-RT5QRwGLYSw" key="nature" value="UML_Nature"/>
     </eAnnotations>
-    <ownedEnd xmi:type="uml:Property" xmi:id="_fA_d0KtREe-uiOSEq9uN-g" name="servizio asciugatura" type="_I9ejUKtREe-uiOSEq9uN-g" association="_fA4wIKtREe-uiOSEq9uN-g"/>
-    <ownedEnd xmi:type="uml:Property" xmi:id="_fBAE4KtREe-uiOSEq9uN-g" name="nonna pina" type="_ub9eYKtOEe-uiOSEq9uN-g" association="_fA4wIKtREe-uiOSEq9uN-g"/>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_htoqQKtREe-uiOSEq9uN-g" memberEnd="_hukeYKtREe-uiOSEq9uN-g _hup98KtREe-uiOSEq9uN-g">
-    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_huYRIKtREe-uiOSEq9uN-g" source="org.eclipse.papyrus">
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_hugM8KtREe-uiOSEq9uN-g" key="nature" value="UML_Nature"/>
-    </eAnnotations>
-    <ownedEnd xmi:type="uml:Property" xmi:id="_hukeYKtREe-uiOSEq9uN-g" name="servizio stiratura" type="_K4e3cKtREe-uiOSEq9uN-g" association="_htoqQKtREe-uiOSEq9uN-g"/>
-    <ownedEnd xmi:type="uml:Property" xmi:id="_hup98KtREe-uiOSEq9uN-g" name="nonna pina" type="_ub9eYKtOEe-uiOSEq9uN-g" association="_htoqQKtREe-uiOSEq9uN-g"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_FYAykLl1Ee-RT5QRwGLYSw" name="servizio stiratura" type="_K4e3cKtREe-uiOSEq9uN-g" association="_FX6r8Ll1Ee-RT5QRwGLYSw"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_FYCAsLl1Ee-RT5QRwGLYSw" name="nonna pina" type="_ub9eYKtOEe-uiOSEq9uN-g" association="_FX6r8Ll1Ee-RT5QRwGLYSw"/>
   </packagedElement>
 </uml:Model>
