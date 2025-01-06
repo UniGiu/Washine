@@ -55,6 +55,17 @@ Abbiamo inoltre individuato 3 ruoli:
 
 Una volta terminato questo passaggio, abbiamo identificato i requisiti comuni tra tutti gli utenti e quelli tra loro contrastanti in modo da considerare i più rilevanti (e se necessario trovare dei compromessi) per soddisfare le necessità principali di ogni utente.
 
+**Diagrammi Caso d'Uso**  
+
+![alt text](https://github.com/UniGiu/Washine/blob/main/diagrammi/immagini/UseCase_Nonna.png)  
+
+![alt text](https://github.com/UniGiu/Washine/blob/main/diagrammi/immagini/UseCase_Parrocchiano.png)  
+
+![alt text](https://github.com/UniGiu/Washine/blob/main/diagrammi/immagini/UseCase_UtenteBase.png)  
+
+![alt text](https://github.com/UniGiu/Washine/blob/main/diagrammi/immagini/UseCase_Amministratore.png)  
+
+
 ##  3. Requisiti
 
 [Indice ^](#indice)  
