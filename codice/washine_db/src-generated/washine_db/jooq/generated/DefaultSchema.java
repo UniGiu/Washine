@@ -11,13 +11,13 @@ import org.jooq.Catalog;
 import org.jooq.Table;
 import org.jooq.impl.SchemaImpl;
 
-import washine_db.jooq.generated.tables.Gruppo;
-import washine_db.jooq.generated.tables.Inviti;
-import washine_db.jooq.generated.tables.Lavaggio;
-import washine_db.jooq.generated.tables.Listautentigruppo;
-import washine_db.jooq.generated.tables.Opzionelavaggio;
-import washine_db.jooq.generated.tables.Partecipazionelavaggio;
-import washine_db.jooq.generated.tables.Utente;
+import washine_db.jooq.generated.tables.Groups;
+import washine_db.jooq.generated.tables.Groupuserslist;
+import washine_db.jooq.generated.tables.Invites;
+import washine_db.jooq.generated.tables.User;
+import washine_db.jooq.generated.tables.Washing;
+import washine_db.jooq.generated.tables.Washingoptions;
+import washine_db.jooq.generated.tables.Washingparticipation;
 
 
 /**
@@ -34,39 +34,39 @@ public class DefaultSchema extends SchemaImpl {
     public static final DefaultSchema DEFAULT_SCHEMA = new DefaultSchema();
 
     /**
-     * The table <code>GRUPPO</code>.
+     * The table <code>GROUPS</code>.
      */
-    public final Gruppo GRUPPO = Gruppo.GRUPPO;
+    public final Groups GROUPS = Groups.GROUPS;
 
     /**
-     * The table <code>INVITI</code>.
+     * The table <code>GROUPUSERSLIST</code>.
      */
-    public final Inviti INVITI = Inviti.INVITI;
+    public final Groupuserslist GROUPUSERSLIST = Groupuserslist.GROUPUSERSLIST;
 
     /**
-     * The table <code>LAVAGGIO</code>.
+     * The table <code>INVITES</code>.
      */
-    public final Lavaggio LAVAGGIO = Lavaggio.LAVAGGIO;
+    public final Invites INVITES = Invites.INVITES;
 
     /**
-     * The table <code>LISTAUTENTIGRUPPO</code>.
+     * The table <code>USER</code>.
      */
-    public final Listautentigruppo LISTAUTENTIGRUPPO = Listautentigruppo.LISTAUTENTIGRUPPO;
+    public final User USER = User.USER;
 
     /**
-     * The table <code>OPZIONELAVAGGIO</code>.
+     * The table <code>WASHING</code>.
      */
-    public final Opzionelavaggio OPZIONELAVAGGIO = Opzionelavaggio.OPZIONELAVAGGIO;
+    public final Washing WASHING = Washing.WASHING;
 
     /**
-     * The table <code>PARTECIPAZIONELAVAGGIO</code>.
+     * The table <code>WASHINGOPTIONS</code>.
      */
-    public final Partecipazionelavaggio PARTECIPAZIONELAVAGGIO = Partecipazionelavaggio.PARTECIPAZIONELAVAGGIO;
+    public final Washingoptions WASHINGOPTIONS = Washingoptions.WASHINGOPTIONS;
 
     /**
-     * The table <code>UTENTE</code>.
+     * The table <code>WASHINGPARTICIPATION</code>.
      */
-    public final Utente UTENTE = Utente.UTENTE;
+    public final Washingparticipation WASHINGPARTICIPATION = Washingparticipation.WASHINGPARTICIPATION;
 
     /**
      * No further instances allowed
@@ -84,13 +84,13 @@ public class DefaultSchema extends SchemaImpl {
     @Override
     public final List<Table<?>> getTables() {
         return Arrays.asList(
-            Gruppo.GRUPPO,
-            Inviti.INVITI,
-            Lavaggio.LAVAGGIO,
-            Listautentigruppo.LISTAUTENTIGRUPPO,
-            Opzionelavaggio.OPZIONELAVAGGIO,
-            Partecipazionelavaggio.PARTECIPAZIONELAVAGGIO,
-            Utente.UTENTE
+            Groups.GROUPS,
+            Groupuserslist.GROUPUSERSLIST,
+            Invites.INVITES,
+            User.USER,
+            Washing.WASHING,
+            Washingoptions.WASHINGOPTIONS,
+            Washingparticipation.WASHINGPARTICIPATION
         );
     }
 }

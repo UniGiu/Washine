@@ -4,13 +4,13 @@
 package washine_db.jooq.generated;
 
 
-import washine_db.jooq.generated.tables.Gruppo;
-import washine_db.jooq.generated.tables.Inviti;
-import washine_db.jooq.generated.tables.Lavaggio;
-import washine_db.jooq.generated.tables.Listautentigruppo;
-import washine_db.jooq.generated.tables.Opzionelavaggio;
-import washine_db.jooq.generated.tables.Partecipazionelavaggio;
-import washine_db.jooq.generated.tables.Utente;
+import washine_db.jooq.generated.tables.Groups;
+import washine_db.jooq.generated.tables.Groupuserslist;
+import washine_db.jooq.generated.tables.Invites;
+import washine_db.jooq.generated.tables.User;
+import washine_db.jooq.generated.tables.Washing;
+import washine_db.jooq.generated.tables.Washingoptions;
+import washine_db.jooq.generated.tables.Washingparticipation;
 
 
 /**
@@ -20,37 +20,37 @@ import washine_db.jooq.generated.tables.Utente;
 public class Tables {
 
     /**
-     * The table <code>GRUPPO</code>.
+     * The table <code>GROUPS</code>.
      */
-    public static final Gruppo GRUPPO = Gruppo.GRUPPO;
+    public static final Groups GROUPS = Groups.GROUPS;
 
     /**
-     * The table <code>INVITI</code>.
+     * The table <code>GROUPUSERSLIST</code>.
      */
-    public static final Inviti INVITI = Inviti.INVITI;
+    public static final Groupuserslist GROUPUSERSLIST = Groupuserslist.GROUPUSERSLIST;
 
     /**
-     * The table <code>LAVAGGIO</code>.
+     * The table <code>INVITES</code>.
      */
-    public static final Lavaggio LAVAGGIO = Lavaggio.LAVAGGIO;
+    public static final Invites INVITES = Invites.INVITES;
 
     /**
-     * The table <code>LISTAUTENTIGRUPPO</code>.
+     * The table <code>USER</code>.
      */
-    public static final Listautentigruppo LISTAUTENTIGRUPPO = Listautentigruppo.LISTAUTENTIGRUPPO;
+    public static final User USER = User.USER;
 
     /**
-     * The table <code>OPZIONELAVAGGIO</code>.
+     * The table <code>WASHING</code>.
      */
-    public static final Opzionelavaggio OPZIONELAVAGGIO = Opzionelavaggio.OPZIONELAVAGGIO;
+    public static final Washing WASHING = Washing.WASHING;
 
     /**
-     * The table <code>PARTECIPAZIONELAVAGGIO</code>.
+     * The table <code>WASHINGOPTIONS</code>.
      */
-    public static final Partecipazionelavaggio PARTECIPAZIONELAVAGGIO = Partecipazionelavaggio.PARTECIPAZIONELAVAGGIO;
+    public static final Washingoptions WASHINGOPTIONS = Washingoptions.WASHINGOPTIONS;
 
     /**
-     * The table <code>UTENTE</code>.
+     * The table <code>WASHINGPARTICIPATION</code>.
      */
-    public static final Utente UTENTE = Utente.UTENTE;
+    public static final Washingparticipation WASHINGPARTICIPATION = Washingparticipation.WASHINGPARTICIPATION;
 }

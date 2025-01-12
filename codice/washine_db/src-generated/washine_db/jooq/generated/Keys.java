@@ -10,20 +10,20 @@ import org.jooq.UniqueKey;
 import org.jooq.impl.DSL;
 import org.jooq.impl.Internal;
 
-import washine_db.jooq.generated.tables.Gruppo;
-import washine_db.jooq.generated.tables.Inviti;
-import washine_db.jooq.generated.tables.Lavaggio;
-import washine_db.jooq.generated.tables.Listautentigruppo;
-import washine_db.jooq.generated.tables.Opzionelavaggio;
-import washine_db.jooq.generated.tables.Partecipazionelavaggio;
-import washine_db.jooq.generated.tables.Utente;
-import washine_db.jooq.generated.tables.records.GruppoRecord;
-import washine_db.jooq.generated.tables.records.InvitiRecord;
-import washine_db.jooq.generated.tables.records.LavaggioRecord;
-import washine_db.jooq.generated.tables.records.ListautentigruppoRecord;
-import washine_db.jooq.generated.tables.records.OpzionelavaggioRecord;
-import washine_db.jooq.generated.tables.records.PartecipazionelavaggioRecord;
-import washine_db.jooq.generated.tables.records.UtenteRecord;
+import washine_db.jooq.generated.tables.Groups;
+import washine_db.jooq.generated.tables.Groupuserslist;
+import washine_db.jooq.generated.tables.Invites;
+import washine_db.jooq.generated.tables.User;
+import washine_db.jooq.generated.tables.Washing;
+import washine_db.jooq.generated.tables.Washingoptions;
+import washine_db.jooq.generated.tables.Washingparticipation;
+import washine_db.jooq.generated.tables.records.GroupsRecord;
+import washine_db.jooq.generated.tables.records.GroupuserslistRecord;
+import washine_db.jooq.generated.tables.records.InvitesRecord;
+import washine_db.jooq.generated.tables.records.UserRecord;
+import washine_db.jooq.generated.tables.records.WashingRecord;
+import washine_db.jooq.generated.tables.records.WashingoptionsRecord;
+import washine_db.jooq.generated.tables.records.WashingparticipationRecord;
 
 
 /**
@@ -37,23 +37,23 @@ public class Keys {
     // UNIQUE and PRIMARY KEY definitions
     // -------------------------------------------------------------------------
 
-    public static final UniqueKey<GruppoRecord> GRUPPO__PK_GRUPPO = Internal.createUniqueKey(Gruppo.GRUPPO, DSL.name("pk_GRUPPO"), new TableField[] { Gruppo.GRUPPO.IDUTENTE }, true);
-    public static final UniqueKey<InvitiRecord> INVITI__PK_INVITI = Internal.createUniqueKey(Inviti.INVITI, DSL.name("pk_INVITI"), new TableField[] { Inviti.INVITI.IDLAVANDAIO }, true);
-    public static final UniqueKey<LavaggioRecord> LAVAGGIO__PK_LAVAGGIO = Internal.createUniqueKey(Lavaggio.LAVAGGIO, DSL.name("pk_LAVAGGIO"), new TableField[] { Lavaggio.LAVAGGIO.IDLAVAGGIO }, true);
-    public static final UniqueKey<ListautentigruppoRecord> LISTAUTENTIGRUPPO__PK_LISTAUTENTIGRUPPO = Internal.createUniqueKey(Listautentigruppo.LISTAUTENTIGRUPPO, DSL.name("pk_LISTAUTENTIGRUPPO"), new TableField[] { Listautentigruppo.LISTAUTENTIGRUPPO.IDLAVANDAIO }, true);
-    public static final UniqueKey<OpzionelavaggioRecord> OPZIONELAVAGGIO__PK_OPZIONELAVAGGIO = Internal.createUniqueKey(Opzionelavaggio.OPZIONELAVAGGIO, DSL.name("pk_OPZIONELAVAGGIO"), new TableField[] { Opzionelavaggio.OPZIONELAVAGGIO.IDLAVAGGIO }, true);
-    public static final UniqueKey<PartecipazionelavaggioRecord> PARTECIPAZIONELAVAGGIO__PK_PARTECIPAZIONELAVAGGIO = Internal.createUniqueKey(Partecipazionelavaggio.PARTECIPAZIONELAVAGGIO, DSL.name("pk_PARTECIPAZIONELAVAGGIO"), new TableField[] { Partecipazionelavaggio.PARTECIPAZIONELAVAGGIO.IDLAVAGGIO }, true);
-    public static final UniqueKey<UtenteRecord> UTENTE__PK_UTENTE = Internal.createUniqueKey(Utente.UTENTE, DSL.name("pk_UTENTE"), new TableField[] { Utente.UTENTE.ID }, true);
+    public static final UniqueKey<GroupsRecord> GROUPS__PK_GROUPS = Internal.createUniqueKey(Groups.GROUPS, DSL.name("pk_GROUPS"), new TableField[] { Groups.GROUPS.USERID }, true);
+    public static final UniqueKey<GroupuserslistRecord> GROUPUSERSLIST__PK_GROUPUSERSLIST = Internal.createUniqueKey(Groupuserslist.GROUPUSERSLIST, DSL.name("pk_GROUPUSERSLIST"), new TableField[] { Groupuserslist.GROUPUSERSLIST.LAUNDRYPERSONID }, true);
+    public static final UniqueKey<InvitesRecord> INVITES__PK_INVITES = Internal.createUniqueKey(Invites.INVITES, DSL.name("pk_INVITES"), new TableField[] { Invites.INVITES.LAUNDRYPERSONID }, true);
+    public static final UniqueKey<UserRecord> USER__PK_USER = Internal.createUniqueKey(User.USER, DSL.name("pk_USER"), new TableField[] { User.USER.ID }, true);
+    public static final UniqueKey<WashingRecord> WASHING__PK_WASHING = Internal.createUniqueKey(Washing.WASHING, DSL.name("pk_WASHING"), new TableField[] { Washing.WASHING.WASHINGID }, true);
+    public static final UniqueKey<WashingoptionsRecord> WASHINGOPTIONS__PK_WASHINGOPTIONS = Internal.createUniqueKey(Washingoptions.WASHINGOPTIONS, DSL.name("pk_WASHINGOPTIONS"), new TableField[] { Washingoptions.WASHINGOPTIONS.WASHINGID }, true);
+    public static final UniqueKey<WashingparticipationRecord> WASHINGPARTICIPATION__PK_WASHINGPARTICIPATION = Internal.createUniqueKey(Washingparticipation.WASHINGPARTICIPATION, DSL.name("pk_WASHINGPARTICIPATION"), new TableField[] { Washingparticipation.WASHINGPARTICIPATION.WASHINGID }, true);
 
     // -------------------------------------------------------------------------
     // FOREIGN KEY definitions
     // -------------------------------------------------------------------------
 
-    public static final ForeignKey<GruppoRecord, UtenteRecord> GRUPPO__FK_GRUPPO_PK_UTENTE = Internal.createForeignKey(Gruppo.GRUPPO, DSL.name("fk_GRUPPO_pk_UTENTE"), new TableField[] { Gruppo.GRUPPO.IDUTENTE }, Keys.UTENTE__PK_UTENTE, new TableField[] { Utente.UTENTE.ID }, true);
-    public static final ForeignKey<InvitiRecord, UtenteRecord> INVITI__FK_INVITI_PK_UTENTE = Internal.createForeignKey(Inviti.INVITI, DSL.name("fk_INVITI_pk_UTENTE"), new TableField[] { Inviti.INVITI.IDLAVANDAIO }, Keys.UTENTE__PK_UTENTE, new TableField[] { Utente.UTENTE.ID }, true);
-    public static final ForeignKey<LavaggioRecord, UtenteRecord> LAVAGGIO__FK_LAVAGGIO_PK_UTENTE = Internal.createForeignKey(Lavaggio.LAVAGGIO, DSL.name("fk_LAVAGGIO_pk_UTENTE"), new TableField[] { Lavaggio.LAVAGGIO.IDLAVANDAIO }, Keys.UTENTE__PK_UTENTE, new TableField[] { Utente.UTENTE.ID }, true);
-    public static final ForeignKey<ListautentigruppoRecord, UtenteRecord> LISTAUTENTIGRUPPO__FK_LISTAUTENTIGRUPPO_PK_UTENTE = Internal.createForeignKey(Listautentigruppo.LISTAUTENTIGRUPPO, DSL.name("fk_LISTAUTENTIGRUPPO_pk_UTENTE"), new TableField[] { Listautentigruppo.LISTAUTENTIGRUPPO.IDPARTECIPANTE, Listautentigruppo.LISTAUTENTIGRUPPO.IDLAVANDAIO }, Keys.UTENTE__PK_UTENTE, new TableField[] { Utente.UTENTE.ID, Utente.UTENTE.ID }, true);
-    public static final ForeignKey<OpzionelavaggioRecord, LavaggioRecord> OPZIONELAVAGGIO__FK_OPZIONELAVAGGIO_PK_LAVAGGIO = Internal.createForeignKey(Opzionelavaggio.OPZIONELAVAGGIO, DSL.name("fk_OPZIONELAVAGGIO_pk_LAVAGGIO"), new TableField[] { Opzionelavaggio.OPZIONELAVAGGIO.IDLAVAGGIO }, Keys.LAVAGGIO__PK_LAVAGGIO, new TableField[] { Lavaggio.LAVAGGIO.IDLAVAGGIO }, true);
-    public static final ForeignKey<PartecipazionelavaggioRecord, LavaggioRecord> PARTECIPAZIONELAVAGGIO__FK_PARTECIPAZIONELAVAGGIO_PK_LAVAGGIO = Internal.createForeignKey(Partecipazionelavaggio.PARTECIPAZIONELAVAGGIO, DSL.name("fk_PARTECIPAZIONELAVAGGIO_pk_LAVAGGIO"), new TableField[] { Partecipazionelavaggio.PARTECIPAZIONELAVAGGIO.IDLAVAGGIO }, Keys.LAVAGGIO__PK_LAVAGGIO, new TableField[] { Lavaggio.LAVAGGIO.IDLAVAGGIO }, true);
-    public static final ForeignKey<PartecipazionelavaggioRecord, UtenteRecord> PARTECIPAZIONELAVAGGIO__FK_PARTECIPAZIONELAVAGGIO_PK_UTENTE = Internal.createForeignKey(Partecipazionelavaggio.PARTECIPAZIONELAVAGGIO, DSL.name("fk_PARTECIPAZIONELAVAGGIO_pk_UTENTE"), new TableField[] { Partecipazionelavaggio.PARTECIPAZIONELAVAGGIO.IDPARTECIPANTE }, Keys.UTENTE__PK_UTENTE, new TableField[] { Utente.UTENTE.ID }, true);
+    public static final ForeignKey<GroupsRecord, UserRecord> GROUPS__FK_GROUPS_PK_USER = Internal.createForeignKey(Groups.GROUPS, DSL.name("fk_GROUPS_pk_USER"), new TableField[] { Groups.GROUPS.USERID }, Keys.USER__PK_USER, new TableField[] { User.USER.ID }, true);
+    public static final ForeignKey<GroupuserslistRecord, UserRecord> GROUPUSERSLIST__FK_GROUPUSERSLIST_PK_USER = Internal.createForeignKey(Groupuserslist.GROUPUSERSLIST, DSL.name("fk_GROUPUSERSLIST_pk_USER"), new TableField[] { Groupuserslist.GROUPUSERSLIST.PARTICIPANTID, Groupuserslist.GROUPUSERSLIST.LAUNDRYPERSONID }, Keys.USER__PK_USER, new TableField[] { User.USER.ID, User.USER.ID }, true);
+    public static final ForeignKey<InvitesRecord, UserRecord> INVITES__FK_INVITES_PK_USER = Internal.createForeignKey(Invites.INVITES, DSL.name("fk_INVITES_pk_USER"), new TableField[] { Invites.INVITES.LAUNDRYPERSONID }, Keys.USER__PK_USER, new TableField[] { User.USER.ID }, true);
+    public static final ForeignKey<WashingRecord, UserRecord> WASHING__FK_WASHING_PK_USER = Internal.createForeignKey(Washing.WASHING, DSL.name("fk_WASHING_pk_USER"), new TableField[] { Washing.WASHING.LAUNDRYPERSONID }, Keys.USER__PK_USER, new TableField[] { User.USER.ID }, true);
+    public static final ForeignKey<WashingoptionsRecord, WashingRecord> WASHINGOPTIONS__FK_WASHINGOPTIONS_PK_WASHING = Internal.createForeignKey(Washingoptions.WASHINGOPTIONS, DSL.name("fk_WASHINGOPTIONS_pk_WASHING"), new TableField[] { Washingoptions.WASHINGOPTIONS.WASHINGID }, Keys.WASHING__PK_WASHING, new TableField[] { Washing.WASHING.WASHINGID }, true);
+    public static final ForeignKey<WashingparticipationRecord, UserRecord> WASHINGPARTICIPATION__FK_WASHINGPARTICIPATION_PK_USER = Internal.createForeignKey(Washingparticipation.WASHINGPARTICIPATION, DSL.name("fk_WASHINGPARTICIPATION_pk_USER"), new TableField[] { Washingparticipation.WASHINGPARTICIPATION.PARTICIPANTID }, Keys.USER__PK_USER, new TableField[] { User.USER.ID }, true);
+    public static final ForeignKey<WashingparticipationRecord, WashingRecord> WASHINGPARTICIPATION__FK_WASHINGPARTICIPATION_PK_WASHING = Internal.createForeignKey(Washingparticipation.WASHINGPARTICIPATION, DSL.name("fk_WASHINGPARTICIPATION_pk_WASHING"), new TableField[] { Washingparticipation.WASHINGPARTICIPATION.WASHINGID }, Keys.WASHING__PK_WASHING, new TableField[] { Washing.WASHING.WASHINGID }, true);
 }
