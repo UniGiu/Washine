@@ -15,8 +15,9 @@ Le principali attività e scadenze sono state:
 
 - 11/11 conclusione project plan  
 - 03/12 termine definizione dei requisiti e produzione della relativa documentazione (02 - specifica dei requisiti). Inizialmente era pianificata al 25/11 ma è stata posticipata a causa di difficoltà di coordinamento del team.  
-- 24/12 revisione project plan e invio per approvazione  
-- 13/01 fine sviluppo del software 
+- 24/12 revisione project plan e invio per approvazione
+- 11/01 inizio parte di sviluppo, creazione del db  
+- 24/01 previsione fine sviluppo del software 
 
 **Configuration Management**
 
