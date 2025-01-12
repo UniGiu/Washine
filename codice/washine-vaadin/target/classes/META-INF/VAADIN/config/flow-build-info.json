@@ -1,0 +1,18 @@
+{
+  "productionMode": false,
+  "eagerServerLoad": false,
+  "npmFolder": "/home/beppe/eclipse-workspace-24/washine-vaadin",
+  "node.version": "v22.12.0",
+  "node.download.root": "https://nodejs.org/dist/",
+  "frontendFolder": "/home/beppe/eclipse-workspace-24/washine-vaadin/src/main/frontend",
+  "connect.javaSourceFolder": "/home/beppe/eclipse-workspace-24/washine-vaadin/src/main/java",
+  "javaResourceFolder": "/home/beppe/eclipse-workspace-24/washine-vaadin/src/main/resources",
+  "connect.applicationProperties": "/home/beppe/eclipse-workspace-24/washine-vaadin/src/main/resources/application.properties",
+  "connect.openApiFile": "/home/beppe/eclipse-workspace-24/washine-vaadin/target/generated-resources/openapi.json",
+  "project.frontend.generated": "/home/beppe/eclipse-workspace-24/washine-vaadin/src/main/frontend/generated",
+  "pnpm.enable": false,
+  "bun.enable": false,
+  "require.home.node": false,
+  "build.folder": "target",
+  "react.enable": true
+}
