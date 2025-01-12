@@ -4,24 +4,24 @@
     <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
   </packageImport>
   <packagedElement xmi:type="uml:Package" xmi:id="_YuFfQMtkEe-HSNBCTkCQdQ" name="Washine">
-    <packagedElement xmi:type="uml:Class" xmi:id="_e4ZEcMqrEe-HSNBCTkCQdQ" name="Lavaggio">
+    <packagedElement xmi:type="uml:Class" xmi:id="_e4ZEcMqrEe-HSNBCTkCQdQ" name="Washing">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_4OZO4MtlEe-HSNBCTkCQdQ" name="id">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_7ifc4MtlEe-HSNBCTkCQdQ" name="partecipanti_abilitati">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_7ifc4MtlEe-HSNBCTkCQdQ" name="enabled_participants">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_9XE_8MtlEe-HSNBCTkCQdQ"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_9XZJAMtlEe-HSNBCTkCQdQ" value="*"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_A3qDYMtpEe-HSNBCTkCQdQ" name="carico_attuale" isDerived="true">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_A3qDYMtpEe-HSNBCTkCQdQ" name="current_load" isDerived="true">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDouble"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_JgBAUMtpEe-HSNBCTkCQdQ" name="attivo" isDerived="true">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_JgBAUMtpEe-HSNBCTkCQdQ" name="active" isDerived="true">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_I17zQNAkEe-FRLYPDeOYTA" name="opzionilavaggio" type="_Dg7dcNAkEe-FRLYPDeOYTA" association="_I1xbMNAkEe-FRLYPDeOYTA"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_I17zQNAkEe-FRLYPDeOYTA" name="washingoptions" type="_Dg7dcNAkEe-FRLYPDeOYTA" association="_I1xbMNAkEe-FRLYPDeOYTA"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_wrLxkMtkEe-HSNBCTkCQdQ" name="Utente">
+    <packagedElement xmi:type="uml:Class" xmi:id="_wrLxkMtkEe-HSNBCTkCQdQ" name="User">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_5A0m0MtkEe-HSNBCTkCQdQ" name="email">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       </ownedAttribute>
@@ -31,105 +31,105 @@
       <ownedAttribute xmi:type="uml:Property" xmi:id="_FDpfgMtlEe-HSNBCTkCQdQ" name="password">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_J0jCsMtlEe-HSNBCTkCQdQ" name="livello">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_J0jCsMtlEe-HSNBCTkCQdQ" name="level">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_MDQV8MtlEe-HSNBCTkCQdQ" name="bloccato">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_MDQV8MtlEe-HSNBCTkCQdQ" name="blocked">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_UbCU4MuUEe-HSNBCTkCQdQ" name="gruppo" type="_x_dc4MtkEe-HSNBCTkCQdQ" association="_Ua2HoMuUEe-HSNBCTkCQdQ">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_UbCU4MuUEe-HSNBCTkCQdQ" name="group" type="_x_dc4MtkEe-HSNBCTkCQdQ" association="_Ua2HoMuUEe-HSNBCTkCQdQ">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_UbExIMuUEe-HSNBCTkCQdQ"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_UbFYMMuUEe-HSNBCTkCQdQ" value="*"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_c88hAMuTEe-HSNBCTkCQdQ" name="invito" type="_dlpDIMqrEe-HSNBCTkCQdQ" association="_c8kGgMuTEe-HSNBCTkCQdQ"/>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_8DfvoNAwEe-FRLYPDeOYTA" name="utentegruppo" type="_kOzLYNAwEe-FRLYPDeOYTA" association="_8Dd6cNAwEe-FRLYPDeOYTA">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_c88hAMuTEe-HSNBCTkCQdQ" name="invitation" type="_dlpDIMqrEe-HSNBCTkCQdQ" association="_c8kGgMuTEe-HSNBCTkCQdQ"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_8DfvoNAwEe-FRLYPDeOYTA" name="usergroup" type="_kOzLYNAwEe-FRLYPDeOYTA" association="_8Dd6cNAwEe-FRLYPDeOYTA">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_8DfvodAwEe-FRLYPDeOYTA"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_8DfvotAwEe-FRLYPDeOYTA" value="*"/>
       </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_x_dc4MtkEe-HSNBCTkCQdQ" name="Gruppo">
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_TW_pUMtlEe-HSNBCTkCQdQ" name="nome_gruppo">
+    <packagedElement xmi:type="uml:Class" xmi:id="_x_dc4MtkEe-HSNBCTkCQdQ" name="Group">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_TW_pUMtlEe-HSNBCTkCQdQ" name="group_name">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_dlpDIMqrEe-HSNBCTkCQdQ" name="Invito">
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_uuMD8MtlEe-HSNBCTkCQdQ" name="nome_invitato">
+    <packagedElement xmi:type="uml:Class" xmi:id="_dlpDIMqrEe-HSNBCTkCQdQ" name="Invitation">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_uuMD8MtlEe-HSNBCTkCQdQ" name="invitee_name">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_xlXFYMtlEe-HSNBCTkCQdQ" name="codice">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_xlXFYMtlEe-HSNBCTkCQdQ" name="code">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_zpkY0MtlEe-HSNBCTkCQdQ" name="accettato">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_zpkY0MtlEe-HSNBCTkCQdQ" name="accepted">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
       </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Dg7dcNAkEe-FRLYPDeOYTA" name="OpzioniLavaggio">
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_YUGGMNArEe-FRLYPDeOYTA" name="data_ora">
+    <packagedElement xmi:type="uml:Class" xmi:id="_Dg7dcNAkEe-FRLYPDeOYTA" name="WashingOptions">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_YUGGMNArEe-FRLYPDeOYTA" name="date_time">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDate"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_9FGI0NArEe-FRLYPDeOYTA" name="tempo_visibilita">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_9FGI0NArEe-FRLYPDeOYTA" name="visibility_time">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_MrHbcNAsEe-FRLYPDeOYTA" name="durata_minuti">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_MrHbcNAsEe-FRLYPDeOYTA" name="duration_minutes">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_QyZZ4NAsEe-FRLYPDeOYTA" name="carico_iniziale">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_QyZZ4NAsEe-FRLYPDeOYTA" name="initial_load">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDouble"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_Wt1dkNAsEe-FRLYPDeOYTA" name="carico_max">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_Wt1dkNAsEe-FRLYPDeOYTA" name="max_load">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDouble"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_vp4ZgNAuEe-FRLYPDeOYTA" name="temperatura">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_vp4ZgNAuEe-FRLYPDeOYTA" name="temperature">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_4R278NAuEe-FRLYPDeOYTA" name="numero_giri">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_4R278NAuEe-FRLYPDeOYTA" name="spin_speed">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_7P2-INAuEe-FRLYPDeOYTA" name="tipo_tessuti">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_7P2-INAuEe-FRLYPDeOYTA" name="fabric_type">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_9itxkNAuEe-FRLYPDeOYTA" name="colore">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_9itxkNAuEe-FRLYPDeOYTA" name="color">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="__-URUNAuEe-FRLYPDeOYTA" name="tipo_detersivi">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__-URUNAuEe-FRLYPDeOYTA" name="detergent_type">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_K9hJ0NAvEe-FRLYPDeOYTA" name="tipo_rimborso">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_K9hJ0NAvEe-FRLYPDeOYTA" name="refund_type">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_OPJSoNAvEe-FRLYPDeOYTA" name="indirizzo_ritiro">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_OPJSoNAvEe-FRLYPDeOYTA" name="pickup_address">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_TyzIcNAvEe-FRLYPDeOYTA" name="indirizzo_consegna">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_TyzIcNAvEe-FRLYPDeOYTA" name="delivery_address">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_p7bzgNAvEe-FRLYPDeOYTA" name="asciugatura">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_p7bzgNAvEe-FRLYPDeOYTA" name="drying">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_srCNUNAvEe-FRLYPDeOYTA" name="disponibilita_ritiro">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_srCNUNAvEe-FRLYPDeOYTA" name="pickup_availability">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_vyo3cNAvEe-FRLYPDeOYTA" name="disponibilita_consegna">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_vyo3cNAvEe-FRLYPDeOYTA" name="delivery_availability">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_ygY3INAvEe-FRLYPDeOYTA" name="stiratura">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_ygY3INAvEe-FRLYPDeOYTA" name="ironing">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_1eg1INAvEe-FRLYPDeOYTA" name="carico_max_partecipante">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_1eg1INAvEe-FRLYPDeOYTA" name="participant_max_load">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDouble"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_5KVmoNAvEe-FRLYPDeOYTA" name="data_apertura_accesso_lavaggio">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_5KVmoNAvEe-FRLYPDeOYTA" name="washing_access_open_date">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDate"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_8Qs6oNAvEe-FRLYPDeOYTA" name="data_chiusura_accesso_lavaggio">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_8Qs6oNAvEe-FRLYPDeOYTA" name="washing_access_close_date">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDate"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_OmtqkNDeEe-Eo52E4dOyeA" name="Intimo">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_OmtqkNDeEe-Eo52E4dOyeA" name="Underwear">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
       </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_kOzLYNAwEe-FRLYPDeOYTA" name="UtenteGruppo">
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_0SNkoNAwEe-FRLYPDeOYTA" name="nome">
+    <packagedElement xmi:type="uml:Class" xmi:id="_kOzLYNAwEe-FRLYPDeOYTA" name="UserGroup">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_0SNkoNAwEe-FRLYPDeOYTA" name="name">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       </ownedAttribute>
     </packagedElement>
@@ -138,7 +138,7 @@
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_c8rbQMuTEe-HSNBCTkCQdQ" source="org.eclipse.papyrus">
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_c8sCUMuTEe-HSNBCTkCQdQ" key="nature" value="UML_Nature"/>
     </eAnnotations>
-    <ownedEnd xmi:type="uml:Property" xmi:id="_c8spYMuTEe-HSNBCTkCQdQ" name="utente" type="_wrLxkMtkEe-HSNBCTkCQdQ" association="_c8kGgMuTEe-HSNBCTkCQdQ">
+    <ownedEnd xmi:type="uml:Property" xmi:id="_c8spYMuTEe-HSNBCTkCQdQ" name="user" type="_wrLxkMtkEe-HSNBCTkCQdQ" association="_c8kGgMuTEe-HSNBCTkCQdQ">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_c8zXEMuTEe-HSNBCTkCQdQ"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_c86r0MuTEe-HSNBCTkCQdQ" value="*"/>
     </ownedEnd>
@@ -147,31 +147,31 @@
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Ua_RkMuUEe-HSNBCTkCQdQ" source="org.eclipse.papyrus">
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_UbBt0MuUEe-HSNBCTkCQdQ" key="nature" value="UML_Nature"/>
     </eAnnotations>
-    <ownedEnd xmi:type="uml:Property" xmi:id="_UbFYMcuUEe-HSNBCTkCQdQ" name="utente" type="_wrLxkMtkEe-HSNBCTkCQdQ" association="_Ua2HoMuUEe-HSNBCTkCQdQ">
+    <ownedEnd xmi:type="uml:Property" xmi:id="_UbFYMcuUEe-HSNBCTkCQdQ" name="user" type="_wrLxkMtkEe-HSNBCTkCQdQ" association="_Ua2HoMuUEe-HSNBCTkCQdQ">
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_bXABcMuUEe-HSNBCTkCQdQ" value="*"/>
     </ownedEnd>
   </packagedElement>
-  <packagedElement xmi:type="uml:AssociationClass" xmi:id="_USJzwMuWEe-HSNBCTkCQdQ" name="Partecipazione" memberEnd="_USvpoMuWEe-HSNBCTkCQdQ _US6BsMuWEe-HSNBCTkCQdQ">
+  <packagedElement xmi:type="uml:AssociationClass" xmi:id="_USJzwMuWEe-HSNBCTkCQdQ" name="Participation" memberEnd="_USvpoMuWEe-HSNBCTkCQdQ _US6BsMuWEe-HSNBCTkCQdQ">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_USo78MuWEe-HSNBCTkCQdQ" source="org.eclipse.papyrus">
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_USsmUMuWEe-HSNBCTkCQdQ" key="nature" value="UML_Nature"/>
     </eAnnotations>
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_c9RJwMuWEe-HSNBCTkCQdQ" name="carico">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_c9RJwMuWEe-HSNBCTkCQdQ" name="load">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDouble"/>
     </ownedAttribute>
-    <ownedEnd xmi:type="uml:Property" xmi:id="_USvpoMuWEe-HSNBCTkCQdQ" name="utente" type="_wrLxkMtkEe-HSNBCTkCQdQ" association="_USJzwMuWEe-HSNBCTkCQdQ"/>
-    <ownedEnd xmi:type="uml:Property" xmi:id="_US6BsMuWEe-HSNBCTkCQdQ" name="lavaggio" type="_e4ZEcMqrEe-HSNBCTkCQdQ" association="_USJzwMuWEe-HSNBCTkCQdQ"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_USvpoMuWEe-HSNBCTkCQdQ" name="user" type="_wrLxkMtkEe-HSNBCTkCQdQ" association="_USJzwMuWEe-HSNBCTkCQdQ"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_US6BsMuWEe-HSNBCTkCQdQ" name="washing" type="_e4ZEcMqrEe-HSNBCTkCQdQ" association="_USJzwMuWEe-HSNBCTkCQdQ"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="_I1xbMNAkEe-FRLYPDeOYTA" memberEnd="_I17zQNAkEe-FRLYPDeOYTA _I18aUtAkEe-FRLYPDeOYTA">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_I17MMNAkEe-FRLYPDeOYTA" source="org.eclipse.papyrus">
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_I17MMdAkEe-FRLYPDeOYTA" key="nature" value="UML_Nature"/>
     </eAnnotations>
-    <ownedEnd xmi:type="uml:Property" xmi:id="_I18aUtAkEe-FRLYPDeOYTA" name="lavaggio" type="_e4ZEcMqrEe-HSNBCTkCQdQ" association="_I1xbMNAkEe-FRLYPDeOYTA"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_I18aUtAkEe-FRLYPDeOYTA" name="washing" type="_e4ZEcMqrEe-HSNBCTkCQdQ" association="_I1xbMNAkEe-FRLYPDeOYTA"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="_8Dd6cNAwEe-FRLYPDeOYTA" memberEnd="_8DfvoNAwEe-FRLYPDeOYTA _8DgWsNAwEe-FRLYPDeOYTA">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_8DfIkNAwEe-FRLYPDeOYTA" source="org.eclipse.papyrus">
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_8DfIkdAwEe-FRLYPDeOYTA" key="nature" value="UML_Nature"/>
     </eAnnotations>
-    <ownedEnd xmi:type="uml:Property" xmi:id="_8DgWsNAwEe-FRLYPDeOYTA" name="utente" type="_wrLxkMtkEe-HSNBCTkCQdQ" association="_8Dd6cNAwEe-FRLYPDeOYTA"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_8DgWsNAwEe-FRLYPDeOYTA" name="user" type="_wrLxkMtkEe-HSNBCTkCQdQ" association="_8Dd6cNAwEe-FRLYPDeOYTA"/>
   </packagedElement>
   <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_FxjHUMtlEe-HSNBCTkCQdQ">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_FxtfYMtlEe-HSNBCTkCQdQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
