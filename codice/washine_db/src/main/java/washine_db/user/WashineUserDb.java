@@ -19,7 +19,7 @@ import washine_db.washine_db.JOOQCodeGeneration;
 public class WashineUserDb implements WashineUserDbIf {
 
   /**
-   * @throws SQLException
+   * @throws SQLException if the query does not go through
    * @param email of the user of whom you want to check the presence on the database
    * @param password of the user you want to authenticate
    * @return true if the user's informations are on the database and the password is correct
@@ -27,16 +27,21 @@ public class WashineUserDb implements WashineUserDbIf {
    */
   public boolean authenticateUser(String email, String password) throws SQLException {
 
-    Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
-    DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
-
     if (this.alreadyAddedUser(email) == false) {
       return false;
     }
-    Result<Record1<String>> databaseHashedPassword =
-        create.select(User.USER.PASSWORD).from(User.USER).where(User.USER.EMAIL.eq(email)).fetch();
 
-    if (BCrypt.checkpw(password, databaseHashedPassword.format())) {
+    Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
+    DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
+
+    Record1<String> databaseHashedPassword =
+        create
+            .select(User.USER.PASSWORD)
+            .from(User.USER)
+            .where(User.USER.EMAIL.eq(email))
+            .fetchOne();
+
+    if (BCrypt.checkpw(password, databaseHashedPassword.getValue(User.USER.PASSWORD))) {
       return true;
     } else {
       return false;
@@ -44,23 +49,32 @@ public class WashineUserDb implements WashineUserDbIf {
   }
 
   /**
-   * @throws SQLException
+   * @throws SQLException if the query does not go through
+   * @param id of the user of whom information you want to add to the database
    * @param email of the user of whom information you want to add to the database
    * @param password of the user of whom information you want to add to the database
    * @return true if the user's informations have been successfully added on the database
    * @return false if the user's informations have already been added on the database
    */
-  public boolean addUser(String email, String password) throws SQLException {
+  public boolean addUser(String id, String email, String password) throws SQLException {
     if (this.alreadyAddedUser(email) == true) {
       return false;
     } else {
-      // TODO insert on the database
+      Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
+      DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
+
+      String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+
+      create
+          .insertInto(User.USER, User.USER.ID, User.USER.EMAIL, User.USER.PASSWORD)
+          .values(id, email, hashedPassword)
+          .execute();
       return true;
     }
   }
 
   /**
-   * @throws SQLException
+   * @throws SQLException if the query does not go through
    * @param email of the user of whom you want to check the presence on the database
    * @return true if the user's informations have been successfully added on the database
    * @return false if the user's informations have already been added to the database or the insert

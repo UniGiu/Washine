@@ -67,7 +67,7 @@ public class User extends TableImpl<UserRecord> {
     /**
      * The column <code>USER.Level</code>.
      */
-    public final TableField<UserRecord, Integer> LEVEL = createField(DSL.name("Level"), SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<UserRecord, Integer> LEVEL = createField(DSL.name("Level"), SQLDataType.INTEGER.defaultValue(DSL.field(DSL.raw("1"), SQLDataType.INTEGER)), this, "");
 
     /**
      * The column <code>USER.Blocked</code>.
