@@ -37,6 +37,7 @@ public class WashesView extends Composite<VerticalLayout> {
         Grid minimalistGrid = new Grid(SamplePerson.class);
         H3 h33 = new H3();
         Grid minimalistGrid2 = new Grid(SamplePerson.class);
+        WashPictograms washPictograms = new WashPictograms();
         getContent().setWidth("100%");
         getContent().getStyle().set("flex-grow", "1");
         layoutRow.addClassName(Gap.MEDIUM);
@@ -68,6 +69,7 @@ public class WashesView extends Composite<VerticalLayout> {
         minimalistGrid2.getStyle().set("flex-grow", "0");
         setGridSampleData(minimalistGrid2);
         getContent().add(layoutRow);
+        layoutRow.add(washPictograms);
         layoutRow.add(h2);
         getContent().add(textLarge);
         getContent().add(h3);

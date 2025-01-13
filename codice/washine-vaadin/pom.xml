@@ -106,7 +106,13 @@
      <artifactId>vaadin-server</artifactId>
      <version>8.8.6</version>
    </dependency>
- </dependencies>
+
+		<dependency>
+			<groupId>com.vaadin</groupId>
+			<artifactId>vaadin-grid-flow</artifactId>
+			<version>${vaadin.version}</version>
+		</dependency>
+	</dependencies>
 
 	<build>
 		<defaultGoal>spring-boot:run</defaultGoal>
