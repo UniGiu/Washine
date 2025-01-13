@@ -11,7 +11,7 @@ public interface WashineCoreIf {
 
   WashineUserIf addUser(String email, String password) throws SQLException;
 
-  WashineUserIf UpdateUserEmail(String newEmail);
+  WashineUserIf updateUserEmail(String userId, String newEmail) throws SQLException;
 
-  WashineUserIf UpdateUserPasswordl(String newPassword);
+  WashineUserIf updateUserPassword(String userId, String newPassword) throws SQLException;
 }

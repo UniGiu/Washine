@@ -25,7 +25,7 @@ public class WashineCore implements WashineCoreIf {
     // crea il gestore utenti
     WashineUserDb userDb = new WashineUserDb();
     if (!userDb.alreadyAddedUser(email) && userDb.addUser(email, password)) {
-    String id = userDb.getUserId(email);
+      String id = userDb.getUserId(email);
       return new WashineUser(email, id);
     }
     return null;
@@ -38,14 +38,16 @@ public class WashineCore implements WashineCoreIf {
   }
 
   @Override
-  public WashineUserIf UpdateUserEmail(String newEmail) {
-    // TODO Auto-generated method stub
-    return null;
+  public WashineUserIf updateUserEmail(String userId, String newEmail) throws SQLException {
+    WashineUserDb userDb = new WashineUserDb();
+    userDb.updateUserEmail(userId, newEmail);
+    return new WashineUser(newEmail, userId);
   }
 
   @Override
-  public WashineUserIf UpdateUserPasswordl(String newPassword) {
-    // TODO Auto-generated method stub
-    return null;
+  public WashineUserIf updateUserPassword(String userId, String newPassword) throws SQLException {
+    WashineUserDb userDb = new WashineUserDb();
+    userDb.updateUserPassword(userId, newPassword);
+    return new WashineUser(userDb.getUserEmail(userId), userId);
   }
 }

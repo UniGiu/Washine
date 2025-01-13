@@ -18,6 +18,8 @@ import washine_db.washine_db.JOOQCodeGeneration;
 
 /** User class used to interact with the database */
 public class WashineUserDb implements WashineUserDbIf {
+	
+  public WashineUserDb() {}
 
   /**
    * @throws SQLException if the query does not go through
@@ -61,12 +63,12 @@ public class WashineUserDb implements WashineUserDbIf {
     if (this.alreadyAddedUser(email) == true) {
       return false;
     } else {
-    	String id= Long.toString(generateUniqueId());
+      String id = Long.toString(generateUniqueId());
       Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
       DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
 
       String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
-     
+
       create
           .insertInto(User.USER, User.USER.ID, User.USER.EMAIL, User.USER.PASSWORD)
           .values(id, email, hashedPassword)
@@ -94,35 +96,78 @@ public class WashineUserDb implements WashineUserDbIf {
       return false;
     }
   }
+
   /**
-   * 
    * @param email of the user whose id is to retrieve
    * @return the id of the user
    * @throws SQLException if the query does not go through
    */
   public String getUserId(String email) throws SQLException {
-	  Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
-	    DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
+    Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
+    DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
 
-	    Record1<String> uid =
-	        create
-	            .select(User.USER.ID)
-	            .from(User.USER)
-	            .where(User.USER.EMAIL.eq(email))
-	            .fetchOne();
-	     
-	    	return uid.getValue(User.USER.ID);
-	   
+    Record1<String> uid =
+        create.select(User.USER.ID).from(User.USER).where(User.USER.EMAIL.eq(email)).fetchOne();
+
+    return uid.getValue(User.USER.ID);
   }
+
   /**
    * Generates a random number considered unique in our scope, probability of collision 1/2^62
    * Default-constructed SecureRandom instances seed themselves
-   * 
+   *
    * @return a random number
    */
   private long generateUniqueId() {
-	  SecureRandom secureRandom = new SecureRandom();
-	  long randomPositiveLong = Math.abs(secureRandom.nextLong());
-	  return randomPositiveLong;
+    SecureRandom secureRandom = new SecureRandom();
+    long randomPositiveLong = Math.abs(secureRandom.nextLong());
+    return randomPositiveLong;
+  }
+
+  /**
+   * @throws SQLException if the query does not go through
+   * @param userId of the user of whom you want to change the email
+   * @param newEmail the new email
+   */
+  public void updateUserEmail(String userId, String newEmail) throws SQLException {
+    Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
+    DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
+
+    create
+        .update(User.USER)
+        .set(User.USER.EMAIL, newEmail)
+        .where(User.USER.ID.eq(userId))
+        .execute();
+  }
+
+  /**
+   * @throws SQLException if the query does not go through
+   * @param userId of the user of whom you want to change the password
+   * @param newPassword the new password
+   */
+  public void updateUserPassword(String userId, String newPassword) throws SQLException {
+    Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
+    DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
+    String hashedPassword = BCrypt.hashpw(newPassword, BCrypt.gensalt());
+
+    create
+        .update(User.USER)
+        .set(User.USER.PASSWORD, hashedPassword)
+        .where(User.USER.ID.eq(userId))
+        .execute();
+  }
+
+  /**
+   * @throws SQLException if the query does not go through
+   * @param id of the user of whom you want to get the email
+   * @return the email
+   */
+  public String getUserEmail(String id) throws SQLException {
+    Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
+    DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
+
+    Record1<String> userEmail =
+        create.select(User.USER.EMAIL).from(User.USER).where(User.USER.ID.eq(id)).fetchOne();
+    return userEmail.getValue(User.USER.EMAIL);
   }
 }
