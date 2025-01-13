@@ -20,6 +20,8 @@ import washine.washineCore.WashineCore;
 import washine.washineCore.WashineCoreIf;
 import washine.washineCore.user.WashineUserIf;
 
+import java.sql.SQLException;
+
 import org.vaadin.lineawesome.LineAwesomeIconUrl;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.notification.NotificationVariant;
@@ -84,7 +86,12 @@ public class HomeView extends Composite<VerticalLayout> {
             String password = passwordFieldLogin.getValue();
             
             if (validateAuthInput(email, password)) {
-                handleLogin(email, password);
+                try {
+          handleLogin(email, password);
+        } catch (SQLException e1) {
+          // TODO Auto-generated catch block
+        e1.printStackTrace();
+        }
             }
         });
 
@@ -119,7 +126,12 @@ public class HomeView extends Composite<VerticalLayout> {
             String password = passwordFieldSignIn.getValue();
             
             if (validateAuthInput(email, password)) {
-               handleSignUp(email, password);
+               try {
+        handleSignUp(email, password);
+      } catch (SQLException e1) {
+        // TODO Auto-generated catch block
+        e1.printStackTrace();
+      }
             }
         });
 
@@ -143,7 +155,7 @@ public class HomeView extends Composite<VerticalLayout> {
         return true;
     }
 
-    private void handleLogin(String email, String password) {
+    private void handleLogin(String email, String password) throws SQLException {
         WashineCoreIf wCore=new WashineCore();
         WashineUserIf loggedUser = wCore.autenticateUser(email, password);
 
@@ -156,7 +168,7 @@ public class HomeView extends Composite<VerticalLayout> {
         }
     }
 
-    private void handleSignUp(String email, String password) {
+    private void handleSignUp(String email, String password) throws SQLException {
     	  WashineCoreIf wCore=new WashineCore();
           WashineUserIf createdUser = wCore.addUser(email, password);
         

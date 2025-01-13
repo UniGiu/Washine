@@ -86,7 +86,7 @@ public class WashineUserDb implements WashineUserDbIf {
 
     Result<UserRecord> user = create.selectFrom(User.USER).where(User.USER.EMAIL.eq(email)).fetch();
 
-    if (user != null) {
+    if (user.isNotEmpty()) {
       return true;
     } else {
       return false;
