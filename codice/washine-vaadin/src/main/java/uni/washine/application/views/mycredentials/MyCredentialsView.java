@@ -14,15 +14,32 @@ import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.router.Menu;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.server.VaadinSession;
 import com.vaadin.flow.theme.lumo.LumoUtility.Gap;
+
+import uni.washine.application.utils.UiNotifier;
+
+import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.notification.NotificationVariant;
+
+import washine.washineCore.WashineCore;
+import washine.washineCore.WashineCoreIf;
+import washine.washineCore.user.WashineUserIf;
+
 import org.vaadin.lineawesome.LineAwesomeIconUrl;
 
 @PageTitle("My Credentials")
 @Route("my-credentials")
 @Menu(order = 3, icon = LineAwesomeIconUrl.USER_LOCK_SOLID)
 public class MyCredentialsView extends Composite<VerticalLayout> {
-
+	private WashineUserIf userData;
     public MyCredentialsView() {
+    	userData=(WashineUserIf)VaadinSession.getCurrent().getAttribute("currentUser");
+        if(userData==null) {
+        	UiNotifier.showErrorNotification("You must login to access this page");    
+        	//NON FUNZIONA
+        	getUI().ifPresent(ui -> ui.navigate("/"));        	
+        }
         HorizontalLayout layoutRow = new HorizontalLayout();
         H3 h3 = new H3();
         Paragraph textLarge = new Paragraph();

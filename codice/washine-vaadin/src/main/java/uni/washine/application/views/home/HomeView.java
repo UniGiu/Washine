@@ -13,8 +13,8 @@ import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.router.Menu;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.server.VaadinSession;
 import com.vaadin.flow.theme.lumo.LumoUtility.Gap;
+import com.vaadin.flow.server.VaadinSession;
 
 import washine.washineCore.WashineCore;
 import washine.washineCore.WashineCoreIf;
@@ -23,8 +23,7 @@ import washine.washineCore.user.WashineUserIf;
 import java.sql.SQLException;
 
 import org.vaadin.lineawesome.LineAwesomeIconUrl;
-import com.vaadin.flow.component.notification.Notification;
-import com.vaadin.flow.component.notification.NotificationVariant;
+import uni.washine.application.utils.UiNotifier;
 @PageTitle("Home")
 @Route("")
 @Menu(order = 0, icon = LineAwesomeIconUrl.HOME_SOLID)
@@ -140,16 +139,16 @@ public class HomeView extends Composite<VerticalLayout> {
    
     private boolean validateAuthInput(String email, String password) {
         if (email.isEmpty() || password.isEmpty()) {
-            showErrorNotification("Please fill in all required fields");
+        	UiNotifier.showErrorNotification("Please fill in all required fields");
             return false;
         }
         if (password.length() < 8) {
-            showErrorNotification("Password must be at least 8 characters long");
+        	UiNotifier.showErrorNotification("Password must be at least 8 characters long");
             return false;
         }
       
         if (!email.matches("^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")) {
-            showErrorNotification("Please enter a valid email address");
+        	UiNotifier.showErrorNotification("Please enter a valid email address");
             return false;
         }
         return true;
@@ -161,10 +160,10 @@ public class HomeView extends Composite<VerticalLayout> {
 
         if (loggedUser!=null) {
             VaadinSession.getCurrent().setAttribute("currentUser", loggedUser);
-            showSuccessNotification("Login successful "+loggedUser.getEmail());
+            UiNotifier.showSuccessNotification("Login successful "+loggedUser.getEmail());
             getUI().ifPresent(ui -> ui.getPage().reload());
         } else {
-            showErrorNotification("Invalid email or password");
+        	UiNotifier.showErrorNotification("Invalid email or password");
         }
     }
 
@@ -174,22 +173,11 @@ public class HomeView extends Composite<VerticalLayout> {
         
         if (createdUser!=null) {
           // VaadinSession.getCurrent().setAttribute("currentUser", createdUser);
-            showSuccessNotification("Account created for " + createdUser.getEmail()+ ", please log in.");
+        	UiNotifier.showSuccessNotification("Account created for " + createdUser.getEmail()+ ", please log in.");
            // getUI().ifPresent(ui -> ui.getPage().reload());
         } else {
-            showErrorNotification("Invalid email or password, or user already registered");
+        	UiNotifier.showErrorNotification("Invalid email or password, or user already registered");
         }
     }
-
-    private void showErrorNotification(String message) {
-        Notification notification = Notification.show(message);
-        notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
-        notification.setPosition(Notification.Position.TOP_CENTER);
-    }
-
-    private void showSuccessNotification(String message) {
-        Notification notification = Notification.show(message);
-        notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
-        notification.setPosition(Notification.Position.TOP_CENTER);
-    }
+   
 }
