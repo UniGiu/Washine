@@ -6,7 +6,9 @@ import java.sql.SQLException;
 public interface WashineUserDbIf {
   public boolean authenticateUser(String email, String password) throws SQLException;
 
-  public boolean addUser(String id, String email, String password) throws SQLException;
+  public boolean addUser(String email, String password) throws SQLException;
 
   public boolean alreadyAddedUser(String email) throws SQLException;
+  
+  public String getUserId(String email) throws SQLException;
 }

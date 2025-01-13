@@ -14,7 +14,7 @@ public class WashineCore implements WashineCoreIf {
     // crea il gestore utenti
     WashineUserDb userDb = new WashineUserDb();
     if (userDb.authenticateUser(email, password)) {
-      String id = "1000";
+      String id = userDb.getUserId(email);
       return new WashineUser(email, id);
     }
     return null;
@@ -24,8 +24,8 @@ public class WashineCore implements WashineCoreIf {
   public WashineUserIf addUser(String email, String password) throws SQLException {
     // crea il gestore utenti
     WashineUserDb userDb = new WashineUserDb();
-    String id = "1000";
-    if (userDb.addUser(id, email, password)) {
+    if (!userDb.alreadyAddedUser(email) && userDb.addUser(email, password)) {
+    String id = userDb.getUserId(email);
       return new WashineUser(email, id);
     }
     return null;
@@ -33,7 +33,7 @@ public class WashineCore implements WashineCoreIf {
 
   @Override
   public boolean logOut() {
-    // maybe it'sjust in the session
+    // maybe it's just relevant in the session
     return true;
   }
 

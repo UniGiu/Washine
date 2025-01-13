@@ -1,5 +1,6 @@
 package washine_db.user;
 
+import java.security.SecureRandom;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -56,15 +57,16 @@ public class WashineUserDb implements WashineUserDbIf {
    * @return true if the user's informations have been successfully added on the database
    * @return false if the user's informations have already been added on the database
    */
-  public boolean addUser(String id, String email, String password) throws SQLException {
+  public boolean addUser(String email, String password) throws SQLException {
     if (this.alreadyAddedUser(email) == true) {
       return false;
     } else {
+    	String id= Long.toString(generateUniqueId());
       Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
       DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
 
       String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
-
+     
       create
           .insertInto(User.USER, User.USER.ID, User.USER.EMAIL, User.USER.PASSWORD)
           .values(id, email, hashedPassword)
@@ -91,5 +93,36 @@ public class WashineUserDb implements WashineUserDbIf {
     } else {
       return false;
     }
+  }
+  /**
+   * 
+   * @param email of the user whose id is to retrieve
+   * @return the id of the user
+   * @throws SQLException if the query does not go through
+   */
+  public String getUserId(String email) throws SQLException {
+	  Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
+	    DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
+
+	    Record1<String> uid =
+	        create
+	            .select(User.USER.ID)
+	            .from(User.USER)
+	            .where(User.USER.EMAIL.eq(email))
+	            .fetchOne();
+	     
+	    	return uid.getValue(User.USER.ID);
+	   
+  }
+  /**
+   * Generates a random number considered unique in our scope, probability of collision 1/2^62
+   * Default-constructed SecureRandom instances seed themselves
+   * 
+   * @return a random number
+   */
+  private long generateUniqueId() {
+	  SecureRandom secureRandom = new SecureRandom();
+	  long randomPositiveLong = Math.abs(secureRandom.nextLong());
+	  return randomPositiveLong;
   }
 }

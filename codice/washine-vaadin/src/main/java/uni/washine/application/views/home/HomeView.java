@@ -173,11 +173,11 @@ public class HomeView extends Composite<VerticalLayout> {
           WashineUserIf createdUser = wCore.addUser(email, password);
         
         if (createdUser!=null) {
-            VaadinSession.getCurrent().setAttribute("currentUser", createdUser);
+          // VaadinSession.getCurrent().setAttribute("currentUser", createdUser);
             showSuccessNotification("Account created for " + createdUser.getEmail()+ ", please log in.");
-            getUI().ifPresent(ui -> ui.getPage().reload());
+           // getUI().ifPresent(ui -> ui.getPage().reload());
         } else {
-            showErrorNotification("Invalid email or password");
+            showErrorNotification("Invalid email or password, or user already registered");
         }
     }
 
