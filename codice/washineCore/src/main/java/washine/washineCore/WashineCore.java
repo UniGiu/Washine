@@ -50,4 +50,33 @@ public class WashineCore implements WashineCoreIf {
     userDb.updateUserPassword(userId, newPassword);
     return new WashineUser(userDb.getUserEmail(userId), userId);
   }
+
+  @Override
+  public WashineUserIf blockUser(String adminId, String userId) throws SQLException {
+    WashineUserDb userDb = new WashineUserDb();
+    if (userDb.isAdmin(adminId)) {
+      userDb.blockUser(userId);
+      return new WashineUser(userDb.getUserEmail(userId), userId);
+    }
+    return null;
+  }
+
+  @Override
+  public WashineUserIf unblockUser(String adminId, String userId) throws SQLException {
+    WashineUserDb userDb = new WashineUserDb();
+    if (userDb.isAdmin(adminId)) {
+      userDb.unblockUser(userId);
+      return new WashineUser(userDb.getUserEmail(userId), userId);
+    }
+    return null;
+  }
+
+  @Override
+  public WashineUserIf authenticateAdmin(String id) throws SQLException {
+    WashineUserDb userDb = new WashineUserDb();
+    if (userDb.isAdmin(id)) {
+      return new WashineUser(userDb.getUserEmail(id), id);
+    }
+    return null;
+  }
 }

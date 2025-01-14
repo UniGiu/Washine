@@ -18,15 +18,18 @@ import washine_db.washine_db.JOOQCodeGeneration;
 
 /** User class used to interact with the database */
 public class WashineUserDb implements WashineUserDbIf {
-	
+  public static final int ADMIN_LEVEL = 9;
+
   public WashineUserDb() {}
 
   /**
+   * Authenticate the user identity on the database
+   *
    * @throws SQLException if the query does not go through
    * @param email of the user of whom you want to check the presence on the database
    * @param password of the user you want to authenticate
-   * @return true if the user's informations are on the database and the password is correct
-   * @return false if the user's informations are not on the database or the password is incorrect
+   * @return true if the user's informations are on the database and the password is correct or
+   *     false if the user's informations are not on the database or the password is incorrect
    */
   public boolean authenticateUser(String email, String password) throws SQLException {
 
@@ -52,12 +55,14 @@ public class WashineUserDb implements WashineUserDbIf {
   }
 
   /**
+   * Add a user's record to the database
+   *
    * @throws SQLException if the query does not go through
    * @param id of the user of whom information you want to add to the database
    * @param email of the user of whom information you want to add to the database
    * @param password of the user of whom information you want to add to the database
-   * @return true if the user's informations have been successfully added on the database
-   * @return false if the user's informations have already been added on the database
+   * @return true if the user's informations have been successfully added on the database or false
+   *     if the user's informations have already been added on the database
    */
   public boolean addUser(String email, String password) throws SQLException {
     if (this.alreadyAddedUser(email) == true) {
@@ -78,11 +83,13 @@ public class WashineUserDb implements WashineUserDbIf {
   }
 
   /**
+   * Check if a user has already been added to the database before
+   *
    * @throws SQLException if the query does not go through
    * @param email of the user of whom you want to check the presence on the database
-   * @return true if the user's informations have been successfully added on the database
-   * @return false if the user's informations have already been added to the database or the insert
-   *     has not gone through correctly
+   * @return true if the user's informations have been successfully added on the database or false
+   *     if the user's informations have already been added to the database or the insert has not
+   *     gone through correctly
    */
   public boolean alreadyAddedUser(String email) throws SQLException {
     Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
@@ -98,6 +105,8 @@ public class WashineUserDb implements WashineUserDbIf {
   }
 
   /**
+   * Get the user's id through his email
+   *
    * @param email of the user whose id is to retrieve
    * @return the id of the user
    * @throws SQLException if the query does not go through
@@ -125,6 +134,8 @@ public class WashineUserDb implements WashineUserDbIf {
   }
 
   /**
+   * Update a user's email through his id
+   *
    * @throws SQLException if the query does not go through
    * @param userId of the user of whom you want to change the email
    * @param newEmail the new email
@@ -141,6 +152,8 @@ public class WashineUserDb implements WashineUserDbIf {
   }
 
   /**
+   * Update a user's password through his id
+   *
    * @throws SQLException if the query does not go through
    * @param userId of the user of whom you want to change the password
    * @param newPassword the new password
@@ -158,6 +171,8 @@ public class WashineUserDb implements WashineUserDbIf {
   }
 
   /**
+   * Get the user's email through his id
+   *
    * @throws SQLException if the query does not go through
    * @param id of the user of whom you want to get the email
    * @return the email
@@ -169,5 +184,60 @@ public class WashineUserDb implements WashineUserDbIf {
     Record1<String> userEmail =
         create.select(User.USER.EMAIL).from(User.USER).where(User.USER.ID.eq(id)).fetchOne();
     return userEmail.getValue(User.USER.EMAIL);
+  }
+
+  /**
+   * Used by an admin to block a user
+   *
+   * @throws SQLException if the query does not go through
+   * @param userId id of the user the admin wants to block
+   */
+  public void blockUser(String userId) throws SQLException {
+    Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
+    DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
+    create.update(User.USER).set(User.USER.BLOCKED, true).where(User.USER.ID.eq(userId)).execute();
+  }
+
+  /**
+   * Used by an admin to unblock a user
+   *
+   * @throws SQLException if the query does not go through
+   * @param userId id of the user the admin wants to unblock
+   */
+  public void unblockUser(String userId) throws SQLException {
+    Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
+    DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
+    create.update(User.USER).set(User.USER.BLOCKED, false).where(User.USER.ID.eq(userId)).execute();
+  }
+
+  /**
+   * Checks if user is an admin through his id
+   *
+   * @throws SQLException if the query does not go through
+   * @param id id of the user you want to check
+   * @return true if the user is an admin or false if he's not
+   */
+  public boolean isAdmin(String id) throws SQLException {
+    Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
+    DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
+    Result<UserRecord> admin =
+        create
+            .selectFrom(User.USER)
+            .where(User.USER.ID.eq(id).and(User.USER.LEVEL.eq(ADMIN_LEVEL)))
+            .fetch();
+    if (admin.isNotEmpty()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  @Override
+  public Result<UserRecord> getBlockedUsers() throws SQLException {
+    Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
+    DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
+    Result<UserRecord> users =
+        create.selectFrom(User.USER).where(User.USER.BLOCKED.eq(true)).fetch();
+    return users;
   }
 }
