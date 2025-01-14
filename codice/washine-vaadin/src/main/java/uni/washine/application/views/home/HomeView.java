@@ -156,11 +156,10 @@ public class HomeView extends Composite<VerticalLayout> {
 
     private void handleLogin(String email, String password) throws SQLException {
         WashineCoreIf wCore=new WashineCore();
-        WashineUserIf loggedUser = wCore.autenticateUser(email, password);
+        WashineUserIf loggedUser = wCore.authenticateUser(email, password);
 
         if (loggedUser!=null) {
             VaadinSession.getCurrent().setAttribute("currentUser", loggedUser);
-            UiNotifier.showSuccessNotification("Login successful "+loggedUser.getEmail());
             getUI().ifPresent(ui -> ui.getPage().reload());
         } else {
         	UiNotifier.showErrorNotification("Invalid email or password");
@@ -169,12 +168,9 @@ public class HomeView extends Composite<VerticalLayout> {
 
     private void handleSignUp(String email, String password) throws SQLException {
     	  WashineCoreIf wCore=new WashineCore();
-          WashineUserIf createdUser = wCore.addUser(email, password);
-        
-        if (createdUser!=null) {
-          // VaadinSession.getCurrent().setAttribute("currentUser", createdUser);
-        	UiNotifier.showSuccessNotification("Account created for " + createdUser.getEmail()+ ", please log in.");
-           // getUI().ifPresent(ui -> ui.getPage().reload());
+          WashineUserIf createdUser = wCore.addUser(email, password);        
+        if (createdUser!=null) {          
+        	UiNotifier.showSuccessNotification("Account created for " + createdUser.getEmail()+ ", please log in.");           
         } else {
         	UiNotifier.showErrorNotification("Invalid email or password, or user already registered");
         }

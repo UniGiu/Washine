@@ -10,7 +10,7 @@ import washine.washineCore.user.WashineUser;
 public class WashineCore implements WashineCoreIf {
 
   @Override
-  public WashineUserIf autenticateUser(String email, String password) throws SQLException {
+  public WashineUserIf authenticateUser(String email, String password) throws SQLException {
     // crea il gestore utenti
     WashineUserDb userDb = new WashineUserDb();
     if (userDb.authenticateUser(email, password)) {
@@ -38,17 +38,36 @@ public class WashineCore implements WashineCoreIf {
   }
 
   @Override
-  public WashineUserIf updateUserEmail(String userId, String newEmail) throws SQLException {
+  public WashineUserIf updateUserEmail(String userId, String newEmail) {
     WashineUserDb userDb = new WashineUserDb();
-    userDb.updateUserEmail(userId, newEmail);
-    return new WashineUser(newEmail, userId);
+    try {
+		userDb.updateUserEmail(userId, newEmail);
+		if(userDb.getUserEmail(userId).equals(newEmail)) {
+			 return new WashineUser(newEmail, userId);
+		}
+		
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+    return null;
   }
 
   @Override
-  public WashineUserIf updateUserPassword(String userId, String newPassword) throws SQLException {
+  public WashineUserIf updateUserPassword(String userId, String newPassword) {
+	  
     WashineUserDb userDb = new WashineUserDb();
-    userDb.updateUserPassword(userId, newPassword);
-    return new WashineUser(userDb.getUserEmail(userId), userId);
+    try {
+		userDb.updateUserPassword(userId, newPassword);
+		String email=userDb.getUserEmail(userId);    
+	    //new login
+	    WashineUserIf userWithNewPassword = authenticateUser(email, newPassword);
+	    return userWithNewPassword;
+    } catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+    return null;
   }
 
   @Override

@@ -5,6 +5,7 @@
 /home/beppe/git/Washine/codice/washine-vaadin/src/main/java/uni/washine/application/data/package-info.java
 /home/beppe/git/Washine/codice/washine-vaadin/src/main/java/uni/washine/application/services/SamplePersonService.java
 /home/beppe/git/Washine/codice/washine-vaadin/src/main/java/uni/washine/application/services/package-info.java
+/home/beppe/git/Washine/codice/washine-vaadin/src/main/java/uni/washine/application/utils/UiNotifier.java
 /home/beppe/git/Washine/codice/washine-vaadin/src/main/java/uni/washine/application/views/MainLayout.java
 /home/beppe/git/Washine/codice/washine-vaadin/src/main/java/uni/washine/application/views/help/HelpView.java
 /home/beppe/git/Washine/codice/washine-vaadin/src/main/java/uni/washine/application/views/home/HomeView.java
