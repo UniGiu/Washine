@@ -10,23 +10,31 @@ import washine.washineCore.user.WashineUser;
 public class WashineCore implements WashineCoreIf {
 
   @Override
-  public WashineUserIf authenticateUser(String email, String password) throws SQLException {
+  public WashineUserIf authenticateUser(String email, String password) {
     // crea il gestore utenti
     WashineUserDb userDb = new WashineUserDb();
-    if (userDb.authenticateUser(email, password)) {
-      String id = userDb.getUserId(email);
-      return new WashineUser(email, id);
+    try {
+      if (userDb.authenticateUser(email, password)) {
+        String id = userDb.getUserId(email);
+        return new WashineUser(email, id);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
     }
     return null;
   }
 
   @Override
-  public WashineUserIf addUser(String email, String password) throws SQLException {
+  public WashineUserIf addUser(String email, String password) {
     // crea il gestore utenti
     WashineUserDb userDb = new WashineUserDb();
-    if (!userDb.alreadyAddedUser(email) && userDb.addUser(email, password)) {
-      String id = userDb.getUserId(email);
-      return new WashineUser(email, id);
+    try {
+      if (!userDb.alreadyAddedUser(email) && userDb.addUser(email, password)) {
+        String id = userDb.getUserId(email);
+        return new WashineUser(email, id);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
     }
     return null;
   }
@@ -41,60 +49,72 @@ public class WashineCore implements WashineCoreIf {
   public WashineUserIf updateUserEmail(String userId, String newEmail) {
     WashineUserDb userDb = new WashineUserDb();
     try {
-		userDb.updateUserEmail(userId, newEmail);
-		if(userDb.getUserEmail(userId).equals(newEmail)) {
-			 return new WashineUser(newEmail, userId);
-		}
-		
-	} catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
+      if (!userDb.alreadyAddedUser(newEmail)) {
+        userDb.updateUserEmail(userId, newEmail);
+        if (userDb.getUserEmail(userId).equals(newEmail)) {
+          return new WashineUser(newEmail, userId);
+        }
+      }
+
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
     return null;
   }
 
   @Override
   public WashineUserIf updateUserPassword(String userId, String newPassword) {
-	  
+
     WashineUserDb userDb = new WashineUserDb();
     try {
-		userDb.updateUserPassword(userId, newPassword);
-		String email=userDb.getUserEmail(userId);    
-	    //new login
-	    WashineUserIf userWithNewPassword = authenticateUser(email, newPassword);
-	    return userWithNewPassword;
+      userDb.updateUserPassword(userId, newPassword);
+      String email = userDb.getUserEmail(userId);
+      // new login
+      WashineUserIf userWithNewPassword = authenticateUser(email, newPassword);
+      return userWithNewPassword;
     } catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-    return null;
-  }
-
-  @Override
-  public WashineUserIf blockUser(String adminId, String userId) throws SQLException {
-    WashineUserDb userDb = new WashineUserDb();
-    if (userDb.isAdmin(adminId)) {
-      userDb.blockUser(userId);
-      return new WashineUser(userDb.getUserEmail(userId), userId);
+      e.printStackTrace();
     }
     return null;
   }
 
   @Override
-  public WashineUserIf unblockUser(String adminId, String userId) throws SQLException {
+  public WashineUserIf blockUser(String adminId, String userId) {
     WashineUserDb userDb = new WashineUserDb();
-    if (userDb.isAdmin(adminId)) {
-      userDb.unblockUser(userId);
-      return new WashineUser(userDb.getUserEmail(userId), userId);
+    try {
+      if (userDb.isAdmin(adminId)) {
+        userDb.blockUser(userId);
+        return new WashineUser(userDb.getUserEmail(userId), userId);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
     }
     return null;
   }
 
   @Override
-  public WashineUserIf authenticateAdmin(String id) throws SQLException {
+  public WashineUserIf unblockUser(String adminId, String userId) {
     WashineUserDb userDb = new WashineUserDb();
-    if (userDb.isAdmin(id)) {
-      return new WashineUser(userDb.getUserEmail(id), id);
+    try {
+      if (userDb.isAdmin(adminId)) {
+        userDb.unblockUser(userId);
+        return new WashineUser(userDb.getUserEmail(userId), userId);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return null;
+  }
+
+  @Override
+  public WashineUserIf authenticateAdmin(String id) {
+    WashineUserDb userDb = new WashineUserDb();
+    try {
+      if (userDb.isAdmin(id)) {
+        return new WashineUser(userDb.getUserEmail(id), id);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
     }
     return null;
   }

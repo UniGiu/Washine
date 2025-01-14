@@ -20,7 +20,7 @@ public class WashineUser implements WashineUserIf {
 	@Override
 	public String getId() {
 		if (id!=null) {
-			return "1000";
+			return id;
 		} else {
 			return null;
 		}

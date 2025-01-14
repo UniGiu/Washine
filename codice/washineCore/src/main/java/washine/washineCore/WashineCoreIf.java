@@ -9,15 +9,15 @@ public interface WashineCoreIf {
 
   boolean logOut();
 
-  WashineUserIf addUser(String email, String password) throws SQLException;
+  WashineUserIf addUser(String email, String password);
 
   WashineUserIf updateUserEmail(String userId, String newEmail);
 
   WashineUserIf updateUserPassword(String userId, String newPassword);
 
-  WashineUserIf blockUser(String adminId, String userId) throws SQLException;
+  WashineUserIf blockUser(String adminId, String userId);
 
-  WashineUserIf unblockUser(String adminId, String userId) throws SQLException;
+  WashineUserIf unblockUser(String adminId, String userId);
 
-  WashineUserIf authenticateAdmin(String id) throws SQLException;
+  WashineUserIf authenticateAdmin(String id);
 }

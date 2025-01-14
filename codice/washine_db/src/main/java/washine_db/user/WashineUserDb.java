@@ -232,7 +232,6 @@ public class WashineUserDb implements WashineUserDbIf {
     }
   }
 
-  @Override
   public Result<UserRecord> getBlockedUsers() throws SQLException {
     Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
     DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
