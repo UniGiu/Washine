@@ -19,7 +19,7 @@ import com.vaadin.flow.server.menu.MenuConfiguration;
 import com.vaadin.flow.server.menu.MenuEntry;
 import com.vaadin.flow.theme.lumo.LumoUtility;
 
-import uni.washine.application.views.home.HomeView;
+
 import washine.washineCore.WashineCore;
 import washine.washineCore.WashineCoreIf;
 import washine.washineCore.user.WashineUserIf;
@@ -78,8 +78,8 @@ public class MainLayout extends AppLayout {
 		});
 		}
 		else {
-			nav.addItem(new SideNavItem("Home",HomeView.class));
-			nav.addItem(new SideNavItem("Help",HomeView.class));;
+			nav.addItem(new SideNavItem("Home","/",new SvgIcon("line-awesome/svg/home-solid.svg")));
+			nav.addItem(new SideNavItem("Help","/help",new SvgIcon("line-awesome/svg/question-circle.svg")));
 		}
 		return nav;
 	}
