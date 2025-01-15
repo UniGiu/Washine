@@ -14,7 +14,7 @@ public class WashineCore implements WashineCoreIf {
     // crea il gestore utenti
     WashineUserDb userDb = new WashineUserDb();
     try {
-      if (userDb.authenticateUser(email, password)) {
+      if (userDb.authenticateUser(email, password) && !userDb.isBlocked(userDb.getUserId(email))) {
         String id = userDb.getUserId(email);
         return new WashineUser(email, id);
       }

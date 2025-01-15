@@ -239,4 +239,28 @@ public class WashineUserDb implements WashineUserDbIf {
         create.selectFrom(User.USER).where(User.USER.BLOCKED.eq(true)).fetch();
     return users;
   }
+
+  /**
+   * Checks if a user is blocked through his id
+   *
+   * @throws SQLException
+   * @param id id of the user you want to check
+   * @return true if the user is blocked or false if it is not
+   */
+  public boolean isBlocked(String id) throws SQLException {
+    Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
+    DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
+
+    Result<UserRecord> blockedUser =
+        create
+            .selectFrom(User.USER)
+            .where(User.USER.ID.eq(id).and(User.USER.BLOCKED.eq(true)))
+            .fetch();
+
+    if (blockedUser.isNotEmpty()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

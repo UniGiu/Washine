@@ -29,4 +29,6 @@ public interface WashineUserDbIf {
   public boolean isAdmin(String id) throws SQLException;
 
   public Result<UserRecord> getBlockedUsers() throws SQLException;
+  
+  public boolean isBlocked(String id) throws SQLException;
 }
