@@ -20,10 +20,6 @@ import com.vaadin.flow.server.VaadinSession;
 import com.vaadin.flow.theme.lumo.LumoUtility.Gap;
 
 import uni.washine.application.utils.UiNotifier;
-import uni.washine.application.views.home.HomeView;
-
-import com.vaadin.flow.component.notification.Notification;
-import com.vaadin.flow.component.notification.NotificationVariant;
 
 import washine.washineCore.WashineCore;
 import washine.washineCore.WashineCoreIf;
@@ -159,7 +155,7 @@ public class MyCredentialsView extends Composite<VerticalLayout> implements Befo
   public void beforeEnter(BeforeEnterEvent event) {
 	  userData = (WashineUserIf) VaadinSession.getCurrent().getAttribute("currentUser");
 	  if(userData==null) {
-		  event.forwardTo(HomeView.class);
+		  event.forwardTo("/");
 	  }
   }
 }
