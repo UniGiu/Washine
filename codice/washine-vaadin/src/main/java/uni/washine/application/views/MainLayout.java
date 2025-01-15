@@ -19,6 +19,7 @@ import com.vaadin.flow.server.menu.MenuConfiguration;
 import com.vaadin.flow.server.menu.MenuEntry;
 import com.vaadin.flow.theme.lumo.LumoUtility;
 
+import uni.washine.application.views.home.HomeView;
 import washine.washineCore.WashineCore;
 import washine.washineCore.WashineCoreIf;
 import washine.washineCore.user.WashineUserIf;
@@ -66,6 +67,8 @@ public class MainLayout extends AppLayout {
 		SideNav nav = new SideNav();
 
 		List<MenuEntry> menuEntries = MenuConfiguration.getMenuEntries();
+		userData = (WashineUserIf) VaadinSession.getCurrent().getAttribute("currentUser");
+		if(userData!=null) {
 		menuEntries.forEach(entry -> {
 			if (entry.icon() != null) {
 				nav.addItem(new SideNavItem(entry.title(), entry.path(), new SvgIcon(entry.icon())));
@@ -73,7 +76,11 @@ public class MainLayout extends AppLayout {
 				nav.addItem(new SideNavItem(entry.title(), entry.path()));
 			}
 		});
-
+		}
+		else {
+			nav.addItem(new SideNavItem("Home",HomeView.class));
+			nav.addItem(new SideNavItem("Help",HomeView.class));;
+		}
 		return nav;
 	}
 
