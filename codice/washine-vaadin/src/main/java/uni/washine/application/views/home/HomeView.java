@@ -16,8 +16,8 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.theme.lumo.LumoUtility.Gap;
 import com.vaadin.flow.server.VaadinSession;
 
-import washine.washineCore.WashineCore;
-import washine.washineCore.WashineCoreIf;
+import washine.washineCore.WashineCoreAuth;
+import washine.washineCore.WashineCoreAuthIf;
 import washine.washineCore.user.WashineUserIf;
 
 import java.sql.SQLException;
@@ -155,7 +155,7 @@ public class HomeView extends Composite<VerticalLayout> {
     }
 
     private void handleLogin(String email, String password) throws SQLException {
-        WashineCoreIf wCore=new WashineCore();
+        WashineCoreAuthIf wCore=new WashineCoreAuth();
         WashineUserIf loggedUser = wCore.authenticateUser(email, password);
 
         if (loggedUser!=null) {
@@ -167,7 +167,7 @@ public class HomeView extends Composite<VerticalLayout> {
     }
 
     private void handleSignUp(String email, String password) throws SQLException {
-    	  WashineCoreIf wCore=new WashineCore();
+    	  WashineCoreAuthIf wCore=new WashineCoreAuth();
           WashineUserIf createdUser = wCore.addUser(email, password);        
         if (createdUser!=null) {          
         	UiNotifier.showSuccessNotification("Account created for " + createdUser.getEmail()+ ", please log in.");           

@@ -4,7 +4,7 @@ import java.sql.SQLException;
 
 import washine.washineCore.user.WashineUserIf;
 
-public interface WashineCoreIf {
+public interface WashineCoreAuthIf {
   WashineUserIf authenticateUser(String email, String password) throws SQLException;
 
   boolean logOut();

@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 import washine.washineCore.user.WashineUser;
 
-public class WashineCore implements WashineCoreIf {
+public class WashineCoreAuth implements WashineCoreAuthIf {
 
   @Override
   public WashineUserIf authenticateUser(String email, String password) {

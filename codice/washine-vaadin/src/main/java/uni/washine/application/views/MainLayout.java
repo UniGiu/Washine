@@ -20,8 +20,8 @@ import com.vaadin.flow.server.menu.MenuEntry;
 import com.vaadin.flow.theme.lumo.LumoUtility;
 
 
-import washine.washineCore.WashineCore;
-import washine.washineCore.WashineCoreIf;
+import washine.washineCore.WashineCoreAuth;
+import washine.washineCore.WashineCoreAuthIf;
 import washine.washineCore.user.WashineUserIf;
 
 import java.util.List;
@@ -93,7 +93,7 @@ public class MainLayout extends AppLayout {
 			buttonLogout.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
 			buttonLogout.addClickListener(e -> {
 				userData=null;
-				WashineCoreIf wCore=new WashineCore();
+				WashineCoreAuthIf wCore=new WashineCoreAuth();
 				wCore.logOut();
 				VaadinSession.getCurrent().setAttribute("currentUser", null);
 				getUI().ifPresent(ui -> ui.getPage().reload());
