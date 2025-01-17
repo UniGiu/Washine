@@ -9,16 +9,24 @@ import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.router.BeforeEnterEvent;
+import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.Menu;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.server.VaadinSession;
 import com.vaadin.flow.theme.lumo.LumoUtility.Gap;
+
+import washine.washineCore.user.WashineUserIf;
+
 import org.vaadin.lineawesome.LineAwesomeIconUrl;
 
 @PageTitle("Join A Laundry Comunity")
 @Route("join-a-laundry-comunity")
 @Menu(order = 5, icon = LineAwesomeIconUrl.SIGN_IN_ALT_SOLID)
-public class JoinALaundryComunityView extends Composite<VerticalLayout> {
+public class JoinALaundryComunityView extends Composite<VerticalLayout>  implements BeforeEnterObserver{
+
+	private WashineUserIf userData;
 
     public JoinALaundryComunityView() {
         HorizontalLayout layoutRow = new HorizontalLayout();
@@ -59,4 +67,15 @@ public class JoinALaundryComunityView extends Composite<VerticalLayout> {
         formLayout2Col.add(textField2);
         formLayout2Col.add(buttonPrimary);
     }
+
+/**
+ * Redirects anonymous users to home
+ */
+  @Override
+  public void beforeEnter(BeforeEnterEvent event) {
+	  userData = (WashineUserIf) VaadinSession.getCurrent().getAttribute("currentUser");
+	  if(userData==null) {
+		  event.forwardTo("/");
+	  }
+  }
 }

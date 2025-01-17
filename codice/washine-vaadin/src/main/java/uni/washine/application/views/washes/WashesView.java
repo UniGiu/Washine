@@ -10,9 +10,12 @@ import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.router.BeforeEnterEvent;
+import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.Menu;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.server.VaadinSession;
 import com.vaadin.flow.spring.data.VaadinSpringDataHelpers;
 import com.vaadin.flow.theme.lumo.LumoUtility.Gap;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +23,15 @@ import org.springframework.data.domain.PageRequest;
 import org.vaadin.lineawesome.LineAwesomeIconUrl;
 import uni.washine.application.data.SamplePerson;
 import uni.washine.application.services.SamplePersonService;
+import washine.washineCore.user.WashineUserIf;
 
 @PageTitle("Washes")
 @Route("washes")
 @Menu(order = 2, icon = LineAwesomeIconUrl.TSHIRT_SOLID)
 @Uses(Icon.class)
-public class WashesView extends Composite<VerticalLayout> {
+public class WashesView extends Composite<VerticalLayout>  implements BeforeEnterObserver{
+
+	private WashineUserIf userData;
 
     public WashesView() {
         HorizontalLayout layoutRow = new HorizontalLayout();
@@ -88,4 +94,16 @@ public class WashesView extends Composite<VerticalLayout> {
 
     @Autowired()
     private SamplePersonService samplePersonService;
+    
+
+/**
+ * Redirects anonymous users to home
+ */
+  @Override
+  public void beforeEnter(BeforeEnterEvent event) {
+	  userData = (WashineUserIf) VaadinSession.getCurrent().getAttribute("currentUser");
+	  if(userData==null) {
+		  event.forwardTo("/");
+	  }
+  }
 }

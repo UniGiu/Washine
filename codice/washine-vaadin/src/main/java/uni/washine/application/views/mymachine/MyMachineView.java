@@ -10,16 +10,24 @@ import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.tabs.TabSheet;
+import com.vaadin.flow.router.BeforeEnterEvent;
+import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.Menu;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.server.VaadinSession;
 import com.vaadin.flow.theme.lumo.LumoUtility.Gap;
+
+import washine.washineCore.user.WashineUserIf;
+
 import org.vaadin.lineawesome.LineAwesomeIconUrl;
 
 @PageTitle("My Machine")
 @Route("my-machine")
 @Menu(order = 1, icon = LineAwesomeIconUrl.CC_DINERS_CLUB)
-public class MyMachineView extends Composite<VerticalLayout> {
+public class MyMachineView extends Composite<VerticalLayout>  implements BeforeEnterObserver{
+
+	private WashineUserIf userData;
 
     public MyMachineView() {
         HorizontalLayout layoutRow = new HorizontalLayout();
@@ -55,4 +63,15 @@ public class MyMachineView extends Composite<VerticalLayout> {
         tabSheet.add("Payment", new Div(new Text("This is the Payment tab content")));
         tabSheet.add("Shipping", new Div(new Text("This is the Shipping tab content")));
     }
+
+/**
+ * Redirects anonymous users to home
+ */
+  @Override
+  public void beforeEnter(BeforeEnterEvent event) {
+	  userData = (WashineUserIf) VaadinSession.getCurrent().getAttribute("currentUser");
+	  if(userData==null) {
+		  event.forwardTo("/");
+	  }
+  }
 }

@@ -25,8 +25,6 @@ import washine.washineCore.WashineCore;
 import washine.washineCore.WashineCoreIf;
 import washine.washineCore.user.WashineUserIf;
 
-import java.sql.SQLException;
-
 import org.vaadin.lineawesome.LineAwesomeIconUrl;
 
 @PageTitle("My Credentials")
@@ -36,14 +34,8 @@ public class MyCredentialsView extends Composite<VerticalLayout> implements Befo
 
 	private WashineUserIf userData;
 
-	public MyCredentialsView() {
-		userData = (WashineUserIf) VaadinSession.getCurrent().getAttribute("currentUser");
-		/*if (userData == null) {
-			UiNotifier.showErrorNotification("You must login to access this page");
-			// NON FUNZIONA
-			getUI().ifPresent(ui -> ui.navigate("/"));
-		}
-		*/
+	public MyCredentialsView() {		
+	
 		HorizontalLayout layoutRow = new HorizontalLayout();
 		H3 h3 = new H3();
 		Paragraph textLarge = new Paragraph();
@@ -150,9 +142,11 @@ public class MyCredentialsView extends Composite<VerticalLayout> implements Befo
 		
 			return true;
 	}
-
+/**
+ * Redirects anonymous users to home
+ */
   @Override
-  public void beforeEnter(BeforeEnterEvent event) {
+  public void beforeEnter(BeforeEnterEvent event) {	  
 	  userData = (WashineUserIf) VaadinSession.getCurrent().getAttribute("currentUser");
 	  if(userData==null) {
 		  event.forwardTo("/");
