@@ -4,7 +4,7 @@
 @import url('./views/washes-view.css');
 @import url('./views/my-credentials-view.css');
 @import url('./views/my-community-view.css');
-@import url('./views/join-a-laundry-comunity-view.css');
+@import url('./views/invitations-view.css');
 @import url('./views/help-view.css');    html {
       --lumo-border-radius-s: calc(var(--lumo-size-m) / 6);
       --lumo-border-radius-m: calc(var(--lumo-size-m) / 2);

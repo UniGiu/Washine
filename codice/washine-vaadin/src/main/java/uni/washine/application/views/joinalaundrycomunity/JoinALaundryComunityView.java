@@ -17,12 +17,13 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.VaadinSession;
 import com.vaadin.flow.theme.lumo.LumoUtility.Gap;
 
+import uni.washine.application.utils.AuthenticationComponent;
 import washine.washineCore.user.WashineUserIf;
 
 import org.vaadin.lineawesome.LineAwesomeIconUrl;
 
-@PageTitle("Join A Laundry Comunity")
-@Route("join-a-laundry-comunity")
+@PageTitle("Invitations")
+@Route("invitations")
 @Menu(order = 5, icon = LineAwesomeIconUrl.SIGN_IN_ALT_SOLID)
 public class JoinALaundryComunityView extends Composite<VerticalLayout>  implements BeforeEnterObserver{
 
@@ -66,16 +67,46 @@ public class JoinALaundryComunityView extends Composite<VerticalLayout>  impleme
         formLayout2Col.add(textField);
         formLayout2Col.add(textField2);
         formLayout2Col.add(buttonPrimary);
-    }
 
+        
+    }
+    
 /**
- * Redirects anonymous users to home
+ * Shows authentication component to anonymous users
  */
   @Override
   public void beforeEnter(BeforeEnterEvent event) {
 	  userData = (WashineUserIf) VaadinSession.getCurrent().getAttribute("currentUser");
 	  if(userData==null) {
-		  event.forwardTo("/");
+        event.rerouteTo("anonymous-user");
+		  //event.rerouteTo(AnonymousUser.class);
 	  }
   }
 }
+@PageTitle("Invitations")
+@Route("anonymous-user")
+    class AnonymousUser extends Composite<VerticalLayout> {
+        public AnonymousUser(){
+            HorizontalLayout layoutRow = new HorizontalLayout();
+            H2 h2 = new H2();
+            Paragraph textLarge = new Paragraph();
+            getContent().setWidth("100%");
+            getContent().getStyle().set("flex-grow", "1");
+            layoutRow.addClassName(Gap.MEDIUM);
+            layoutRow.setWidth("100%");
+            layoutRow.setHeight("min-content");
+            h2.setText("Join a Loundry Community");
+            h2.setWidth("max-content");
+            textLarge.setText(
+                    "To manage invitations you must login");
+            textLarge.setWidth("100%");
+            textLarge.getStyle().set("font-size", "var(--lumo-font-size-xl)");
+            getContent().add(layoutRow);
+            layoutRow.add(h2);
+            getContent().add(textLarge);
+            
+            AuthenticationComponent authComp =new AuthenticationComponent();
+            getContent().add(authComp);
+        }
+        
+    }

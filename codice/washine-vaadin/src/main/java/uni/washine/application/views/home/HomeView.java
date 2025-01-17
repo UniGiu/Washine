@@ -1,29 +1,21 @@
 package uni.washine.application.views.home;
 
 import com.vaadin.flow.component.Composite;
-import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.html.H1;
-import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.textfield.EmailField;
-import com.vaadin.flow.component.textfield.PasswordField;
+
 import com.vaadin.flow.router.Menu;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.theme.lumo.LumoUtility.Gap;
 import com.vaadin.flow.server.VaadinSession;
 
-import washine.washineCore.WashineCoreAuth;
-import washine.washineCore.WashineCoreAuthIf;
-import washine.washineCore.user.WashineUserIf;
-
-import java.sql.SQLException;
 
 import org.vaadin.lineawesome.LineAwesomeIconUrl;
-import uni.washine.application.utils.UiNotifier;
+
+import uni.washine.application.utils.AuthenticationComponent;
 @PageTitle("Home")
 @Route("")
 @Menu(order = 0, icon = LineAwesomeIconUrl.HOME_SOLID)
@@ -33,7 +25,7 @@ public class HomeView extends Composite<VerticalLayout> {
         HorizontalLayout layoutRow = new HorizontalLayout();
         H1 h1 = new H1();
         Paragraph textMedium = new Paragraph();
-        VerticalLayout layoutColumn2 = new VerticalLayout();
+        
         getContent().setWidth("100%");
         getContent().getStyle().set("flex-grow", "1");
         layoutRow.addClassName(Gap.MEDIUM);
@@ -45,18 +37,21 @@ public class HomeView extends Composite<VerticalLayout> {
                 "Whashine is a Washing Machine sharing utility that facilitates you in sharing your washing machine with people you trust.");
         textMedium.setWidth("100%");
         textMedium.getStyle().set("font-size", "var(--lumo-font-size-m)");
-        layoutColumn2.setWidth("100%");
-        layoutColumn2.getStyle().set("flex-grow", "1");
+        
         getContent().add(layoutRow);
         layoutRow.add(h1);
-        layoutRow.add(textMedium);
-        getContent().add(layoutColumn2);
+        getContent().add(textMedium);
         if(VaadinSession.getCurrent().getAttribute("currentUser")==null){
-            layoutColumn2.add(getLoginForm());
-            layoutColumn2.add(getSignInForm());
+           // layoutColumn2.add(getLoginForm());
+          //  layoutColumn2.add(getSignInForm());
+            AuthenticationComponent authComp =new AuthenticationComponent();
+            authComp.setWidth("100%");
+            authComp.getStyle().set("flex-grow", "1");
+            
+            getContent().add(authComp);
            }
     }
-    private VerticalLayout getLoginForm(){
+ /*   private VerticalLayout getLoginForm(){
         VerticalLayout layoutColumnLogin = new VerticalLayout();
         H2 h2Login = new H2();
         EmailField emailFieldLogin = new EmailField();
@@ -175,5 +170,5 @@ public class HomeView extends Composite<VerticalLayout> {
         	UiNotifier.showErrorNotification("Invalid email or password, or user already registered");
         }
     }
-   
+   */
 }
