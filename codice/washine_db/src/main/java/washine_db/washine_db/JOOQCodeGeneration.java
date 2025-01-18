@@ -15,12 +15,10 @@ public class JOOQCodeGeneration {
   /*
    * database's relative URL
    */
-  public static String DB_URL = "jdbc:sqlite:" + "../washine_db/db/washineDB.db";
+  public static final String DB_URL = "jdbc:sqlite:" + "../washine_db/db/washineDB.db";
 
   public static void main(String[] args) {
-    Jdbc JDBC = new Jdbc()
-    		.withDriver("org.sqlite.JDBC")
-    		.withUrl(DB_URL);
+    Jdbc JDBC = new Jdbc().withDriver("org.sqlite.JDBC").withUrl(DB_URL);
 
     Database database =
         new Database()
@@ -29,17 +27,11 @@ public class JOOQCodeGeneration {
             .withExcludes("");
 
     Target target =
-        new Target()
-        .withPackageName("washine_db.jooq.generated")
-        .withDirectory("src-generated/");
+        new Target().withPackageName("washine_db.jooq.generated").withDirectory("src-generated/");
 
-    Generator generator = new Generator()
-    		.withDatabase(database)
-    		.withTarget(target);
+    Generator generator = new Generator().withDatabase(database).withTarget(target);
 
-    Configuration configuration = new Configuration()
-    		.withJdbc(JDBC)
-    		.withGenerator(generator);
+    Configuration configuration = new Configuration().withJdbc(JDBC).withGenerator(generator);
 
     try {
       GenerationTool.generate(configuration);

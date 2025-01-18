@@ -59,7 +59,7 @@ public class Groupuserslist extends TableImpl<GroupuserslistRecord> {
     /**
      * The column <code>GROUPUSERSLIST.ParticipantId</code>.
      */
-    public final TableField<GroupuserslistRecord, String> PARTICIPANTID = createField(DSL.name("ParticipantId"), SQLDataType.CLOB.nullable(false), this, "");
+    public final TableField<GroupuserslistRecord, String> PARTICIPANTID = createField(DSL.name("ParticipantId"), SQLDataType.CLOB, this, "");
 
     /**
      * The column <code>GROUPUSERSLIST.Name</code>.

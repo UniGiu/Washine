@@ -5,7 +5,7 @@ package washine_db.jooq.generated.tables.records;
 
 
 import org.jooq.Field;
-import org.jooq.Record1;
+import org.jooq.Record2;
 import org.jooq.Record3;
 import org.jooq.Row3;
 import org.jooq.impl.UpdatableRecordImpl;
@@ -68,8 +68,8 @@ public class GroupuserslistRecord extends UpdatableRecordImpl<GroupuserslistReco
     // -------------------------------------------------------------------------
 
     @Override
-    public Record1<String> key() {
-        return (Record1) super.key();
+    public Record2<String, String> key() {
+        return (Record2) super.key();
     }
 
     // -------------------------------------------------------------------------
