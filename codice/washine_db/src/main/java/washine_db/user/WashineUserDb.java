@@ -20,7 +20,7 @@ import washine_db.washine_db.JOOQCodeGeneration;
 public class WashineUserDb implements WashineUserDbIf {
   public static final int ADMIN_LEVEL = 9;
 
-  public WashineUserDb() {}
+  public WashineUserDb() { /* TODO document why this constructor is empty */ }
 
   /**
    * Authenticate the user identity on the database
@@ -33,7 +33,7 @@ public class WashineUserDb implements WashineUserDbIf {
    */
   public boolean authenticateUser(String email, String password) throws SQLException {
 
-    if (this.alreadyAddedUser(email) == false) {
+    if (!this.alreadyAddedUser(email)) {
       return false;
     }
 
@@ -47,11 +47,7 @@ public class WashineUserDb implements WashineUserDbIf {
             .where(User.USER.EMAIL.eq(email))
             .fetchOne();
 
-    if (BCrypt.checkpw(password, databaseHashedPassword.getValue(User.USER.PASSWORD))) {
-      return true;
-    } else {
-      return false;
-    }
+    return BCrypt.checkpw(password, databaseHashedPassword.getValue(User.USER.PASSWORD));
   }
 
   /**
@@ -65,7 +61,7 @@ public class WashineUserDb implements WashineUserDbIf {
    *     if the user's informations have already been added on the database
    */
   public boolean addUser(String email, String password) throws SQLException {
-    if (this.alreadyAddedUser(email) == true) {
+    if (this.alreadyAddedUser(email)) {
       return false;
     } else {
       String id = Long.toString(generateUniqueId());
@@ -97,11 +93,7 @@ public class WashineUserDb implements WashineUserDbIf {
 
     Result<UserRecord> user = create.selectFrom(User.USER).where(User.USER.EMAIL.eq(email)).fetch();
 
-    if (user.isNotEmpty()) {
-      return true;
-    } else {
-      return false;
-    }
+    return user.isNotEmpty();
   }
 
   /**
@@ -129,8 +121,7 @@ public class WashineUserDb implements WashineUserDbIf {
    */
   private long generateUniqueId() {
     SecureRandom secureRandom = new SecureRandom();
-    long randomPositiveLong = Math.abs(secureRandom.nextLong());
-    return randomPositiveLong;
+    return Math.abs(secureRandom.nextLong());
   }
 
   /**
@@ -225,19 +216,14 @@ public class WashineUserDb implements WashineUserDbIf {
             .selectFrom(User.USER)
             .where(User.USER.ID.eq(id).and(User.USER.LEVEL.eq(ADMIN_LEVEL)))
             .fetch();
-    if (admin.isNotEmpty()) {
-      return true;
-    } else {
-      return false;
-    }
+    return admin.isNotEmpty();
   }
 
   public Result<UserRecord> getBlockedUsers() throws SQLException {
     Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
     DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
-    Result<UserRecord> users =
-        create.selectFrom(User.USER).where(User.USER.BLOCKED.eq(true)).fetch();
-    return users;
+
+    return create.selectFrom(User.USER).where(User.USER.BLOCKED.eq(true)).fetch();
   }
 
   /**
@@ -257,10 +243,6 @@ public class WashineUserDb implements WashineUserDbIf {
             .where(User.USER.ID.eq(id).and(User.USER.BLOCKED.eq(true)))
             .fetch();
 
-    if (blockedUser.isNotEmpty()) {
-      return true;
-    } else {
-      return false;
-    }
+    return blockedUser.isNotEmpty();
   }
 }
