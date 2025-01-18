@@ -3,14 +3,15 @@ package washine.washineCore.user;
 public class WashineUser implements WashineUserIf {
 	private String email;
 	private String id;
-	
-	public WashineUser(String email,String id){
-		this.email=email;
-		this.id=id;
+
+	public WashineUser(String email, String id) {
+		this.email = email;
+		this.id = id;
 	}
+
 	@Override
 	public String getEmail() {
-		if (email!=null) {
+		if (email != null) {
 			return email;
 		} else {
 			return null;
@@ -19,7 +20,7 @@ public class WashineUser implements WashineUserIf {
 
 	@Override
 	public String getId() {
-		if (id!=null) {
+		if (id != null) {
 			return id;
 		} else {
 			return null;
