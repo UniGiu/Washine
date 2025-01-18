@@ -20,7 +20,9 @@ import washine_db.washine_db.JOOQCodeGeneration;
 public class WashineUserDb implements WashineUserDbIf {
   public static final int ADMIN_LEVEL = 9;
 
-  public WashineUserDb() { /* TODO document why this constructor is empty */ }
+  public WashineUserDb() {
+    /*  this constructor is empty */
+  }
 
   /**
    * Authenticate the user identity on the database
