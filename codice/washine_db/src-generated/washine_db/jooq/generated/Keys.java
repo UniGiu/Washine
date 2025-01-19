@@ -10,15 +10,15 @@ import org.jooq.UniqueKey;
 import org.jooq.impl.DSL;
 import org.jooq.impl.Internal;
 
+import washine_db.jooq.generated.tables.Communityuserslist;
 import washine_db.jooq.generated.tables.Groups;
-import washine_db.jooq.generated.tables.Groupuserslist;
 import washine_db.jooq.generated.tables.Invites;
 import washine_db.jooq.generated.tables.User;
 import washine_db.jooq.generated.tables.Washing;
 import washine_db.jooq.generated.tables.Washingoptions;
 import washine_db.jooq.generated.tables.Washingparticipation;
+import washine_db.jooq.generated.tables.records.CommunityuserslistRecord;
 import washine_db.jooq.generated.tables.records.GroupsRecord;
-import washine_db.jooq.generated.tables.records.GroupuserslistRecord;
 import washine_db.jooq.generated.tables.records.InvitesRecord;
 import washine_db.jooq.generated.tables.records.UserRecord;
 import washine_db.jooq.generated.tables.records.WashingRecord;
@@ -37,8 +37,8 @@ public class Keys {
     // UNIQUE and PRIMARY KEY definitions
     // -------------------------------------------------------------------------
 
+    public static final UniqueKey<CommunityuserslistRecord> COMMUNITYUSERSLIST__PK_COMMUNITYUSERSLIST = Internal.createUniqueKey(Communityuserslist.COMMUNITYUSERSLIST, DSL.name("pk_COMMUNITYUSERSLIST"), new TableField[] { Communityuserslist.COMMUNITYUSERSLIST.LAUNDRYPERSONID, Communityuserslist.COMMUNITYUSERSLIST.PARTICIPANTID }, true);
     public static final UniqueKey<GroupsRecord> GROUPS__PK_GROUPS = Internal.createUniqueKey(Groups.GROUPS, DSL.name("pk_GROUPS"), new TableField[] { Groups.GROUPS.USERID }, true);
-    public static final UniqueKey<GroupuserslistRecord> GROUPUSERSLIST__PK_GROUPUSERSLIST = Internal.createUniqueKey(Groupuserslist.GROUPUSERSLIST, DSL.name("pk_GROUPUSERSLIST"), new TableField[] { Groupuserslist.GROUPUSERSLIST.LAUNDRYPERSONID, Groupuserslist.GROUPUSERSLIST.PARTICIPANTID }, true);
     public static final UniqueKey<InvitesRecord> INVITES__PK_INVITES = Internal.createUniqueKey(Invites.INVITES, DSL.name("pk_INVITES"), new TableField[] { Invites.INVITES.LAUNDRYPERSONID, Invites.INVITES.INVITEDNAME }, true);
     public static final UniqueKey<UserRecord> USER__PK_USER = Internal.createUniqueKey(User.USER, DSL.name("pk_USER"), new TableField[] { User.USER.ID }, true);
     public static final UniqueKey<WashingRecord> WASHING__PK_WASHING = Internal.createUniqueKey(Washing.WASHING, DSL.name("pk_WASHING"), new TableField[] { Washing.WASHING.WASHINGID }, true);
@@ -49,8 +49,8 @@ public class Keys {
     // FOREIGN KEY definitions
     // -------------------------------------------------------------------------
 
+    public static final ForeignKey<CommunityuserslistRecord, UserRecord> COMMUNITYUSERSLIST__FK_COMMUNITYUSERSLIST_PK_USER = Internal.createForeignKey(Communityuserslist.COMMUNITYUSERSLIST, DSL.name("fk_COMMUNITYUSERSLIST_pk_USER"), new TableField[] { Communityuserslist.COMMUNITYUSERSLIST.PARTICIPANTID, Communityuserslist.COMMUNITYUSERSLIST.LAUNDRYPERSONID }, Keys.USER__PK_USER, new TableField[] { User.USER.ID, User.USER.ID }, true);
     public static final ForeignKey<GroupsRecord, UserRecord> GROUPS__FK_GROUPS_PK_USER = Internal.createForeignKey(Groups.GROUPS, DSL.name("fk_GROUPS_pk_USER"), new TableField[] { Groups.GROUPS.USERID }, Keys.USER__PK_USER, new TableField[] { User.USER.ID }, true);
-    public static final ForeignKey<GroupuserslistRecord, UserRecord> GROUPUSERSLIST__FK_GROUPUSERSLIST_PK_USER = Internal.createForeignKey(Groupuserslist.GROUPUSERSLIST, DSL.name("fk_GROUPUSERSLIST_pk_USER"), new TableField[] { Groupuserslist.GROUPUSERSLIST.PARTICIPANTID, Groupuserslist.GROUPUSERSLIST.LAUNDRYPERSONID }, Keys.USER__PK_USER, new TableField[] { User.USER.ID, User.USER.ID }, true);
     public static final ForeignKey<InvitesRecord, UserRecord> INVITES__FK_INVITES_PK_USER = Internal.createForeignKey(Invites.INVITES, DSL.name("fk_INVITES_pk_USER"), new TableField[] { Invites.INVITES.LAUNDRYPERSONID }, Keys.USER__PK_USER, new TableField[] { User.USER.ID }, true);
     public static final ForeignKey<WashingRecord, UserRecord> WASHING__FK_WASHING_PK_USER = Internal.createForeignKey(Washing.WASHING, DSL.name("fk_WASHING_pk_USER"), new TableField[] { Washing.WASHING.LAUNDRYPERSONID }, Keys.USER__PK_USER, new TableField[] { User.USER.ID }, true);
     public static final ForeignKey<WashingoptionsRecord, WashingRecord> WASHINGOPTIONS__FK_WASHINGOPTIONS_PK_WASHING = Internal.createForeignKey(Washingoptions.WASHINGOPTIONS, DSL.name("fk_WASHINGOPTIONS_pk_WASHING"), new TableField[] { Washingoptions.WASHINGOPTIONS.WASHINGID }, Keys.WASHING__PK_WASHING, new TableField[] { Washing.WASHING.WASHINGID }, true);

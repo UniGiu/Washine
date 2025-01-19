@@ -13,9 +13,9 @@ import org.jooq.SQLDialect;
 import org.jooq.impl.DSL;
 
 import washine_db.jooq.generated.tables.Groups;
-import washine_db.jooq.generated.tables.Groupuserslist;
+import washine_db.jooq.generated.tables.Communityuserslist;
 import washine_db.jooq.generated.tables.Invites;
-import washine_db.jooq.generated.tables.records.GroupuserslistRecord;
+import washine_db.jooq.generated.tables.records.CommunityuserslistRecord;
 import washine_db.jooq.generated.tables.records.InvitesRecord;
 import washine_db.washine_db.JOOQCodeGeneration;
 
@@ -58,7 +58,7 @@ public class WashineGroupDb implements WashineGroupDbIf {
     DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
     int result =
         create
-            .insertInto(Groupuserslist.GROUPUSERSLIST)
+            .insertInto(Communityuserslist.COMMUNITYUSERSLIST)
             .values(laundryPersonId, participantId, participantName)
             .execute();
 
@@ -110,9 +110,9 @@ public class WashineGroupDb implements WashineGroupDbIf {
     DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
     return create
         .select()
-        .from(Groupuserslist.GROUPUSERSLIST)
-        .where(Groupuserslist.GROUPUSERSLIST.LAUNDRYPERSONID.eq(laundryPersonId))
-        .fetch(Groupuserslist.GROUPUSERSLIST.NAME);
+        .from(Communityuserslist.COMMUNITYUSERSLIST)
+        .where(Communityuserslist.COMMUNITYUSERSLIST.LAUNDRYPERSONID.eq(laundryPersonId))
+        .fetch(Communityuserslist.COMMUNITYUSERSLIST.USERNAME);
   }
 
   /**
@@ -129,9 +129,9 @@ public class WashineGroupDb implements WashineGroupDbIf {
     return create
         .select()
         .from(Groups.GROUPS)
-        .join(Groupuserslist.GROUPUSERSLIST)
-        .on(Groups.GROUPS.USERID.eq(Groupuserslist.GROUPUSERSLIST.LAUNDRYPERSONID))
-        .where(Groupuserslist.GROUPUSERSLIST.PARTICIPANTID.eq(participantId))
+        .join(Communityuserslist.COMMUNITYUSERSLIST)
+        .on(Groups.GROUPS.USERID.eq(Communityuserslist.COMMUNITYUSERSLIST.LAUNDRYPERSONID))
+        .where(Communityuserslist.COMMUNITYUSERSLIST.PARTICIPANTID.eq(participantId))
         .fetch(Groups.GROUPS.GROUPNAME);
   }
 
@@ -166,8 +166,8 @@ public class WashineGroupDb implements WashineGroupDbIf {
     DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
     int result =
         create
-            .deleteFrom(Groupuserslist.GROUPUSERSLIST)
-            .where(Groupuserslist.GROUPUSERSLIST.PARTICIPANTID.eq(participantId))
+            .deleteFrom(Communityuserslist.COMMUNITYUSERSLIST)
+            .where(Communityuserslist.COMMUNITYUSERSLIST.PARTICIPANTID.eq(participantId))
             .execute();
 
     return result == 1;
@@ -211,14 +211,14 @@ public class WashineGroupDb implements WashineGroupDbIf {
     Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
     DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
 
-    Result<GroupuserslistRecord> usersList =
+    Result<CommunityuserslistRecord> usersList =
         create
-            .selectFrom(Groupuserslist.GROUPUSERSLIST)
+            .selectFrom(Communityuserslist.COMMUNITYUSERSLIST)
             .where(
-                Groupuserslist.GROUPUSERSLIST
+            		Communityuserslist.COMMUNITYUSERSLIST
                     .LAUNDRYPERSONID
                     .eq(laundryPersonId)
-                    .and(Groupuserslist.GROUPUSERSLIST.PARTICIPANTID.eq(participantId)))
+                    .and(Communityuserslist.COMMUNITYUSERSLIST.PARTICIPANTID.eq(participantId)))
             .fetch();
     return !usersList.isEmpty();
   }
@@ -268,14 +268,14 @@ public class WashineGroupDb implements WashineGroupDbIf {
     Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
     DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
 
-    Result<GroupuserslistRecord> names =
+    Result<CommunityuserslistRecord> names =
         create
-            .selectFrom(Groupuserslist.GROUPUSERSLIST)
+            .selectFrom(Communityuserslist.COMMUNITYUSERSLIST)
             .where(
-                Groupuserslist.GROUPUSERSLIST
+            		Communityuserslist.COMMUNITYUSERSLIST
                     .LAUNDRYPERSONID
                     .eq(communityUid)
-                    .and(Groupuserslist.GROUPUSERSLIST.NAME.eq(name)))
+                    .and(Communityuserslist.COMMUNITYUSERSLIST.USERNAME.eq(name)))
             .fetch();
     return names.isNotEmpty();
   }

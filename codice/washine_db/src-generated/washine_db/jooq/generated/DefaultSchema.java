@@ -11,8 +11,8 @@ import org.jooq.Catalog;
 import org.jooq.Table;
 import org.jooq.impl.SchemaImpl;
 
+import washine_db.jooq.generated.tables.Communityuserslist;
 import washine_db.jooq.generated.tables.Groups;
-import washine_db.jooq.generated.tables.Groupuserslist;
 import washine_db.jooq.generated.tables.Invites;
 import washine_db.jooq.generated.tables.User;
 import washine_db.jooq.generated.tables.Washing;
@@ -34,14 +34,14 @@ public class DefaultSchema extends SchemaImpl {
     public static final DefaultSchema DEFAULT_SCHEMA = new DefaultSchema();
 
     /**
+     * The table <code>COMMUNITYUSERSLIST</code>.
+     */
+    public final Communityuserslist COMMUNITYUSERSLIST = Communityuserslist.COMMUNITYUSERSLIST;
+
+    /**
      * The table <code>GROUPS</code>.
      */
     public final Groups GROUPS = Groups.GROUPS;
-
-    /**
-     * The table <code>GROUPUSERSLIST</code>.
-     */
-    public final Groupuserslist GROUPUSERSLIST = Groupuserslist.GROUPUSERSLIST;
 
     /**
      * The table <code>INVITES</code>.
@@ -84,8 +84,8 @@ public class DefaultSchema extends SchemaImpl {
     @Override
     public final List<Table<?>> getTables() {
         return Arrays.asList(
+            Communityuserslist.COMMUNITYUSERSLIST,
             Groups.GROUPS,
-            Groupuserslist.GROUPUSERSLIST,
             Invites.INVITES,
             User.USER,
             Washing.WASHING,

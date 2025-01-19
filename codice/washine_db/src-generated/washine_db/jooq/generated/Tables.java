@@ -4,8 +4,8 @@
 package washine_db.jooq.generated;
 
 
+import washine_db.jooq.generated.tables.Communityuserslist;
 import washine_db.jooq.generated.tables.Groups;
-import washine_db.jooq.generated.tables.Groupuserslist;
 import washine_db.jooq.generated.tables.Invites;
 import washine_db.jooq.generated.tables.User;
 import washine_db.jooq.generated.tables.Washing;
@@ -20,14 +20,14 @@ import washine_db.jooq.generated.tables.Washingparticipation;
 public class Tables {
 
     /**
+     * The table <code>COMMUNITYUSERSLIST</code>.
+     */
+    public static final Communityuserslist COMMUNITYUSERSLIST = Communityuserslist.COMMUNITYUSERSLIST;
+
+    /**
      * The table <code>GROUPS</code>.
      */
     public static final Groups GROUPS = Groups.GROUPS;
-
-    /**
-     * The table <code>GROUPUSERSLIST</code>.
-     */
-    public static final Groupuserslist GROUPUSERSLIST = Groupuserslist.GROUPUSERSLIST;
 
     /**
      * The table <code>INVITES</code>.

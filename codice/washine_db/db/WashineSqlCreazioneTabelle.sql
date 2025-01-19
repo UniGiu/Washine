@@ -1,24 +1,25 @@
 BEGIN TRANSACTION;
+CREATE TABLE IF NOT EXISTS "COMMUNITYUSERSLIST" (
+	"LaundryPersonId"	TEXT,
+	"ParticipantId"	TEXT,
+	"UserName"	TEXT NOT NULL,
+	"CommunityName"	TEXT NOT NULL,
+	PRIMARY KEY("LaundryPersonId","ParticipantId"),
+	FOREIGN KEY("LaundryPersonId") REFERENCES "USER"("Id"),
+	FOREIGN KEY("ParticipantId") REFERENCES "USER"("Id")
+);
 CREATE TABLE IF NOT EXISTS "GROUPS" (
 	"UserId"	TEXT,
 	"GroupName"	TEXT NOT NULL,
 	PRIMARY KEY("UserId"),
 	FOREIGN KEY("UserId") REFERENCES "USER"("Id")
 );
-CREATE TABLE IF NOT EXISTS "GROUPUSERSLIST" (
-	"LaundryPersonId"	TEXT,
-	"ParticipantId"	TEXT,
-	"Name"	TEXT NOT NULL,
-	PRIMARY KEY("LaundryPersonId","ParticipantId"),
-	FOREIGN KEY("LaundryPersonId") REFERENCES "USER"("Id"),
-	FOREIGN KEY("ParticipantId") REFERENCES "USER"("Id")
-);
 CREATE TABLE IF NOT EXISTS "INVITES" (
 	"LaundryPersonId"	TEXT,
 	"InvitedName"	TEXT,
 	"Code"	TEXT NOT NULL,
 	"TS"	INTEGER DEFAULT CURRENT_TIMESTAMP,
-	PRIMARY KEY("LaundryPersonId"),
+	PRIMARY KEY("LaundryPersonId","InvitedName"),
 	FOREIGN KEY("LaundryPersonId") REFERENCES "USER"("Id")
 );
 CREATE TABLE IF NOT EXISTS "USER" (
