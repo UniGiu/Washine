@@ -7,6 +7,8 @@ import washine_db.groups.WashineGroupDb;
 
 public class WashineCoreCommunity implements WashineCoreCommunityIf {
 
+  static final int INVITATIONS_TIME_TO_LIVE = 1;
+
   @Override
   public boolean userInCommunity(String uid, String communityUid) throws SQLException {
     WashineGroupDb washineCommunity = new WashineGroupDb();
@@ -34,24 +36,27 @@ public class WashineCoreCommunity implements WashineCoreCommunityIf {
   @Override
   public boolean joinCommunity(String uid, String invitationCode) throws SQLException {
     WashineGroupDb washineCommunity = new WashineGroupDb();
+    washineCommunity.clearExpiredInvitations(INVITATIONS_TIME_TO_LIVE);
     String communityUid = washineCommunity.getLaundryPersonId(invitationCode);
-    if (communityUid == null || washineCommunity.alreadyAdded(communityUid, uid)) {
+    if (communityUid == uid
+        || communityUid == null
+        || washineCommunity.alreadyAdded(communityUid, uid)) {
       return false;
     } else {
       return washineCommunity.addParticipationToGroup(
           communityUid, uid, washineCommunity.getInvitationName(invitationCode));
     }
   }
-  
+
   @Override
   public boolean removeUserFromCommunity(String uid, String communityUid) throws SQLException {
-	    WashineGroupDb washineCommunity = new WashineGroupDb();
-	    
-	    if (washineCommunity.alreadyAdded(communityUid, uid)) {
-	      return washineCommunity.removeGroupMember(uid, communityUid);
-	    } else {
-	      return false;
-	    }
+    WashineGroupDb washineCommunity = new WashineGroupDb();
+
+    if (washineCommunity.alreadyAdded(communityUid, uid)) {
+      return washineCommunity.removeGroupMember(uid);
+    } else {
+      return false;
+    }
   }
 
   public String generateUniqueCode() {

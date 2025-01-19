@@ -18,7 +18,7 @@ public interface WashineGroupDbIf {
 
   public Result<InvitesRecord> getInvites(String laundryPersonId) throws SQLException;
 
-  public boolean removeInvite(String participantName) throws SQLException;
+  public boolean removeInvite(String code) throws SQLException;
 
   public List<String> getGroupParticipants(String laundryPersonId) throws SQLException;
 
@@ -39,4 +39,5 @@ public interface WashineGroupDbIf {
   public String getInvitationName(String code) throws SQLException;
 
   public boolean clearExpiredInvitations(Integer timeToLive);
+  ;
 }
