@@ -31,4 +31,10 @@ public interface WashineGroupDbIf {
   public boolean alreadyAdded(String laundryPersonId, String participantId) throws SQLException;
 
   public boolean updateCode(String invitedName, String newCode) throws SQLException;
+
+  public boolean nameInCommunity(String name, String communityUid) throws SQLException;
+
+  public String getLaundryPersonId(String code) throws SQLException;
+
+  public String getInvitationName(String code) throws SQLException;
 }

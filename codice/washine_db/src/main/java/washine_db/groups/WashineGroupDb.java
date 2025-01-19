@@ -269,4 +269,33 @@ public class WashineGroupDb implements WashineGroupDbIf {
             .fetchOne();
     return id.getValue(Invites.INVITES.CODE);
   }
+
+  public boolean nameInCommunity(String name, String communityUid) throws SQLException {
+    Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
+    DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
+
+    Result<GroupuserslistRecord> names =
+        create
+            .selectFrom(Groupuserslist.GROUPUSERSLIST)
+            .where(
+                Groupuserslist.GROUPUSERSLIST
+                    .LAUNDRYPERSONID
+                    .eq(communityUid)
+                    .and(Groupuserslist.GROUPUSERSLIST.NAME.eq(name)))
+            .fetch();
+    return names.isNotEmpty();
+  }
+
+  public String getInvitationName(String code) throws SQLException {
+    Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
+    DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
+    Record1<String> name =
+        create
+            .select(Invites.INVITES.INVITEDNAME)
+            .from(Invites.INVITES)
+            .where(Invites.INVITES.CODE.eq(code))
+            .fetchOne();
+
+    return name.getValue(Invites.INVITES.INVITEDNAME);
+  }
 }
