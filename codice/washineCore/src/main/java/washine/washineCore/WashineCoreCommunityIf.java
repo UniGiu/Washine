@@ -47,4 +47,14 @@ public interface WashineCoreCommunityIf {
  * @throws SQLException 
    */
   public boolean joinCommunity(String uid, String invitationCode) throws SQLException;
+  /**
+   * Removes a user from a community.
+   *
+   * @param uid            the ID of the user to be removed
+   * @param communityUid the ID of the community
+   * @return true if the user was successfully removed, false otherwise
+ * @throws SQLException 
+   */
+  public boolean removeUserFromCommunity(String uid, String communityUid) throws SQLException;
+  
 }
