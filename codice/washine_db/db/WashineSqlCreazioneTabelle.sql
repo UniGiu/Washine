@@ -1,64 +1,71 @@
-CREATE TABLE IF NOT EXISTS USER (
-Id TEXT PRIMARY KEY,
-Email TEXT NOT NULL,
-Password TEXT NOT NULL,
-Level INTEGER DEFAULT 1,
-Blocked BOOLEAN DEFAULT FALSE
+BEGIN TRANSACTION;
+CREATE TABLE IF NOT EXISTS "GROUPS" (
+	"UserId"	TEXT,
+	"GroupName"	TEXT NOT NULL,
+	PRIMARY KEY("UserId"),
+	FOREIGN KEY("UserId") REFERENCES "USER"("Id")
 );
-CREATE TABLE IF NOT EXISTS GROUPS ( 
-UserId TEXT PRIMARY KEY,
-GroupName TEXT NOT NULL,
-FOREIGN KEY (UserId) REFERENCES USER(Id)
+CREATE TABLE IF NOT EXISTS "GROUPUSERSLIST" (
+	"LaundryPersonId"	TEXT,
+	"ParticipantId"	TEXT,
+	"Name"	TEXT NOT NULL,
+	PRIMARY KEY("LaundryPersonId","ParticipantId"),
+	FOREIGN KEY("LaundryPersonId") REFERENCES "USER"("Id"),
+	FOREIGN KEY("ParticipantId") REFERENCES "USER"("Id")
 );
-CREATE TABLE IF NOT EXISTS GROUPUSERSLIST (
-LaundryPersonId TEXT,
-ParticipantId TEXT,
-Name TEXT NOT NULL,
-PRIMARY KEY (LaundryPersonId,ParticipantId)
-FOREIGN KEY (LaundryPersonId) REFERENCES USER(Id),
-FOREIGN KEY (ParticipantId) REFERENCES USER(Id)
+CREATE TABLE IF NOT EXISTS "INVITES" (
+	"LaundryPersonId"	TEXT,
+	"InvitedName"	TEXT,
+	"Code"	TEXT NOT NULL,
+	"TS"	INTEGER DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY("LaundryPersonId"),
+	FOREIGN KEY("LaundryPersonId") REFERENCES "USER"("Id")
 );
-CREATE TABLE IF NOT EXISTS INVITES (
-LaundryPersonId TEXT,
-InvitedName TEXT,
-Code TEXT NOT NULL,
-Timestamp DEFAULT CURRENT_TIMESTAMP,
-PRIMARY KEY (LaundryPersonId,InvitedName)
-FOREIGN KEY (LaundryPersonId) REFERENCES USER(Id)
+CREATE TABLE IF NOT EXISTS "USER" (
+	"Id"	TEXT,
+	"Email"	TEXT NOT NULL,
+	"Password"	TEXT NOT NULL,
+	"Level"	INTEGER DEFAULT 1,
+	"Blocked"	BOOLEAN DEFAULT FALSE,
+	PRIMARY KEY("Id")
 );
-CREATE TABLE IF NOT EXISTS WASHING (
-WashingId TEXT PRIMARY KEY,
-LaundryPersonId TEXT NOT NULL,
-FOREIGN KEY (LaundryPersonId) REFERENCES USER(Id)
+CREATE TABLE IF NOT EXISTS "WASHING" (
+	"WashingId"	TEXT,
+	"LaundryPersonId"	TEXT NOT NULL,
+	PRIMARY KEY("WashingId"),
+	FOREIGN KEY("LaundryPersonId") REFERENCES "USER"("Id")
 );
-CREATE TABLE IF NOT EXISTS WASHINGPARTICIPATION ( 
-WashingId TEXT PRIMARY KEY,
-ParticipantId TEXT NOT NULL,
-FOREIGN KEY (WashingId) REFERENCES WASHING(WashingId),
-FOREIGN KEY (ParticipantId) REFERENCES USER(Id)
+CREATE TABLE IF NOT EXISTS "WASHINGOPTIONS" (
+	"WashingId"	TEXT,
+	"VisibilityTime"	INTEGER NOT NULL,
+	"DateTime"	DATE NOT NULL,
+	"DurationMinutes"	INTEGER NOT NULL,
+	"InitialLoad"	DOUBLE NOT NULL,
+	"MaxLoad"	DOUBLE NOT NULL,
+	"Temperature"	TEXT NOT NULL,
+	"SpinSpeed"	TEXT NOT NULL,
+	"FabricType"	TEXT NOT NULL,
+	"Color"	TEXT NOT NULL,
+	"DetergentTypes"	TEXT NOT NULL,
+	"RefundType"	TEXT NOT NULL,
+	"Underwear"	BOOLEAN NOT NULL,
+	"PickupAddress"	TEXT,
+	"DeliveryAddress"	TEXT,
+	"PickupAvailability"	TEXT,
+	"DeliveryAvailability"	TEXT,
+	"Drying"	TEXT,
+	"Ironing"	BOOLEAN,
+	"ParticipantMaxLoad"	DOUBLE,
+	"WashingAccessOpenDate"	DATE,
+	"WashingAccessCloseDate"	DATE,
+	PRIMARY KEY("WashingId"),
+	FOREIGN KEY("WashingId") REFERENCES "WASHING"("WashingId")
 );
-CREATE TABLE IF NOT EXISTS WASHINGOPTIONS (
-WashingId TEXT PRIMARY KEY,
-VisibilityTime INTEGER NOT NULL,
-DateTime DATE NOT NULL,
-DurationMinutes INTEGER NOT NULL,
-InitialLoad DOUBLE NOT NULL,
-MaxLoad DOUBLE NOT NULL,
-Temperature TEXT NOT NULL,
-SpinSpeed TEXT NOT NULL,
-FabricType TEXT NOT NULL,
-Color TEXT NOT NULL,
-DetergentTypes TEXT NOT NULL,
-RefundType TEXT NOT NULL,
-Underwear BOOLEAN NOT NULL,
-PickupAddress TEXT,
-DeliveryAddress TEXT,
-PickupAvailability TEXT,
-DeliveryAvailability TEXT,
-Drying TEXT,
-Ironing BOOLEAN,
-ParticipantMaxLoad DOUBLE,
-WashingAccessOpenDate DATE,
-WashingAccessCloseDate DATE,
-FOREIGN KEY (WashingId) REFERENCES WASHING(WashingId)
+CREATE TABLE IF NOT EXISTS "WASHINGPARTICIPATION" (
+	"WashingId"	TEXT,
+	"ParticipantId"	TEXT NOT NULL,
+	PRIMARY KEY("WashingId"),
+	FOREIGN KEY("ParticipantId") REFERENCES "USER"("Id"),
+	FOREIGN KEY("WashingId") REFERENCES "WASHING"("WashingId")
 );
+COMMIT;

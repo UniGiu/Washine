@@ -67,15 +67,9 @@ public class Invites extends TableImpl<InvitesRecord> {
     public final TableField<InvitesRecord, String> CODE = createField(DSL.name("Code"), SQLDataType.CLOB.nullable(false), this, "");
 
     /**
-     * @deprecated Unknown data type. If this is a qualified, user-defined type,
-     * it may have been excluded from code generation. If this is a built-in
-     * type, you can define an explicit {@link org.jooq.Binding} to specify how
-     * this type should be handled. Deprecation can be turned off using
-     * {@literal <deprecationOnUnknownTypes/>} in your code generator
-     * configuration.
+     * The column <code>INVITES.TS</code>.
      */
-    @Deprecated
-    public final TableField<InvitesRecord, Object> TIMESTAMP = createField(DSL.name("Timestamp"), org.jooq.impl.DefaultDataType.getDefaultDataType("\"\"").defaultValue(DSL.field(DSL.raw("CURRENT_TIMESTAMP"), org.jooq.impl.SQLDataType.OTHER)), this, "");
+    public final TableField<InvitesRecord, Integer> TS = createField(DSL.name("TS"), SQLDataType.INTEGER.defaultValue(DSL.field(DSL.raw("CURRENT_TIMESTAMP"), SQLDataType.INTEGER)), this, "");
 
     private Invites(Name alias, Table<InvitesRecord> aliased) {
         this(alias, aliased, null);
@@ -181,14 +175,14 @@ public class Invites extends TableImpl<InvitesRecord> {
     // -------------------------------------------------------------------------
 
     @Override
-    public Row4<String, String, String, Object> fieldsRow() {
+    public Row4<String, String, String, Integer> fieldsRow() {
         return (Row4) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function4<? super String, ? super String, ? super String, ? super Object, ? extends U> from) {
+    public <U> SelectField<U> mapping(Function4<? super String, ? super String, ? super String, ? super Integer, ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -196,7 +190,7 @@ public class Invites extends TableImpl<InvitesRecord> {
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function4<? super String, ? super String, ? super String, ? super Object, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function4<? super String, ? super String, ? super String, ? super Integer, ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }

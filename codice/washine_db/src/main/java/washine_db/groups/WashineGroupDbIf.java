@@ -37,4 +37,6 @@ public interface WashineGroupDbIf {
   public String getLaundryPersonId(String code) throws SQLException;
 
   public String getInvitationName(String code) throws SQLException;
+
+  public boolean clearExpiredInvitations(Integer timeToLive);
 }
