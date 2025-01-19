@@ -42,6 +42,17 @@ public class WashineCoreCommunity implements WashineCoreCommunityIf {
           communityUid, uid, washineCommunity.getInvitationName(invitationCode));
     }
   }
+  
+  @Override
+  public boolean removeUserFromCommunity(String uid, String communityUid) throws SQLException {
+	    WashineGroupDb washineCommunity = new WashineGroupDb();
+	    
+	    if (washineCommunity.alreadyAdded(communityUid, uid)) {
+	      return washineCommunity.removeGroupMember(uid, communityUid);
+	    } else {
+	      return false;
+	    }
+  }
 
   public String generateUniqueCode() {
     String SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
