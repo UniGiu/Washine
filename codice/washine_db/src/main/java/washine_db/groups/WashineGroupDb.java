@@ -53,13 +53,14 @@ public class WashineGroupDb implements WashineGroupDbIf {
    * @return true if only one tuple is added
    */
   public boolean addParticipationToGroup(
-      String laundryPersonId, String participantId, String participantName) throws SQLException {
+      String laundryPersonId, String participantId, String participantName, String communityName)
+      throws SQLException {
     Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
     DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
     int result =
         create
             .insertInto(Communityuserslist.COMMUNITYUSERSLIST)
-            .values(laundryPersonId, participantId, participantName)
+            .values(laundryPersonId, participantId, participantName, communityName)
             .execute();
 
     return result == 1;
@@ -79,7 +80,14 @@ public class WashineGroupDb implements WashineGroupDbIf {
     Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
     DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
 
-    create.insertInto(Invites.INVITES).values(laundryPersonId, invitedName, code).execute();
+    create
+        .insertInto(
+            Invites.INVITES,
+            Invites.INVITES.LAUNDRYPERSONID,
+            Invites.INVITES.INVITEDNAME,
+            Invites.INVITES.CODE)
+        .values(laundryPersonId, invitedName, code)
+        .execute();
   }
 
   /**
@@ -215,7 +223,7 @@ public class WashineGroupDb implements WashineGroupDbIf {
         create
             .selectFrom(Communityuserslist.COMMUNITYUSERSLIST)
             .where(
-            		Communityuserslist.COMMUNITYUSERSLIST
+                Communityuserslist.COMMUNITYUSERSLIST
                     .LAUNDRYPERSONID
                     .eq(laundryPersonId)
                     .and(Communityuserslist.COMMUNITYUSERSLIST.PARTICIPANTID.eq(participantId)))
@@ -261,7 +269,7 @@ public class WashineGroupDb implements WashineGroupDbIf {
             .from(Invites.INVITES)
             .where(Invites.INVITES.CODE.eq(code))
             .fetchOne();
-    return id.getValue(Invites.INVITES.CODE);
+    return id.getValue(Invites.INVITES.LAUNDRYPERSONID);
   }
 
   public boolean nameInCommunity(String name, String communityUid) throws SQLException {
@@ -272,7 +280,7 @@ public class WashineGroupDb implements WashineGroupDbIf {
         create
             .selectFrom(Communityuserslist.COMMUNITYUSERSLIST)
             .where(
-            		Communityuserslist.COMMUNITYUSERSLIST
+                Communityuserslist.COMMUNITYUSERSLIST
                     .LAUNDRYPERSONID
                     .eq(communityUid)
                     .and(Communityuserslist.COMMUNITYUSERSLIST.USERNAME.eq(name)))
@@ -306,7 +314,29 @@ public class WashineGroupDb implements WashineGroupDbIf {
           .where(Invites.INVITES.TS.le((int) (unixTimestamp - secondsToLive)));
       return true;
     } catch (SQLException exc) {
-      return false;
+      exc.printStackTrace();
     }
+    return false;
+  }
+
+  public boolean nameInJoinedCommunities(String name, String userId) {
+    Connection conn;
+    try {
+      conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
+      DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
+      Result<CommunityuserslistRecord> communities =
+          create
+              .selectFrom(Communityuserslist.COMMUNITYUSERSLIST)
+              .where(
+                  Communityuserslist.COMMUNITYUSERSLIST
+                      .PARTICIPANTID
+                      .eq(userId)
+                      .and(Communityuserslist.COMMUNITYUSERSLIST.COMMUNITYNAME.eq(name)))
+              .fetch();
+      return communities.isNotEmpty();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return false;
   }
 }

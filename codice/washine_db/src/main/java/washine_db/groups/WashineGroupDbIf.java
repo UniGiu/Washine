@@ -11,7 +11,8 @@ public interface WashineGroupDbIf {
   public boolean createGroup(String userId, String groupName) throws SQLException;
 
   public boolean addParticipationToGroup(
-      String laundryPersonId, String participantId, String participantName) throws SQLException;
+      String laundryPersonId, String participantId, String participantName, String communityName)
+      throws SQLException;
 
   public void addInvite(String laundryPersonId, String invitedName, String code)
       throws SQLException;
@@ -39,5 +40,7 @@ public interface WashineGroupDbIf {
   public String getInvitationName(String code) throws SQLException;
 
   public boolean clearExpiredInvitations(Integer timeToLive);
+
+  public boolean nameInJoinedCommunities(String name, String userId);
   ;
 }
