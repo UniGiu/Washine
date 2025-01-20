@@ -22,6 +22,7 @@ public class WashineCoreCommunity implements WashineCoreCommunityIf {
   @Override
   public boolean nameInCommunity(String name, String communityUid) {
     WashineGroupDb washineCommunity = new WashineGroupDb();
+    washineCommunity.clearExpiredInvitations(INVITATIONS_TIME_TO_LIVE);
     try {
       return washineCommunity.nameInCommunity(name, communityUid);
     } catch (SQLException e) {
