@@ -8,15 +8,17 @@ import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.Hr;
 import com.vaadin.flow.component.html.Paragraph;
-import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.router.BeforeEnterObserver;
+import com.vaadin.flow.router.Location;
 import com.vaadin.flow.router.Menu;
 import com.vaadin.flow.router.PageTitle;
+import com.vaadin.flow.router.QueryParameters;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.server.VaadinRequest;
 import com.vaadin.flow.server.VaadinSession;
 import com.vaadin.flow.theme.lumo.LumoUtility.Gap;
 
@@ -25,6 +27,10 @@ import washine.washineCore.WashineCoreCommunity;
 import washine.washineCore.WashineCoreCommunityIf;
 import washine.washineCore.user.WashineUserIf;
 import uni.washine.application.utils.UiNotifier;
+
+import java.util.List;
+import java.util.Map;
+
 import org.vaadin.lineawesome.LineAwesomeIconUrl;
 
 @PageTitle("Invitations")
@@ -34,6 +40,8 @@ public class JoinALaundryComunityView extends Composite<VerticalLayout>
     implements BeforeEnterObserver {
 
   private WashineUserIf userData;
+  // the code in the invitation link
+  private String invitationCodeFromURL = null;
 
   public JoinALaundryComunityView() {
     HorizontalLayout layoutRow = new HorizontalLayout();
@@ -43,7 +51,7 @@ public class JoinALaundryComunityView extends Composite<VerticalLayout>
     VerticalLayout layoutColumn2 = new VerticalLayout();
     FormLayout layoutCodeIn = getCodeInsertionLayout();
     Hr hr = new Hr();
-    FormLayout layoutCodeGen = getCodeGenerationLayout();
+    VerticalLayout layoutCodeGen = getCodeGenerationLayout();
 
     getContent().setWidth("100%");
     getContent().getStyle().set("flex-grow", "1");
@@ -88,38 +96,47 @@ public class JoinALaundryComunityView extends Composite<VerticalLayout>
     formLayout2Col.add(textFieldCode);
     formLayout2Col.add(textFieldCommunity);
     formLayout2Col.add(buttonJoin);
-
+    if(invitationCodeFromURL!=null){
+      textFieldCode.setValue(invitationCodeFromURL);
+    }
     buttonJoin.addClickListener(
         event -> {
           String code = textFieldCode.getValue();
-          String communityName = textFieldCommunity.getValue();
+          String communityName = textFieldCommunity.getValue().replaceAll("-", "");
           String uid = userData.getId();
+
+          if (communityName.isBlank()) {
+            UiNotifier.showErrorNotification("You should provide a community name");
+            return;
+          }
 
           WashineCoreCommunityIf community = new WashineCoreCommunity();
           String communityId = community.getInvitationCodeCommunityId(code);
           if (code == null) {
             UiNotifier.showErrorNotification("Wrong or expired code.");
+            return;
+          }
+          if (community.userInCommunity(uid, communityId)) {
+            UiNotifier.showErrorNotification("You already joined this community.");
           } else {
-            if (community.userInCommunity(uid, communityId)) {
-              UiNotifier.showErrorNotification("You already joined this community.");
+            if (community.nameInJoinedCommunities(communityName, uid)) {
+              UiNotifier.showErrorNotification(
+                  "You already used this name for another community you joined.");
             } else {
-              if (community.nameInJoinedCommunities(communityName, uid)) {
-                UiNotifier.showErrorNotification(
-                    "You already used this name for another community you joined.");
-              } else {
-                // User can finally join the community!
-                if (community.joinCommunity(uid, code, communityName)) {
-                  UiNotifier.showSuccessNotification("Congratulations! Join successful!");
-                }
+              // User can finally join the community!
+              if (community.joinCommunity(uid, code, communityName)) {
+                UiNotifier.showSuccessNotification("Congratulations! Join successful!");
               }
             }
           }
+
         });
 
     return formLayout2Col;
   }
 
-  private FormLayout getCodeGenerationLayout() {
+  private VerticalLayout getCodeGenerationLayout() {
+    VerticalLayout container = new VerticalLayout();
     FormLayout formLayout2Col = new FormLayout();
     H3 h3Generate = new H3();
 
@@ -136,34 +153,48 @@ public class JoinALaundryComunityView extends Composite<VerticalLayout>
     buttonGenerate.setWidth("min-content");
     buttonGenerate.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
     formLayout2Col.add(textFieldParticipant);
-    formLayout2Col.add(buttonGenerate);
-    formLayout2Col.add(invitationLinkText);
-
+    formLayout2Col.add(buttonGenerate);   
+    container.add(formLayout2Col,invitationLinkText,invitationCodeText);
     buttonGenerate.addClickListener(
         event -> {
           String newUserName = textFieldParticipant.getValue();
           String uid = userData.getId();
-
+          if (newUserName.isBlank()) {
+            UiNotifier.showErrorNotification("You should provide a name");
+            return;
+          }
           WashineCoreCommunityIf community = new WashineCoreCommunity();
 
           if (community.nameInCommunity(newUserName, uid)) {
             UiNotifier.showErrorNotification("This name is already taken.");
             invitationLinkText.setText("");
             invitationCodeText.setText("");
-          } else {
-            String invitationCode = community.getNewInvitationCode(uid, newUserName);
-            if (invitationCode != null) {
-              String invitationLink = "https://www.washine.uni/invitation?icode=" + invitationCode;
-              invitationCodeText.setText("");
-              invitationLinkText.setText(
-                  "Share this link: " + invitationLink); // Update the paragraph with the link
-            } else {
-              UiNotifier.showErrorNotification("The code could not be created.");
-            }
+            return;
           }
+
+          String invitationCode = community.getNewInvitationCode(uid, newUserName);
+
+          if (invitationCode != null) {
+
+            String s1 = invitationCode.substring(0, 4);
+            String s2 = invitationCode.substring(4, 8);
+            String s3 = invitationCode.substring(8, 12);
+            String readableCode = s1 + "-" + s2 + "-" + s3;
+
+            readableCode.replaceAll("(.{4})", "$1-");
+            String invitationLink = VaadinRequest.getCurrent().getHeader("host") + "/invitations?icode="
+                + invitationCode;
+            invitationCodeText.setText("To join your community " + newUserName
+                + " should insert this code into the above form: " + readableCode);
+            invitationLinkText.setText(
+                "Share this link: " + invitationLink); // Update the paragraph with the link
+          } else {
+            UiNotifier.showErrorNotification("The code could not be created.");
+          }
+
         });
 
-    return formLayout2Col;
+    return container;
   }
 
   /** Shows authentication component to anonymous users */
@@ -173,6 +204,15 @@ public class JoinALaundryComunityView extends Composite<VerticalLayout>
     if (userData == null) {
       event.rerouteTo("anonymous-user");
       // event.rerouteTo(AnonymousUser.class);
+    } else {
+      Location location = event.getLocation();
+      QueryParameters queryParameters = location.getQueryParameters();
+      // gets the invitation code from invitation link
+      Map<String, List<String>> parametersMap = queryParameters
+          .getParameters();
+      invitationCodeFromURL = parametersMap.get("icode") != null && !parametersMap.get("icode").isEmpty()
+          ? parametersMap.get("icode").get(0)
+          : null;
     }
   }
 }

@@ -68,7 +68,7 @@ public class WashineCoreCommunity implements WashineCoreCommunityIf {
     try {
       washineCommunity.clearExpiredInvitations(INVITATIONS_TIME_TO_LIVE);
       String communityUid = washineCommunity.getLaundryPersonId(invitationCode);
-      if (communityUid == uid
+      if (communityUid.equals(uid)
           || communityUid == null
           || washineCommunity.alreadyAdded(communityUid, uid)) {
         return false;
