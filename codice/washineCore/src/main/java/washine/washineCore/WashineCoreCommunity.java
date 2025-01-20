@@ -53,12 +53,13 @@ public class WashineCoreCommunity implements WashineCoreCommunityIf {
 
   @Override
   public String getInvitationCodeCommunityId(String code) {
-    
+
     WashineGroupDb washineCommunity = new WashineGroupDb();
+    washineCommunity.clearExpiredInvitations(INVITATIONS_TIME_TO_LIVE);
     try {
       return washineCommunity.getLaundryPersonId(code);
     } catch (SQLException e) {
-     return null;
+      return null;
     }
   }
 
@@ -66,7 +67,6 @@ public class WashineCoreCommunity implements WashineCoreCommunityIf {
   public boolean joinCommunity(String uid, String invitationCode, String communityName) {
     WashineGroupDb washineCommunity = new WashineGroupDb();
     try {
-      washineCommunity.clearExpiredInvitations(INVITATIONS_TIME_TO_LIVE);
       String communityUid = washineCommunity.getLaundryPersonId(invitationCode);
       if (communityUid.equals(uid)
           || communityUid == null

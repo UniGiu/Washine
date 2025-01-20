@@ -7,7 +7,6 @@ import java.time.Instant;
 import java.util.List;
 
 import org.jooq.DSLContext;
-import org.jooq.Record;
 import org.jooq.Record1;
 import org.jooq.Result;
 import org.jooq.SQLDialect;
@@ -270,7 +269,10 @@ public class WashineGroupDb implements WashineGroupDbIf {
             .from(Invites.INVITES)
             .where(Invites.INVITES.CODE.eq(code))
             .fetchOne();
-    return id.getValue(Invites.INVITES.LAUNDRYPERSONID);
+    if (id != null) {
+      return id.getValue(Invites.INVITES.LAUNDRYPERSONID);
+    }
+    return null;
   }
 
   public boolean nameInCommunity(String name, String communityUid) throws SQLException {
@@ -318,25 +320,6 @@ public class WashineGroupDb implements WashineGroupDbIf {
       exc.printStackTrace();
     }
     return false;
-  }
-
-  public boolean clearAcceptedInvitations(String name, String communityId) throws SQLException {
-    Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
-    DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
-    Result<Record> invitations =
-        create
-            .select()
-            .from(Invites.INVITES)
-            .join(Communityuserslist.COMMUNITYUSERSLIST)
-            .on(
-                Invites.INVITES.LAUNDRYPERSONID.eq(
-                    Communityuserslist.COMMUNITYUSERSLIST.LAUNDRYPERSONID))
-            .where(Invites.INVITES.INVITEDNAME.eq(name))
-            .fetch();
-
-    //int result = create.deleteFrom(Invites.INVITES).where(invitations.isNotEmty).execute();
-    //return result == 1;
-    return true;
   }
 
   public boolean nameInJoinedCommunities(String name, String userId) {

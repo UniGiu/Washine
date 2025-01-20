@@ -41,8 +41,6 @@ public interface WashineGroupDbIf {
 
   public boolean clearExpiredInvitations(Integer timeToLive);
 
-  public boolean clearAcceptedInvitations(String name, String communityId) throws SQLException;
-
   public boolean nameInJoinedCommunities(String name, String userId);
 
   public boolean nameInInvitations(String name, String communityId);
