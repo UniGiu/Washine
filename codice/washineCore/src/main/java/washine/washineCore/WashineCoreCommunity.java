@@ -73,8 +73,9 @@ public class WashineCoreCommunity implements WashineCoreCommunityIf {
           || washineCommunity.alreadyAdded(communityUid, uid)) {
         return false;
       } else {
-        return washineCommunity.addParticipationToGroup(
+        washineCommunity.addParticipationToGroup(
             communityUid, uid, washineCommunity.getInvitationName(invitationCode), communityName);
+        return washineCommunity.removeInvite(invitationCode);
       }
     } catch (SQLException e) {
       return false;
