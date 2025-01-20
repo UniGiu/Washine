@@ -1,6 +1,7 @@
 package uni.washine.application.views.joinalaundrycomunity;
 
 import com.vaadin.flow.component.Composite;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.formlayout.FormLayout;
@@ -37,13 +38,14 @@ import org.vaadin.lineawesome.LineAwesomeIconUrl;
 @Route("invitations")
 @Menu(order = 5, icon = LineAwesomeIconUrl.SIGN_IN_ALT_SOLID)
 public class JoinALaundryComunityView extends Composite<VerticalLayout>
-    implements BeforeEnterObserver {
+    implements BeforeEnterObserver{
 
   private WashineUserIf userData;
   // the code in the invitation link
-  private String invitationCodeFromURL = null;
+  private String invitationCodeFromURL = "";
 
   public JoinALaundryComunityView() {
+    UiNotifier.showSuccessNotification("3: "+invitationCodeFromURL);
     HorizontalLayout layoutRow = new HorizontalLayout();
     H2 h2 = new H2();
     Paragraph textLarge = new Paragraph();
@@ -96,6 +98,8 @@ public class JoinALaundryComunityView extends Composite<VerticalLayout>
     formLayout2Col.add(textFieldCode);
     formLayout2Col.add(textFieldCommunity);
     formLayout2Col.add(buttonJoin);
+    UiNotifier.showSuccessNotification("4: "+invitationCodeFromURL);
+    //code from URL
     if (invitationCodeFromURL != null) {
       textFieldCode.setValue(invitationCodeFromURL);
     }
@@ -105,7 +109,7 @@ public class JoinALaundryComunityView extends Composite<VerticalLayout>
           String communityName = textFieldCommunity.getValue().replaceAll("-", "");
           String uid = userData.getId();
           //TODO:validare nel core
-
+          UiNotifier.showSuccessNotification("5: "+invitationCodeFromURL);
           //controllo input non nullo
           if (communityName.isBlank()) {
             UiNotifier.showErrorNotification("You should provide a community name");
@@ -180,7 +184,7 @@ public class JoinALaundryComunityView extends Composite<VerticalLayout>
             invitationCodeText.setText("");
             return;
           }
-          //TODO:spostare nel core
+          //TODO:move into the core
           if (community.nameInInvitations(newUserName, uid)) {
             invitationCode = community.updateCode(newUserName);
           } else {
@@ -189,12 +193,7 @@ public class JoinALaundryComunityView extends Composite<VerticalLayout>
 
           if (invitationCode != null) {
 
-            String s1 = invitationCode.substring(0, 4);
-            String s2 = invitationCode.substring(4, 8);
-            String s3 = invitationCode.substring(8, 12);
-            String readableCode = s1 + "-" + s2 + "-" + s3;
-
-            readableCode.replaceAll("(.{4})", "$1-");
+            
             String invitationLink =
                 VaadinRequest.getCurrent().getHeader("host")
                     + "/invitations?icode="
@@ -203,9 +202,9 @@ public class JoinALaundryComunityView extends Composite<VerticalLayout>
                 "To join your community "
                     + newUserName
                     + " should insert this code into the above form: "
-                    + readableCode);
+                    + makeCodeReadable(invitationCode));
             invitationLinkText.setText(
-                "Share this link: " + invitationLink); // Update the paragraph with the link
+                "Share this link: " + invitationLink); 
           } else {
             UiNotifier.showErrorNotification("The code could not be created.");
           }
@@ -213,23 +212,32 @@ public class JoinALaundryComunityView extends Composite<VerticalLayout>
 
     return container;
   }
+  private String makeCodeReadable(String code){
+    String s1 = code.substring(0, 4);
+            String s2 = code.substring(4, 8);
+            String s3 = code.substring(8, 12);
+            String readableCode = s1 + "-" + s2 + "-" + s3;
 
-  /** Shows authentication component to anonymous users */
+            readableCode.replaceAll("(.{4})", "$1-");
+            return readableCode;
+  }
+
+  
   @Override
   public void beforeEnter(BeforeEnterEvent event) {
     userData = (WashineUserIf) VaadinSession.getCurrent().getAttribute("currentUser");
     if (userData == null) {
       event.rerouteTo("anonymous-user");
-      // event.rerouteTo(AnonymousUser.class);
     } else {
-      Location location = event.getLocation();
-      QueryParameters queryParameters = location.getQueryParameters();
-      // gets the invitation code from invitation link
-      Map<String, List<String>> parametersMap = queryParameters.getParameters();
-      invitationCodeFromURL =
-          parametersMap.get("icode") != null && !parametersMap.get("icode").isEmpty()
-              ? parametersMap.get("icode").get(0)
-              : null;
+    	 Location location = UI.getCurrent().getActiveViewLocation();
+    	    QueryParameters queryParameters = location.getQueryParameters();
+    	    // gets the invitation code from invitation link
+    	    Map<String, List<String>> parametersMap = queryParameters.getParameters();  
+          UiNotifier.showSuccessNotification("1: "+invitationCodeFromURL);
+    	    if( parametersMap.get("icode") != null && !parametersMap.get("icode").isEmpty()){      
+    	      invitationCodeFromURL = parametersMap.get("icode").get(0);
+    	    }    
+          UiNotifier.showSuccessNotification("2: "+invitationCodeFromURL);
     }
   }
 }
