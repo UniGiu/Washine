@@ -53,13 +53,13 @@ public class WashineCoreCommunity implements WashineCoreCommunityIf {
 
   @Override
   public String getInvitationCodeCommunityId(String code) {
+    
     WashineGroupDb washineCommunity = new WashineGroupDb();
     try {
       return washineCommunity.getLaundryPersonId(code);
     } catch (SQLException e) {
-      e.printStackTrace();
+     return null;
     }
-    return null;
   }
 
   @Override

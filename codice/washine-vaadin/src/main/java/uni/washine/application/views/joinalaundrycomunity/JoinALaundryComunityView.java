@@ -104,18 +104,28 @@ public class JoinALaundryComunityView extends Composite<VerticalLayout>
           String code = textFieldCode.getValue();
           String communityName = textFieldCommunity.getValue().replaceAll("-", "");
           String uid = userData.getId();
+          //TODO:validare nel core
 
+          //controllo input non nullo
           if (communityName.isBlank()) {
             UiNotifier.showErrorNotification("You should provide a community name");
             return;
           }
-
+          if (code.isBlank()) {
+              UiNotifier.showErrorNotification("You should provide an invitation code");
+              return;
+            }
+           
+          //verifica esistenza codice
           WashineCoreCommunityIf community = new WashineCoreCommunity();
+        
           String communityId = community.getInvitationCodeCommunityId(code);
-          if (code == null || communityId == null) {
+         
+          if (communityId == null) {
             UiNotifier.showErrorNotification("Wrong or expired code.");
             return;
           }
+          
           if (community.userInCommunity(uid, communityId)) {
             UiNotifier.showErrorNotification("You already joined this community.");
           } else {
@@ -170,6 +180,7 @@ public class JoinALaundryComunityView extends Composite<VerticalLayout>
             invitationCodeText.setText("");
             return;
           }
+          //TODO:spostare nel core
           if (community.nameInInvitations(newUserName, uid)) {
             invitationCode = community.updateCode(newUserName);
           } else {
