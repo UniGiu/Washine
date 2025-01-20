@@ -5,10 +5,12 @@ import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.formlayout.FormLayout;
+import com.vaadin.flow.component.html.Anchor;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.Hr;
 import com.vaadin.flow.component.html.Paragraph;
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
@@ -155,6 +157,10 @@ public class JoinALaundryComunityView extends Composite<VerticalLayout>
 
     TextField textFieldParticipant = new TextField();
     Button buttonGenerate = new Button();
+    /*
+    Button buttonCopyLink= new Button();
+    Button buttonCopyCode=new Button();
+    */
     Paragraph invitationLinkText = new Paragraph();
     Paragraph invitationCodeText = new Paragraph();
     h3Generate.setText(
@@ -162,12 +168,27 @@ public class JoinALaundryComunityView extends Composite<VerticalLayout>
     formLayout2Col.setWidth("100%");
     textFieldParticipant.setLabel("Participant name");
     textFieldParticipant.setWidth("min-content");
+
+    Anchor link = new Anchor();
     buttonGenerate.setText("Generate");
     buttonGenerate.setWidth("min-content");
     buttonGenerate.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+  /*   buttonCopyLink.setText("Copy link");
+    buttonCopyLink.setIcon(VaadinIcon.COPY.create());
+    buttonCopyLink.setWidth("min-content");
+    buttonCopyCode.setText("Copy code");
+    buttonCopyCode.setIcon(VaadinIcon.COPY.create());
+    buttonCopyCode.setWidth("min-content");
+   */
     formLayout2Col.add(textFieldParticipant);
     formLayout2Col.add(buttonGenerate);
-    container.add(formLayout2Col, invitationLinkText, invitationCodeText);
+    container.add(formLayout2Col,invitationCodeText,invitationLinkText,link );
+  /*  buttonCopyCode.addClickListener(
+      e -> UI.getCurrent().getPage().executeJs("window.copyToClipboard($0)", link.getHref())
+  );
+  buttonCopyCode.addClickListener(
+    e -> UI.getCurrent().getPage().executeJs("window.copyToClipboard($0)", invitationCodeText.getText())
+);*/
     buttonGenerate.addClickListener(
         event -> {
           String newUserName = textFieldParticipant.getValue();
@@ -182,6 +203,7 @@ public class JoinALaundryComunityView extends Composite<VerticalLayout>
             UiNotifier.showErrorNotification("This name is already taken.");
             invitationLinkText.setText("");
             invitationCodeText.setText("");
+            link.setVisible(false);
             return;
           }
           //TODO:move into the core
@@ -195,16 +217,16 @@ public class JoinALaundryComunityView extends Composite<VerticalLayout>
 
             
             String invitationLink =
-                VaadinRequest.getCurrent().getHeader("host")
-                    + "/invitations?icode="
-                    + invitationCode;
+                VaadinRequest.getCurrent().getHeader("host") + "/invitations?icode="  + invitationCode;
+
             invitationCodeText.setText(
-                "To join your community "
-                    + newUserName
-                    + " should insert this code into the above form: "
+                "To join your community "  + newUserName  + " should insert this code into the above form: "
                     + makeCodeReadable(invitationCode));
+            link.setText(invitationLink);
+            link.setHref(invitationLink);
+            link.setVisible(true);
             invitationLinkText.setText(
-                "Share this link: " + invitationLink); 
+                "or follow this link: "); 
           } else {
             UiNotifier.showErrorNotification("The code could not be created.");
           }
@@ -229,7 +251,7 @@ public class JoinALaundryComunityView extends Composite<VerticalLayout>
     if (userData == null) {
       event.rerouteTo("anonymous-user");
     } else {
-    	 Location location = UI.getCurrent().getActiveViewLocation();
+    	 Location location = event.getLocation();
     	    QueryParameters queryParameters = location.getQueryParameters();
     	    // gets the invitation code from invitation link
     	    Map<String, List<String>> parametersMap = queryParameters.getParameters();  
