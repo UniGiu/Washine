@@ -67,4 +67,8 @@ public interface WashineCoreCommunityIf {
    * @return true if the user was successfully removed, false otherwise @
    */
   public boolean removeUserFromCommunity(String uid, String communityUid);
+
+  public String updateCode(String invitedName);
+
+  public boolean nameInInvitations(String name, String communityId);
 }

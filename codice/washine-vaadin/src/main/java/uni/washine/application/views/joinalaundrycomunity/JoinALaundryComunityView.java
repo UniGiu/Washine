@@ -96,7 +96,7 @@ public class JoinALaundryComunityView extends Composite<VerticalLayout>
     formLayout2Col.add(textFieldCode);
     formLayout2Col.add(textFieldCommunity);
     formLayout2Col.add(buttonJoin);
-    if(invitationCodeFromURL!=null){
+    if (invitationCodeFromURL != null) {
       textFieldCode.setValue(invitationCodeFromURL);
     }
     buttonJoin.addClickListener(
@@ -112,7 +112,7 @@ public class JoinALaundryComunityView extends Composite<VerticalLayout>
 
           WashineCoreCommunityIf community = new WashineCoreCommunity();
           String communityId = community.getInvitationCodeCommunityId(code);
-          if (code == null) {
+          if (code == null || communityId == null) {
             UiNotifier.showErrorNotification("Wrong or expired code.");
             return;
           }
@@ -129,7 +129,6 @@ public class JoinALaundryComunityView extends Composite<VerticalLayout>
               }
             }
           }
-
         });
 
     return formLayout2Col;
@@ -153,26 +152,29 @@ public class JoinALaundryComunityView extends Composite<VerticalLayout>
     buttonGenerate.setWidth("min-content");
     buttonGenerate.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
     formLayout2Col.add(textFieldParticipant);
-    formLayout2Col.add(buttonGenerate);   
-    container.add(formLayout2Col,invitationLinkText,invitationCodeText);
+    formLayout2Col.add(buttonGenerate);
+    container.add(formLayout2Col, invitationLinkText, invitationCodeText);
     buttonGenerate.addClickListener(
         event -> {
           String newUserName = textFieldParticipant.getValue();
           String uid = userData.getId();
+          String invitationCode;
           if (newUserName.isBlank()) {
             UiNotifier.showErrorNotification("You should provide a name");
             return;
           }
           WashineCoreCommunityIf community = new WashineCoreCommunity();
-
           if (community.nameInCommunity(newUserName, uid)) {
             UiNotifier.showErrorNotification("This name is already taken.");
             invitationLinkText.setText("");
             invitationCodeText.setText("");
             return;
           }
-
-          String invitationCode = community.getNewInvitationCode(uid, newUserName);
+          if (community.nameInInvitations(newUserName, uid)) {
+            invitationCode = community.updateCode(newUserName);
+          } else {
+            invitationCode = community.getNewInvitationCode(uid, newUserName);
+          }
 
           if (invitationCode != null) {
 
@@ -182,16 +184,20 @@ public class JoinALaundryComunityView extends Composite<VerticalLayout>
             String readableCode = s1 + "-" + s2 + "-" + s3;
 
             readableCode.replaceAll("(.{4})", "$1-");
-            String invitationLink = VaadinRequest.getCurrent().getHeader("host") + "/invitations?icode="
-                + invitationCode;
-            invitationCodeText.setText("To join your community " + newUserName
-                + " should insert this code into the above form: " + readableCode);
+            String invitationLink =
+                VaadinRequest.getCurrent().getHeader("host")
+                    + "/invitations?icode="
+                    + invitationCode;
+            invitationCodeText.setText(
+                "To join your community "
+                    + newUserName
+                    + " should insert this code into the above form: "
+                    + readableCode);
             invitationLinkText.setText(
                 "Share this link: " + invitationLink); // Update the paragraph with the link
           } else {
             UiNotifier.showErrorNotification("The code could not be created.");
           }
-
         });
 
     return container;
@@ -208,11 +214,11 @@ public class JoinALaundryComunityView extends Composite<VerticalLayout>
       Location location = event.getLocation();
       QueryParameters queryParameters = location.getQueryParameters();
       // gets the invitation code from invitation link
-      Map<String, List<String>> parametersMap = queryParameters
-          .getParameters();
-      invitationCodeFromURL = parametersMap.get("icode") != null && !parametersMap.get("icode").isEmpty()
-          ? parametersMap.get("icode").get(0)
-          : null;
+      Map<String, List<String>> parametersMap = queryParameters.getParameters();
+      invitationCodeFromURL =
+          parametersMap.get("icode") != null && !parametersMap.get("icode").isEmpty()
+              ? parametersMap.get("icode").get(0)
+              : null;
     }
   }
 }

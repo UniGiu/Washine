@@ -7,6 +7,7 @@ import java.time.Instant;
 import java.util.List;
 
 import org.jooq.DSLContext;
+import org.jooq.Record;
 import org.jooq.Record1;
 import org.jooq.Result;
 import org.jooq.SQLDialect;
@@ -319,6 +320,25 @@ public class WashineGroupDb implements WashineGroupDbIf {
     return false;
   }
 
+  public boolean clearAcceptedInvitations(String name, String communityId) throws SQLException {
+    Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
+    DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
+    Result<Record> invitations =
+        create
+            .select()
+            .from(Invites.INVITES)
+            .join(Communityuserslist.COMMUNITYUSERSLIST)
+            .on(
+                Invites.INVITES.LAUNDRYPERSONID.eq(
+                    Communityuserslist.COMMUNITYUSERSLIST.LAUNDRYPERSONID))
+            .where(Invites.INVITES.INVITEDNAME.eq(name))
+            .fetch();
+
+    //int result = create.deleteFrom(Invites.INVITES).where(invitations.isNotEmty).execute();
+    //return result == 1;
+    return true;
+  }
+
   public boolean nameInJoinedCommunities(String name, String userId) {
     Connection conn;
     try {
@@ -334,6 +354,27 @@ public class WashineGroupDb implements WashineGroupDbIf {
                       .and(Communityuserslist.COMMUNITYUSERSLIST.COMMUNITYNAME.eq(name)))
               .fetch();
       return communities.isNotEmpty();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return false;
+  }
+
+  public boolean nameInInvitations(String name, String communityId) {
+    Connection conn;
+    try {
+      conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
+      DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
+      Result<InvitesRecord> invitations =
+          create
+              .selectFrom(Invites.INVITES)
+              .where(
+                  Invites.INVITES
+                      .LAUNDRYPERSONID
+                      .eq(communityId)
+                      .and(Invites.INVITES.INVITEDNAME.eq(name)))
+              .fetch();
+      return invitations.isNotEmpty();
     } catch (SQLException e) {
       e.printStackTrace();
     }

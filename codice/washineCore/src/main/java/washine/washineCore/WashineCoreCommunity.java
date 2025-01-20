@@ -105,4 +105,22 @@ public class WashineCoreCommunity implements WashineCoreCommunityIf {
     }
     return salt.toString();
   }
+
+  public String updateCode(String invitedName) {
+    String newCode = generateUniqueCode();
+    WashineGroupDb washineCommunity = new WashineGroupDb();
+    try {
+      if (washineCommunity.updateCode(invitedName, newCode)) {
+        return newCode;
+      }
+    } catch (SQLException e) {
+      return null;
+    }
+    return null;
+  }
+
+  public boolean nameInInvitations(String name, String communityId) {
+    WashineGroupDb washineCommunity = new WashineGroupDb();
+    return washineCommunity.nameInInvitations(name, communityId);
+  }
 }
