@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS "WASHING" (
 CREATE TABLE IF NOT EXISTS "WASHINGOPTIONS" (
 	"WashingId"	TEXT,
 	"VisibilityTime"	INTEGER NOT NULL,
-	"DateTime"	DATE NOT NULL,
+	"DateTime"	TEXT NOT NULL,
 	"DurationMinutes"	INTEGER NOT NULL,
 	"InitialLoad"	DOUBLE NOT NULL,
 	"MaxLoad"	DOUBLE NOT NULL,
@@ -57,15 +57,16 @@ CREATE TABLE IF NOT EXISTS "WASHINGOPTIONS" (
 	"Drying"	TEXT,
 	"Ironing"	BOOLEAN,
 	"ParticipantMaxLoad"	DOUBLE,
-	"WashingAccessOpenDate"	DATE,
-	"WashingAccessCloseDate"	DATE,
+	"WashingAccessOpenDate"	TEXT,
+	"WashingAccessCloseDate"	TEXT,
 	PRIMARY KEY("WashingId"),
 	FOREIGN KEY("WashingId") REFERENCES "WASHING"("WashingId")
 );
 CREATE TABLE IF NOT EXISTS "WASHINGPARTICIPATION" (
 	"WashingId"	TEXT,
-	"ParticipantId"	TEXT NOT NULL,
-	PRIMARY KEY("WashingId"),
+	"ParticipantId"	TEXT,
+	"Load" DOUBLE,
+	PRIMARY KEY("WashingId","ParticipantId"),
 	FOREIGN KEY("ParticipantId") REFERENCES "USER"("Id"),
 	FOREIGN KEY("WashingId") REFERENCES "WASHING"("WashingId")
 );
