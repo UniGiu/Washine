@@ -34,18 +34,23 @@ import java.util.Map;
 
 import org.vaadin.lineawesome.LineAwesomeIconUrl;
 
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+
+
 @PageTitle("Invitations")
 @Route("invitations")
 @Menu(order = 5, icon = LineAwesomeIconUrl.SIGN_IN_ALT_SOLID)
 public class JoinALaundryComunityView extends Composite<VerticalLayout>
     implements BeforeEnterObserver{
-
+	private static Logger logger = LogManager.getLogger();
   private WashineUserIf userData;
   // the code in the invitation link
   private String invitationCodeFromURL = "";
 
   public JoinALaundryComunityView() {
-    UiNotifier.showSuccessNotification("3: "+invitationCodeFromURL);
+	 
+	  logger.debug("3: "+invitationCodeFromURL);
     HorizontalLayout layoutRow = new HorizontalLayout();
     H2 h2 = new H2();
     Paragraph textLarge = new Paragraph();
@@ -98,15 +103,15 @@ public class JoinALaundryComunityView extends Composite<VerticalLayout>
     formLayout2Col.add(textFieldCode);
     formLayout2Col.add(textFieldCommunity);
     formLayout2Col.add(buttonJoin);
-    UiNotifier.showSuccessNotification("4: "+invitationCodeFromURL);
+    logger.debug("4: "+invitationCodeFromURL);
     //code from URL
     if (invitationCodeFromURL != null) {
       textFieldCode.setValue(invitationCodeFromURL);
     }
     buttonJoin.addClickListener(
         event -> {
-          String code = textFieldCode.getValue();
-          String communityName = textFieldCommunity.getValue().replaceAll("-", "");
+          String code = textFieldCode.getValue().replaceAll("-", "");
+          String communityName = textFieldCommunity.getValue();
           String uid = userData.getId();
           //TODO:validare nel core
        
@@ -118,9 +123,8 @@ public class JoinALaundryComunityView extends Composite<VerticalLayout>
           if (code.isBlank()) {
               UiNotifier.showErrorNotification("You should provide an invitation code");
               return;
-            }
-           
-          //verifica esistenza codice
+            }           
+          //Checks for code
           WashineCoreCommunityIf community = new WashineCoreCommunity();
         
           String communityId = community.getInvitationCodeCommunityId(code);
@@ -155,10 +159,7 @@ public class JoinALaundryComunityView extends Composite<VerticalLayout>
 
     TextField textFieldParticipant = new TextField();
     Button buttonGenerate = new Button();
-    /*
-    Button buttonCopyLink= new Button();
-    Button buttonCopyCode=new Button();
-    */
+    
     Paragraph invitationLinkText = new Paragraph();
     Paragraph invitationCodeText = new Paragraph();
     h3Generate.setText(
@@ -171,22 +172,11 @@ public class JoinALaundryComunityView extends Composite<VerticalLayout>
     buttonGenerate.setText("Generate");
     buttonGenerate.setWidth("min-content");
     buttonGenerate.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-  /*   buttonCopyLink.setText("Copy link");
-    buttonCopyLink.setIcon(VaadinIcon.COPY.create());
-    buttonCopyLink.setWidth("min-content");
-    buttonCopyCode.setText("Copy code");
-    buttonCopyCode.setIcon(VaadinIcon.COPY.create());
-    buttonCopyCode.setWidth("min-content");
-   */
+  
     formLayout2Col.add(textFieldParticipant);
     formLayout2Col.add(buttonGenerate);
     container.add(formLayout2Col,invitationCodeText,invitationLinkText,link );
-  /*  buttonCopyCode.addClickListener(
-      e -> UI.getCurrent().getPage().executeJs("window.copyToClipboard($0)", link.getHref())
-  );
-  buttonCopyCode.addClickListener(
-    e -> UI.getCurrent().getPage().executeJs("window.copyToClipboard($0)", invitationCodeText.getText())
-);*/
+  
     buttonGenerate.addClickListener(
         event -> {
           String newUserName = textFieldParticipant.getValue();
@@ -253,11 +243,11 @@ public class JoinALaundryComunityView extends Composite<VerticalLayout>
     	    QueryParameters queryParameters = location.getQueryParameters();
     	    // gets the invitation code from invitation link
     	    Map<String, List<String>> parametersMap = queryParameters.getParameters();  
-          UiNotifier.showSuccessNotification("1: "+invitationCodeFromURL);
+    	    logger.debug("1: "+invitationCodeFromURL);
     	    if( parametersMap.get("icode") != null && !parametersMap.get("icode").isEmpty()){      
     	      invitationCodeFromURL = parametersMap.get("icode").get(0);
     	    }    
-          UiNotifier.showSuccessNotification("2: "+invitationCodeFromURL);
+    	    logger.debug("2: "+invitationCodeFromURL);
     }
   }
 }
