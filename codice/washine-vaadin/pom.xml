@@ -5,8 +5,8 @@
 	<modelVersion>4.0.0</modelVersion>
 	<!-- Project from
 	https://start.vaadin.com/project/453dabac-d9f5-482b-86a6-5b88d7696081 -->
-	<groupId>uni.washine.application</groupId>
-	<artifactId>washine</artifactId>
+	<groupId>washine</groupId>
+	<artifactId>washine-vaadin</artifactId>
 	<name>washine</name>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
@@ -96,6 +96,17 @@
 			<artifactId>washineCore</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+
+<dependency>
+<groupId>org.apache.logging.log4j</groupId>
+<artifactId>log4j-api</artifactId>
+<version>2.6.1</version>
+</dependency>
+<dependency>
+<groupId>org.apache.logging.log4j</groupId>
+<artifactId>log4j-core</artifactId>
+<version>2.6.1</version>
+</dependency>
 
 
 		<!-- /WASHINE CORE-->
