@@ -39,6 +39,16 @@ public class WashineCoreAuth implements WashineCoreAuthIf {
     return null;
   }
 
+  //Not already in interface - for test only
+  public boolean removeUserByEmail( String email) {
+    WashineUserDb userDb = new WashineUserDb();
+    try {          
+          return  userDb.removeUserByEmail(email);   
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return false;
+  }
   @Override
   public boolean logOut() {
     // maybe it's just relevant in the session
