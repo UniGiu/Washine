@@ -43,14 +43,16 @@ import org.apache.logging.log4j.LogManager;
 @Menu(order = 5, icon = LineAwesomeIconUrl.SIGN_IN_ALT_SOLID)
 public class JoinALaundryComunityView extends Composite<VerticalLayout>
     implements BeforeEnterObserver{
+	
 	private static Logger logger = LogManager.getLogger();
+	
   private WashineUserIf userData;
   // the code in the invitation link
   private String invitationCodeFromURL = "";
 
   public JoinALaundryComunityView() {
 	 
-	  logger.debug("3: "+invitationCodeFromURL);
+	logger.debug("3: "+invitationCodeFromURL);
     HorizontalLayout layoutRow = new HorizontalLayout();
     H2 h2 = new H2();
     Paragraph textLarge = new Paragraph();
