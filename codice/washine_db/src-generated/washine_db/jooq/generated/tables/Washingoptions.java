@@ -64,7 +64,7 @@ public class Washingoptions extends TableImpl<WashingoptionsRecord> {
     /**
      * The column <code>WASHINGOPTIONS.DateTime</code>.
      */
-    public final TableField<WashingoptionsRecord, String> DATETIME = createField(DSL.name("DateTime"), SQLDataType.CLOB.nullable(false), this, "");
+    public final TableField<WashingoptionsRecord, Integer> DATETIME = createField(DSL.name("DateTime"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
      * The column <code>WASHINGOPTIONS.DurationMinutes</code>.
@@ -154,12 +154,12 @@ public class Washingoptions extends TableImpl<WashingoptionsRecord> {
     /**
      * The column <code>WASHINGOPTIONS.WashingAccessOpenDate</code>.
      */
-    public final TableField<WashingoptionsRecord, String> WASHINGACCESSOPENDATE = createField(DSL.name("WashingAccessOpenDate"), SQLDataType.CLOB, this, "");
+    public final TableField<WashingoptionsRecord, Integer> WASHINGACCESSOPENDATE = createField(DSL.name("WashingAccessOpenDate"), SQLDataType.INTEGER, this, "");
 
     /**
      * The column <code>WASHINGOPTIONS.WashingAccessCloseDate</code>.
      */
-    public final TableField<WashingoptionsRecord, String> WASHINGACCESSCLOSEDATE = createField(DSL.name("WashingAccessCloseDate"), SQLDataType.CLOB, this, "");
+    public final TableField<WashingoptionsRecord, Integer> WASHINGACCESSCLOSEDATE = createField(DSL.name("WashingAccessCloseDate"), SQLDataType.INTEGER, this, "");
 
     private Washingoptions(Name alias, Table<WashingoptionsRecord> aliased) {
         this(alias, aliased, null);
@@ -265,14 +265,14 @@ public class Washingoptions extends TableImpl<WashingoptionsRecord> {
     // -------------------------------------------------------------------------
 
     @Override
-    public Row22<String, Integer, String, Integer, Double, Double, String, String, String, String, String, String, Boolean, String, String, String, String, String, Boolean, Double, String, String> fieldsRow() {
+    public Row22<String, Integer, Integer, Integer, Double, Double, String, String, String, String, String, String, Boolean, String, String, String, String, String, Boolean, Double, Integer, Integer> fieldsRow() {
         return (Row22) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function22<? super String, ? super Integer, ? super String, ? super Integer, ? super Double, ? super Double, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super Boolean, ? super String, ? super String, ? super String, ? super String, ? super String, ? super Boolean, ? super Double, ? super String, ? super String, ? extends U> from) {
+    public <U> SelectField<U> mapping(Function22<? super String, ? super Integer, ? super Integer, ? super Integer, ? super Double, ? super Double, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super Boolean, ? super String, ? super String, ? super String, ? super String, ? super String, ? super Boolean, ? super Double, ? super Integer, ? super Integer, ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -280,7 +280,7 @@ public class Washingoptions extends TableImpl<WashingoptionsRecord> {
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function22<? super String, ? super Integer, ? super String, ? super Integer, ? super Double, ? super Double, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super Boolean, ? super String, ? super String, ? super String, ? super String, ? super String, ? super Boolean, ? super Double, ? super String, ? super String, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function22<? super String, ? super Integer, ? super Integer, ? super Integer, ? super Double, ? super Double, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super Boolean, ? super String, ? super String, ? super String, ? super String, ? super String, ? super Boolean, ? super Double, ? super Integer, ? super Integer, ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }

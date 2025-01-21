@@ -24,9 +24,10 @@ import org.apache.logging.log4j.LogManager;
 
 /** Group class used to interact with the database */
 public class WashineGroupDb implements WashineGroupDbIf {
-	private static Logger logger = LogManager.getLogger();
+  private static Logger logger = LogManager.getLogger();
+
   public WashineGroupDb() {
-		
+
     /* this constructor is empty */
   }
   ;
@@ -80,7 +81,7 @@ public class WashineGroupDb implements WashineGroupDbIf {
    *     recognize) his group's participants
    * @param code the invitation's code
    */
-  public void addInvite(String laundryPersonId, String invitedName, String code)
+  public void addInvite(String laundryPersonId, String invitedName, String code, int timestamp)
       throws SQLException {
     Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
     DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
@@ -90,8 +91,9 @@ public class WashineGroupDb implements WashineGroupDbIf {
             Invites.INVITES,
             Invites.INVITES.LAUNDRYPERSONID,
             Invites.INVITES.INVITEDNAME,
-            Invites.INVITES.CODE)
-        .values(laundryPersonId, invitedName, code)
+            Invites.INVITES.CODE,
+            Invites.INVITES.TS)
+        .values(laundryPersonId, invitedName, code, timestamp)
         .execute();
   }
 
@@ -336,16 +338,13 @@ public class WashineGroupDb implements WashineGroupDbIf {
       Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
       DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
       Integer secondsToLive = timeToLive * 60 * 60 * 24;
-      logger.info("secondsToLive: "+secondsToLive);
+      logger.info("secondsToLive: " + secondsToLive);
       long unixTimestamp = Instant.now().getEpochSecond();
-      Integer diff=(int)unixTimestamp - secondsToLive;
-    		  logger.info("secondsToLive: "+secondsToLive);
-      logger.info("unixTimestamp: "+unixTimestamp);
-      logger.info("diff: "+diff);
-      create
-          .deleteFrom(Invites.INVITES)
-          .where(Invites.INVITES.TS.le(diff))
-          .execute();
+      Integer diff = (int) unixTimestamp - secondsToLive;
+      logger.info("secondsToLive: " + secondsToLive);
+      logger.info("unixTimestamp: " + unixTimestamp);
+      logger.info("diff: " + diff);
+      create.deleteFrom(Invites.INVITES).where(Invites.INVITES.TS.le(diff)).execute();
       return true;
     } catch (SQLException exc) {
       exc.printStackTrace();

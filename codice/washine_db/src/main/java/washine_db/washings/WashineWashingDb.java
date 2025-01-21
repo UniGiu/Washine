@@ -58,7 +58,7 @@ public class WashineWashingDb implements WashineWashingDbIf {
   public boolean updateWashingOptions(
       String washingId,
       int visibilityTime,
-      String dateTime,
+      int dateTime,
       int durationMinutes,
       double initialLoad,
       double maxLoad,
@@ -76,8 +76,8 @@ public class WashineWashingDb implements WashineWashingDbIf {
       String drying,
       boolean ironing,
       double participantMaxLoad,
-      String washingAccessOpenDate,
-      String washingAccessCloseDate)
+      int washingAccessOpenDate,
+      int washingAccessCloseDate)
       throws WashineDataException {
     try {
       Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);

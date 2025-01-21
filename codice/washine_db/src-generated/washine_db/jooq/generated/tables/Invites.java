@@ -69,7 +69,7 @@ public class Invites extends TableImpl<InvitesRecord> {
     /**
      * The column <code>INVITES.TS</code>.
      */
-    public final TableField<InvitesRecord, Integer> TS = createField(DSL.name("TS"), SQLDataType.INTEGER.defaultValue(DSL.field(DSL.raw("CURRENT_TIMESTAMP"), SQLDataType.INTEGER)), this, "");
+    public final TableField<InvitesRecord, Integer> TS = createField(DSL.name("TS"), SQLDataType.INTEGER, this, "");
 
     private Invites(Name alias, Table<InvitesRecord> aliased) {
         this(alias, aliased, null);

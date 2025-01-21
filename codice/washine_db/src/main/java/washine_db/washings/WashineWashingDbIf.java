@@ -63,7 +63,7 @@ public interface WashineWashingDbIf {
   public boolean updateWashingOptions(
       String washingId,
       int visibilityTime,
-      String dateTime,
+      int dateTime,
       int durationMinutes,
       double initialLoad,
       double maxLoad,
@@ -81,8 +81,8 @@ public interface WashineWashingDbIf {
       String drying,
       boolean ironing,
       double participantMaxLoad,
-      String washingAccessOpenDate,
-      String washingAccessCloseDate)
+      int washingAccessOpenDate,
+      int washingAccessCloseDate)
       throws WashineDataException;
 
   /**

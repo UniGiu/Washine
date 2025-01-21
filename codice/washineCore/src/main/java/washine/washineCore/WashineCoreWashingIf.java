@@ -3,6 +3,8 @@ package washine.washineCore;
 
 import java.util.List;
 import org.jooq.Result;
+
+import washine.washineCore.exceptions.WashineCoreException;
 import washine_db.jooq.generated.tables.records.WashingoptionsRecord;
 
 
@@ -17,8 +19,9 @@ public interface WashineCoreWashingIf {
      * @param washingId The ID of the washing.
      * @param laundryPersonId The ID of the laundry person.
      * @return true if the washing was successfully created, false otherwise.
+     * @throws WashineCoreException 
      */
-    boolean createWashing(String washingId, String laundryPersonId);
+    boolean createWashing(String washingId, String laundryPersonId) throws WashineCoreException;
 
     /**
      * Allows a participant to join a washing with a specified load.
@@ -27,24 +30,27 @@ public interface WashineCoreWashingIf {
      * @param participantId The ID of the participant.
      * @param load The load weight the participant wants to contribute.
      * @return true if the participation was successfully recorded, false otherwise.
+     * @throws WashineCoreException 
      */
-    boolean participateToWashing(String washingId, String participantId, double load);
+    boolean participateToWashing(String washingId, String participantId, double load) throws WashineCoreException;
 
     /**
      * Retrieves the list of washing IDs associated with a specific laundry person.
      * 
      * @param laundryPersonId The ID of the laundry person.
      * @return A list of washing IDs, or null if an error occurs.
+     * @throws WashineCoreException 
      */
-    List<String> getLaundryPersonWashingIds(String laundryPersonId);
+    List<String> getLaundryPersonWashingIds(String laundryPersonId) throws WashineCoreException;
 
     /**
      * Retrieves the list of washing IDs in which a user is participating.
      * 
      * @param userId The ID of the user.
      * @return A list of washing IDs, or null if an error occurs.
+     * @throws WashineCoreException 
      */
-    List<String> getParticipatedWashingIds(String userId);
+    List<String> getParticipatedWashingIds(String userId) throws WashineCoreException;
 
     /**
      * Retrieves the weight of a user's participation in a specific washing.
@@ -52,23 +58,26 @@ public interface WashineCoreWashingIf {
      * @param washingId The ID of the washing.
      * @param userId The ID of the user.
      * @return The weight of the user's participation, or 0 if an error occurs.
+     * @throws WashineCoreException 
      */
-    double getParticipationWeight(String washingId, String userId);
+    double getParticipationWeight(String washingId, String userId) throws WashineCoreException;
 
     /**
      * Deletes a washing by its ID if it exists.
      * 
      * @param washingId The ID of the washing to be deleted.
      * @return true if the washing was successfully deleted, false otherwise.
+     * @throws WashineCoreException 
      */
-    boolean deleteWashing(String washingId);
+    boolean deleteWashing(String washingId) throws WashineCoreException;
     /**
      * Retrieves the washing options for a specific washing.
      * 
      * @param washingId The ID of the washing.
      * @return The washing options for the given washing ID, or null if an error occurs.
+     * @throws WashineCoreException 
      */
-    Result<WashingoptionsRecord> getWashingOptions(String washingId);
+    Result<WashingoptionsRecord> getWashingOptions(String washingId) throws WashineCoreException;
     /**
      * Updates the washing options for a specific washing.
      * 
@@ -95,11 +104,12 @@ public interface WashineCoreWashingIf {
      * @param washingAccessOpenDate Access start date.
      * @param washingAccessCloseDate Access end date.
      * @return true if the washing options were successfully updated, false otherwise.
+     * @throws WashineCoreException 
      */
     boolean updateWashingOptions(
             String washingId,
             int visibilityTime,
-            String dateTime,
+            int dateTime,
             int durationMinutes,
             double initialLoad,
             double maxLoad,
@@ -117,16 +127,17 @@ public interface WashineCoreWashingIf {
             String drying,
             boolean ironing,
             double participantMaxLoad,
-            String washingAccessOpenDate,
-            String washingAccessCloseDate
-        ) ;
+            int washingAccessOpenDate,
+            int washingAccessCloseDate
+        ) throws WashineCoreException ;
     /**
      * Deletes a participant's involvement in a washing.
      * 
      * @param washingId The ID of the washing.
      * @param userId The ID of the user to delete.
      * @return true if the participation was successfully deleted, false otherwise.
+     * @throws WashineCoreException 
      */
-    boolean deleteParticipation(String washingId, String userId);
+    boolean deleteParticipation(String washingId, String userId) throws WashineCoreException;
 
 }

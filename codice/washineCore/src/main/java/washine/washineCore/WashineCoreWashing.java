@@ -3,23 +3,27 @@ package washine.washineCore;
 import java.util.Random;
 import java.util.List;
 import org.jooq.Result;
+
+import washine.washineCore.exceptions.WashineCoreException;
+import washine_db.exceptions.WashineDataException;
 import washine_db.jooq.generated.tables.records.WashingoptionsRecord;
+import washine_db.washings.WashineWashingDb;
 
 
 public class WashineCoreWashing implements WashineCoreWashingIf{
 
 	@Override
-	public boolean createWashing(String washingId, String laundryPersonId) {
+	public boolean createWashing(String washingId, String laundryPersonId) throws WashineCoreException {
 	    WashineWashingDb washineDb = new WashineWashingDb();
 
 	    try {
 	        return washineDb.createWashing(washingId, laundryPersonId);
 	    } catch (WashineDataException e) {
-	        return WashineCoreException;
+	        throw new WashineCoreException("WashineCoreException");
 	    }
 	}
 	@Override
-    public boolean participateToWashing(String washingId, String participantId, double load) {
+    public boolean participateToWashing(String washingId, String participantId, double load) throws WashineCoreException {
 		 WashineWashingDb washineDb = new WashineWashingDb();
 		 
         try {
@@ -27,40 +31,40 @@ public class WashineCoreWashing implements WashineCoreWashingIf{
             return washineDb.participateToWashing(washingId, participantId, load);
         } catch (WashineDataException e) {
             
-            return WashineCoreException;
+        	throw new WashineCoreException("WashineCoreException");
         }
     }
 	@Override
-    public List<String> getLaundryPersonWashingIds(String laundryPersonId) {
+    public List<String> getLaundryPersonWashingIds(String laundryPersonId) throws WashineCoreException {
 		WashineWashingDb washineDb = new WashineWashingDb();
         try {
             return washineDb.getLaundryPersonWashingIds(laundryPersonId);
         } catch (WashineDataException e) {
-            return WashineCoreException;
+        	throw new WashineCoreException("WashineCoreException");
         }
     }
 	@Override
-    public List<String> getParticipatedWashingIds(String userId) {
+    public List<String> getParticipatedWashingIds(String userId) throws WashineCoreException {
 		 WashineWashingDb washineDb = new WashineWashingDb();
         try {
             return washineDb.getParticipatedWashingIds(userId);
         } catch (WashineDataException e) {
-            return WashineCoreException;
+        	throw new WashineCoreException("WashineCoreException");
         }
     }
     @Override
-    public double getParticipationWeight(String washingId, String userId) {
+    public double getParticipationWeight(String washingId, String userId) throws WashineCoreException {
     	WashineWashingDb washineDb = new WashineWashingDb();
         try {
            
             return washineDb.getParticipationWeight(washingId, userId);
         } catch (WashineDataException e) {
             
-            return WashineCoreException;
+        	throw new WashineCoreException("WashineCoreException");
         }
     }
 	@Override
-	public boolean deleteWashing(String washingId) {
+	public boolean deleteWashing(String washingId) throws WashineCoreException {
 	    WashineWashingDb washineDb = new WashineWashingDb();
 	    try {
 	        
@@ -70,17 +74,17 @@ public class WashineCoreWashing implements WashineCoreWashingIf{
 	            return false;
 	        }
 	    } catch (WashineDataException e) {
-	        return WashineCoreException;
+	    	throw new WashineCoreException("WashineCoreException");
 	    }
 	}
 	
 	@Override
-    public Result<WashingoptionsRecord> getWashingOptions(String washingId) {
+    public Result<WashingoptionsRecord> getWashingOptions(String washingId) throws WashineCoreException {
         WashineWashingDb washineDb = new WashineWashingDb();
         try {
             return washineDb.getWashingOptions(washingId);
         } catch (WashineDataException e) {
-        	return WashineCoreException;
+        	throw new WashineCoreException("WashineCoreException");
         }
     }
 
@@ -88,7 +92,7 @@ public class WashineCoreWashing implements WashineCoreWashingIf{
     public boolean updateWashingOptions(
         String washingId,
         int visibilityTime,
-        String dateTime,
+        int dateTime,
         int durationMinutes,
         double initialLoad,
         double maxLoad,
@@ -106,9 +110,9 @@ public class WashineCoreWashing implements WashineCoreWashingIf{
         String drying,
         boolean ironing,
         double participantMaxLoad,
-        String washingAccessOpenDate,
-        String washingAccessCloseDate
-    ) {
+        int washingAccessOpenDate,
+        int washingAccessCloseDate
+    ) throws WashineCoreException {
         WashineWashingDb washineDb = new WashineWashingDb();
         try {
             return washineDb.updateWashingOptions(
@@ -118,17 +122,17 @@ public class WashineCoreWashing implements WashineCoreWashingIf{
                 drying, ironing, participantMaxLoad, washingAccessOpenDate, washingAccessCloseDate
             );
         } catch (WashineDataException e) {
-        	return WashineCoreException;
+        	throw new WashineCoreException("WashineCoreException");
         }
     }
 	@Override
-    public boolean deleteParticipation(String washingId, String userId) {
+    public boolean deleteParticipation(String washingId, String userId) throws WashineCoreException {
         WashineWashingDb washineDb = new WashineWashingDb();
         try {
             return washineDb.deleteParticipation(washingId, userId);
         } catch (WashineDataException e) {
             
-            return WashineCoreException;
+        	throw new WashineCoreException("WashineCoreException");
         }
     }
     

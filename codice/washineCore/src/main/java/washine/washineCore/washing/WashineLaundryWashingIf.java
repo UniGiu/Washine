@@ -41,5 +41,5 @@ public interface WashineLaundryWashingIf {
      * 
      * @return the washing options for the operation
      */
-    LaundryWashingOptions getWashingOptions();
+    WashineWashingOptions getWashingOptions();
 }

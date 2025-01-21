@@ -15,7 +15,7 @@ public interface WashineGroupDbIf {
       String laundryPersonId, String participantId, String participantName, String communityName)
       throws SQLException;
 
-  public void addInvite(String laundryPersonId, String invitedName, String code)
+  public void addInvite(String laundryPersonId, String invitedName, String code, int timestamp)
       throws SQLException;
 
   public Result<InvitesRecord> getInvites(String laundryPersonId) throws SQLException;

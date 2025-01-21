@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS "INVITES" (
 	"LaundryPersonId"	TEXT,
 	"InvitedName"	TEXT,
 	"Code"	TEXT NOT NULL,
-	"TS"	INTEGER DEFAULT CURRENT_TIMESTAMP,
+	"TS"	INTEGER,
 	PRIMARY KEY("LaundryPersonId","InvitedName"),
 	FOREIGN KEY("LaundryPersonId") REFERENCES "USER"("Id")
 );
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS "WASHING" (
 CREATE TABLE IF NOT EXISTS "WASHINGOPTIONS" (
 	"WashingId"	TEXT,
 	"VisibilityTime"	INTEGER NOT NULL,
-	"DateTime"	TEXT NOT NULL,
+	"DateTime"	INTEGER NOT NULL,
 	"DurationMinutes"	INTEGER NOT NULL,
 	"InitialLoad"	DOUBLE NOT NULL,
 	"MaxLoad"	DOUBLE NOT NULL,
@@ -57,8 +57,8 @@ CREATE TABLE IF NOT EXISTS "WASHINGOPTIONS" (
 	"Drying"	TEXT,
 	"Ironing"	BOOLEAN,
 	"ParticipantMaxLoad"	DOUBLE,
-	"WashingAccessOpenDate"	TEXT,
-	"WashingAccessCloseDate"	TEXT,
+	"WashingAccessOpenDate"	INTEGER,
+	"WashingAccessCloseDate"	INTEGER,
 	PRIMARY KEY("WashingId"),
 	FOREIGN KEY("WashingId") REFERENCES "WASHING"("WashingId")
 );

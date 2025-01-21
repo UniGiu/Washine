@@ -2,6 +2,7 @@ package washine.washineCore;
 
 import java.util.Random;
 import java.sql.SQLException;
+import java.time.Instant;
 
 import washine_db.groups.WashineGroupDb;
 
@@ -38,7 +39,7 @@ public class WashineCoreCommunity implements WashineCoreCommunityIf {
       if (washineCommunity.alreadyInvited(communityUid, name)) {
         return null;
       } else {
-        washineCommunity.addInvite(communityUid, name, code);
+        washineCommunity.addInvite(communityUid, name, code, (int) Instant.now().getEpochSecond());
         return code;
       }
     } catch (SQLException e) {

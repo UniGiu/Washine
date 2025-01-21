@@ -7,9 +7,9 @@ public class WashineWashing implements WashineLaundryWashingIf {
 	private List<String> enabledParticipants;
 	private boolean active;
     private int currentLoad;
-    private LaundryWashingOptions washingOptions;
+    private WashineWashingOptions washingOptions;
 
-    public WashineWashing(String id, List<String> enabledParticipants, int currentLoad, LaundryWashingOptions washingOptions) {
+    public WashineWashing(String id, List<String> enabledParticipants, int currentLoad, WashineWashingOptions washingOptions) {
         this.id = id;
         this.enabledParticipants = enabledParticipants;
         this.currentLoad = currentLoad;
@@ -38,7 +38,7 @@ public class WashineWashing implements WashineLaundryWashingIf {
     }
 
     @Override
-    public LaundryWashingOptions getWashingOptions() {
+    public WashineWashingOptions getWashingOptions() {
         return washingOptions;
     }
 
