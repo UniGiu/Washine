@@ -10,11 +10,11 @@ import java.util.function.Function;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
-import org.jooq.Function2;
+import org.jooq.Function3;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Records;
-import org.jooq.Row2;
+import org.jooq.Row3;
 import org.jooq.Schema;
 import org.jooq.SelectField;
 import org.jooq.Table;
@@ -59,7 +59,12 @@ public class Washingparticipation extends TableImpl<WashingparticipationRecord> 
     /**
      * The column <code>WASHINGPARTICIPATION.ParticipantId</code>.
      */
-    public final TableField<WashingparticipationRecord, String> PARTICIPANTID = createField(DSL.name("ParticipantId"), SQLDataType.CLOB.nullable(false), this, "");
+    public final TableField<WashingparticipationRecord, String> PARTICIPANTID = createField(DSL.name("ParticipantId"), SQLDataType.CLOB, this, "");
+
+    /**
+     * The column <code>WASHINGPARTICIPATION.Load</code>.
+     */
+    public final TableField<WashingparticipationRecord, Double> LOAD = createField(DSL.name("Load"), SQLDataType.DOUBLE, this, "");
 
     private Washingparticipation(Name alias, Table<WashingparticipationRecord> aliased) {
         this(alias, aliased, null);
@@ -172,18 +177,18 @@ public class Washingparticipation extends TableImpl<WashingparticipationRecord> 
     }
 
     // -------------------------------------------------------------------------
-    // Row2 type methods
+    // Row3 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row2<String, String> fieldsRow() {
-        return (Row2) super.fieldsRow();
+    public Row3<String, String, Double> fieldsRow() {
+        return (Row3) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function2<? super String, ? super String, ? extends U> from) {
+    public <U> SelectField<U> mapping(Function3<? super String, ? super String, ? super Double, ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -191,7 +196,7 @@ public class Washingparticipation extends TableImpl<WashingparticipationRecord> 
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function2<? super String, ? super String, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function3<? super String, ? super String, ? super Double, ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }
