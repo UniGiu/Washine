@@ -7,6 +7,7 @@ import org.jooq.Result;
 
 import washine_db.jooq.generated.tables.records.InvitesRecord;
 
+/** Interface for the interaction between the community/invitations part of the database */
 public interface WashineGroupDbIf {
   public boolean createGroup(String userId, String groupName) throws SQLException;
 

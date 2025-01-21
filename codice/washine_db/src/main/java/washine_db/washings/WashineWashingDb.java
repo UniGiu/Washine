@@ -20,6 +20,10 @@ import washine_db.washine_db.JOOQCodeGeneration;
 
 public class WashineWashingDb implements WashineWashingDbIf {
 
+  public WashineWashingDb() {
+    /* this constructor is empty */
+  }
+
   @Override
   public boolean participateToWashing(String washingId, String participantId, double load)
       throws WashineDataException {
