@@ -79,7 +79,17 @@ public class WashineUserDb implements WashineUserDbIf {
       return true;
     }
   }
+  public boolean removeUserByEmail(String userId) throws SQLException {
+	    Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
+	    DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
+	    int result =
+	        create
+	            .deleteFrom(User.USER)
+	            .where(User.USER.EMAIL.eq(userId))
+	            .execute();
 
+	    return result == 1;
+	  }
   /**
    * Check if a user has already been added to the database before
    *

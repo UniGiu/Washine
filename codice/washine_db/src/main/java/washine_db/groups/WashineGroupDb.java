@@ -19,9 +19,14 @@ import washine_db.jooq.generated.tables.records.CommunityuserslistRecord;
 import washine_db.jooq.generated.tables.records.InvitesRecord;
 import washine_db.washine_db.JOOQCodeGeneration;
 
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+
 /** Group class used to interact with the database */
 public class WashineGroupDb implements WashineGroupDbIf {
+	private static Logger logger = LogManager.getLogger();
   public WashineGroupDb() {
+		
     /* this constructor is empty */
   }
   ;
@@ -331,11 +336,15 @@ public class WashineGroupDb implements WashineGroupDbIf {
       Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
       DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
       Integer secondsToLive = timeToLive * 60 * 60 * 24;
+      logger.info("secondsToLive: "+secondsToLive);
       long unixTimestamp = Instant.now().getEpochSecond();
-
+      Integer diff=(int)unixTimestamp - secondsToLive;
+    		  logger.info("secondsToLive: "+secondsToLive);
+      logger.info("unixTimestamp: "+unixTimestamp);
+      logger.info("diff: "+diff);
       create
           .deleteFrom(Invites.INVITES)
-          .where(Invites.INVITES.TS.le((int) (unixTimestamp - secondsToLive)))
+          .where(Invites.INVITES.TS.le(diff))
           .execute();
       return true;
     } catch (SQLException exc) {
