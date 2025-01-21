@@ -39,7 +39,7 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-    	<groupId>washine_db</groupId>
+    	<groupId>washine</groupId>
     	<artifactId>washine_db</artifactId>
     	<version>0.0.1-SNAPSHOT</version>
     </dependency>
