@@ -6,28 +6,28 @@ public class WashineDataException extends Exception {
   private static final long serialVersionUID = -5429389235586710163L;
 
   /**
-   * Costruttore di {@code WashineDataException} con messaggio di dettaglio
+   * to create {@code WashineDataException} with a detailed message
    *
-   * @param s il messaggio di dettaglio
+   * @param s the message
    */
   public WashineDataException(String s) {
     super(s);
   }
 
   /**
-   * Costruttore di {@code WashineDataException} con causa
+   * to create {@code WashineDataException} with a cause
    *
-   * @param cause la casa
+   * @param cause the cause
    */
   public WashineDataException(Throwable cause) {
     super(cause);
   }
 
   /**
-   * Costruttore di {@code WashineDataException} con messaggio di dettaglio e causa
+   * To create {@code WashineDataException} with a detailed message and a cause
    *
-   * @param message il messaggio di dettaglio
-   * @param cause la causa
+   * @param message the message
+   * @param cause the cause
    */
   public WashineDataException(String message, Throwable cause) {
     super(message, cause);

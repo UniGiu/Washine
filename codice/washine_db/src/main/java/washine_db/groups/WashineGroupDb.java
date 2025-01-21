@@ -275,6 +275,14 @@ public class WashineGroupDb implements WashineGroupDbIf {
     return null;
   }
 
+  /**
+   * Checks if a name is already present in the list of users of a community
+   *
+   * @throws SQLException
+   * @param name to check
+   * @param communityUid id of the community
+   * @return true only if the name is already in the community
+   */
   public boolean nameInCommunity(String name, String communityUid) throws SQLException {
     Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
     DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
@@ -291,6 +299,13 @@ public class WashineGroupDb implements WashineGroupDbIf {
     return names.isNotEmpty();
   }
 
+  /**
+   * Gets the invited name through the invitation code
+   *
+   * @throws SQLException
+   * @param code code of the invitation
+   * @return the name of the invited person if present
+   */
   public String getInvitationName(String code) throws SQLException {
     Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
     DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
@@ -304,6 +319,12 @@ public class WashineGroupDb implements WashineGroupDbIf {
     return name.getValue(Invites.INVITES.INVITEDNAME);
   }
 
+  /**
+   * Eliminates the expired invitations from the database
+   *
+   * @param timeToLive
+   * @return true
+   */
   public boolean clearExpiredInvitations(Integer timeToLive) {
     try {
 
@@ -313,8 +334,9 @@ public class WashineGroupDb implements WashineGroupDbIf {
       long unixTimestamp = Instant.now().getEpochSecond();
 
       create
-          .delete(Invites.INVITES)
-          .where(Invites.INVITES.TS.le((int) (unixTimestamp - secondsToLive)));
+          .deleteFrom(Invites.INVITES)
+          .where(Invites.INVITES.TS.le((int) (unixTimestamp - secondsToLive)))
+          .execute();
       return true;
     } catch (SQLException exc) {
       exc.printStackTrace();
@@ -322,6 +344,13 @@ public class WashineGroupDb implements WashineGroupDbIf {
     return false;
   }
 
+  /**
+   * Checks if a name is already present in the list of users of a community
+   *
+   * @throws SQLException
+   * @param name to check
+   * @return true only if the name is already in the community
+   */
   public boolean nameInJoinedCommunities(String name, String userId) {
     Connection conn;
     try {
@@ -343,6 +372,14 @@ public class WashineGroupDb implements WashineGroupDbIf {
     return false;
   }
 
+  /**
+   * Checks if a name is already present in the invitations to a users of a community
+   *
+   * @throws SQLException
+   * @param name to check
+   * @param communityId id of the community
+   * @return true only if the name is already in the community
+   */
   public boolean nameInInvitations(String name, String communityId) {
     Connection conn;
     try {
