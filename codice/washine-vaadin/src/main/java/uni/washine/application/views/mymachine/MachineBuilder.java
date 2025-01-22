@@ -1,6 +1,5 @@
 package uni.washine.application.views.mymachine;
 
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import washine.washineCore.washing.WashineLaundryWashingIf;
 
 public class MachineBuilder {
