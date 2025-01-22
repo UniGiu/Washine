@@ -4,7 +4,6 @@ import java.util.Random;
 import java.time.Instant;
 import java.util.List;
 
-import org.jooq.Record;
 import org.jooq.Result;
 
 import washine.washineCore.exceptions.WashineCoreException;

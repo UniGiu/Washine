@@ -14,7 +14,7 @@ public class WashineWashing implements WashineLaundryWashingIf {
     this.id = id;
     this.enabledParticipants = enabledParticipants;
     this.washingOptions = washingOptions;
-    this.active = false; // default non attivo
+    this.active = true; // default attivo
   }
 
   @Override
