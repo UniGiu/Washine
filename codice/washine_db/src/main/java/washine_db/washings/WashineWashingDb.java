@@ -307,18 +307,15 @@ public class WashineWashingDb implements WashineWashingDbIf {
     }
   }
 
-  @Override
-  public double getWashingInitialLoad(String washingId) throws WashineDataException {
+  public List<String> getParticipantIds(String washingId) throws WashineDataException {
     try {
       Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
       DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
-      Record1<Double> date =
-          create
-              .select(Washingoptions.WASHINGOPTIONS.INITIALLOAD)
-              .from(Washingoptions.WASHINGOPTIONS)
-              .where(Washingoptions.WASHINGOPTIONS.WASHINGID.eq(washingId))
-              .fetchOne();
-      return date.getValue(Washingoptions.WASHINGOPTIONS.INITIALLOAD);
+      return create
+          .select()
+          .from(Washingparticipation.WASHINGPARTICIPATION)
+          .where(Washingparticipation.WASHINGPARTICIPATION.WASHINGID.eq(washingId))
+          .fetch(Washingparticipation.WASHINGPARTICIPATION.WASHINGID);
     } catch (SQLException e) {
       throw new WashineDataException("WashineDataException");
     }
