@@ -106,6 +106,15 @@ public interface WashineWashingDbIf {
   public List<String> getParticipatedWashingIds(String userId) throws WashineDataException;
 
   /**
+   * Selects from the database the ids of the participant to a washing
+   *
+   * @param washingId id of the washing
+   * @return the list of ids
+   * @throws WashineDataException
+   */
+  public List<String> getParticipantIds(String washingId) throws WashineDataException;
+
+  /**
    * Selects from the database all the options of a washing previously inserted through the washing
    * id
    *
@@ -145,58 +154,4 @@ public interface WashineWashingDbIf {
    * @throws WashineDataException
    */
   public boolean deleteParticipation(String washingId, String userId) throws WashineDataException;
-
-  /**
-   * Selects the date and time of a washing through its id
-   *
-   * @param washingId id of the washing
-   * @return the date
-   * @throws WashineDataException
-   */
-  public int getWashingDateTime(String washingId) throws WashineDataException;
-
-  /**
-   * Selects the date of the access opening for a washing through its id
-   *
-   * @param washingId id of the washing
-   * @return the date
-   * @throws WashineDataException
-   */
-  public int getWashingAccessOpenDate(String washingId) throws WashineDataException;
-
-  /**
-   * Selects the date of the access closing for a washing through its id
-   *
-   * @param washingId id of the washing
-   * @return the date
-   * @throws WashineDataException
-   */
-  public int getWashingAccessCloseDate(String washingId) throws WashineDataException;
-
-  /**
-   * Selects a washing's max load (that the laundry person set) through its id
-   *
-   * @param washingId id of the washing
-   * @return the max load
-   * @throws WashineDataException
-   */
-  public double getWashingMaxLoad(String washingId) throws WashineDataException;
-
-  /**
-   * Selects a washing's max load for a participant (that the laundry person set) through its id
-   *
-   * @param washingId id of the washing
-   * @return the participant max load
-   * @throws WashineDataException
-   */
-  public double getWashingParticipantMaxLoad(String washingId) throws WashineDataException;
-
-  /**
-   * Selects a washing's initial load (that the laundry person set) through its id
-   *
-   * @param washingId id of the washing
-   * @return the inital load
-   * @throws WashineDataException
-   */
-  public double getWashingInitialLoad(String washingId) throws WashineDataException;
 }

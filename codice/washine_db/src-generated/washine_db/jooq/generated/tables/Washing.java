@@ -10,11 +10,11 @@ import java.util.function.Function;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
-import org.jooq.Function2;
+import org.jooq.Function3;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Records;
-import org.jooq.Row2;
+import org.jooq.Row3;
 import org.jooq.Schema;
 import org.jooq.SelectField;
 import org.jooq.Table;
@@ -60,6 +60,11 @@ public class Washing extends TableImpl<WashingRecord> {
      * The column <code>WASHING.LaundryPersonId</code>.
      */
     public final TableField<WashingRecord, String> LAUNDRYPERSONID = createField(DSL.name("LaundryPersonId"), SQLDataType.CLOB.nullable(false), this, "");
+
+    /**
+     * The column <code>WASHING.Active</code>.
+     */
+    public final TableField<WashingRecord, Boolean> ACTIVE = createField(DSL.name("Active"), SQLDataType.BOOLEAN.defaultValue(DSL.field(DSL.raw("TRUE"), SQLDataType.BOOLEAN)), this, "");
 
     private Washing(Name alias, Table<WashingRecord> aliased) {
         this(alias, aliased, null);
@@ -161,18 +166,18 @@ public class Washing extends TableImpl<WashingRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row2 type methods
+    // Row3 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row2<String, String> fieldsRow() {
-        return (Row2) super.fieldsRow();
+    public Row3<String, String, Boolean> fieldsRow() {
+        return (Row3) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function2<? super String, ? super String, ? extends U> from) {
+    public <U> SelectField<U> mapping(Function3<? super String, ? super String, ? super Boolean, ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -180,7 +185,7 @@ public class Washing extends TableImpl<WashingRecord> {
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function2<? super String, ? super String, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function3<? super String, ? super String, ? super Boolean, ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }

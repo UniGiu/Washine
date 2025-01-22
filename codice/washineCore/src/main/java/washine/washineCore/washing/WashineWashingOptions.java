@@ -5,7 +5,7 @@ import java.util.Date;
 public class WashineWashingOptions implements WashineLaundryWashingOptionsIf {
 	
 		
-	    private Date dateTime;
+	    private int dateTime;
 	    private int visibilityTime;
 	    private int durationMinutes;
 	    private double initialLoad;
@@ -24,12 +24,12 @@ public class WashineWashingOptions implements WashineLaundryWashingOptionsIf {
 	    private String deliveryAvailability;
 	    private boolean ironing;
 	    private double participantMaxLoad;
-	    private Date washingAccessOpenDate;
-	    private Date washingAccessCloseDate;
+	    private int washingAccessOpenDate;
+	    private int washingAccessCloseDate;
 
-	    public WashineWashingOptions(int visibilityTime, Date dateTime, int durationMinutes, double initialLoad, double maxLoad, String temperature, 
+	    public WashineWashingOptions(int visibilityTime, int dateTime, int durationMinutes, double initialLoad, double maxLoad, String temperature, 
 	    		String spinSpeed, String fabricType, String color, String detergentTypes,boolean underwear, String refundTypes,String pickupAddress,String deliveryAddress,String drying,
-	    		String pickupAvailability, String deliveryAvailability,boolean ironing, double participantMaxLoad,Date washingAccessOpenAate,Date washingAccessCloseDate) 
+	    		String pickupAvailability, String deliveryAvailability,boolean ironing, double participantMaxLoad,int washingAccessOpenDate,int washingAccessCloseDate) 
 	    {
 				this.visibilityTime = visibilityTime;
 				this.dateTime = dateTime;
@@ -58,7 +58,7 @@ public class WashineWashingOptions implements WashineLaundryWashingOptionsIf {
 	        return visibilityTime;
 	    }
 	    @Override
-	    public Date getDatetime() {
+	    public int getDatetime() {
 	        return dateTime;
 	    }
 	    @Override
@@ -131,11 +131,11 @@ public class WashineWashingOptions implements WashineLaundryWashingOptionsIf {
 	        return participantMaxLoad;
 	    }
 	    @Override
-	    public Date getWashingAccessOpenDate() {
+	    public int getWashingAccessOpenDate() {
 	        return washingAccessOpenDate;
 	    }
 	    @Override
-	    public Date getWashingAccessCloseDate() {
+	    public int getWashingAccessCloseDate() {
 	        return washingAccessCloseDate;
 	    }
 
