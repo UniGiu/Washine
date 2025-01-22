@@ -4,6 +4,7 @@ import java.util.List;
 import org.jooq.Result;
 
 import washine.washineCore.exceptions.WashineCoreException;
+import washine.washineCore.washing.WashineLaundryWashingIf;
 import washine.washineCore.washing.WashineWashing;
 import washine_db.jooq.generated.tables.records.WashingoptionsRecord;
 
@@ -15,10 +16,10 @@ public interface WashineCoreWashingIf {
    *
    * @param washingId The ID of the washing.
    * @param laundryPersonId The ID of the laundry person.
-   * @return true if the washing was successfully created, false otherwise.
+   * @return the washing
    * @throws WashineCoreException
    */
-  WashineWashing createWashing(String laundryPersonId) throws WashineCoreException;
+  WashineLaundryWashingIf createWashing(String laundryPersonId) throws WashineCoreException;
 
   /**
    * Allows a participant to join a washing with a specified load.
@@ -26,11 +27,11 @@ public interface WashineCoreWashingIf {
    * @param washingId The ID of the washing.
    * @param participantId The ID of the participant.
    * @param load The load weight the participant wants to contribute.
-   * @return true if the participation was successfully recorded, false otherwise.
+   * @return the washing
    * @throws WashineCoreException
    */
-  WashineWashing participateToWashing(String washingId, String participantId, double load)
-      throws WashineCoreException;
+  public WashineLaundryWashingIf participateToWashing(
+      String washingId, String participantId, double load) throws WashineCoreException;
 
   /**
    * Retrieves the list of washing IDs associated with a specific laundry person.
@@ -73,18 +74,18 @@ public interface WashineCoreWashingIf {
    * Retrieves the washing options for a specific washing.
    *
    * @param washingId The ID of the washing.
-   * @return The washing options for the given washing ID, or null if an error occurs.
+   * @return the washing
    * @throws WashineCoreException
    */
-  Result<WashingoptionsRecord> getWashingOptions(String washingId) throws WashineCoreException;
+  public WashineLaundryWashingIf getWashingOptions(String washingId) throws WashineCoreException;
 
   /**
    * Updates the washing options for a specific washing.
    *
-   * @param washing the updated washing
+   * @param washingInfo the updated washing
    * @throws WashineCoreException
    */
-  boolean updateWashingOptions(WashineWashing washing) throws WashineCoreException;
+  boolean updateWashingOptions(WashineLaundryWashingIf washing) throws WashineCoreException;
 
   /**
    * Deletes a participant's involvement in a washing.

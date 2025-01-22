@@ -7,6 +7,7 @@ import java.util.List;
 import org.jooq.Result;
 
 import washine.washineCore.exceptions.WashineCoreException;
+import washine.washineCore.washing.WashineLaundryWashingIf;
 import washine.washineCore.washing.WashineWashing;
 import washine.washineCore.washing.WashineWashingOptions;
 import washine_db.exceptions.WashineDataException;
@@ -17,7 +18,7 @@ import washine_db.washings.WashineWashingDb;
 public class WashineCoreWashing implements WashineCoreWashingIf {
 
   @Override
-  public WashineWashing createWashing(String laundryPersonId) throws WashineCoreException {
+  public WashineLaundryWashingIf createWashing(String laundryPersonId) throws WashineCoreException {
     WashineWashingDb washingDb = new WashineWashingDb();
     String washingId = generateUniqueCode();
 
@@ -35,51 +36,28 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
   }
 
   @Override
-  public WashineWashing participateToWashing(String washingId, String participantId, double load)
-      throws WashineCoreException {
+  public WashineLaundryWashingIf participateToWashing(
+      String washingId, String participantId, double load) throws WashineCoreException {
     WashineWashingDb washingDb = new WashineWashingDb();
     try {
       if (!washingDb.existsWashing(washingId)) {
         throw new WashineCoreException("Washing does not exists");
       }
-      Result<WashingoptionsRecord> washingOptionsDb = washingDb.getWashingOptions(washingId);
-      WashineWashingOptions washingOptions =
-          new WashineWashingOptions(
-              washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.VISIBILITYTIME),
-              washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.DATETIME),
-              washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.DURATIONMINUTES),
-              washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.INITIALLOAD),
-              washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.MAXLOAD),
-              washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.TEMPERATURE),
-              washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.SPINSPEED),
-              washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.FABRICTYPE),
-              washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.COLOR),
-              washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.DETERGENTTYPES),
-              washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.UNDERWEAR),
-              washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.REFUNDTYPE),
-              washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.PICKUPADDRESS),
-              washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.DELIVERYADDRESS),
-              washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.PICKUPAVAILABILITY),
-              washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.DELIVERYAVAILABILITY),
-              washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.DRYING),
-              washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.IRONING),
-              washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.PARTICIPANTMAXLOAD),
-              washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.WASHINGACCESSOPENDATE),
-              washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.WASHINGACCESSCLOSEDATE));
-
-      if (!((washingOptions.getDatetime() > (int) Instant.now().getEpochSecond())
-          && (washingOptions.getWashingAccessOpenDate() < (int) Instant.now().getEpochSecond())
-          && (washingOptions.getWashingAccessCloseDate() > (int) Instant.now().getEpochSecond()))) {
+      WashineLaundryWashingIf washing = getWashingOptions(washingId);
+      if (!((washing.getWashingOptions().getDatetime() > (int) Instant.now().getEpochSecond())
+          && (washing.getWashingOptions().getWashingAccessOpenDate()
+              < (int) Instant.now().getEpochSecond())
+          && (washing.getWashingOptions().getWashingAccessCloseDate()
+              > (int) Instant.now().getEpochSecond()))) {
         throw new WashineCoreException("Washing expired");
       }
 
-      if (load > washingOptions.getMaxLoadParticipant()) {
+      if (load > washing.getWashingOptions().getMaxLoadParticipant()) {
         throw new WashineCoreException("Exceded maximum load");
       }
-      WashineWashing washing = new WashineWashing(washingId, null, washingOptions);
       double totalWashingLoad = calculateWashingTotalLoad(washing);
 
-      if (totalWashingLoad >= washingOptions.getMaxLoad()) {
+      if (totalWashingLoad >= washing.getWashingOptions().getMaxLoad()) {
         throw new WashineCoreException("Max load Reached");
       }
       washingDb.participateToWashing(washingId, participantId, load);
@@ -143,21 +121,44 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
   }
 
   @Override
-  public Result<WashingoptionsRecord> getWashingOptions(String washingId)
-      throws WashineCoreException {
+  public WashineLaundryWashingIf getWashingOptions(String washingId) throws WashineCoreException {
     WashineWashingDb washingDb = new WashineWashingDb();
     try {
       if (!washingDb.existsWashing(washingId)) {
         throw new WashineCoreException("Washing does not exists");
       }
-      return washingDb.getWashingOptions(washingId);
+      Result<WashingoptionsRecord> washingOptionsDb = washingDb.getWashingOptions(washingId);
+      WashineWashingOptions washingOptions =
+          new WashineWashingOptions(
+              washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.VISIBILITYTIME),
+              washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.DATETIME),
+              washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.DURATIONMINUTES),
+              washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.INITIALLOAD),
+              washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.MAXLOAD),
+              washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.TEMPERATURE),
+              washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.SPINSPEED),
+              washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.FABRICTYPE),
+              washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.COLOR),
+              washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.DETERGENTTYPES),
+              washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.UNDERWEAR),
+              washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.REFUNDTYPE),
+              washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.PICKUPADDRESS),
+              washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.DELIVERYADDRESS),
+              washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.PICKUPAVAILABILITY),
+              washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.DELIVERYAVAILABILITY),
+              washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.DRYING),
+              washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.IRONING),
+              washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.PARTICIPANTMAXLOAD),
+              washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.WASHINGACCESSOPENDATE),
+              washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.WASHINGACCESSCLOSEDATE));
+      return new WashineWashing(washingId, null, washingOptions);
     } catch (WashineDataException e) {
       throw new WashineCoreException("WashineCoreException");
     }
   }
 
   @Override
-  public boolean updateWashingOptions(WashineWashing washing) throws WashineCoreException {
+  public boolean updateWashingOptions(WashineLaundryWashingIf washing) throws WashineCoreException {
     WashineWashingDb washingDb = new WashineWashingDb();
     try {
       if (!washingDb.existsWashing(washing.getId())) {
@@ -254,7 +255,8 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
    * @return the total load
    * @throws WashineCoreException
    */
-  public double calculateWashingTotalLoad(WashineWashing washing) throws WashineCoreException {
+  public double calculateWashingTotalLoad(WashineLaundryWashingIf washing)
+      throws WashineCoreException {
     WashineWashingDb washingDb = new WashineWashingDb();
     try {
       double totalWashingLoad = washing.getWashingOptions().getInitialLoad();
