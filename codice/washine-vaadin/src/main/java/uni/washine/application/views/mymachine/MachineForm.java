@@ -2,7 +2,6 @@ package uni.washine.application.views.mymachine;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.Date;
 
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.datetimepicker.DateTimePicker;
@@ -22,93 +21,116 @@ public class MachineForm extends VerticalLayout{
     private WashineLaundryWashingIf washingInfo;
     private Button submitButton;
     
-   private MachineForm(){
+    // Form controls as class fields
+    private DateTimePicker dateTimeWashingPicker;
+    private NumberField durationField;
+    private NumberField initialLoadField;
+    private NumberField maxLoadField;
+    private NumberField visibilityTimeField;
+    private RadioButtonGroup<String> temperatureGroup;
+    private RadioButtonGroup<String> spinSpeedGroup;
+    private RadioButtonGroup<String> fabricTypeGroup;
+    private RadioButtonGroup<String> colorGroup;
+    private RadioButtonGroup<String> detergentTypeGroup;
+    private RadioButtonGroup<String> dryingTypeGroup;
+    private Checkbox underwearCheckbox;
+    private Checkbox ironingCheckbox;
+    private TextField pickupAddressField;
+    private TextField deliveryAddressField;
+    private TextField pickupAvailabilityField;
+    private TextField deliveryAvailabilityField;
+    private TextField refundTypeField;
+    private NumberField participantMaxLoadField;
+    private DateTimePicker accessOpenDatePicker;
+    private DateTimePicker accessCloseDatePicker;
+
+    private MachineForm(){
       
         FormLayout formLayout = new FormLayout();
         
        //Required
        //Time
-        DateTimePicker dateTimeWashingPicker = new DateTimePicker("Washing Date and Time");
+        dateTimeWashingPicker = new DateTimePicker("Washing Date and Time");
         dateTimeWashingPicker.setHelperText("Format: DD/MM/YYYY and HH:MM");
         dateTimeWashingPicker.setRequiredIndicatorVisible(true); 
         dateTimeWashingPicker.setMin(LocalDateTime.now()); 
 
-        NumberField durationField = new NumberField("Wash duration (minutes)");
+        durationField = new NumberField("Wash duration (minutes)");
         durationField.setRequired(true);
         durationField.setMin(1);
 
-        NumberField initialLoadField = new NumberField("Initial Load (kilograms)");
+        initialLoadField = new NumberField("Initial Load (kilograms)");
         initialLoadField.setHelperText("Specify for how many kilograms you reserve for yourself");
         initialLoadField.setRequired(true);
         initialLoadField.setMin(0);
 
-        NumberField maxLoadField = new NumberField("Maximum Load (kilograms)");
+        maxLoadField = new NumberField("Maximum Load (kilograms)");
         maxLoadField.setRequired(true);
         maxLoadField.setHelperText("Specify the capacity of your washing machine in kilograms");
         maxLoadField.setMin(0);
 
-        NumberField visibilityTimeField = new NumberField("Visibility Time (days)");
+        visibilityTimeField = new NumberField("Visibility Time (days)");
         visibilityTimeField.setHelperText("Specify for how long the washing will be visible after completion");
         visibilityTimeField.setRequired(true);
         maxLoadField.setMin(0);
        //Machine setup
-        RadioButtonGroup<String> temperatureGroup = new RadioButtonGroup<>();
+        temperatureGroup = new RadioButtonGroup<>();
         temperatureGroup.setLabel("Temperature");
         temperatureGroup.setItems("Cold", "30°C", "40°C", "60°C", "90°C");
         temperatureGroup.setRequired(true);
 
-        RadioButtonGroup<String> spinSpeedGroup = new RadioButtonGroup<>();
+        spinSpeedGroup = new RadioButtonGroup<>();
         spinSpeedGroup.setLabel("Spin Speed");
         spinSpeedGroup.setItems("400", "800", "1000", "1200", "1400");
         spinSpeedGroup.setRequired(true);
 
-        RadioButtonGroup<String> fabricTypeGroup = new RadioButtonGroup<>();
+        fabricTypeGroup = new RadioButtonGroup<>();
         fabricTypeGroup.setLabel("Fabric Type");
         fabricTypeGroup.setItems("Cotton", "Synthetic", "Wool", "Delicate", "Any");
         fabricTypeGroup.setRequired(true);
 
-        RadioButtonGroup<String> colorGroup = new RadioButtonGroup<>();
+        colorGroup = new RadioButtonGroup<>();
         colorGroup.setLabel("Color");
         colorGroup.setItems("White", "Light", "Dark", "Mixed");
         colorGroup.setRequired(true);
 
-        RadioButtonGroup<String> detergentTypeGroup = new RadioButtonGroup<>();
+        detergentTypeGroup = new RadioButtonGroup<>();
         detergentTypeGroup.setLabel("Detergent Type");
         detergentTypeGroup.setItems("Standard", "Color-safe", "Gentle", "Heavy-duty");
         detergentTypeGroup.setRequired(true);
         //other required
         
-        RadioButtonGroup<String> dryingTypeGroup = new RadioButtonGroup<>();
+        dryingTypeGroup = new RadioButtonGroup<>();
         dryingTypeGroup.setLabel("Drying Type");
         dryingTypeGroup.setItems("Air Dry", "Tumble Dry", "Hang Dry", "None");
         dryingTypeGroup.setRequired(true);
        
-        Checkbox underwearCheckbox = new Checkbox("Include Underwear/Lingerie"); 
+        underwearCheckbox = new Checkbox("Include Underwear/Lingerie"); 
         underwearCheckbox.setRequiredIndicatorVisible(true);       
        
         //not required       
-        Checkbox ironingCheckbox = new Checkbox("Include Ironing");   
+        ironingCheckbox = new Checkbox("Include Ironing");   
         
-        TextField pickupAddressField = new TextField("Pickup Address, where to bring the clothes");
+        pickupAddressField = new TextField("Pickup Address, where to bring the clothes");
        
-        TextField deliveryAddressField = new TextField("Delivery Address, where to get the washed clothes");  
+        deliveryAddressField = new TextField("Delivery Address, where to get the washed clothes");  
 
-        TextField pickupAvailabilityField = new TextField("Pickup Availability");
+        pickupAvailabilityField = new TextField("Pickup Availability");
         pickupAvailabilityField.setHelperText("Specify your available time slots for pickup");
 
-        TextField deliveryAvailabilityField = new TextField("Delivery Availability");
+        deliveryAvailabilityField = new TextField("Delivery Availability");
         deliveryAvailabilityField.setHelperText("Specify your available time slots for delivery");
 
-        TextField refundTypeField= new TextField("Refound information");
+        refundTypeField = new TextField("Refound information");
         refundTypeField.setHelperText("Specify if you will ask for a refound, the total amount and the sharing logic");
 
         // Create participant max load field
-        NumberField participantMaxLoadField = new NumberField("Max Load per Participant (kilograms)");
+        participantMaxLoadField = new NumberField("Max Load per Participant (kilograms)");
 
         // Create access date/time pickers
-        DateTimePicker accessOpenDatePicker = new DateTimePicker("Access Open Date/Time");
+        accessOpenDatePicker = new DateTimePicker("Access Open Date/Time");
         refundTypeField.setHelperText("Specify when people will be able to access the washing");
-        DateTimePicker accessCloseDatePicker = new DateTimePicker("Access Close Date/Time");
+        accessCloseDatePicker = new DateTimePicker("Access Close Date/Time");
         refundTypeField.setHelperText("Specify till when it will be possible to add clothes to the washing");
 
         // Initialize the submit button
@@ -161,100 +183,37 @@ public class MachineForm extends VerticalLayout{
         }
         
     public void init(WashineLaundryWashingIf washing) {
-              washingInfo=washing;            
+        washingInfo = washing;            
         WashineLaundryWashingOptionsLaunderIf options = washing.getWashingOptionsLaunder();        
        
-        getChildren().forEach(component -> {
-            if (component instanceof DateTimePicker) {
-                DateTimePicker picker = (DateTimePicker) component;
-                switch (picker.getLabel()) {
-                    case "Washing Date and Time":
-                        picker.setValue(convertToLocalDateTimeViaInstant(options.getDatetime()));
-                        break;
-                    case "Access Open Date/Time":
-                        picker.setValue(convertToLocalDateTimeViaInstant(options.getWashingAccessOpenDate()));
-                        break;
-                    case "Access Close Date/Time":
-                        picker.setValue(convertToLocalDateTimeViaInstant(options.getWashingAccessCloseDate()));
-                        break;
-                }
-            } else if (component instanceof NumberField) {
-                NumberField field = (NumberField) component;
-                switch (field.getLabel()) {
-                    case "Duration (minutes)":
-                        field.setValue((double) options.getDurationMinutes());
-                        break;
-                    case "Initial Load":
-                        field.setValue(options.getInitialLoad());
-                        break;
-                    case "Maximum Load":
-                        field.setValue(options.getMaxLoad());
-                        break;
-                    case "Visibility Time (minutes)":
-                        field.setValue((double) options.getVisibilityTime());
-                        break;
-                    case "Max Load per Participant":
-                        field.setValue(options.getMaxLoadParticipant());
-                        break;
-                }
-            } else if (component instanceof RadioButtonGroup<?>) {
-                @SuppressWarnings("unchecked")
-             //} else if (component instanceof RadioButtonGroup<String>) {
-             //   RadioButtonGroup<String> group = (RadioButtonGroup<String>) component;
-                RadioButtonGroup<String> group = (RadioButtonGroup<String>) component;
-                switch (group.getLabel()) {
-                    case "Temperature":
-                        group.setValue(options.getTemperature());
-                        break;
-                    case "Spin Speed":
-                        group.setValue(options.getSpinSpeed());
-                        break;
-                    case "Fabric Type":
-                        group.setValue(options.getFabricType());
-                        break;
-                    case "Color":
-                        group.setValue(options.getColor());
-                        break;
-                    case "Detergent Type":
-                        group.setValue(options.getDetergentType());
-                        break;
-                    case "Refund Type":
-                        group.setValue(options.getRefundType());
-                        break;
-                    case "Drying Type":
-                        group.setValue(options.getDryingType());
-                        break;
-                }
-            } else if (component instanceof Checkbox) {
-                Checkbox checkbox = (Checkbox) component;
-                switch (checkbox.getLabel()) {
-                    case "Include Underwear/Lingerie":
-                        checkbox.setValue(options.isUnderwear());
-                        break;
-                    case "Include Ironing":
-                        checkbox.setValue(options.isIroning());
-                        break;
-                }
-            } else if (component instanceof TextField) {
-                TextField field = (TextField) component;
-                switch (field.getLabel()) {
-                    case "Pickup Address":
-                        field.setValue(options.getPickupAddress());
-                        break;
-                    case "Delivery Address":
-                        field.setValue(options.getDeliveryAddress());
-                        break;
-                    case "Pickup Availability":
-                        field.setValue(options.getPickupAvailability());
-                        break;
-                    case "Delivery Availability":
-                        field.setValue(options.getDeliveryAvailability());
-                        break;
-                }
-            }
-        });
+        // Set values directly using class fields
+        dateTimeWashingPicker.setValue(convertToLocalDateTimeViaInstant(options.getDatetime()));
+        accessOpenDatePicker.setValue(convertToLocalDateTimeViaInstant(options.getWashingAccessOpenDate()));
+        accessCloseDatePicker.setValue(convertToLocalDateTimeViaInstant(options.getWashingAccessCloseDate()));
         
-        updateSubmitButtonLabel(); // Update the button label when initializing
+        durationField.setValue((double) options.getDurationMinutes());
+        initialLoadField.setValue(options.getInitialLoad());
+        maxLoadField.setValue(options.getMaxLoad());
+        visibilityTimeField.setValue((double) options.getVisibilityTime());
+        participantMaxLoadField.setValue(options.getMaxLoadParticipant());
+        
+        temperatureGroup.setValue(options.getTemperature());
+        spinSpeedGroup.setValue(options.getSpinSpeed());
+        fabricTypeGroup.setValue(options.getFabricType());
+        colorGroup.setValue(options.getColor());
+        detergentTypeGroup.setValue(options.getDetergentType());
+        dryingTypeGroup.setValue(options.getDryingType());
+        
+        underwearCheckbox.setValue(options.isUnderwear());
+        ironingCheckbox.setValue(options.isIroning());
+        
+        pickupAddressField.setValue(options.getPickupAddress());
+        deliveryAddressField.setValue(options.getDeliveryAddress());
+        pickupAvailabilityField.setValue(options.getPickupAvailability());
+        deliveryAvailabilityField.setValue(options.getDeliveryAvailability());
+        refundTypeField.setValue(options.getRefundType());
+        
+        updateSubmitButtonLabel();
     }
     private LocalDateTime convertToLocalDateTimeViaInstant(int timestampSeconds) {
         Instant instant = Instant.ofEpochSecond( timestampSeconds );
@@ -264,29 +223,39 @@ public class MachineForm extends VerticalLayout{
     }
 
     /**
-     * resets the form (for a new )
+     * resets the form (for a new washing)
      */
     public void reset() {
-        washingInfo=null;       
-        getChildren().forEach(component -> {
-            if (component instanceof DateTimePicker) {
-                DateTimePicker picker = (DateTimePicker) component;
-                picker.clear(); 
-            } else if (component instanceof NumberField) {
-                NumberField field = (NumberField) component;
-                field.clear(); 
-            } else if (component instanceof RadioButtonGroup<?>) {
-                @SuppressWarnings("unchecked")
-                RadioButtonGroup<String> group = (RadioButtonGroup<String>) component;
-                group.clear(); 
-            } else if (component instanceof Checkbox) {
-                Checkbox checkbox = (Checkbox) component;
-                checkbox.setValue(false); 
-            } else if (component instanceof TextField) {
-                TextField field = (TextField) component;
-                field.clear(); 
-            }
-        });
+        washingInfo = null;
+        
+        // Clear all form fields directly
+        dateTimeWashingPicker.clear();
+        accessOpenDatePicker.clear();
+        accessCloseDatePicker.clear();
+        
+        durationField.clear();
+        initialLoadField.clear();
+        maxLoadField.clear();
+        visibilityTimeField.clear();
+        participantMaxLoadField.clear();
+        
+        temperatureGroup.clear();
+        spinSpeedGroup.clear();
+        fabricTypeGroup.clear();
+        colorGroup.clear();
+        detergentTypeGroup.clear();
+        dryingTypeGroup.clear();
+        
+        underwearCheckbox.setValue(false);
+        ironingCheckbox.setValue(false);
+        
+        pickupAddressField.clear();
+        deliveryAddressField.clear();
+        pickupAvailabilityField.clear();
+        deliveryAvailabilityField.clear();
+        refundTypeField.clear();
+        
+        updateSubmitButtonLabel();
     }
 
     private void updateSubmitButtonLabel() {
@@ -316,106 +285,108 @@ public class MachineForm extends VerticalLayout{
         
         WashineLaundryWashingOptionsLaunderIf options = washingInfo.getWashingOptionsLaunder();
         
-        getChildren().forEach(component -> {
-            if (component instanceof DateTimePicker) {
-                DateTimePicker picker = (DateTimePicker) component;
-                LocalDateTime value = picker.getValue();
-                if (value != null) {
-                    long epochSeconds = value.atZone(ZoneId.systemDefault()).toEpochSecond();
-                    switch (picker.getLabel()) {
-                        case "Washing Date and Time":
-                            options.setDatetime((int)epochSeconds);
-                            break;
-                        case "Access Open Date/Time":
-                            options.setWashingAccessOpenDate((int)epochSeconds);
-                            break;
-                        case "Access Close Date/Time":
-                            options.setWashingAccessCloseDate((int)epochSeconds);
-                            break;
-                    }
-                }
-            } else if (component instanceof NumberField) {
-                NumberField field = (NumberField) component;
-                Double value = field.getValue();
-                if (value != null) {
-                    switch (field.getLabel()) {
-                        case "Wash duration (minutes)":
-                            options.setDurationMinutes(value.intValue());
-                            break;
-                        case "Initial Load (kilograms)":
-                            options.setInitialLoad(value);
-                            break;
-                        case "Maximum Load (kilograms)":
-                            options.setMaxLoad(value);
-                            break;
-                        case "Visibility Time (days)":
-                            options.setVisibilityTime(value.intValue() * 24 * 60); // Convert days to minutes
-                            break;
-                        case "Max Load per Participant (kilograms)":
-                            options.setParticipantMaxLoad()
-                            break;
-                    }
-                }
-            } else if (component instanceof RadioButtonGroup<?>) {
-                @SuppressWarnings("unchecked")
-                RadioButtonGroup<String> group = (RadioButtonGroup<String>) component;
-                String value = group.getValue();
-                if (value != null) {
-                    switch (group.getLabel()) {
-                        case "Temperature":
-                            options.setTemperature(value);
-                            break;
-                        case "Spin Speed":
-                            options.setSpinSpeed(value);
-                            break;
-                        case "Fabric Type":
-                            options.setFabricType(value);
-                            break;
-                        case "Color":
-                            options.setColor(value);
-                            break;
-                        case "Detergent Type":
-                            options.setDetergentTypes(value);
-                            break;
-                        case "Drying Type":
-                            options.setDrying(value);
-                            break;
-                    }
-                }
-            } else if (component instanceof Checkbox) {
-                Checkbox checkbox = (Checkbox) component;
-                switch (checkbox.getLabel()) {
-                    case "Include Underwear/Lingerie":
-                        options.setUnderwear(checkbox.getValue());
-                        break;
-                    case "Include Ironing":
-                        options.setIroning(checkbox.getValue());
-                        break;
-                }
-            } else if (component instanceof TextField) {
-                TextField field = (TextField) component;
-                String value = field.getValue();
-                if (value != null) {
-                    switch (field.getLabel()) {
-                        case "Pickup Address, where to bring the clothes":
-                            options.setPickupAddress(value);
-                            break;
-                        case "Delivery Address, where to get the washed clothes":
-                            options.setDeliveryAddress(value);
-                            break;
-                        case "Pickup Availability":
-                            options.setPickupAvailability(value);
-                            break;
-                        case "Delivery Availability":
-                            options.setDeliveryAvailability(value);
-                            break;
-                        case "Refound information":
-                            options.setRefundType(value);
-                            break;
-                    }
-                }
-            }
-        });
+        
+        LocalDateTime washingDateTime = dateTimeWashingPicker.getValue();
+        if (washingDateTime != null) {
+            options.setDateTime((int)washingDateTime.atZone(ZoneId.systemDefault()).toEpochSecond());
+        }
+        
+        LocalDateTime openDateTime = accessOpenDatePicker.getValue();
+        if (openDateTime != null) {
+            options.setWashingAccessOpenDate((int)openDateTime.atZone(ZoneId.systemDefault()).toEpochSecond());
+        }
+        
+        LocalDateTime closeDateTime = accessCloseDatePicker.getValue();
+        if (closeDateTime != null) {
+            options.setWashingAccessCloseDate((int)closeDateTime.atZone(ZoneId.systemDefault()).toEpochSecond());
+        }
+        
+      
+        Double duration = durationField.getValue();
+        if (duration != null) {
+            options.setDurationMinutes(duration.intValue());
+        }
+        
+        Double initialLoad = initialLoadField.getValue();
+        if (initialLoad != null) {
+            options.setInitialLoad(initialLoad);
+        }
+        
+        Double maxLoad = maxLoadField.getValue();
+        if (maxLoad != null) {
+            options.setMaxLoad(maxLoad);
+        }
+        
+        Double visibilityTime = visibilityTimeField.getValue();
+        if (visibilityTime != null) {
+            options.setVisibilityTime(visibilityTime.intValue() * 24 * 60); // Convert days to minutes
+        }
+        
+        Double participantMaxLoad = participantMaxLoadField.getValue();
+        if (participantMaxLoad != null) {
+            options.setParticipantMaxLoad(participantMaxLoad);
+        }
+        
+        
+        String temperature = temperatureGroup.getValue();
+        if (temperature != null) {
+            options.setTemperature(temperature);
+        }
+        
+        String spinSpeed = spinSpeedGroup.getValue();
+        if (spinSpeed != null) {
+            options.setSpinSpeed(spinSpeed);
+        }
+        
+        String fabricType = fabricTypeGroup.getValue();
+        if (fabricType != null) {
+            options.setFabricType(fabricType);
+        }
+        
+        String color = colorGroup.getValue();
+        if (color != null) {
+            options.setColor(color);
+        }
+        
+        String detergentType = detergentTypeGroup.getValue();
+        if (detergentType != null) {
+            options.setDetergentTypes(detergentType);
+        }
+        
+        String dryingType = dryingTypeGroup.getValue();
+        if (dryingType != null) {
+            options.setDrying(dryingType);
+        }
+        
+        // Handle Checkboxes
+        options.setUnderwear(underwearCheckbox.getValue());
+        options.setIroning(ironingCheckbox.getValue());
+        
+        // Handle Text fields
+        String pickupAddress = pickupAddressField.getValue();
+        if (pickupAddress != null) {
+            options.setPickupAddress(pickupAddress);
+        }
+        
+        String deliveryAddress = deliveryAddressField.getValue();
+        if (deliveryAddress != null) {
+            options.setDeliveryAddress(deliveryAddress);
+        }
+        
+        String pickupAvailability = pickupAvailabilityField.getValue();
+        if (pickupAvailability != null) {
+            options.setPickupAvailability(pickupAvailability);
+        }
+        
+        String deliveryAvailability = deliveryAvailabilityField.getValue();
+        if (deliveryAvailability != null) {
+            options.setDeliveryAvailability(deliveryAvailability);
+        }
+        
+        String refundType = refundTypeField.getValue();
+        if (refundType != null) {
+            options.setRefundTypes(refundType);
+        }
     }
 }
 
