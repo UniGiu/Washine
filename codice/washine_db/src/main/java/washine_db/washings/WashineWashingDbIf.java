@@ -32,6 +32,8 @@ public interface WashineWashingDbIf {
   public boolean createWashing(String washingId, String laundryPersonId)
       throws WashineDataException;
 
+  public boolean createWashingOptions(String washingId) throws WashineDataException;
+
   /**
    * Updates the options of a washing
    *
@@ -199,6 +201,6 @@ public interface WashineWashingDbIf {
    * @throws WashineDataException
    */
   public double getWashingParticipantMaxLoad(String washingId) throws WashineDataException;
-  
+
   public boolean existsWashing(String washingId) throws WashineDataException;
 }

@@ -59,62 +59,62 @@ public class Washingoptions extends TableImpl<WashingoptionsRecord> {
     /**
      * The column <code>WASHINGOPTIONS.VisibilityTime</code>.
      */
-    public final TableField<WashingoptionsRecord, Integer> VISIBILITYTIME = createField(DSL.name("VisibilityTime"), SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<WashingoptionsRecord, Integer> VISIBILITYTIME = createField(DSL.name("VisibilityTime"), SQLDataType.INTEGER, this, "");
 
     /**
      * The column <code>WASHINGOPTIONS.DateTime</code>.
      */
-    public final TableField<WashingoptionsRecord, Integer> DATETIME = createField(DSL.name("DateTime"), SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<WashingoptionsRecord, Integer> DATETIME = createField(DSL.name("DateTime"), SQLDataType.INTEGER, this, "");
 
     /**
      * The column <code>WASHINGOPTIONS.DurationMinutes</code>.
      */
-    public final TableField<WashingoptionsRecord, Integer> DURATIONMINUTES = createField(DSL.name("DurationMinutes"), SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<WashingoptionsRecord, Integer> DURATIONMINUTES = createField(DSL.name("DurationMinutes"), SQLDataType.INTEGER, this, "");
 
     /**
      * The column <code>WASHINGOPTIONS.InitialLoad</code>.
      */
-    public final TableField<WashingoptionsRecord, Double> INITIALLOAD = createField(DSL.name("InitialLoad"), SQLDataType.DOUBLE.nullable(false), this, "");
+    public final TableField<WashingoptionsRecord, Double> INITIALLOAD = createField(DSL.name("InitialLoad"), SQLDataType.DOUBLE, this, "");
 
     /**
      * The column <code>WASHINGOPTIONS.MaxLoad</code>.
      */
-    public final TableField<WashingoptionsRecord, Double> MAXLOAD = createField(DSL.name("MaxLoad"), SQLDataType.DOUBLE.nullable(false), this, "");
+    public final TableField<WashingoptionsRecord, Double> MAXLOAD = createField(DSL.name("MaxLoad"), SQLDataType.DOUBLE, this, "");
 
     /**
      * The column <code>WASHINGOPTIONS.Temperature</code>.
      */
-    public final TableField<WashingoptionsRecord, String> TEMPERATURE = createField(DSL.name("Temperature"), SQLDataType.CLOB.nullable(false), this, "");
+    public final TableField<WashingoptionsRecord, String> TEMPERATURE = createField(DSL.name("Temperature"), SQLDataType.CLOB, this, "");
 
     /**
      * The column <code>WASHINGOPTIONS.SpinSpeed</code>.
      */
-    public final TableField<WashingoptionsRecord, String> SPINSPEED = createField(DSL.name("SpinSpeed"), SQLDataType.CLOB.nullable(false), this, "");
+    public final TableField<WashingoptionsRecord, String> SPINSPEED = createField(DSL.name("SpinSpeed"), SQLDataType.CLOB, this, "");
 
     /**
      * The column <code>WASHINGOPTIONS.FabricType</code>.
      */
-    public final TableField<WashingoptionsRecord, String> FABRICTYPE = createField(DSL.name("FabricType"), SQLDataType.CLOB.nullable(false), this, "");
+    public final TableField<WashingoptionsRecord, String> FABRICTYPE = createField(DSL.name("FabricType"), SQLDataType.CLOB, this, "");
 
     /**
      * The column <code>WASHINGOPTIONS.Color</code>.
      */
-    public final TableField<WashingoptionsRecord, String> COLOR = createField(DSL.name("Color"), SQLDataType.CLOB.nullable(false), this, "");
+    public final TableField<WashingoptionsRecord, String> COLOR = createField(DSL.name("Color"), SQLDataType.CLOB, this, "");
 
     /**
      * The column <code>WASHINGOPTIONS.DetergentTypes</code>.
      */
-    public final TableField<WashingoptionsRecord, String> DETERGENTTYPES = createField(DSL.name("DetergentTypes"), SQLDataType.CLOB.nullable(false), this, "");
+    public final TableField<WashingoptionsRecord, String> DETERGENTTYPES = createField(DSL.name("DetergentTypes"), SQLDataType.CLOB, this, "");
 
     /**
      * The column <code>WASHINGOPTIONS.RefundType</code>.
      */
-    public final TableField<WashingoptionsRecord, String> REFUNDTYPE = createField(DSL.name("RefundType"), SQLDataType.CLOB.nullable(false), this, "");
+    public final TableField<WashingoptionsRecord, String> REFUNDTYPE = createField(DSL.name("RefundType"), SQLDataType.CLOB, this, "");
 
     /**
      * The column <code>WASHINGOPTIONS.Underwear</code>.
      */
-    public final TableField<WashingoptionsRecord, Boolean> UNDERWEAR = createField(DSL.name("Underwear"), SQLDataType.BOOLEAN.nullable(false), this, "");
+    public final TableField<WashingoptionsRecord, Boolean> UNDERWEAR = createField(DSL.name("Underwear"), SQLDataType.BOOLEAN, this, "");
 
     /**
      * The column <code>WASHINGOPTIONS.PickupAddress</code>.

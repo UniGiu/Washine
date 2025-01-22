@@ -2,7 +2,8 @@ package washine.washineCore.washing;
 
 import java.util.Date;
 
-public class WashineWashingOptions implements WashineLaundryWashingOptionsIf {
+public class WashineWashingOptions
+    implements WashineLaundryWashingOptionsIf, WashineLaundryWashingOptionsLaunderIf {
 
   private int dateTime;
   private int visibilityTime;
@@ -177,4 +178,112 @@ public class WashineWashingOptions implements WashineLaundryWashingOptionsIf {
   public int getWashingAccessCloseDate() {
     return washingAccessCloseDate;
   }
+
+  @Override
+  public void setDateTime(int dateTime) {
+    this.dateTime = dateTime;
+  }
+
+  @Override
+  public void setDetergentTypes(String detergentTypes) {
+    this.detergentTypes = detergentTypes;
+  }
+
+  @Override
+  public void setRefundTypes(String refundTypes) {
+    this.refundTypes = refundTypes;
+  }
+
+  @Override
+  public void setDrying(String drying) {
+    this.drying = drying;
+  }
+
+  @Override
+  public void setParticipantMaxLoad(double participantMaxLoad) {
+    this.participantMaxLoad = participantMaxLoad;
+  }
+
+  @Override
+  public void setVisibilityTime(int visibilityTime) {
+    this.visibilityTime = visibilityTime;
+  }
+
+  @Override
+  public void setDurationMinutes(int durationMinutes) {
+    this.durationMinutes = durationMinutes;
+  }
+
+  @Override
+  public void setInitialLoad(double initialLoad) {
+    this.initialLoad = initialLoad;
+  }
+
+  @Override
+  public void setMaxLoad(double maxLoad) {
+    this.maxLoad = maxLoad;
+  }
+
+  @Override
+  public void setTemperature(String temperature) {
+    this.temperature = temperature;
+  }
+
+  @Override
+  public void setSpinSpeed(String spinSpeed) {
+    this.spinSpeed = spinSpeed;
+  }
+
+  @Override
+  public void setFabricType(String fabricType) {
+    this.fabricType = fabricType;
+  }
+
+  @Override
+  public void setColor(String color) {
+    this.color = color;
+  }
+
+  @Override
+  public void setUnderwear(boolean underwear) {
+    this.underwear = underwear;
+  }
+
+  @Override
+  public void setPickupAddress(String pickupAddress) {
+    this.pickupAddress = pickupAddress;
+  }
+
+  @Override
+  public void setDeliveryAddress(String deliveryAddress) {
+    this.deliveryAddress = deliveryAddress;
+  }
+
+  @Override
+  public void setPickupAvailability(String pickupAvailability) {
+    this.pickupAvailability = pickupAvailability;
+  }
+
+  @Override
+  public void setDeliveryAvailability(String deliveryAvailability) {
+    this.deliveryAvailability = deliveryAvailability;
+  }
+
+  @Override
+  public void setIroning(boolean ironing) {
+    this.ironing = ironing;
+  }
+
+  @Override
+  public void setWashingAccessOpenDate(int washingAccessOpenDate) {
+    this.washingAccessOpenDate = washingAccessOpenDate;
+  }
+
+  @Override
+  public void setWashingAccessCloseDate(int washingAccessCloseDate) {
+    this.washingAccessCloseDate = washingAccessCloseDate;
+  }
+
+@Override public double setParticipantMaxLoad(){// TODO Auto-generated method stub
+return 0;}
 }

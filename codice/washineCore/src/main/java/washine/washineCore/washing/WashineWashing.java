@@ -37,8 +37,8 @@ public class WashineWashing implements WashineLaundryWashingIf {
     return washingOptions;
   }
 
+  @Override
   public WashineLaundryWashingOptionsLaunderIf getWashingOptionsLaunder() {
-
-    return null;
+    return washingOptions;
   }
 }

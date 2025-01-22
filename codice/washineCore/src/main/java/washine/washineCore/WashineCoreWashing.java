@@ -27,6 +27,7 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
         throw new WashineCoreException("Washing already exists");
       }
       washingDb.createWashing(washingId, laundryPersonId);
+      washingDb.createWashingOptions(washingId);
       WashineWashingOptions washingOptions = new WashineWashingOptions();
       return new WashineWashing(washingId, null, washingOptions);
 
@@ -176,17 +177,8 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
       if (washing.getWashingOptions().getMaxLoad() < 0) {
         throw new WashineCoreException("Invalid max load");
       }
-      if (washing.getWashingOptions().getMaxLoadParticipant() < 0) {
-        throw new WashineCoreException("Invalid participant max load");
-      }
       if (washing.getWashingOptions().getVisibilityTime() <= 0) {
         throw new WashineCoreException("Invalid visibility time");
-      }
-      if (washing.getWashingOptions().getWashingAccessCloseDate() <= 0) {
-        throw new WashineCoreException("Invalid access date");
-      }
-      if (washing.getWashingOptions().getWashingAccessCloseDate() <= 0) {
-        throw new WashineCoreException("Invalid closing date");
       }
       if (calculateWashingTotalLoad(washing) > washing.getWashingOptions().getMaxLoad()) {
         throw new WashineCoreException("New max load exceeded");

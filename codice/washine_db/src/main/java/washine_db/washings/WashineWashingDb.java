@@ -54,11 +54,6 @@ public class WashineWashingDb implements WashineWashingDbIf {
                   Washing.WASHING, Washing.WASHING.WASHINGID, Washing.WASHING.LAUNDRYPERSONID)
               .values(washingId, laundryPersonId)
               .execute();
-      result +=
-          create
-              .insertInto(Washingoptions.WASHINGOPTIONS, Washingoptions.WASHINGOPTIONS.WASHINGID)
-              .values(washingId)
-              .execute();
       return result == 1;
     } catch (SQLException e) {
       throw new WashineDataException("WashineDataException");
@@ -348,6 +343,21 @@ public class WashineWashingDb implements WashineWashingDbIf {
               .where(Washingoptions.WASHINGOPTIONS.WASHINGID.eq(washingId))
               .fetch();
       return (washing.isNotEmpty() && washingOptions.isNotEmpty());
+    } catch (SQLException e) {
+      throw new WashineDataException("WashineDataException");
+    }
+  }
+
+  public boolean createWashingOptions(String washingId) throws WashineDataException {
+    try {
+      Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
+      DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
+      int result =
+          create
+              .insertInto(Washingoptions.WASHINGOPTIONS, Washingoptions.WASHINGOPTIONS.WASHINGID)
+              .values(washingId)
+              .execute();
+      return result == 1;
     } catch (SQLException e) {
       throw new WashineDataException("WashineDataException");
     }
