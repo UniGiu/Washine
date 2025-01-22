@@ -199,12 +199,6 @@ public interface WashineWashingDbIf {
    * @throws WashineDataException
    */
   public double getWashingParticipantMaxLoad(String washingId) throws WashineDataException;
-
-  /**
-   * Selects a washing's initial load (that the laundry person set) through its id
-   *
-   * @param washingId id of the washing
-   * @return the inital load
-   * @throws WashineDataException
-   */
+  
+  public boolean existsWashing(String washingId) throws WashineDataException;
 }

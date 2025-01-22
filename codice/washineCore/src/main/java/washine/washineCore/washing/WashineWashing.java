@@ -2,7 +2,7 @@ package washine.washineCore.washing;
 
 import java.util.List;
 
-public class WashineWashing implements WashineLaundryWashingIf{
+public class WashineWashing implements WashineLaundryWashingIf {
 
   private String id;
   private List<String> enabledParticipants;
@@ -36,8 +36,9 @@ public class WashineWashing implements WashineLaundryWashingIf{
   public WashineLaundryWashingOptionsIf getWashingOptions() {
     return washingOptions;
   }
-  @Override
+
   public WashineLaundryWashingOptionsLaunderIf getWashingOptionsLaunder() {
-    return washingOptions;
+
+    return null;
   }
 }

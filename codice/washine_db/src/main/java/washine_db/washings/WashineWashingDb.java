@@ -15,6 +15,7 @@ import washine_db.exceptions.WashineDataException;
 import washine_db.jooq.generated.tables.Washing;
 import washine_db.jooq.generated.tables.Washingoptions;
 import washine_db.jooq.generated.tables.Washingparticipation;
+import washine_db.jooq.generated.tables.records.WashingRecord;
 import washine_db.jooq.generated.tables.records.WashingoptionsRecord;
 import washine_db.washine_db.JOOQCodeGeneration;
 
@@ -48,6 +49,11 @@ public class WashineWashingDb implements WashineWashingDbIf {
       Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
       DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
       int result = create.insertInto(Washing.WASHING).values(washingId, laundryPersonId).execute();
+      result +=
+          create
+              .insertInto(Washingoptions.WASHINGOPTIONS, Washingoptions.WASHINGOPTIONS.WASHINGID)
+              .values(washingId)
+              .execute();
       return result == 1;
     } catch (SQLException e) {
       throw new WashineDataException("WashineDataException");
@@ -82,10 +88,7 @@ public class WashineWashingDb implements WashineWashingDbIf {
     try {
       Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
       DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
-      create
-          .insertInto(Washingoptions.WASHINGOPTIONS, Washingoptions.WASHINGOPTIONS.WASHINGID)
-          .values(washingId)
-          .execute();
+
       int result =
           create
               .update(Washingoptions.WASHINGOPTIONS)
@@ -182,7 +185,12 @@ public class WashineWashingDb implements WashineWashingDbIf {
               .deleteFrom(Washing.WASHING)
               .where(Washing.WASHING.WASHINGID.eq(washingId))
               .execute();
-      return result == 1;
+      result +=
+          create
+              .deleteFrom(Washingoptions.WASHINGOPTIONS)
+              .where(Washingoptions.WASHINGOPTIONS.WASHINGID.eq(washingId))
+              .execute();
+      return result == 2;
     } catch (SQLException e) {
       throw new WashineDataException("WashineDataException");
     }
@@ -307,6 +315,7 @@ public class WashineWashingDb implements WashineWashingDbIf {
     }
   }
 
+  @Override
   public List<String> getParticipantIds(String washingId) throws WashineDataException {
     try {
       Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
@@ -316,6 +325,24 @@ public class WashineWashingDb implements WashineWashingDbIf {
           .from(Washingparticipation.WASHINGPARTICIPATION)
           .where(Washingparticipation.WASHINGPARTICIPATION.WASHINGID.eq(washingId))
           .fetch(Washingparticipation.WASHINGPARTICIPATION.WASHINGID);
+    } catch (SQLException e) {
+      throw new WashineDataException("WashineDataException");
+    }
+  }
+
+  @Override
+  public boolean existsWashing(String washingId) throws WashineDataException {
+    try {
+      Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
+      DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
+      Result<WashingRecord> washing =
+          create.selectFrom(Washing.WASHING).where(Washing.WASHING.WASHINGID.eq(washingId)).fetch();
+      Result<WashingoptionsRecord> washingOptions =
+          create
+              .selectFrom(Washingoptions.WASHINGOPTIONS)
+              .where(Washingoptions.WASHINGOPTIONS.WASHINGID.eq(washingId))
+              .fetch();
+      return (washing.isNotEmpty() && washingOptions.isNotEmpty());
     } catch (SQLException e) {
       throw new WashineDataException("WashineDataException");
     }
