@@ -154,5 +154,4 @@ public interface WashineWashingDbIf {
    * @throws WashineDataException
    */
   public boolean deleteParticipation(String washingId, String userId) throws WashineDataException;
-  
 }

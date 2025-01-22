@@ -224,15 +224,101 @@ public class WashineWashingDb implements WashineWashingDbIf {
   }
 
   @Override
-  public List<String> getParticipantIds(String washingId) throws WashineDataException {
+  public int getWashingDateTime(String washingId) throws WashineDataException {
     try {
       Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
       DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
-      return create
-          .select()
-          .from(Washingparticipation.WASHINGPARTICIPATION)
-          .where(Washingparticipation.WASHINGPARTICIPATION.WASHINGID.eq(washingId))
-          .fetch(Washingparticipation.WASHINGPARTICIPATION.WASHINGID);
+      Record1<Integer> date =
+          create
+              .select(Washingoptions.WASHINGOPTIONS.DATETIME)
+              .from(Washingoptions.WASHINGOPTIONS)
+              .where(Washingoptions.WASHINGOPTIONS.WASHINGID.eq(washingId))
+              .fetchOne();
+      return date.getValue(Washingoptions.WASHINGOPTIONS.DATETIME);
+    } catch (SQLException e) {
+      throw new WashineDataException("WashineDataException");
+    }
+  }
+
+  @Override
+  public int getWashingAccessOpenDate(String washingId) throws WashineDataException {
+    try {
+      Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
+      DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
+      Record1<Integer> date =
+          create
+              .select(Washingoptions.WASHINGOPTIONS.WASHINGACCESSOPENDATE)
+              .from(Washingoptions.WASHINGOPTIONS)
+              .where(Washingoptions.WASHINGOPTIONS.WASHINGID.eq(washingId))
+              .fetchOne();
+      return date.getValue(Washingoptions.WASHINGOPTIONS.WASHINGACCESSOPENDATE);
+    } catch (SQLException e) {
+      throw new WashineDataException("WashineDataException");
+    }
+  }
+
+  @Override
+  public int getWashingAccessCloseDate(String washingId) throws WashineDataException {
+    try {
+      Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
+      DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
+      Record1<Integer> date =
+          create
+              .select(Washingoptions.WASHINGOPTIONS.WASHINGACCESSCLOSEDATE)
+              .from(Washingoptions.WASHINGOPTIONS)
+              .where(Washingoptions.WASHINGOPTIONS.WASHINGID.eq(washingId))
+              .fetchOne();
+      return date.getValue(Washingoptions.WASHINGOPTIONS.WASHINGACCESSCLOSEDATE);
+    } catch (SQLException e) {
+      throw new WashineDataException("WashineDataException");
+    }
+  }
+
+  public double getWashingMaxLoad(String washingId) throws WashineDataException {
+    try {
+      Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
+      DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
+      Record1<Double> date =
+          create
+              .select(Washingoptions.WASHINGOPTIONS.MAXLOAD)
+              .from(Washingoptions.WASHINGOPTIONS)
+              .where(Washingoptions.WASHINGOPTIONS.WASHINGID.eq(washingId))
+              .fetchOne();
+      return date.getValue(Washingoptions.WASHINGOPTIONS.MAXLOAD);
+    } catch (SQLException e) {
+      throw new WashineDataException("WashineDataException");
+    }
+  }
+
+  @Override
+  public double getWashingParticipantMaxLoad(String washingId) throws WashineDataException {
+    try {
+      Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
+      DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
+      Record1<Double> date =
+          create
+              .select(Washingoptions.WASHINGOPTIONS.PARTICIPANTMAXLOAD)
+              .from(Washingoptions.WASHINGOPTIONS)
+              .where(Washingoptions.WASHINGOPTIONS.WASHINGID.eq(washingId))
+              .fetchOne();
+      return date.getValue(Washingoptions.WASHINGOPTIONS.PARTICIPANTMAXLOAD);
+    } catch (SQLException e) {
+      throw new WashineDataException("WashineDataException");
+    }
+  }
+
+  @Override
+  public double getWashingInitialLoad(String washingId) throws WashineDataException {
+    try {
+      Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
+      DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
+      Record1<Double> date =
+          create
+              .select(Washingoptions.WASHINGOPTIONS.INITIALLOAD)
+              .from(Washingoptions.WASHINGOPTIONS)
+              .where(Washingoptions.WASHINGOPTIONS.WASHINGID.eq(washingId))
+              .fetchOne();
+      return date.getValue(Washingoptions.WASHINGOPTIONS.INITIALLOAD);
     } catch (SQLException e) {
       throw new WashineDataException("WashineDataException");
     }
