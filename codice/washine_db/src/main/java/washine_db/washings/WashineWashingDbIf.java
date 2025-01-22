@@ -106,6 +106,15 @@ public interface WashineWashingDbIf {
   public List<String> getParticipatedWashingIds(String userId) throws WashineDataException;
 
   /**
+   * Selects from the database the ids of the participant to a washing
+   *
+   * @param washingId id of the washing
+   * @return the list of ids
+   * @throws WashineDataException
+   */
+  public List<String> getParticipantIds(String washingId) throws WashineDataException;
+
+  /**
    * Selects from the database all the options of a washing previously inserted through the washing
    * id
    *
@@ -145,4 +154,5 @@ public interface WashineWashingDbIf {
    * @throws WashineDataException
    */
   public boolean deleteParticipation(String washingId, String userId) throws WashineDataException;
+  
 }

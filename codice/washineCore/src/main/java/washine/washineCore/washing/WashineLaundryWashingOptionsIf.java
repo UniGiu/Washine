@@ -20,7 +20,7 @@ public interface WashineLaundryWashingOptionsIf {
      * 
      * @return the date and time of the washing operation
      */
-    Date getDatetime();
+    int getDatetime();
 
     /**
      * Gets the duration of the washing operation in minutes.
@@ -146,12 +146,12 @@ public interface WashineLaundryWashingOptionsIf {
      * 
      * @return the opening date and time for washing access
      */
-    Date getWashingAccessOpenDate();
+    int getWashingAccessOpenDate();
 
     /**
      * Gets the date and time when access to the washing operation closes.
      * 
      * @return the closing date and time for washing access
      */
-    Date getWashingAccessCloseDate();
+    int getWashingAccessCloseDate();
 }

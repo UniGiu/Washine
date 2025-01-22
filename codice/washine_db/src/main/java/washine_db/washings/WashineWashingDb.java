@@ -218,4 +218,19 @@ public class WashineWashingDb implements WashineWashingDbIf {
       throw new WashineDataException("WashineDataException");
     }
   }
+
+  @Override
+  public List<String> getParticipantIds(String washingId) throws WashineDataException {
+    try {
+      Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
+      DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
+      return create
+          .select()
+          .from(Washingparticipation.WASHINGPARTICIPATION)
+          .where(Washingparticipation.WASHINGPARTICIPATION.WASHINGID.eq(washingId))
+          .fetch(Washingparticipation.WASHINGPARTICIPATION.WASHINGID);
+    } catch (SQLException e) {
+      throw new WashineDataException("WashineDataException");
+    }
+  }
 }
