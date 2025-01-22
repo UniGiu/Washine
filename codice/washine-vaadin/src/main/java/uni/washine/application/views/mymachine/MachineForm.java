@@ -5,12 +5,14 @@ import java.time.ZoneId;
 
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.datetimepicker.DateTimePicker;
+import com.vaadin.flow.component.details.Details;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.radiobutton.RadioButtonGroup;
 import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
 
 import  java.time.Instant;
 
@@ -45,10 +47,14 @@ public class MachineForm extends VerticalLayout{
     private DateTimePicker accessCloseDatePicker;
 
     private MachineForm(){
-      
-        FormLayout formLayout = new FormLayout();
         
+        FormLayout formLayout = new FormLayout();
+        FormLayout formLayoutNotRequired = new FormLayout();
+        Details optionalInputs = new Details();
+        optionalInputs.setWidth("100%");
+        optionalInputs.setSummaryText("Non required options");
        //Required
+
        //Time
         dateTimeWashingPicker = new DateTimePicker("Washing Date and Time");
         dateTimeWashingPicker.setHelperText("Format: DD/MM/YYYY and HH:MM");
@@ -73,7 +79,8 @@ public class MachineForm extends VerticalLayout{
         visibilityTimeField.setHelperText("Specify for how long the washing will be visible after completion");
         visibilityTimeField.setRequired(true);
         maxLoadField.setMin(0);
-       //Machine setup
+      
+        //Machine setup
         temperatureGroup = new RadioButtonGroup<>();
         temperatureGroup.setLabel("Temperature");
         temperatureGroup.setItems("Cold", "30°C", "40°C", "60°C", "90°C");
@@ -108,7 +115,9 @@ public class MachineForm extends VerticalLayout{
         underwearCheckbox = new Checkbox("Include Underwear/Lingerie"); 
         underwearCheckbox.setRequiredIndicatorVisible(true);       
        
-        //not required       
+        //not required   
+       
+
         ironingCheckbox = new Checkbox("Include Ironing");   
         
         pickupAddressField = new TextField("Pickup Address, where to bring the clothes");
@@ -124,20 +133,22 @@ public class MachineForm extends VerticalLayout{
         refundTypeField = new TextField("Refound information");
         refundTypeField.setHelperText("Specify if you will ask for a refound, the total amount and the sharing logic");
 
-        // Create participant max load field
+        
         participantMaxLoadField = new NumberField("Max Load per Participant (kilograms)");
 
-        // Create access date/time pickers
-        accessOpenDatePicker = new DateTimePicker("Access Open Date/Time");
-        refundTypeField.setHelperText("Specify when people will be able to access the washing");
-        accessCloseDatePicker = new DateTimePicker("Access Close Date/Time");
-        refundTypeField.setHelperText("Specify till when it will be possible to add clothes to the washing");
+        
+        accessOpenDatePicker = new DateTimePicker("Participants accepted after Date/Time");
+        accessOpenDatePicker.setHelperText("Specify when people will be able to access the washing");
+        accessCloseDatePicker = new DateTimePicker("Participant accepted untill Date/Time");
+        accessCloseDatePicker.setHelperText("Specify till when it will be possible to add clothes to the washing");
 
-        // Initialize the submit button
+     
         submitButton = new Button();
+        submitButton.setWidth("min-content");
+        submitButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         updateSubmitButtonLabel(); // Set the initial label based on washingInfo state
 
-        // Add components to form
+        //requred options
         formLayout.add(
             dateTimeWashingPicker,
             durationField,
@@ -150,8 +161,10 @@ public class MachineForm extends VerticalLayout{
             colorGroup,
             detergentTypeGroup,            
             dryingTypeGroup,
-            underwearCheckbox,
-            //not requred options
+            underwearCheckbox                                  
+        );
+         //not requred options
+         formLayoutNotRequired.add(
             refundTypeField,
             ironingCheckbox,
             pickupAddressField,
@@ -160,19 +173,13 @@ public class MachineForm extends VerticalLayout{
             deliveryAvailabilityField,
             participantMaxLoadField,
             accessOpenDatePicker,
-            accessCloseDatePicker,
-            submitButton
+            accessCloseDatePicker  
         );
-        
-      
-        formLayout.setResponsiveSteps(
-            new FormLayout.ResponsiveStep("0", 1),
-            new FormLayout.ResponsiveStep("500px", 2)
-        );
-        
-        add(formLayout);       
+        optionalInputs.add(formLayoutNotRequired);
+        add(formLayout); 
+        add(optionalInputs);
+      add(submitButton);     
 
-        // Add a click listener to handle the button click
         submitButton.addClickListener(event -> handleSubmit());
     }
     public static MachineForm getInstance() {
