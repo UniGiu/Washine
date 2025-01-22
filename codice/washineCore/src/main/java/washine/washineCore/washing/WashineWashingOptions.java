@@ -2,7 +2,7 @@ package washine.washineCore.washing;
 
 import java.util.Date; 
 
-public class WashineWashingOptions implements WashineLaundryWashingOptionsIf {
+public class WashineWashingOptions implements WashineLaundryWashingOptionsIf, WashineLaundryWashingOptionsLaunderIf {
 	
 		
 	    private int dateTime;
@@ -138,5 +138,73 @@ public class WashineWashingOptions implements WashineLaundryWashingOptionsIf {
 	    public int getWashingAccessCloseDate() {
 	        return washingAccessCloseDate;
 	    }
+		public void setDateTime(int dateTime) {
+			this.dateTime = dateTime;
+		}
+		public void setVisibilityTime(int visibilityTime) {
+			this.visibilityTime = visibilityTime;
+		}
+		public void setDurationMinutes(int durationMinutes) {
+			this.durationMinutes = durationMinutes;
+		}
+		public void setInitialLoad(double initialLoad) {
+			this.initialLoad = initialLoad;
+		}
+		public void setMaxLoad(double maxLoad) {
+			this.maxLoad = maxLoad;
+		}
+		public void setTemperature(String temperature) {
+			this.temperature = temperature;
+		}
+		public void setSpinSpeed(String spinSpeed) {
+			this.spinSpeed = spinSpeed;
+		}
+		public void setFabricType(String fabricType) {
+			this.fabricType = fabricType;
+		}
+		public void setColor(String color) {
+			this.color = color;
+		}
+		public void setDetergentTypes(String detergentTypes) {
+			this.detergentTypes = detergentTypes;
+		}
+		public void setUnderwear(boolean underwear) {
+			this.underwear = underwear;
+		}
+		public void setRefundTypes(String refundTypes) {
+			this.refundTypes = refundTypes;
+		}
+		public void setPickupAddress(String pickupAddress) {
+			this.pickupAddress = pickupAddress;
+		}
+		public void setDeliveryAddress(String deliveryAddress) {
+			this.deliveryAddress = deliveryAddress;
+		}
+		public void setDrying(String drying) {
+			this.drying = drying;
+		}
+		public void setPickupAvailability(String pickupAvailability) {
+			this.pickupAvailability = pickupAvailability;
+		}
+		public void setDeliveryAvailability(String deliveryAvailability) {
+			this.deliveryAvailability = deliveryAvailability;
+		}
+		public void setIroning(boolean ironing) {
+			this.ironing = ironing;
+		}
+		public void setParticipantMaxLoad(double participantMaxLoad) {
+			this.participantMaxLoad = participantMaxLoad;
+		}
+		public void setWashingAccessOpenDate(int washingAccessOpenDate) {
+			this.washingAccessOpenDate = washingAccessOpenDate;
+		}
+		public void setWashingAccessCloseDate(int washingAccessCloseDate) {
+			this.washingAccessCloseDate = washingAccessCloseDate;
+		}
+		@Override
+		public double setParticipantMaxLoad() {
+			// TODO Auto-generated method stub
+			return 0;
+		}
 
 }
