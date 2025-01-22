@@ -48,7 +48,12 @@ public class WashineWashingDb implements WashineWashingDbIf {
     try {
       Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
       DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
-      int result = create.insertInto(Washing.WASHING).values(washingId, laundryPersonId).execute();
+      int result =
+          create
+              .insertInto(
+                  Washing.WASHING, Washing.WASHING.WASHINGID, Washing.WASHING.LAUNDRYPERSONID)
+              .values(washingId, laundryPersonId)
+              .execute();
       result +=
           create
               .insertInto(Washingoptions.WASHINGOPTIONS, Washingoptions.WASHINGOPTIONS.WASHINGID)

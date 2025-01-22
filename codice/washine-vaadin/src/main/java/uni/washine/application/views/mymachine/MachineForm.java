@@ -300,110 +300,118 @@ public class MachineForm extends VerticalLayout {
   private void submitWashingUpdate() {}
 
   private void refreshWashingInfo() {
-    if (washingInfo == null) return;
-
-    WashineLaundryWashingOptionsLaunderIf options = washingInfo.getWashingOptionsLaunder();
+    if (washingInfo == null) {
+      return;
+    }
 
     LocalDateTime washingDateTime = dateTimeWashingPicker.getValue();
     if (washingDateTime != null) {
-      options.setDateTime((int) washingDateTime.atZone(ZoneId.systemDefault()).toEpochSecond());
+      washingInfo
+          .getWashingOptionsLaunder()
+          .setDateTime((int) washingDateTime.atZone(ZoneId.systemDefault()).toEpochSecond());
     }
 
     LocalDateTime openDateTime = accessOpenDatePicker.getValue();
     if (openDateTime != null) {
-      options.setWashingAccessOpenDate(
-          (int) openDateTime.atZone(ZoneId.systemDefault()).toEpochSecond());
+      washingInfo
+          .getWashingOptionsLaunder()
+          .setWashingAccessOpenDate(
+              (int) openDateTime.atZone(ZoneId.systemDefault()).toEpochSecond());
     }
 
     LocalDateTime closeDateTime = accessCloseDatePicker.getValue();
     if (closeDateTime != null) {
-      options.setWashingAccessCloseDate(
-          (int) closeDateTime.atZone(ZoneId.systemDefault()).toEpochSecond());
+      washingInfo
+          .getWashingOptionsLaunder()
+          .setWashingAccessCloseDate(
+              (int) closeDateTime.atZone(ZoneId.systemDefault()).toEpochSecond());
     }
 
     Double duration = durationField.getValue();
     if (duration != null) {
-      options.setDurationMinutes(duration.intValue());
+      washingInfo.getWashingOptionsLaunder().setDurationMinutes(duration.intValue());
     }
 
     Double initialLoad = initialLoadField.getValue();
     if (initialLoad != null) {
-      options.setInitialLoad(initialLoad);
+      washingInfo.getWashingOptionsLaunder().setInitialLoad(initialLoad);
     }
 
     Double maxLoad = maxLoadField.getValue();
     if (maxLoad != null) {
-      options.setMaxLoad(maxLoad);
+      washingInfo.getWashingOptionsLaunder().setMaxLoad(maxLoad);
     }
 
     Double visibilityTime = visibilityTimeField.getValue();
     if (visibilityTime != null) {
-      options.setVisibilityTime(visibilityTime.intValue() * 24 * 60); // Convert days to minutes
+      washingInfo
+          .getWashingOptionsLaunder()
+          .setVisibilityTime(visibilityTime.intValue() * 24 * 60); // Convert days to minutes
     }
 
     Double participantMaxLoad = participantMaxLoadField.getValue();
     if (participantMaxLoad != null) {
-      options.setParticipantMaxLoad(participantMaxLoad);
+      washingInfo.getWashingOptionsLaunder().setParticipantMaxLoad(participantMaxLoad);
     }
 
     String temperature = temperatureGroup.getValue();
     if (temperature != null) {
-      options.setTemperature(temperature);
+      washingInfo.getWashingOptionsLaunder().setTemperature(temperature);
     }
 
     String spinSpeed = spinSpeedGroup.getValue();
     if (spinSpeed != null) {
-      options.setSpinSpeed(spinSpeed);
+      washingInfo.getWashingOptionsLaunder().setSpinSpeed(spinSpeed);
     }
 
     String fabricType = fabricTypeGroup.getValue();
     if (fabricType != null) {
-      options.setFabricType(fabricType);
+      washingInfo.getWashingOptionsLaunder().setFabricType(fabricType);
     }
 
     String color = colorGroup.getValue();
     if (color != null) {
-      options.setColor(color);
+      washingInfo.getWashingOptionsLaunder().setColor(color);
     }
 
     String detergentType = detergentTypeGroup.getValue();
     if (detergentType != null) {
-      options.setDetergentTypes(detergentType);
+      washingInfo.getWashingOptionsLaunder().setDetergentTypes(detergentType);
     }
 
     String dryingType = dryingTypeGroup.getValue();
     if (dryingType != null) {
-      options.setDrying(dryingType);
+      washingInfo.getWashingOptionsLaunder().setDrying(dryingType);
     }
 
     // Handle Checkboxes
-    options.setUnderwear(underwearCheckbox.getValue());
-    options.setIroning(ironingCheckbox.getValue());
+    washingInfo.getWashingOptionsLaunder().setUnderwear(underwearCheckbox.getValue());
+    washingInfo.getWashingOptionsLaunder().setIroning(ironingCheckbox.getValue());
 
     // Handle Text fields
     String pickupAddress = pickupAddressField.getValue();
     if (pickupAddress != null) {
-      options.setPickupAddress(pickupAddress);
+      washingInfo.getWashingOptionsLaunder().setPickupAddress(pickupAddress);
     }
 
     String deliveryAddress = deliveryAddressField.getValue();
     if (deliveryAddress != null) {
-      options.setDeliveryAddress(deliveryAddress);
+      washingInfo.getWashingOptionsLaunder().setDeliveryAddress(deliveryAddress);
     }
 
     String pickupAvailability = pickupAvailabilityField.getValue();
     if (pickupAvailability != null) {
-      options.setPickupAvailability(pickupAvailability);
+      washingInfo.getWashingOptionsLaunder().setPickupAvailability(pickupAvailability);
     }
 
     String deliveryAvailability = deliveryAvailabilityField.getValue();
     if (deliveryAvailability != null) {
-      options.setDeliveryAvailability(deliveryAvailability);
+      washingInfo.getWashingOptionsLaunder().setDeliveryAvailability(deliveryAvailability);
     }
 
     String refundType = refundTypeField.getValue();
     if (refundType != null) {
-      options.setRefundTypes(refundType);
+      washingInfo.getWashingOptionsLaunder().setRefundTypes(refundType);
     }
   }
 }
