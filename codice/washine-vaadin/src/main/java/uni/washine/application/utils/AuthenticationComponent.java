@@ -10,15 +10,17 @@ import com.vaadin.flow.component.textfield.EmailField;
 import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.server.VaadinSession;
 
-
-import washine.washineCore.WashineCoreAuth;
+import washine.washineCore.AbstractCoreFactory;
 import washine.washineCore.WashineCoreAuthIf;
 import washine.washineCore.user.WashineUserIf;
 
 public class AuthenticationComponent extends VerticalLayout {
 	
+	private final WashineCoreAuthIf authCore;
+	
 	public AuthenticationComponent() {
-		super();
+		super();	
+		authCore = AbstractCoreFactory.getInstance("vaadin").createCoreAuth();
 		add(getLoginForm(),getSignInForm());
 	}
 	
@@ -54,7 +56,7 @@ public class AuthenticationComponent extends VerticalLayout {
 	                try {
 	          handleLogin(email, password);
 	        } catch (SQLException e1) {
-	          // TODO Auto-generated catch block
+	        
 	        e1.printStackTrace();
 	        }
 	            }
@@ -94,7 +96,7 @@ public class AuthenticationComponent extends VerticalLayout {
 	               try {
 	        handleSignUp(email, password);
 	      } catch (SQLException e1) {
-	        // TODO Auto-generated catch block
+	        
 	        e1.printStackTrace();
 	      }
 	            }
@@ -121,10 +123,9 @@ public class AuthenticationComponent extends VerticalLayout {
 	    }
 
 	    private void handleLogin(String email, String password) throws SQLException {
-	        WashineCoreAuthIf wCore=new WashineCoreAuth();
-	        WashineUserIf loggedUser = wCore.authenticateUser(email, password);
+	        WashineUserIf loggedUser = authCore.authenticateUser(email, password);
 
-	        if (loggedUser!=null) {
+	        if (loggedUser != null) {
 	            VaadinSession.getCurrent().setAttribute("currentUser", loggedUser);
 	            getUI().ifPresent(ui -> ui.getPage().reload());
 	        } else {
@@ -133,9 +134,8 @@ public class AuthenticationComponent extends VerticalLayout {
 	    }
 
 	    private void handleSignUp(String email, String password) throws SQLException {
-	    	  WashineCoreAuthIf wCore=new WashineCoreAuth();
-	          WashineUserIf createdUser = wCore.addUser(email, password);        
-	        if (createdUser!=null) {          
+	        WashineUserIf createdUser = authCore.addUser(email, password);        
+	        if (createdUser != null) {          
 	        	UiNotifier.showSuccessNotification("Account created for " + createdUser.getEmail()+ ", please log in.");           
 	        } else {
 	        	UiNotifier.showErrorNotification("Invalid email or password, or user already registered");

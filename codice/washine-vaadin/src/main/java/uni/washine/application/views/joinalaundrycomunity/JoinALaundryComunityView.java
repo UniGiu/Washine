@@ -24,7 +24,7 @@ import com.vaadin.flow.server.VaadinSession;
 import com.vaadin.flow.theme.lumo.LumoUtility.Gap;
 
 import uni.washine.application.utils.AuthenticationComponent;
-import washine.washineCore.WashineCoreCommunity;
+import washine.washineCore.AbstractCoreFactory;
 import washine.washineCore.WashineCoreCommunityIf;
 import washine.washineCore.user.WashineUserIf;
 import uni.washine.application.utils.UiNotifier;
@@ -49,9 +49,9 @@ public class JoinALaundryComunityView extends Composite<VerticalLayout>
   private WashineUserIf userData;
   // the code in the invitation link
   private String invitationCodeFromURL = "";
-
+    private final WashineCoreCommunityIf community;
   public JoinALaundryComunityView() {
-	 
+	  community =  AbstractCoreFactory.getInstance("vaadin").createCoreWashineCommunity();
 	logger.debug("3: "+invitationCodeFromURL);
     HorizontalLayout layoutRow = new HorizontalLayout();
     H2 h2 = new H2();
@@ -127,7 +127,7 @@ public class JoinALaundryComunityView extends Composite<VerticalLayout>
               return;
             }           
           //Checks for code
-          WashineCoreCommunityIf community = new WashineCoreCommunity();
+         
         
           String communityId = community.getInvitationCodeCommunityId(code);
          
@@ -188,7 +188,7 @@ public class JoinALaundryComunityView extends Composite<VerticalLayout>
             UiNotifier.showErrorNotification("You should provide a name");
             return;
           }
-          WashineCoreCommunityIf community = new WashineCoreCommunity();
+       
           if (community.nameInCommunity(newUserName, uid)) {
             UiNotifier.showErrorNotification("This name is already taken.");
             invitationLinkText.setText("");

@@ -19,8 +19,7 @@ import com.vaadin.flow.server.menu.MenuConfiguration;
 import com.vaadin.flow.server.menu.MenuEntry;
 import com.vaadin.flow.theme.lumo.LumoUtility;
 
-
-import washine.washineCore.WashineCoreAuth;
+import washine.washineCore.AbstractCoreFactory;
 import washine.washineCore.WashineCoreAuthIf;
 import washine.washineCore.user.WashineUserIf;
 
@@ -36,7 +35,7 @@ public class MainLayout extends AppLayout {
 	private H1 viewTitle;
 	private WashineUserIf userData;
 
-	public MainLayout() {
+	public MainLayout() {		
 		userData = (WashineUserIf) VaadinSession.getCurrent().getAttribute("currentUser");
 		setPrimarySection(Section.DRAWER);
 		addDrawerContent();
@@ -92,9 +91,9 @@ public class MainLayout extends AppLayout {
 			buttonLogout.setWidth("min-content");
 			buttonLogout.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
 			buttonLogout.addClickListener(e -> {
-				userData=null;
-				WashineCoreAuthIf wCore=new WashineCoreAuth();
-				wCore.logOut();
+				userData=null;	
+				WashineCoreAuthIf authCore= AbstractCoreFactory.getInstance("vaadin").createCoreAuth();
+				authCore.logOut();
 				VaadinSession.getCurrent().setAttribute("currentUser", null);
 				getUI().ifPresent(ui -> ui.getPage().reload());
 			});

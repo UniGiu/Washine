@@ -21,7 +21,7 @@ import com.vaadin.flow.theme.lumo.LumoUtility.Gap;
 
 import uni.washine.application.utils.UiNotifier;
 
-import washine.washineCore.WashineCoreAuth;
+import washine.washineCore.AbstractCoreFactory;
 import washine.washineCore.WashineCoreAuthIf;
 import washine.washineCore.user.WashineUserIf;
 
@@ -33,9 +33,10 @@ import org.vaadin.lineawesome.LineAwesomeIconUrl;
 public class MyCredentialsView extends Composite<VerticalLayout> implements BeforeEnterObserver{
 
 	private WashineUserIf userData;
+	final WashineCoreAuthIf wCore;
 
 	public MyCredentialsView() {		
-	
+		wCore = AbstractCoreFactory.getInstance("vaadin").createCoreAuth();
 		HorizontalLayout layoutRow = new HorizontalLayout();
 		H3 h3 = new H3();
 		Paragraph textLarge = new Paragraph();
@@ -108,7 +109,7 @@ public class MyCredentialsView extends Composite<VerticalLayout> implements Befo
         	UiNotifier.showErrorNotification("Please enter a valid email address");
             return false;
         }
-		WashineCoreAuthIf wCore = new WashineCoreAuth();
+		
 		WashineUserIf userWithNewEmail;
 		
 			userWithNewEmail = wCore.updateUserEmail(userData.getId(), email);
@@ -131,7 +132,7 @@ public class MyCredentialsView extends Composite<VerticalLayout> implements Befo
 			UiNotifier.showErrorNotification("You must type the new password");
 			return false;
 		}
-		WashineCoreAuthIf wCore = new WashineCoreAuth();
+	
 		WashineUserIf userWithNewPassword;		
 			userWithNewPassword = wCore.updateUserPassword(userData.getId(), password);
 			if (userWithNewPassword != null) {
