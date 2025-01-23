@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 
 import com.vaadin.flow.component.checkbox.Checkbox;
+import com.vaadin.flow.component.confirmdialog.ConfirmDialog;
 import com.vaadin.flow.component.datetimepicker.DateTimePicker;
 import com.vaadin.flow.component.details.Details;
 import com.vaadin.flow.component.formlayout.FormLayout;
@@ -15,6 +16,8 @@ import com.vaadin.flow.server.VaadinSession;
 
 import uni.washine.application.utils.UiNotifier;
 
+import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.ComponentEvent;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 
@@ -22,7 +25,6 @@ import java.time.Duration;
 import java.time.Instant;
 
 import washine.washineCore.AbstractCoreFactory;
-import washine.washineCore.WashineCoreAuthIf;
 import washine.washineCore.WashineCoreWashingIf;
 import washine.washineCore.exceptions.WashineCoreException;
 import washine.washineCore.user.WashineUserIf;
@@ -34,7 +36,7 @@ public class MachineForm extends VerticalLayout {
   private static MachineForm uniqueInstance;
   private WashineLaundryWashingIf washingInfo;
   private Button submitButton;
-
+ 
   // Form controls as class fields
   private DateTimePicker dateTimeWashingPicker;
   private NumberField durationField;
@@ -65,6 +67,7 @@ public class MachineForm extends VerticalLayout {
     Details optionalInputs = new Details();
     optionalInputs.setWidth("100%");
     optionalInputs.setSummaryText("Non required options");
+    Button cancelButton;
     // Required
 
     // Time
@@ -158,7 +161,13 @@ public class MachineForm extends VerticalLayout {
     submitButton = new Button();
     submitButton.setWidth("min-content");
     submitButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-    updateSubmitButtonLabel(); // Set the initial label based on washingInfo state
+    submitButton.addClickListener(event -> handleSubmit());
+    updateSubmitButtonLabel(); 
+    cancelButton= new Button();
+    cancelButton.setWidth("min-content");
+    cancelButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+   cancelButton.setText("Cancel");
+   //submitButton.addClickListener(event -> fireEvent();));
 
     // requred options
     formLayout.add(
@@ -189,8 +198,8 @@ public class MachineForm extends VerticalLayout {
     add(formLayout);
     add(optionalInputs);
     add(submitButton);
-
-    submitButton.addClickListener(event -> handleSubmit());
+    add(cancelButton);
+    
   }
 
   public static MachineForm getInstance() {
@@ -199,7 +208,7 @@ public class MachineForm extends VerticalLayout {
     }
     return uniqueInstance;
   }
-
+//we already have a washing we want to edit
   public void init(WashineLaundryWashingIf washing) {
     washingInfo = washing;
     WashineLaundryWashingOptionsLaunderIf options = washing.getWashingOptionsLaunder();
@@ -241,7 +250,7 @@ public class MachineForm extends VerticalLayout {
     return instant.atZone(ZoneId.systemDefault()).toLocalDateTime();
   }
 
-  /** resets the form (for a new washing) */
+  //we clear the form, we want to create a new one
   public void reset() {
     washingInfo = null;
 
@@ -361,35 +370,63 @@ public class MachineForm extends VerticalLayout {
 
   private void submitNewWashing() {
     WashineUserIf userData = (WashineUserIf) VaadinSession.getCurrent().getAttribute("currentUser");
+    boolean result=false;
     try {
-      refreshWashingInfo();
-      wCore.createWashing(userData.getId(), washingInfo.getWashingOptionsLaunder());
+        result=wCore.createWashing(userData.getId(), getFormOptions());
     } catch (WashineCoreException e) {
-      // SE FACCIAMO L'INSERIMENTO IN DUE FASI DALLA GUI QUI CI VORREBBE POI QUESTO:
-      //     wCore.deleteWashing(userData.getId());
-      // Ma la logica va nel core
       UiNotifier.showErrorNotification(e.getMessage());
     }
-    if (washingInfo != null) {
+    if (result) {
       // Qui dispatchare evento
-      UiNotifier.showSuccessNotification("Nuovo lavaggio aggiunto");
+      UiNotifier.showSuccessNotification("New washing ready");
     }
   }
 
   private void submitWashingUpdate() {
-    try {
-      refreshWashingInfo();
-      wCore.updateWashingOptions(washingInfo.getId(), washingInfo.getWashingOptionsLaunder());
-    } catch (WashineCoreException e) {
-      UiNotifier.showErrorNotification(e.getMessage());
+   
+    if(washingInfo.getEnabledParticipants().isEmpty()){
+        sendWashingUpdate();
+    }else{
+        askConfirmationBeforeUpdate();
     }
+    
+  }
+  private void askConfirmationBeforeUpdate(){
+        //TODO:see if the dialog will be garbage collected although it has listeners added
+        ConfirmDialog dialog = new ConfirmDialog();
+        dialog.setHeader("Update already participated washing?");
+        dialog.setText(
+                "This washing already has participants, are you sure you want to update it?");
+
+        dialog.setCancelable(true);
+        //dialog.addCancelListener(event -> setStatus("Canceled"));
+
+        dialog.setConfirmText("Update");
+        dialog.setConfirmButtonTheme("error primary");
+        dialog.addConfirmListener(event -> sendWashingUpdate());
+
+  }
+  private void sendWashingUpdate(){
+    boolean result=false;
+    try {     
+        wCore.updateWashingOptions(washingInfo.getId(), getFormOptions());
+      } catch (WashineCoreException e) {
+        UiNotifier.showErrorNotification(e.getMessage());
+      }
+      if (result) {
+          // Qui dispatchare evento
+          UiNotifier.showSuccessNotification("Your washing has been updated");
+        }
   }
 
-  private void refreshWashingInfo() {
-    if (washingInfo == null) return;
-
-    WashineLaundryWashingOptionsLaunderIf options = washingInfo.getWashingOptionsLaunder();
-
+  private WashineLaundryWashingOptionsLaunderIf getFormOptions() {
+    /*
+    nullified values should be updated in this case 
+    WashineLaundryWashingOptionsLaunderIf options = (washingInfo == null)
+    ?wCore.getBlankWashingOptions()
+    : washingInfo.getWashingOptionsLaunder();
+    */
+    WashineLaundryWashingOptionsLaunderIf options = wCore.getBlankWashingOptions();
     LocalDateTime washingDateTime = dateTimeWashingPicker.getValue();
     if (washingDateTime != null) {
       options.setDateTime((int) washingDateTime.atZone(ZoneId.systemDefault()).toEpochSecond());
@@ -491,5 +528,13 @@ public class MachineForm extends VerticalLayout {
     if (refundType != null) {
       options.setRefundTypes(refundType);
     }
+    return options;
   }
+public class FormEvent
+        extends ComponentEvent<Component> {
+    public FormEvent(Component source,
+                       boolean fromClient) {
+        super(source, fromClient);
+    }
+}
 }
