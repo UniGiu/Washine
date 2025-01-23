@@ -16,6 +16,8 @@ import com.vaadin.flow.server.VaadinSession;
 
 import uni.washine.application.utils.UiNotifier;
 
+import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.ComponentEvent;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 
@@ -34,7 +36,7 @@ public class MachineForm extends VerticalLayout {
   private static MachineForm uniqueInstance;
   private WashineLaundryWashingIf washingInfo;
   private Button submitButton;
-
+ 
   // Form controls as class fields
   private DateTimePicker dateTimeWashingPicker;
   private NumberField durationField;
@@ -65,6 +67,7 @@ public class MachineForm extends VerticalLayout {
     Details optionalInputs = new Details();
     optionalInputs.setWidth("100%");
     optionalInputs.setSummaryText("Non required options");
+    Button cancelButton;
     // Required
 
     // Time
@@ -158,7 +161,13 @@ public class MachineForm extends VerticalLayout {
     submitButton = new Button();
     submitButton.setWidth("min-content");
     submitButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-    updateSubmitButtonLabel(); // Set the initial label based on washingInfo state
+    submitButton.addClickListener(event -> handleSubmit());
+    updateSubmitButtonLabel(); 
+    cancelButton= new Button();
+    cancelButton.setWidth("min-content");
+    cancelButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+   cancelButton.setText("Cancel");
+   //submitButton.addClickListener(event -> fireEvent();));
 
     // requred options
     formLayout.add(
@@ -189,8 +198,8 @@ public class MachineForm extends VerticalLayout {
     add(formLayout);
     add(optionalInputs);
     add(submitButton);
-
-    submitButton.addClickListener(event -> handleSubmit());
+    add(cancelButton);
+    
   }
 
   public static MachineForm getInstance() {
@@ -521,5 +530,11 @@ public class MachineForm extends VerticalLayout {
     }
     return options;
   }
-
+public class FormEvent
+        extends ComponentEvent<Component> {
+    public FormEvent(Component source,
+                       boolean fromClient) {
+        super(source, fromClient);
+    }
+}
 }
