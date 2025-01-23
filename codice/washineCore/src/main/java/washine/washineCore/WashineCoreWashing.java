@@ -9,6 +9,7 @@ import org.jooq.Result;
 
 import washine.washineCore.exceptions.WashineCoreException;
 import washine.washineCore.washing.WashineLaundryWashingIf;
+import washine.washineCore.washing.WashineLaundryWashingOptionsIf;
 import washine.washineCore.washing.WashineLaundryWashingOptionsLaunderIf;
 import washine.washineCore.washing.WashineWashing;
 import washine.washineCore.washing.WashineWashingOptions;
@@ -105,7 +106,7 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
       if (!washingDb.existsWashing(washingId)) {
         throw new WashineCoreException("Washing does not exists");
       }
-      WashineLaundryWashingIf washing = getWashingOptions(washingId);
+      WashineLaundryWashingIf washing = getWashing(washingId);
       if (!((washing.getWashingOptions().getDatetime() > (int) Instant.now().getEpochSecond())
           && (washing.getWashingOptions().getWashingAccessOpenDate()
               < (int) Instant.now().getEpochSecond())
@@ -117,8 +118,7 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
       if (load > washing.getWashingOptions().getMaxLoadParticipant()) {
         throw new WashineCoreException("Exceded maximum load");
       }
-      double totalWashingLoad =
-          calculateWashingTotalLoad(washingId, washing.getWashingOptionsLaunder());
+      double totalWashingLoad = calculateWashingTotalLoad(washing);
 
       if (totalWashingLoad >= washing.getWashingOptions().getMaxLoad()) {
         throw new WashineCoreException("Max load Reached");
@@ -184,7 +184,7 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
   }
 
   @Override
-  public WashineLaundryWashingIf getWashingOptions(String washingId) throws WashineCoreException {
+  public WashineLaundryWashingIf getWashing(String washingId) throws WashineCoreException {
     WashineWashingDb washingDb = new WashineWashingDb();
     try {
       if (!washingDb.existsWashing(washingId)) {
@@ -214,18 +214,23 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
               washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.PARTICIPANTMAXLOAD),
               washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.WASHINGACCESSOPENDATE),
               washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.WASHINGACCESSCLOSEDATE));
-      return new WashineWashing(washingId, null, washingOptions);
+      WashineWashing washing = new WashineWashing(washingId, null, washingOptions);
+      for (String s : washingDb.getParticipantIds(washingId)) {
+        washing.addParticipant(s);
+      }
+      return washing;
     } catch (WashineDataException e) {
       throw new WashineCoreException("WashineCoreException");
     }
   }
 
   @Override
-  public boolean updateWashingOptions(
-      String washingId, WashineLaundryWashingOptionsLaunderIf options) throws WashineCoreException {
+  public boolean updateWashingOptions(WashineLaundryWashingIf washing) throws WashineCoreException {
     WashineWashingDb washingDb = new WashineWashingDb();
+    WashineLaundryWashingOptionsIf options = washing.getWashingOptions();
+    String washingId = washing.getId();
     try {
-      if (calculateWashingTotalLoad(washingId, options) > options.getMaxLoad()) {
+      if (calculateWashingTotalLoad(washing) > options.getMaxLoad()) {
         throw new WashineCoreException("New max load exceeded");
       }
       if (washingDb.existsWashing(washingId)) {
@@ -328,14 +333,16 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
    * @return the total load
    * @throws WashineCoreException
    */
-  public double calculateWashingTotalLoad(
-      String washingId, WashineLaundryWashingOptionsLaunderIf options) throws WashineCoreException {
+  public double calculateWashingTotalLoad(WashineLaundryWashingIf washing)
+      throws WashineCoreException {
     WashineWashingDb washingDb = new WashineWashingDb();
+    String id = washing.getId();
+    WashineLaundryWashingOptionsIf options = washing.getWashingOptions();
+    List<String> participantIds = washing.getParticipantIds();
     try {
       double totalWashingLoad = options.getInitialLoad();
-      List<String> participantIds = washingDb.getParticipantIds(washingId);
       for (String s : participantIds) {
-        totalWashingLoad += washingDb.getParticipationWeight(washingId, s);
+        totalWashingLoad += washingDb.getParticipationWeight(id, s);
         return totalWashingLoad;
       }
     } catch (WashineDataException e) {

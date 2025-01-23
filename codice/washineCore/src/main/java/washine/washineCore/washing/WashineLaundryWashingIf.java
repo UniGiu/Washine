@@ -35,10 +35,13 @@ public interface WashineLaundryWashingIf {
    * @return the washing options for the operation
    */
   WashineLaundryWashingOptionsIf getWashingOptions();
+
   /**
    * Gets the washing options that have been configured for the washing operation.
    *
    * @return the washing options for the operation
    */
   WashineLaundryWashingOptionsLaunderIf getWashingOptionsLaunder();
+
+  List<String> getParticipantIds();
 }

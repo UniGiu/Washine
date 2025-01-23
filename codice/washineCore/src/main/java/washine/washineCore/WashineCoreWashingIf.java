@@ -80,7 +80,7 @@ public interface WashineCoreWashingIf {
    * @return the washing
    * @throws WashineCoreException
    */
-  public WashineLaundryWashingIf getWashingOptions(String washingId) throws WashineCoreException;
+  public WashineLaundryWashingIf getWashing(String washingId) throws WashineCoreException;
 
   /**
    * Updates the washing options for a specific washing.
@@ -88,8 +88,7 @@ public interface WashineCoreWashingIf {
    * @param washingInfo the updated washing
    * @throws WashineCoreException
    */
-  boolean updateWashingOptions(String washingId, WashineLaundryWashingOptionsLaunderIf options)
-      throws WashineCoreException;
+  boolean updateWashingOptions(WashineLaundryWashingIf washing) throws WashineCoreException;
 
   /**
    * Deletes a participant's involvement in a washing.
