@@ -20,7 +20,7 @@ import washine_db.washings.WashineWashingDb;
 public class WashineCoreWashing implements WashineCoreWashingIf {
 
   @Override
-  public WashineLaundryWashingIf createWashing(
+  public boolean createWashing(
       String laundryPersonId, WashineLaundryWashingOptionsLaunderIf options)
       throws WashineCoreException {
     WashineWashingDb washingDb = new WashineWashingDb();
@@ -63,7 +63,9 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
       if (options.getRefundType() == null) {
         throw new WashineCoreException("invalid refund type");
       }
-
+      if (options.getInitialLoad() > options.getMaxLoad()) {
+        throw new WashineCoreException("invalid inital load");
+      }
       washingDb.createWashing(washingId, laundryPersonId);
       washingDb.createWashingOptions(
           washingId,
@@ -88,8 +90,7 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
           options.getMaxLoadParticipant(),
           options.getWashingAccessOpenDate(),
           options.getWashingAccessCloseDate());
-      WashineWashingOptions washingOptions = new WashineWashingOptions();
-      return new WashineWashing(washingId, null, washingOptions);
+      return true;
 
     } catch (WashineDataException e) {
       throw new WashineCoreException("WashineCoreException");
@@ -116,7 +117,8 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
       if (load > washing.getWashingOptions().getMaxLoadParticipant()) {
         throw new WashineCoreException("Exceded maximum load");
       }
-      double totalWashingLoad = calculateWashingTotalLoad(washing);
+      double totalWashingLoad =
+          calculateWashingTotalLoad(washingId, washing.getWashingOptionsLaunder());
 
       if (totalWashingLoad >= washing.getWashingOptions().getMaxLoad()) {
         throw new WashineCoreException("Max load Reached");
@@ -219,53 +221,72 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
   }
 
   @Override
-  public boolean updateWashingOptions(WashineLaundryWashingIf washing) throws WashineCoreException {
+  public boolean updateWashingOptions(
+      String washingId, WashineLaundryWashingOptionsLaunderIf options) throws WashineCoreException {
     WashineWashingDb washingDb = new WashineWashingDb();
     try {
-      if (!washingDb.existsWashing(washing.getId())) {
-        throw new WashineCoreException("Washing does not exists");
-      }
-      if (washing.getWashingOptions().getDatetime() <= 0) {
-        throw new WashineCoreException("Invalid date and time");
-      }
-      if (washing.getWashingOptions().getDurationMinutes() <= 0) {
-        throw new WashineCoreException("Invalid duration minutes");
-      }
-      if (washing.getWashingOptions().getInitialLoad() < 0) {
-        throw new WashineCoreException("Invalid initial load");
-      }
-      if (washing.getWashingOptions().getMaxLoad() < 0) {
-        throw new WashineCoreException("Invalid max load");
-      }
-      if (washing.getWashingOptions().getVisibilityTime() <= 0) {
-        throw new WashineCoreException("Invalid visibility time");
-      }
-      if (calculateWashingTotalLoad(washing) > washing.getWashingOptions().getMaxLoad()) {
+      if (calculateWashingTotalLoad(washingId, options) > options.getMaxLoad()) {
         throw new WashineCoreException("New max load exceeded");
       }
+      if (washingDb.existsWashing(washingId)) {
+        throw new WashineCoreException("Washing already exists");
+      }
+      if (options.getDatetime() < 0) {
+        throw new WashineCoreException("invalid washing date time");
+      }
+      if (options.getVisibilityTime() < 0) {
+        throw new WashineCoreException("invalid visibility time");
+      }
+      if (options.getDurationMinutes() < 0) {
+        throw new WashineCoreException("invalid duration minutes");
+      }
+      if (options.getInitialLoad() < 0) {
+        throw new WashineCoreException("invalid initial load");
+      }
+      if (options.getMaxLoad() < 0) {
+        throw new WashineCoreException("invalid max load");
+      }
+      if (options.getTemperature() == null) {
+        throw new WashineCoreException("invalid temperature");
+      }
+      if (options.getSpinSpeed() == null) {
+        throw new WashineCoreException("invalid spin speed");
+      }
+      if (options.getFabricType() == null) {
+        throw new WashineCoreException("invalid fabric type");
+      }
+      if (options.getColor() == null) {
+        throw new WashineCoreException("invalid color");
+      }
+      if (options.getDetergentType() == null) {
+        throw new WashineCoreException("invalid detergent type");
+      }
+      if (options.getRefundType() == null) {
+        throw new WashineCoreException("invalid refund type");
+      }
       return washingDb.updateWashingOptions(
-          washing.getId(),
-          washing.getWashingOptions().getVisibilityTime(),
-          washing.getWashingOptions().getDatetime(),
-          washing.getWashingOptions().getDurationMinutes(),
-          washing.getWashingOptions().getInitialLoad(),
-          washing.getWashingOptions().getMaxLoad(),
-          washing.getWashingOptions().getTemperature(),
-          washing.getWashingOptions().getSpinSpeed(),
-          washing.getWashingOptions().getFabricType(),
-          washing.getWashingOptions().getColor(),
-          washing.getWashingOptions().getDetergentType(),
-          washing.getWashingOptions().getRefundType(),
-          washing.getWashingOptions().isUnderwear(),
-          washing.getWashingOptions().getPickupAddress(),
-          washing.getWashingOptions().getDeliveryAddress(),
-          washing.getWashingOptions().getPickupAvailability(),
-          washing.getWashingOptions().getDeliveryAvailability(),
-          washing.getWashingOptions().getDryingType(),
-          washing.getWashingOptions().isIroning(),
-          washing.getWashingOptions().getMaxLoadParticipant(),
-          washing.getWashingOptions().getWashingAccessOpenDate(),
-          washing.getWashingOptions().getWashingAccessCloseDate());
+          washingId,
+          options.getVisibilityTime(),
+          options.getDatetime(),
+          options.getDurationMinutes(),
+          options.getInitialLoad(),
+          options.getMaxLoad(),
+          options.getTemperature(),
+          options.getSpinSpeed(),
+          options.getFabricType(),
+          options.getColor(),
+          options.getDetergentType(),
+          options.getRefundType(),
+          options.isUnderwear(),
+          options.getPickupAddress(),
+          options.getDeliveryAddress(),
+          options.getPickupAvailability(),
+          options.getDeliveryAvailability(),
+          options.getDryingType(),
+          options.isIroning(),
+          options.getMaxLoadParticipant(),
+          options.getWashingAccessOpenDate(),
+          options.getWashingAccessCloseDate());
     } catch (WashineDataException e) {
       throw new WashineCoreException("WashineCoreException");
     }
@@ -307,14 +328,14 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
    * @return the total load
    * @throws WashineCoreException
    */
-  public double calculateWashingTotalLoad(WashineLaundryWashingIf washing)
-      throws WashineCoreException {
+  public double calculateWashingTotalLoad(
+      String washingId, WashineLaundryWashingOptionsLaunderIf options) throws WashineCoreException {
     WashineWashingDb washingDb = new WashineWashingDb();
     try {
-      double totalWashingLoad = washing.getWashingOptions().getInitialLoad();
-      List<String> participantIds = washingDb.getParticipantIds(washing.getId());
+      double totalWashingLoad = options.getInitialLoad();
+      List<String> participantIds = washingDb.getParticipantIds(washingId);
       for (String s : participantIds) {
-        totalWashingLoad += washingDb.getParticipationWeight(washing.getId(), s);
+        totalWashingLoad += washingDb.getParticipationWeight(washingId, s);
         return totalWashingLoad;
       }
     } catch (WashineDataException e) {

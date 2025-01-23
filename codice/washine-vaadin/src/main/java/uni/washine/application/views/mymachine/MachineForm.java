@@ -363,25 +363,23 @@ public class MachineForm extends VerticalLayout {
     WashineUserIf userData = (WashineUserIf) VaadinSession.getCurrent().getAttribute("currentUser");
     try {
       refreshWashingInfo();
-      washingInfo = wCore.createWashing(userData.getId(), washingInfo.getWashingOptionsLaunder());
+      wCore.createWashing(userData.getId(), washingInfo.getWashingOptionsLaunder());
     } catch (WashineCoreException e) {
       // SE FACCIAMO L'INSERIMENTO IN DUE FASI DALLA GUI QUI CI VORREBBE POI QUESTO:
       //     wCore.deleteWashing(userData.getId());
       // Ma la logica va nel core
       UiNotifier.showErrorNotification(e.getMessage());
     }
-    if (washingInfo == null) {
+    if (washingInfo != null) {
       // Qui dispatchare evento
       UiNotifier.showSuccessNotification("Nuovo lavaggio aggiunto");
     }
   }
 
   private void submitWashingUpdate() {
-    WashineUserIf userData = (WashineUserIf) VaadinSession.getCurrent().getAttribute("currentUser");
     try {
-
       refreshWashingInfo();
-      wCore.updateWashingOptions(washingInfo);
+      wCore.updateWashingOptions(washingInfo.getId(), washingInfo.getWashingOptionsLaunder());
     } catch (WashineCoreException e) {
       UiNotifier.showErrorNotification(e.getMessage());
     }

@@ -21,8 +21,7 @@ public interface WashineCoreWashingIf {
    * @return the washing
    * @throws WashineCoreException
    */
-  WashineLaundryWashingIf createWashing(
-      String laundryPersonId, WashineLaundryWashingOptionsLaunderIf options)
+  boolean createWashing(String laundryPersonId, WashineLaundryWashingOptionsLaunderIf options)
       throws WashineCoreException;
 
   /**
@@ -89,7 +88,8 @@ public interface WashineCoreWashingIf {
    * @param washingInfo the updated washing
    * @throws WashineCoreException
    */
-  boolean updateWashingOptions(WashineLaundryWashingIf washing) throws WashineCoreException;
+  boolean updateWashingOptions(String washingId, WashineLaundryWashingOptionsLaunderIf options)
+      throws WashineCoreException;
 
   /**
    * Deletes a participant's involvement in a washing.
