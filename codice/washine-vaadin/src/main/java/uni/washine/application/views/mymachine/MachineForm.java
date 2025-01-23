@@ -12,9 +12,13 @@ import com.vaadin.flow.component.radiobutton.RadioButtonGroup;
 import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.server.VaadinSession;
+
+import uni.washine.application.utils.UiNotifier;
+
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 
+import java.time.Duration;
 import java.time.Instant;
 
 import washine.washineCore.AbstractCoreFactory;
@@ -64,7 +68,8 @@ public class MachineForm extends VerticalLayout {
     // Required
 
     // Time
-    dateTimeWashingPicker = new DateTimePicker("Washing Date and Time");
+    dateTimeWashingPicker = new DateTimePicker("Washing date and time");
+    dateTimeWashingPicker.setStep(Duration.ofMinutes(15));
     dateTimeWashingPicker.setHelperText("Format: DD/MM/YYYY and HH:MM");
     dateTimeWashingPicker.setRequiredIndicatorVisible(true);
     dateTimeWashingPicker.setMin(LocalDateTime.now());
@@ -73,19 +78,19 @@ public class MachineForm extends VerticalLayout {
     durationField.setRequired(true);
     durationField.setMin(1);
 
-    initialLoadField = new NumberField("Initial Load (kilograms)");
+    initialLoadField = new NumberField("Initial load (kilograms)");
     initialLoadField.setHelperText("Specify for how many kilograms you reserve for yourself");
     initialLoadField.setRequired(true);
     initialLoadField.setMin(0);
 
-    maxLoadField = new NumberField("Maximum Load (kilograms)");
+    maxLoadField = new NumberField("Maximum load (kilograms)");
     maxLoadField.setRequired(true);
     maxLoadField.setHelperText("Specify the capacity of your washing machine in kilograms");
     maxLoadField.setMin(0);
 
-    visibilityTimeField = new NumberField("Visibility Time (days)");
+    visibilityTimeField = new NumberField("Visibility time (days)");
     visibilityTimeField.setHelperText(
-        "Specify for how long the washing will be visible after completion");
+        "Specify for how long the washing will be visible to users after completion");
     visibilityTimeField.setRequired(true);
     maxLoadField.setMin(0);
 
@@ -96,12 +101,12 @@ public class MachineForm extends VerticalLayout {
     temperatureGroup.setRequired(true);
 
     spinSpeedGroup = new RadioButtonGroup<>();
-    spinSpeedGroup.setLabel("Spin Speed");
+    spinSpeedGroup.setLabel("Spin speed");
     spinSpeedGroup.setItems("400", "800", "1000", "1200", "1400");
     spinSpeedGroup.setRequired(true);
 
     fabricTypeGroup = new RadioButtonGroup<>();
-    fabricTypeGroup.setLabel("Fabric Type");
+    fabricTypeGroup.setLabel("Fabric type");
     fabricTypeGroup.setItems("Cotton", "Synthetic", "Wool", "Delicate", "Any");
     fabricTypeGroup.setRequired(true);
 
@@ -111,13 +116,13 @@ public class MachineForm extends VerticalLayout {
     colorGroup.setRequired(true);
 
     detergentTypeGroup = new RadioButtonGroup<>();
-    detergentTypeGroup.setLabel("Detergent Type");
+    detergentTypeGroup.setLabel("Detergent type");
     detergentTypeGroup.setItems("Standard", "Color-safe", "Gentle", "Heavy-duty");
     detergentTypeGroup.setRequired(true);
     // other required
 
     dryingTypeGroup = new RadioButtonGroup<>();
-    dryingTypeGroup.setLabel("Drying Type");
+    dryingTypeGroup.setLabel("Drying type");
     dryingTypeGroup.setItems("Air Dry", "Tumble Dry", "Hang Dry", "None");
     dryingTypeGroup.setRequired(true);
 
@@ -126,23 +131,23 @@ public class MachineForm extends VerticalLayout {
 
     // not required
 
-    ironingCheckbox = new Checkbox("Include Ironing");
+    ironingCheckbox = new Checkbox("Include ironing");
 
-    pickupAddressField = new TextField("Pickup Address, where to bring the clothes");
+    pickupAddressField = new TextField("Pickup address, where to bring the clothes");
 
-    deliveryAddressField = new TextField("Delivery Address, where to get the washed clothes");
+    deliveryAddressField = new TextField("Delivery address, where to get the washed clothes");
 
-    pickupAvailabilityField = new TextField("Pickup Availability");
+    pickupAvailabilityField = new TextField("Pickup availability");
     pickupAvailabilityField.setHelperText("Specify your available time slots for pickup");
 
-    deliveryAvailabilityField = new TextField("Delivery Availability");
+    deliveryAvailabilityField = new TextField("Delivery availability");
     deliveryAvailabilityField.setHelperText("Specify your available time slots for delivery");
 
     refundTypeField = new TextField("Refound information");
     refundTypeField.setHelperText(
         "Specify if you will ask for a refound, the total amount and the sharing logic");
 
-    participantMaxLoadField = new NumberField("Max Load per Participant (kilograms)");
+    participantMaxLoadField = new NumberField("Max load per participant (kilograms)");
 
     accessOpenDatePicker = new DateTimePicker("Participants accepted after Date/Time");
     accessOpenDatePicker.setHelperText("Specify when people will be able to access the washing");
@@ -240,7 +245,7 @@ public class MachineForm extends VerticalLayout {
   public void reset() {
     washingInfo = null;
 
-    // Clear all form fields directly
+    
     dateTimeWashingPicker.clear();
     accessOpenDatePicker.clear();
     accessCloseDatePicker.clear();
@@ -278,7 +283,78 @@ public class MachineForm extends VerticalLayout {
     }
   }
 
+  private boolean validateForm() {
+    boolean valid = true;
+    
+    if (dateTimeWashingPicker.getValue() == null) {
+      UiNotifier.showErrorNotification("Washing date and time is required.");
+      valid = false;
+    }
+    if (durationField.getValue() == null) {
+      UiNotifier.showErrorNotification("Wash duration is required.");
+      valid = false;
+    }
+    if (initialLoadField.getValue() == null) {
+      UiNotifier.showErrorNotification("Initial load is required");
+      valid = false;
+    }
+    if (maxLoadField.getValue() == null) {
+      UiNotifier.showErrorNotification("Maximum load is required.");
+      valid = false;
+    }
+    if (visibilityTimeField.getValue() == null) {
+      UiNotifier.showErrorNotification("Visibility time is required");
+      valid = false;
+    }
+    
+    
+    if (temperatureGroup.getValue() == null) {
+      UiNotifier.showErrorNotification("Temperature selection is required.");
+      valid = false;
+    }
+    if (spinSpeedGroup.getValue() == null) {
+      UiNotifier.showErrorNotification("Spin speed selection is required.");
+      valid = false;
+    }
+    if (fabricTypeGroup.getValue() == null) {
+      UiNotifier.showErrorNotification("Fabric type selection is required.");
+      valid = false;
+    }
+    if (colorGroup.getValue() == null) {
+      UiNotifier.showErrorNotification("Color selection is required.");
+      valid = false;
+    }
+    if (detergentTypeGroup.getValue() == null) {
+      UiNotifier.showErrorNotification("Detergent type selection is required.");
+      valid = false;
+    }
+    if (dryingTypeGroup.getValue() == null) {
+      UiNotifier.showErrorNotification("Drying type selection is required.");
+      valid = false;
+    }
+    
+   
+    if (initialLoadField.getValue() != null && maxLoadField.getValue() != null) {
+      if (initialLoadField.getValue() > maxLoadField.getValue()) {
+        UiNotifier.showErrorNotification("Initial load cannot be greater than maximum load.");
+        valid = false;
+      }
+    }
+    
+    if (dateTimeWashingPicker.getValue() != null) {
+      if (dateTimeWashingPicker.getValue().isBefore(LocalDateTime.now())) {
+        UiNotifier.showErrorNotification("Washing date and time cannot be in the past.");
+        valid = false;
+      }
+    }
+    
+    return valid;
+  }
+
   private void handleSubmit() {
+    if (!validateForm()) {
+      return; 
+    }
     if (washingInfo == null) {
       submitNewWashing();
     } else {
@@ -288,130 +364,139 @@ public class MachineForm extends VerticalLayout {
 
   private void submitNewWashing() {
     WashineUserIf userData = (WashineUserIf) VaadinSession.getCurrent().getAttribute("currentUser");
-    try {
+   boolean result=false;
+    try {        
       washingInfo = wCore.createWashing(userData.getId());
       refreshWashingInfo();
-      wCore.updateWashingOptions(washingInfo);
-    } catch (WashineCoreException e) {
-      e.printStackTrace();
+      result=wCore.updateWashingOptions(washingInfo);
+    } catch (WashineCoreException e) {       
+       //SE FACCIAMO L'INSERIMENTO IN DUE FASI DALLA GUI QUI CI VORREBBE POI QUESTO:
+       //     wCore.deleteWashing(userData.getId());   
+       // Ma la logica va nel core     
+      UiNotifier.showErrorNotification(e.getMessage());
+    }
+    if(result){
+        //Qui dispatchare evento
+        UiNotifier.showSuccessNotification("Nuovo lavaggio aggiunto");
     }
   }
 
-  private void submitWashingUpdate() {}
+  private void submitWashingUpdate() {
+    WashineUserIf userData = (WashineUserIf) VaadinSession.getCurrent().getAttribute("currentUser");
+    try {
+       
+        refreshWashingInfo();
+        wCore.updateWashingOptions(washingInfo);
+      } catch (WashineCoreException e) {
+        UiNotifier.showErrorNotification(e.getMessage());
+      }
+  }
 
   private void refreshWashingInfo() {
-    if (washingInfo == null) {
-      return;
-    }
-
+    if (washingInfo == null) return;
+    
+    WashineLaundryWashingOptionsLaunderIf options = washingInfo.getWashingOptionsLaunder();
+    
+    
     LocalDateTime washingDateTime = dateTimeWashingPicker.getValue();
     if (washingDateTime != null) {
-      washingInfo
-          .getWashingOptionsLaunder()
-          .setDateTime((int) washingDateTime.atZone(ZoneId.systemDefault()).toEpochSecond());
+        options.setDateTime((int)washingDateTime.atZone(ZoneId.systemDefault()).toEpochSecond());
     }
-
+    
     LocalDateTime openDateTime = accessOpenDatePicker.getValue();
     if (openDateTime != null) {
-      washingInfo
-          .getWashingOptionsLaunder()
-          .setWashingAccessOpenDate(
-              (int) openDateTime.atZone(ZoneId.systemDefault()).toEpochSecond());
+        options.setWashingAccessOpenDate((int)openDateTime.atZone(ZoneId.systemDefault()).toEpochSecond());
     }
-
+    
     LocalDateTime closeDateTime = accessCloseDatePicker.getValue();
     if (closeDateTime != null) {
-      washingInfo
-          .getWashingOptionsLaunder()
-          .setWashingAccessCloseDate(
-              (int) closeDateTime.atZone(ZoneId.systemDefault()).toEpochSecond());
+        options.setWashingAccessCloseDate((int)closeDateTime.atZone(ZoneId.systemDefault()).toEpochSecond());
     }
-
+    
+  
     Double duration = durationField.getValue();
     if (duration != null) {
-      washingInfo.getWashingOptionsLaunder().setDurationMinutes(duration.intValue());
+        options.setDurationMinutes(duration.intValue());
     }
-
+    
     Double initialLoad = initialLoadField.getValue();
     if (initialLoad != null) {
-      washingInfo.getWashingOptionsLaunder().setInitialLoad(initialLoad);
+        options.setInitialLoad(initialLoad);
     }
-
+    
     Double maxLoad = maxLoadField.getValue();
     if (maxLoad != null) {
-      washingInfo.getWashingOptionsLaunder().setMaxLoad(maxLoad);
+        options.setMaxLoad(maxLoad);
     }
-
+    
     Double visibilityTime = visibilityTimeField.getValue();
     if (visibilityTime != null) {
-      washingInfo
-          .getWashingOptionsLaunder()
-          .setVisibilityTime(visibilityTime.intValue() * 24 * 60); // Convert days to minutes
+        options.setVisibilityTime(visibilityTime.intValue() * 24 * 60); // Convert days to minutes
     }
-
+    
     Double participantMaxLoad = participantMaxLoadField.getValue();
     if (participantMaxLoad != null) {
-      washingInfo.getWashingOptionsLaunder().setParticipantMaxLoad(participantMaxLoad);
+        options.setParticipantMaxLoad(participantMaxLoad);
     }
-
+    
+    
     String temperature = temperatureGroup.getValue();
     if (temperature != null) {
-      washingInfo.getWashingOptionsLaunder().setTemperature(temperature);
+        options.setTemperature(temperature);
     }
-
+    
     String spinSpeed = spinSpeedGroup.getValue();
     if (spinSpeed != null) {
-      washingInfo.getWashingOptionsLaunder().setSpinSpeed(spinSpeed);
+        options.setSpinSpeed(spinSpeed);
     }
-
+    
     String fabricType = fabricTypeGroup.getValue();
     if (fabricType != null) {
-      washingInfo.getWashingOptionsLaunder().setFabricType(fabricType);
+        options.setFabricType(fabricType);
     }
-
+    
     String color = colorGroup.getValue();
     if (color != null) {
-      washingInfo.getWashingOptionsLaunder().setColor(color);
+        options.setColor(color);
     }
-
+    
     String detergentType = detergentTypeGroup.getValue();
     if (detergentType != null) {
-      washingInfo.getWashingOptionsLaunder().setDetergentTypes(detergentType);
+        options.setDetergentTypes(detergentType);
     }
-
+    
     String dryingType = dryingTypeGroup.getValue();
     if (dryingType != null) {
-      washingInfo.getWashingOptionsLaunder().setDrying(dryingType);
+        options.setDrying(dryingType);
     }
-
+    
     // Handle Checkboxes
-    washingInfo.getWashingOptionsLaunder().setUnderwear(underwearCheckbox.getValue());
-    washingInfo.getWashingOptionsLaunder().setIroning(ironingCheckbox.getValue());
-
+    options.setUnderwear(underwearCheckbox.getValue());
+    options.setIroning(ironingCheckbox.getValue());
+    
     // Handle Text fields
     String pickupAddress = pickupAddressField.getValue();
     if (pickupAddress != null) {
-      washingInfo.getWashingOptionsLaunder().setPickupAddress(pickupAddress);
+        options.setPickupAddress(pickupAddress);
     }
-
+    
     String deliveryAddress = deliveryAddressField.getValue();
     if (deliveryAddress != null) {
-      washingInfo.getWashingOptionsLaunder().setDeliveryAddress(deliveryAddress);
+        options.setDeliveryAddress(deliveryAddress);
     }
-
+    
     String pickupAvailability = pickupAvailabilityField.getValue();
     if (pickupAvailability != null) {
-      washingInfo.getWashingOptionsLaunder().setPickupAvailability(pickupAvailability);
+        options.setPickupAvailability(pickupAvailability);
     }
-
+    
     String deliveryAvailability = deliveryAvailabilityField.getValue();
     if (deliveryAvailability != null) {
-      washingInfo.getWashingOptionsLaunder().setDeliveryAvailability(deliveryAvailability);
+        options.setDeliveryAvailability(deliveryAvailability);
     }
-
+    
     String refundType = refundTypeField.getValue();
     if (refundType != null) {
-      washingInfo.getWashingOptionsLaunder().setRefundTypes(refundType);
+        options.setRefundTypes(refundType);
     }
-  }
-}
+}}
