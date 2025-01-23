@@ -381,6 +381,7 @@ public class WashineWashingDb implements WashineWashingDbIf {
           create
               .insertInto(Washingoptions.WASHINGOPTIONS)
               .values(
+                  washingId,
                   visibilityTime,
                   dateTime,
                   durationMinutes,
