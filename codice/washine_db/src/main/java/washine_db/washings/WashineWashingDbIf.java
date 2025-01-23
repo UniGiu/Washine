@@ -203,4 +203,9 @@ public interface WashineWashingDbIf {
   public double getWashingParticipantMaxLoad(String washingId) throws WashineDataException;
 
   public boolean existsWashing(String washingId) throws WashineDataException;
+
+  public Result<?> getLaundryPersonWashings(String laundryPersonId)
+      throws WashineDataException;
+
+  public List<Result<WashingoptionsRecord>> getParticipantWashings(String participantId);
 }

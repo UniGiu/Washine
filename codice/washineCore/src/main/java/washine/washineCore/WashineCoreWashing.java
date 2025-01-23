@@ -2,6 +2,7 @@ package washine.washineCore;
 
 import java.util.Random;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.jooq.Result;
@@ -261,5 +262,45 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
       throw new WashineCoreException("WashineCoreException");
     }
     return 0;
+  }
+
+  @Override
+  public List<WashineLaundryWashingIf> getLaundryPersonWashings(String laundryPersonId)
+      throws WashineDataException {
+    WashineWashingDb washingDb = new WashineWashingDb();
+    List<WashineLaundryWashingIf> washings = new ArrayList<WashineLaundryWashingIf>();
+    Result<?> records = washingDb.getLaundryPersonWashings(laundryPersonId);
+    for (org.jooq.Record r : records) {
+      WashineWashingOptions washingOptions =
+          new WashineWashingOptions(
+              r.getValue(Washingoptions.WASHINGOPTIONS.VISIBILITYTIME),
+              r.getValue(Washingoptions.WASHINGOPTIONS.DATETIME),
+              r.getValue(Washingoptions.WASHINGOPTIONS.DURATIONMINUTES),
+              r.getValue(Washingoptions.WASHINGOPTIONS.INITIALLOAD),
+              r.getValue(Washingoptions.WASHINGOPTIONS.MAXLOAD),
+              r.getValue(Washingoptions.WASHINGOPTIONS.TEMPERATURE),
+              r.getValue(Washingoptions.WASHINGOPTIONS.SPINSPEED),
+              r.getValue(Washingoptions.WASHINGOPTIONS.FABRICTYPE),
+              r.getValue(Washingoptions.WASHINGOPTIONS.COLOR),
+              r.getValue(Washingoptions.WASHINGOPTIONS.DETERGENTTYPES),
+              r.getValue(Washingoptions.WASHINGOPTIONS.UNDERWEAR),
+              r.getValue(Washingoptions.WASHINGOPTIONS.REFUNDTYPE),
+              r.getValue(Washingoptions.WASHINGOPTIONS.PICKUPADDRESS),
+              r.getValue(Washingoptions.WASHINGOPTIONS.DELIVERYADDRESS),
+              r.getValue(Washingoptions.WASHINGOPTIONS.PICKUPAVAILABILITY),
+              r.getValue(Washingoptions.WASHINGOPTIONS.DELIVERYAVAILABILITY),
+              r.getValue(Washingoptions.WASHINGOPTIONS.DRYING),
+              r.getValue(Washingoptions.WASHINGOPTIONS.IRONING),
+              r.getValue(Washingoptions.WASHINGOPTIONS.PARTICIPANTMAXLOAD),
+              r.getValue(Washingoptions.WASHINGOPTIONS.WASHINGACCESSOPENDATE),
+              r.getValue(Washingoptions.WASHINGOPTIONS.WASHINGACCESSCLOSEDATE));
+
+      WashineLaundryWashingIf washing =
+          new WashineWashing(
+              r.getValue(Washingoptions.WASHINGOPTIONS.WASHINGID), null, washingOptions);
+      washings.add(washing);
+    }
+
+    return washings;
   }
 }

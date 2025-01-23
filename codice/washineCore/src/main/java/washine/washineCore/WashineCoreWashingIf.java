@@ -6,6 +6,7 @@ import org.jooq.Result;
 import washine.washineCore.exceptions.WashineCoreException;
 import washine.washineCore.washing.WashineLaundryWashingIf;
 import washine.washineCore.washing.WashineWashing;
+import washine_db.exceptions.WashineDataException;
 import washine_db.jooq.generated.tables.records.WashingoptionsRecord;
 
 /** Interface for managing washing operations in the WashineCore module. */
@@ -96,4 +97,7 @@ public interface WashineCoreWashingIf {
    * @throws WashineCoreException
    */
   boolean deleteParticipation(String washingId, String userId) throws WashineCoreException;
+
+  public List<WashineLaundryWashingIf> getLaundryPersonWashings(String laundryPersonId)
+      throws WashineDataException;
 }

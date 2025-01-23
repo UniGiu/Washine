@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.jooq.DSLContext;
+import org.jooq.Record;
 import org.jooq.Record1;
 import org.jooq.Result;
 import org.jooq.SQLDialect;
@@ -361,5 +362,28 @@ public class WashineWashingDb implements WashineWashingDbIf {
     } catch (SQLException e) {
       throw new WashineDataException("WashineDataException");
     }
+  }
+
+  @Override
+  public Result<?> getLaundryPersonWashings(String laundryPersonId) throws WashineDataException {
+    try {
+      Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
+      DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
+      return create
+          .select()
+          .from(Washingoptions.WASHINGOPTIONS)
+          .leftJoin(Washing.WASHING)
+          .on(Washing.WASHING.WASHINGID.eq(Washingoptions.WASHINGOPTIONS.WASHINGID))
+          .where(Washing.WASHING.LAUNDRYPERSONID.eq(laundryPersonId))
+          .fetch();
+    } catch (SQLException e) {
+      throw new WashineDataException("WashineDataException");
+    }
+  }
+
+  @Override
+  public List<Result<WashingoptionsRecord>> getParticipantWashings(
+      String participantId) { // TODO Auto-generated method stub
+    return null;
   }
 }
