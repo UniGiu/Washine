@@ -32,7 +32,30 @@ public interface WashineWashingDbIf {
   public boolean createWashing(String washingId, String laundryPersonId)
       throws WashineDataException;
 
-  public boolean createWashingOptions(String washingId) throws WashineDataException;
+  public boolean createWashingOptions(
+      String washingId,
+      int visibilityTime,
+      int dateTime,
+      int durationMinutes,
+      double initialLoad,
+      double maxLoad,
+      String temperature,
+      String spinSpeed,
+      String fabrycType,
+      String color,
+      String detergentTypes,
+      String refundTypes,
+      boolean underwear,
+      String pickupAddress,
+      String deliveryAddress,
+      String pickupAvailability,
+      String deliverAvailability,
+      String drying,
+      boolean ironing,
+      double participantMaxLoad,
+      int washingAccessOpenDate,
+      int washingAccessCloseDate)
+      throws WashineDataException;
 
   /**
    * Updates the options of a washing
@@ -204,8 +227,7 @@ public interface WashineWashingDbIf {
 
   public boolean existsWashing(String washingId) throws WashineDataException;
 
-  public Result<?> getLaundryPersonWashings(String laundryPersonId)
-      throws WashineDataException;
+  public Result<?> getLaundryPersonWashings(String laundryPersonId) throws WashineDataException;
 
-  public List<Result<WashingoptionsRecord>> getParticipantWashings(String participantId);
+  public Result<?> getParticipantWashings(String participantId) throws WashineDataException;
 }

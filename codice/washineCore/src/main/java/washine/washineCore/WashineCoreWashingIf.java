@@ -5,6 +5,7 @@ import org.jooq.Result;
 
 import washine.washineCore.exceptions.WashineCoreException;
 import washine.washineCore.washing.WashineLaundryWashingIf;
+import washine.washineCore.washing.WashineLaundryWashingOptionsLaunderIf;
 import washine.washineCore.washing.WashineWashing;
 import washine_db.exceptions.WashineDataException;
 import washine_db.jooq.generated.tables.records.WashingoptionsRecord;
@@ -20,7 +21,9 @@ public interface WashineCoreWashingIf {
    * @return the washing
    * @throws WashineCoreException
    */
-  WashineLaundryWashingIf createWashing(String laundryPersonId) throws WashineCoreException;
+  WashineLaundryWashingIf createWashing(
+      String laundryPersonId, WashineLaundryWashingOptionsLaunderIf options)
+      throws WashineCoreException;
 
   /**
    * Allows a participant to join a washing with a specified load.

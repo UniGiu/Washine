@@ -343,20 +343,65 @@ public class WashineWashingDb implements WashineWashingDbIf {
               .selectFrom(Washingoptions.WASHINGOPTIONS)
               .where(Washingoptions.WASHINGOPTIONS.WASHINGID.eq(washingId))
               .fetch();
-      return (washing.isNotEmpty() && washingOptions.isNotEmpty());
+      return (washing.isNotEmpty() || washingOptions.isNotEmpty());
     } catch (SQLException e) {
       throw new WashineDataException("WashineDataException");
     }
   }
 
-  public boolean createWashingOptions(String washingId) throws WashineDataException {
+  public boolean createWashingOptions(
+      String washingId,
+      int visibilityTime,
+      int dateTime,
+      int durationMinutes,
+      double initialLoad,
+      double maxLoad,
+      String temperature,
+      String spinSpeed,
+      String fabrycType,
+      String color,
+      String detergentTypes,
+      String refundTypes,
+      boolean underwear,
+      String pickupAddress,
+      String deliveryAddress,
+      String pickupAvailability,
+      String deliverAvailability,
+      String drying,
+      boolean ironing,
+      double participantMaxLoad,
+      int washingAccessOpenDate,
+      int washingAccessCloseDate)
+      throws WashineDataException {
     try {
       Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
       DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
+
       int result =
           create
-              .insertInto(Washingoptions.WASHINGOPTIONS, Washingoptions.WASHINGOPTIONS.WASHINGID)
-              .values(washingId)
+              .insertInto(Washingoptions.WASHINGOPTIONS)
+              .values(
+                  visibilityTime,
+                  dateTime,
+                  durationMinutes,
+                  initialLoad,
+                  maxLoad,
+                  temperature,
+                  spinSpeed,
+                  fabrycType,
+                  color,
+                  detergentTypes,
+                  refundTypes,
+                  underwear,
+                  pickupAddress,
+                  deliveryAddress,
+                  pickupAvailability,
+                  deliverAvailability,
+                  drying,
+                  ironing,
+                  participantMaxLoad,
+                  washingAccessOpenDate,
+                  washingAccessCloseDate)
               .execute();
       return result == 1;
     } catch (SQLException e) {
@@ -382,8 +427,21 @@ public class WashineWashingDb implements WashineWashingDbIf {
   }
 
   @Override
-  public List<Result<WashingoptionsRecord>> getParticipantWashings(
-      String participantId) { // TODO Auto-generated method stub
-    return null;
+  public Result<?> getParticipantWashings(String participantId) throws WashineDataException {
+    try {
+      Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
+      DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
+      return create
+          .select()
+          .from(Washingoptions.WASHINGOPTIONS)
+          .leftJoin(Washingparticipation.WASHINGPARTICIPATION)
+          .on(
+              Washingparticipation.WASHINGPARTICIPATION.PARTICIPANTID.eq(
+                  Washingoptions.WASHINGOPTIONS.WASHINGID))
+          .where(Washingparticipation.WASHINGPARTICIPATION.PARTICIPANTID.eq(participantId))
+          .fetch();
+    } catch (SQLException e) {
+      throw new WashineDataException("WashineDataException");
+    }
   }
 }
