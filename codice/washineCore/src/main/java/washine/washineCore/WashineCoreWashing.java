@@ -383,4 +383,8 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
 
     return washings;
   }
+  public WashineLaundryWashingOptionsLaunderIf getBlankWashingOptions(){
+    return new WashineWashingOptions() {      
+    };
+  }
 }

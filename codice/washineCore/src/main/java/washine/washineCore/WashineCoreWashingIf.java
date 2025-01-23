@@ -1,14 +1,11 @@
 package washine.washineCore;
 
 import java.util.List;
-import org.jooq.Result;
 
 import washine.washineCore.exceptions.WashineCoreException;
 import washine.washineCore.washing.WashineLaundryWashingIf;
 import washine.washineCore.washing.WashineLaundryWashingOptionsLaunderIf;
-import washine.washineCore.washing.WashineWashing;
 import washine_db.exceptions.WashineDataException;
-import washine_db.jooq.generated.tables.records.WashingoptionsRecord;
 
 /** Interface for managing washing operations in the WashineCore module. */
 public interface WashineCoreWashingIf {
@@ -101,6 +98,21 @@ public interface WashineCoreWashingIf {
    */
   boolean deleteParticipation(String washingId, String userId) throws WashineCoreException;
 
+  /**
+   * Gets the list of participants given the washing id
+   * 
+   * @param laundryPersonId  The ID of the launder
+   * @return the list of participants to the washing
+   * @throws WashineDataException
+   */
   public List<WashineLaundryWashingIf> getLaundryPersonWashings(String laundryPersonId)
       throws WashineDataException;
+
+      /**
+       * Gets a blank washing options object that can be
+       *  set by the up to create a new washing
+       * 
+       * @return a blank WashineLaundryWashingOptionsLaunderIf 
+       */
+    public WashineLaundryWashingOptionsLaunderIf getBlankWashingOptions();
 }
