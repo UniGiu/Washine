@@ -242,17 +242,6 @@ public class MachineForm extends VerticalLayout {
 		updateSubmitButtonLabel();
 	}
 
-	/**
-	 * Utility function to transoform unix timestamp in seconds to LocalDateTime
-	 * needed by the DateTinePicker component
-	 * 
-	 * @param timestampSeconds
-	 * @return
-	 */
-	private LocalDateTime convertToLocalDateTimeViaInstant(int timestampSeconds) {
-		Instant instant = Instant.ofEpochSecond(timestampSeconds);
-		return instant.atZone(ZoneId.systemDefault()).toLocalDateTime();
-	}
 
 	/**
 	 * Clears the form fields
@@ -639,5 +628,16 @@ public class MachineForm extends VerticalLayout {
 		return addListener(SavedEvent.class, listener);
 	}
 
-	
+		/**
+	 * Utility function to transoform unix timestamp in seconds to LocalDateTime
+	 * needed by the DateTinePicker component
+	 * 
+	 * @param timestampSeconds
+	 * @return
+	 */
+	private LocalDateTime convertToLocalDateTimeViaInstant(int timestampSeconds) {
+		Instant instant = Instant.ofEpochSecond(timestampSeconds);
+		return instant.atZone(ZoneId.systemDefault()).toLocalDateTime();
+	}
+
 }
