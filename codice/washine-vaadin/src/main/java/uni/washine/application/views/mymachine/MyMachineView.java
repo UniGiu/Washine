@@ -62,10 +62,21 @@ public class MyMachineView extends Composite<VerticalLayout>  implements BeforeE
         getContent().add(layoutMachinesListContainer);
         layoutMachinesListContainer.add(buttonAddWash,layoutMachinesList);
         machineBuilder = new MachineBuilder();
+        MachineForm machineForm = machineBuilder.getMachineForm();
+        getContent().add(machineForm);
+        machineForm.setVisible(false);
 
-        buttonAddWash.addClickListener(event -> {
-            VerticalLayout machineForm = machineBuilder.getMachineForm();
-            getContent().add(machineForm);
+        machineForm.addCancelListener(event -> {
+           machineForm.setVisible(false);
+           layoutMachinesListContainer.setVisible(true);
+        });
+        machineForm.addSavedListener(event -> {
+            machineForm.setVisible(false);
+            layoutMachinesListContainer.setVisible(true);
+         });
+        buttonAddWash.addClickListener(event -> {            
+            layoutMachinesListContainer.setVisible(false);
+            machineForm.setVisible(true);
         });
     }
 

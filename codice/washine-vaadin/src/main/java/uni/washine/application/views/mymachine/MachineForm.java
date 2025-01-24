@@ -13,10 +13,10 @@ import com.vaadin.flow.component.radiobutton.RadioButtonGroup;
 import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.server.VaadinSession;
+import com.vaadin.flow.shared.Registration;
 
 import uni.washine.application.utils.UiNotifier;
 
-import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentEvent;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -30,6 +30,9 @@ import washine.washineCore.exceptions.WashineCoreException;
 import washine.washineCore.user.WashineUserIf;
 import washine.washineCore.washing.WashineLaundryWashingIf;
 import washine.washineCore.washing.WashineLaundryWashingOptionsLaunderIf;
+
+import com.vaadin.flow.component.ComponentEventListener;
+
 
 public class MachineForm extends VerticalLayout {
 	final WashineCoreWashingIf wCore;
@@ -167,7 +170,7 @@ public class MachineForm extends VerticalLayout {
 		cancelButton.setWidth("min-content");
 		cancelButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
 		cancelButton.setText("Cancel");
-		// submitButton.addClickListener(event -> fireEvent();));
+		cancelButton.addClickListener(event -> fireEvent(new CancelEvent(this)));
 
 		// requred options
 		formLayout.add(dateTimeWashingPicker, durationField, initialLoadField, maxLoadField, visibilityTimeField,
@@ -442,6 +445,7 @@ public class MachineForm extends VerticalLayout {
 		if (result) {
 			// FIRE AN EVENT HERE
 			UiNotifier.showSuccessNotification("New washing ready");
+			fireEvent(new SavedEvent(this));
 		}
 	}
 
@@ -492,9 +496,9 @@ public class MachineForm extends VerticalLayout {
 		} catch (WashineCoreException e) {
 			UiNotifier.showErrorNotification(e.getMessage());
 		}
-		if (result) {
-			// Qui dispatchare evento
+		if (result) {			
 			UiNotifier.showSuccessNotification("Your washing has been updated");
+			fireEvent(new SavedEvent(this));
 		}
 	}
 
@@ -607,10 +611,34 @@ public class MachineForm extends VerticalLayout {
 
 	}
 
-//to be continued...
-	public class FormEvent extends ComponentEvent<Component> {
-		public FormEvent(Component source, boolean fromClient) {
-			super(source, fromClient);
+	/**
+	 * Class for custom events for the container
+	 */
+	public static abstract class MachineFormEvent extends ComponentEvent<MachineForm> {
+		protected MachineFormEvent(MachineForm source) {
+			super(source, false);
 		}
 	}
+
+	public static class CancelEvent extends MachineFormEvent {
+		public CancelEvent(MachineForm source) {
+			super(source);
+		}
+	}
+
+	public static class SavedEvent extends MachineFormEvent {
+		public SavedEvent(MachineForm source) {
+			super(source);
+		}
+	}
+
+	// Add registration methods for the events
+	public Registration addCancelListener(ComponentEventListener<CancelEvent> listener) {
+		return addListener(CancelEvent.class, listener);
+	}
+	public Registration addSavedListener(ComponentEventListener<SavedEvent> listener) {
+		return addListener(SavedEvent.class, listener);
+	}
+
+	
 }
