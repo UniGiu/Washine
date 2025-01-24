@@ -132,8 +132,7 @@ public class MachineForm extends VerticalLayout {
 		dryingTypeGroup.setRequired(true);
 
 		underwearCheckbox = new Checkbox("Include Underwear/Lingerie");
-		underwearCheckbox.setRequiredIndicatorVisible(true);
-
+		
 		// not required
 
 		ironingCheckbox = new Checkbox("Include ironing");
@@ -311,7 +310,7 @@ public class MachineForm extends VerticalLayout {
 	private boolean validateForm() {
 		boolean valid = true;
 
-		// First reset all components' error states
+		// reset validity states
 		dateTimeWashingPicker.setInvalid(false);
 		durationField.setInvalid(false);
 		initialLoadField.setInvalid(false);
@@ -324,7 +323,7 @@ public class MachineForm extends VerticalLayout {
 		detergentTypeGroup.setInvalid(false);
 		dryingTypeGroup.setInvalid(false);
 
-		// Then validate and set error states
+		// validate and set validity states
 		if (dateTimeWashingPicker.getValue() == null) {
 			dateTimeWashingPicker.setInvalid(true);
 			dateTimeWashingPicker.setErrorMessage("Washing date and time is required");
