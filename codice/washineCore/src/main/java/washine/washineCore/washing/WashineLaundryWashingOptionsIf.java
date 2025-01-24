@@ -154,4 +154,9 @@ public interface WashineLaundryWashingOptionsIf {
      * @return the closing date and time for washing access
      */
     int getWashingAccessCloseDate();
+    
+    /**
+     * Resets all the fields <strong>also the required ones</strong>
+     */
+    void reset();
 }
