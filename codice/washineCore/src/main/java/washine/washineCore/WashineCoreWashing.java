@@ -107,11 +107,11 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
         throw new WashineCoreException("Washing does not exists");
       }
       WashineLaundryWashingIf washing = getWashing(washingId);
-      if (!((washing.getWashingOptions().getDatetime() > (int) Instant.now().getEpochSecond())
+      if (!((washing.getWashingOptions().getDatetime() >= (int) Instant.now().getEpochSecond())
           && (washing.getWashingOptions().getWashingAccessOpenDate()
-              < (int) Instant.now().getEpochSecond())
+              <= (int) Instant.now().getEpochSecond())
           && (washing.getWashingOptions().getWashingAccessCloseDate()
-              > (int) Instant.now().getEpochSecond()))) {
+              >= (int) Instant.now().getEpochSecond()))) {
         throw new WashineCoreException("Washing expired");
       }
 
@@ -230,6 +230,9 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
     WashineLaundryWashingOptionsIf options = washing.getWashingOptions();
     String washingId = washing.getId();
     try {
+      if (!(washing.getWashingOptions().getDatetime() >= (int) Instant.now().getEpochSecond())) {
+        throw new WashineCoreException("Washing already took place");
+      }
       if (calculateWashingTotalLoad(washing) > options.getMaxLoad()) {
         throw new WashineCoreException("New max load exceeded");
       }
@@ -381,17 +384,24 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
               r.getValue(Washingoptions.WASHINGOPTIONS.PARTICIPANTMAXLOAD),
               r.getValue(Washingoptions.WASHINGOPTIONS.WASHINGACCESSOPENDATE),
               r.getValue(Washingoptions.WASHINGOPTIONS.WASHINGACCESSCLOSEDATE));
-
-      WashineLaundryWashingIf washing =
-          new WashineWashing(
-              r.getValue(Washingoptions.WASHINGOPTIONS.WASHINGID), null, washingOptions);
+      String washingId = r.getValue(Washingoptions.WASHINGOPTIONS.WASHINGID);
+      WashineLaundryWashingIf washing = new WashineWashing(washingId, null, washingOptions);
+      for (String s : washingDb.getParticipantIds(washingId)) {
+        washing.addParticipant(s);
+      }
       washings.add(washing);
     }
 
     return washings;
   }
-  public WashineLaundryWashingOptionsLaunderIf getBlankWashingOptions(){
-    return new WashineWashingOptions() {      
-    };
+
+  public WashineLaundryWashingOptionsLaunderIf getBlankWashingOptions() {
+    return new WashineWashingOptions() {};
+  }
+
+  @Override
+  public List<WashineLaundryWashingIf> getParticipantWashings(String participantId)
+      throws WashineDataException { // TODO Auto-generated method stub
+    return null;
   }
 }

@@ -44,4 +44,6 @@ public interface WashineLaundryWashingIf {
   WashineLaundryWashingOptionsLaunderIf getWashingOptionsLaunder();
 
   List<String> getParticipantIds();
+
+void addParticipant(String s);
 }
