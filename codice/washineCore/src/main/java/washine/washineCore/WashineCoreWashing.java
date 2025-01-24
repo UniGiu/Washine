@@ -401,7 +401,42 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
 
   @Override
   public List<WashineLaundryWashingIf> getParticipantWashings(String participantId)
-      throws WashineDataException { // TODO Auto-generated method stub
-    return null;
+      throws WashineDataException {
+    WashineWashingDb washingDb = new WashineWashingDb();
+    List<WashineLaundryWashingIf> washings = new ArrayList<WashineLaundryWashingIf>();
+    Result<?> records = washingDb.getParticipantWashings(participantId);
+    for (org.jooq.Record r : records) {
+      WashineWashingOptions washingOptions =
+          new WashineWashingOptions(
+              r.getValue(Washingoptions.WASHINGOPTIONS.VISIBILITYTIME),
+              r.getValue(Washingoptions.WASHINGOPTIONS.DATETIME),
+              r.getValue(Washingoptions.WASHINGOPTIONS.DURATIONMINUTES),
+              r.getValue(Washingoptions.WASHINGOPTIONS.INITIALLOAD),
+              r.getValue(Washingoptions.WASHINGOPTIONS.MAXLOAD),
+              r.getValue(Washingoptions.WASHINGOPTIONS.TEMPERATURE),
+              r.getValue(Washingoptions.WASHINGOPTIONS.SPINSPEED),
+              r.getValue(Washingoptions.WASHINGOPTIONS.FABRICTYPE),
+              r.getValue(Washingoptions.WASHINGOPTIONS.COLOR),
+              r.getValue(Washingoptions.WASHINGOPTIONS.DETERGENTTYPES),
+              r.getValue(Washingoptions.WASHINGOPTIONS.UNDERWEAR),
+              r.getValue(Washingoptions.WASHINGOPTIONS.REFUNDTYPE),
+              r.getValue(Washingoptions.WASHINGOPTIONS.PICKUPADDRESS),
+              r.getValue(Washingoptions.WASHINGOPTIONS.DELIVERYADDRESS),
+              r.getValue(Washingoptions.WASHINGOPTIONS.PICKUPAVAILABILITY),
+              r.getValue(Washingoptions.WASHINGOPTIONS.DELIVERYAVAILABILITY),
+              r.getValue(Washingoptions.WASHINGOPTIONS.DRYING),
+              r.getValue(Washingoptions.WASHINGOPTIONS.IRONING),
+              r.getValue(Washingoptions.WASHINGOPTIONS.PARTICIPANTMAXLOAD),
+              r.getValue(Washingoptions.WASHINGOPTIONS.WASHINGACCESSOPENDATE),
+              r.getValue(Washingoptions.WASHINGOPTIONS.WASHINGACCESSCLOSEDATE));
+      String washingId = r.getValue(Washingoptions.WASHINGOPTIONS.WASHINGID);
+      WashineLaundryWashingIf washing = new WashineWashing(washingId, null, washingOptions);
+      for (String s : washingDb.getParticipantIds(washingId)) {
+        washing.addParticipant(s);
+      }
+      washings.add(washing);
+    }
+
+    return washings;
   }
 }
