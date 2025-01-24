@@ -150,7 +150,7 @@ public class MachineForm extends VerticalLayout {
 				"Specify if you will ask for a refound of your expenses, the total amount and the sharing logic");
 
 		participantMaxLoadField = new NumberField("Max load per participant (kilograms)");
-
+		maxLoadField.setMin(0);
 		accessOpenDatePicker = new DateTimePicker("Participants accepted after Date/Time");
 		accessOpenDatePicker.setStep(Duration.ofMinutes(15));
 		accessOpenDatePicker.setHelperText("Specify when people will be able to access the washing");
@@ -284,67 +284,108 @@ public class MachineForm extends VerticalLayout {
 
 	private boolean validateForm() {
 		boolean valid = true;
-
+		
+		// First reset all components' error states
+		dateTimeWashingPicker.setInvalid(false);
+		durationField.setInvalid(false);
+		initialLoadField.setInvalid(false);
+		maxLoadField.setInvalid(false);
+		visibilityTimeField.setInvalid(false);
+		temperatureGroup.setInvalid(false);
+		spinSpeedGroup.setInvalid(false);
+		fabricTypeGroup.setInvalid(false);
+		colorGroup.setInvalid(false);
+		detergentTypeGroup.setInvalid(false);
+		dryingTypeGroup.setInvalid(false);
+		
+		// Then validate and set error states
 		if (dateTimeWashingPicker.getValue() == null) {
-			UiNotifier.showErrorNotification("Washing date and time is required.");
+			dateTimeWashingPicker.setInvalid(true);
+			dateTimeWashingPicker.setErrorMessage("Washing date and time is required");
 			valid = false;
 		}
+		
 		if (durationField.getValue() == null) {
-			UiNotifier.showErrorNotification("Wash duration is required.");
+			durationField.setInvalid(true);
+			durationField.setErrorMessage("Wash duration is required");
 			valid = false;
 		}
+		
 		if (initialLoadField.getValue() == null) {
-			UiNotifier.showErrorNotification("Initial load is required");
+			initialLoadField.setInvalid(true);
+			initialLoadField.setErrorMessage("Initial load is required");
 			valid = false;
 		}
+		
 		if (maxLoadField.getValue() == null) {
-			UiNotifier.showErrorNotification("Maximum load is required.");
+			maxLoadField.setInvalid(true);
+			maxLoadField.setErrorMessage("Maximum load is required");
 			valid = false;
 		}
+		
 		if (visibilityTimeField.getValue() == null) {
-			UiNotifier.showErrorNotification("Visibility time is required");
+			visibilityTimeField.setInvalid(true);
+			visibilityTimeField.setErrorMessage("Visibility time is required");
 			valid = false;
 		}
-
+		
 		if (temperatureGroup.getValue() == null) {
-			UiNotifier.showErrorNotification("Temperature selection is required.");
+			temperatureGroup.setInvalid(true);
+			temperatureGroup.setErrorMessage("Temperature selection is required");
 			valid = false;
 		}
+		
 		if (spinSpeedGroup.getValue() == null) {
-			UiNotifier.showErrorNotification("Spin speed selection is required.");
+			spinSpeedGroup.setInvalid(true);
+			spinSpeedGroup.setErrorMessage("Spin speed selection is required");
 			valid = false;
 		}
+		
 		if (fabricTypeGroup.getValue() == null) {
-			UiNotifier.showErrorNotification("Fabric type selection is required.");
+			fabricTypeGroup.setInvalid(true);
+			fabricTypeGroup.setErrorMessage("Fabric type selection is required");
 			valid = false;
 		}
+		
 		if (colorGroup.getValue() == null) {
-			UiNotifier.showErrorNotification("Color selection is required.");
+			colorGroup.setInvalid(true);
+			colorGroup.setErrorMessage("Color selection is required");
 			valid = false;
 		}
+		
 		if (detergentTypeGroup.getValue() == null) {
-			UiNotifier.showErrorNotification("Detergent type selection is required.");
+			detergentTypeGroup.setInvalid(true);
+			detergentTypeGroup.setErrorMessage("Detergent type selection is required");
 			valid = false;
 		}
+		
 		if (dryingTypeGroup.getValue() == null) {
-			UiNotifier.showErrorNotification("Drying type selection is required.");
+			dryingTypeGroup.setInvalid(true);
+			dryingTypeGroup.setErrorMessage("Drying type selection is required");
 			valid = false;
 		}
-
+		
+		// Logical validations
 		if (initialLoadField.getValue() != null && maxLoadField.getValue() != null) {
 			if (initialLoadField.getValue() > maxLoadField.getValue()) {
-				UiNotifier.showErrorNotification("Initial load cannot be greater than maximum load.");
+				initialLoadField.setInvalid(true);
+				initialLoadField.setErrorMessage("Initial load cannot be greater than maximum load");
 				valid = false;
 			}
 		}
-
+		
 		if (dateTimeWashingPicker.getValue() != null) {
 			if (dateTimeWashingPicker.getValue().isBefore(LocalDateTime.now())) {
-				UiNotifier.showErrorNotification("Washing date and time cannot be in the past.");
+				dateTimeWashingPicker.setInvalid(true);
+				dateTimeWashingPicker.setErrorMessage("Washing date and time cannot be in the past");
 				valid = false;
 			}
 		}
-
+		
+		if (!valid) {
+			UiNotifier.showErrorNotification("Please check the form for errors");
+		}
+		
 		return valid;
 	}
 
