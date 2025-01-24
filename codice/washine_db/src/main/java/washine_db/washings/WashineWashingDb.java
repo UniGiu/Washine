@@ -411,7 +411,7 @@ public class WashineWashingDb implements WashineWashingDbIf {
   }
 
   @Override
-  public Result<?> getLaundryPersonWashings(String laundryPersonId) throws WashineDataException {
+  public Result<?> getLaunderWashings(String laundryPersonId) throws WashineDataException {
     try {
       Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
       DSLContext create = DSL.using(conn, SQLDialect.SQLITE);

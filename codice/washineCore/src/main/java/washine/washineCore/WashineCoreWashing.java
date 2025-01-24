@@ -107,20 +107,20 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
         throw new WashineCoreException("Washing does not exists");
       }
       WashineLaundryWashingIf washing = getWashing(washingId);
-      if (!((washing.getWashingOptions().getDatetime() >= (int) Instant.now().getEpochSecond())
-          && (washing.getWashingOptions().getWashingAccessOpenDate()
-              <= (int) Instant.now().getEpochSecond())
-          && (washing.getWashingOptions().getWashingAccessCloseDate()
-              >= (int) Instant.now().getEpochSecond()))) {
+      WashineLaundryWashingOptionsIf options = washing.getWashingOptions();
+      if (!((options.getDatetime() >= (int) Instant.now().getEpochSecond())
+          && (options.getWashingAccessOpenDate() <= (int) Instant.now().getEpochSecond())
+          && (options.getWashingAccessCloseDate() >= (int) Instant.now().getEpochSecond()))) {
         throw new WashineCoreException("Washing expired");
       }
-
-      if (load > washing.getWashingOptions().getMaxLoadParticipant()) {
-        throw new WashineCoreException("Exceded maximum load");
+      if (options.getMaxLoadParticipant() != 0) {
+        if (load > options.getMaxLoadParticipant()) {
+          throw new WashineCoreException("Exceded maximum load");
+        }
       }
       double totalWashingLoad = calculateWashingTotalLoad(washing);
 
-      if (totalWashingLoad >= washing.getWashingOptions().getMaxLoad()) {
+      if (totalWashingLoad >= options.getMaxLoad()) {
         throw new WashineCoreException("Max load Reached");
       }
       washingDb.participateToWashing(washingId, participantId, load);
@@ -230,7 +230,7 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
     WashineLaundryWashingOptionsIf options = washing.getWashingOptions();
     String washingId = washing.getId();
     try {
-      if (!(washing.getWashingOptions().getDatetime() >= (int) Instant.now().getEpochSecond())) {
+      if (washing.getWashingOptions().getDatetime() < (int) Instant.now().getEpochSecond()) {
         throw new WashineCoreException("Washing already took place");
       }
       if (calculateWashingTotalLoad(washing) > options.getMaxLoad()) {
@@ -346,20 +346,19 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
       double totalWashingLoad = options.getInitialLoad();
       for (String s : participantIds) {
         totalWashingLoad += washingDb.getParticipationWeight(id, s);
-        return totalWashingLoad;
       }
+      return totalWashingLoad;
     } catch (WashineDataException e) {
       throw new WashineCoreException("WashineCoreException");
     }
-    return 0;
   }
 
   @Override
-  public List<WashineLaundryWashingIf> getLaundryPersonWashings(String laundryPersonId)
+  public List<WashineLaundryWashingIf> getLaunderWashings(String laundryPersonId)
       throws WashineDataException {
     WashineWashingDb washingDb = new WashineWashingDb();
     List<WashineLaundryWashingIf> washings = new ArrayList<WashineLaundryWashingIf>();
-    Result<?> records = washingDb.getLaundryPersonWashings(laundryPersonId);
+    Result<?> records = washingDb.getLaunderWashings(laundryPersonId);
     for (org.jooq.Record r : records) {
       WashineWashingOptions washingOptions =
           new WashineWashingOptions(

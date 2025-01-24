@@ -97,9 +97,23 @@ public interface WashineCoreWashingIf {
    */
   boolean deleteParticipation(String washingId, String userId) throws WashineCoreException;
 
-  public List<WashineLaundryWashingIf> getLaundryPersonWashings(String laundryPersonId)
+  /**
+   * Gets the list of a laundry person's washings
+   *
+   * @param laundryPersonId the id of the laundry person
+   * @return the list of washings
+   * @throws WashineDataException
+   */
+  public List<WashineLaundryWashingIf> getLaunderWashings(String laundryPersonId)
       throws WashineDataException;
 
+  /**
+   * Gets the list of washings which a person participated to
+   *
+   * @param participantId the id of the participant
+   * @return the list of washings
+   * @throws WashineDataException
+   */
   public List<WashineLaundryWashingIf> getParticipantWashings(String participantId)
       throws WashineDataException;
 

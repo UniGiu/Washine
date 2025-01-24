@@ -225,9 +225,30 @@ public interface WashineWashingDbIf {
    */
   public double getWashingParticipantMaxLoad(String washingId) throws WashineDataException;
 
+  /**
+   * Checks if a washing exists on the database through its id
+   *
+   * @param washingId id of the washing
+   * @return true if the washing exists
+   * @throws WashineDataException
+   */
   public boolean existsWashing(String washingId) throws WashineDataException;
 
-  public Result<?> getLaundryPersonWashings(String laundryPersonId) throws WashineDataException;
+  /**
+   * Selects the washings of a laundry person
+   *
+   * @param laundryPersonId id of the laundry person
+   * @return the record containing the washings
+   * @throws WashineDataException
+   */
+  public Result<?> getLaunderWashings(String laundryPersonId) throws WashineDataException;
 
+  /**
+   * Selects the washing which a person participated to
+   *
+   * @param participantId id of the participant
+   * @return the record containing the washings
+   * @throws WashineDataException
+   */
   public Result<?> getParticipantWashings(String participantId) throws WashineDataException;
 }
