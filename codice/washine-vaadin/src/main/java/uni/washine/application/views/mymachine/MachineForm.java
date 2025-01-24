@@ -192,28 +192,32 @@ public class MachineForm extends VerticalLayout {
 		return uniqueInstance;
 	}
 
-//we already have a washing we want to edit
+	/**
+	 * Initializes the form with an existing washing in order to edit it
+	 * 
+	 * @param washing the washing to be edited
+	 */
 	public void init(WashineLaundryWashingIf washing) {
 		washingInfo = washing;
 		WashineLaundryWashingOptionsLaunderIf options = washing.getWashingOptionsLaunder();
 
-		//for integers set to 0 are the default unset value
+		// int fields set to 0 are the default unset value
 		if (options.getDatetime() > 0)
 			dateTimeWashingPicker.setValue(convertToLocalDateTimeViaInstant(options.getDatetime()));
 		if (options.getWashingAccessOpenDate() > 0)
 			accessOpenDatePicker.setValue(convertToLocalDateTimeViaInstant(options.getWashingAccessOpenDate()));
 		if (options.getWashingAccessCloseDate() > 0)
 			accessCloseDatePicker.setValue(convertToLocalDateTimeViaInstant(options.getWashingAccessCloseDate()));
-		
+
 		if (options.getDurationMinutes() > 0)
 			durationField.setValue((double) options.getDurationMinutes());
 		if (options.getInitialLoad() > 0)
 			initialLoadField.setValue(options.getInitialLoad());
 		if (options.getMaxLoad() > 0)
 			maxLoadField.setValue(options.getMaxLoad());
-		//this one is required and can have defaut 0
-		//if (options.getVisibilityTime() > 0)
-			visibilityTimeField.setValue((double) options.getVisibilityTime());
+		// this one is required and can have defaut 0
+		// if (options.getVisibilityTime() > 0)
+		visibilityTimeField.setValue((double) options.getVisibilityTime());
 		if (options.getMaxLoadParticipant() > 0)
 			participantMaxLoadField.setValue(options.getMaxLoadParticipant());
 
@@ -236,12 +240,22 @@ public class MachineForm extends VerticalLayout {
 		updateSubmitButtonLabel();
 	}
 
+	/**
+	 * Utility function to transoform unix timestamp in seconds to LocalDateTime
+	 * needed by the DateTinePicker component
+	 * 
+	 * @param timestampSeconds
+	 * @return
+	 */
 	private LocalDateTime convertToLocalDateTimeViaInstant(int timestampSeconds) {
 		Instant instant = Instant.ofEpochSecond(timestampSeconds);
 		return instant.atZone(ZoneId.systemDefault()).toLocalDateTime();
 	}
 
-	// we clear the form, we want to create a new one
+	/**
+	 * Clears the form fields
+	 * 
+	 */
 	public void reset() {
 		washingInfo = null;
 
@@ -274,6 +288,9 @@ public class MachineForm extends VerticalLayout {
 		updateSubmitButtonLabel();
 	}
 
+	/**
+	 * Updates the submit button label depending on the edit or update context
+	 */
 	private void updateSubmitButtonLabel() {
 		if (washingInfo == null) {
 			submitButton.setText("Create Washing");
@@ -282,9 +299,15 @@ public class MachineForm extends VerticalLayout {
 		}
 	}
 
+	/**
+	 * Provides validation state of the form and updates the fields to their
+	 * validity state
+	 * 
+	 * @return true if all fields are valid, otherwise false
+	 */
 	private boolean validateForm() {
 		boolean valid = true;
-		
+
 		// First reset all components' error states
 		dateTimeWashingPicker.setInvalid(false);
 		durationField.setInvalid(false);
@@ -297,74 +320,74 @@ public class MachineForm extends VerticalLayout {
 		colorGroup.setInvalid(false);
 		detergentTypeGroup.setInvalid(false);
 		dryingTypeGroup.setInvalid(false);
-		
+
 		// Then validate and set error states
 		if (dateTimeWashingPicker.getValue() == null) {
 			dateTimeWashingPicker.setInvalid(true);
 			dateTimeWashingPicker.setErrorMessage("Washing date and time is required");
 			valid = false;
 		}
-		
+
 		if (durationField.getValue() == null) {
 			durationField.setInvalid(true);
 			durationField.setErrorMessage("Wash duration is required");
 			valid = false;
 		}
-		
+
 		if (initialLoadField.getValue() == null) {
 			initialLoadField.setInvalid(true);
 			initialLoadField.setErrorMessage("Initial load is required");
 			valid = false;
 		}
-		
+
 		if (maxLoadField.getValue() == null) {
 			maxLoadField.setInvalid(true);
 			maxLoadField.setErrorMessage("Maximum load is required");
 			valid = false;
 		}
-		
+
 		if (visibilityTimeField.getValue() == null) {
 			visibilityTimeField.setInvalid(true);
 			visibilityTimeField.setErrorMessage("Visibility time is required");
 			valid = false;
 		}
-		
+
 		if (temperatureGroup.getValue() == null) {
 			temperatureGroup.setInvalid(true);
 			temperatureGroup.setErrorMessage("Temperature selection is required");
 			valid = false;
 		}
-		
+
 		if (spinSpeedGroup.getValue() == null) {
 			spinSpeedGroup.setInvalid(true);
 			spinSpeedGroup.setErrorMessage("Spin speed selection is required");
 			valid = false;
 		}
-		
+
 		if (fabricTypeGroup.getValue() == null) {
 			fabricTypeGroup.setInvalid(true);
 			fabricTypeGroup.setErrorMessage("Fabric type selection is required");
 			valid = false;
 		}
-		
+
 		if (colorGroup.getValue() == null) {
 			colorGroup.setInvalid(true);
 			colorGroup.setErrorMessage("Color selection is required");
 			valid = false;
 		}
-		
+
 		if (detergentTypeGroup.getValue() == null) {
 			detergentTypeGroup.setInvalid(true);
 			detergentTypeGroup.setErrorMessage("Detergent type selection is required");
 			valid = false;
 		}
-		
+
 		if (dryingTypeGroup.getValue() == null) {
 			dryingTypeGroup.setInvalid(true);
 			dryingTypeGroup.setErrorMessage("Drying type selection is required");
 			valid = false;
 		}
-		
+
 		// Logical validations
 		if (initialLoadField.getValue() != null && maxLoadField.getValue() != null) {
 			if (initialLoadField.getValue() > maxLoadField.getValue()) {
@@ -373,7 +396,7 @@ public class MachineForm extends VerticalLayout {
 				valid = false;
 			}
 		}
-		
+
 		if (dateTimeWashingPicker.getValue() != null) {
 			if (dateTimeWashingPicker.getValue().isBefore(LocalDateTime.now())) {
 				dateTimeWashingPicker.setInvalid(true);
@@ -381,14 +404,17 @@ public class MachineForm extends VerticalLayout {
 				valid = false;
 			}
 		}
-		
+
 		if (!valid) {
 			UiNotifier.showErrorNotification("Please check the form for errors");
 		}
-		
+
 		return valid;
 	}
 
+	/**
+	 * Handles the submit button click
+	 */
 	private void handleSubmit() {
 		if (!validateForm()) {
 			return;
@@ -400,6 +426,9 @@ public class MachineForm extends VerticalLayout {
 		}
 	}
 
+	/**
+	 * Submits a new washing and if all is OK it starts closing the form
+	 */
 	private void submitNewWashing() {
 		WashineUserIf userData = (WashineUserIf) VaadinSession.getCurrent().getAttribute("currentUser");
 		boolean result = false;
@@ -411,11 +440,16 @@ public class MachineForm extends VerticalLayout {
 			UiNotifier.showErrorNotification(e.getMessage());
 		}
 		if (result) {
-			// Qui dispatchare evento
+			// FIRE AN EVENT HERE
 			UiNotifier.showSuccessNotification("New washing ready");
 		}
 	}
 
+	/**
+	 * Checks if the washing that is going to be updated has already collectd
+	 * participants and if so asks for confirmation
+	 * 
+	 */
 	private void submitWashingUpdate() {
 
 		if (washingInfo.getEnabledParticipants().isEmpty()) {
@@ -426,6 +460,10 @@ public class MachineForm extends VerticalLayout {
 
 	}
 
+	/**
+	 * Opens a confirmation dialog in order to proceed to the update of the 'dirty'
+	 * washing
+	 */
 	private void askConfirmationBeforeUpdate() {
 		ConfirmDialog dialog = new ConfirmDialog();
 		dialog.setHeader("Update already participated washing?");
@@ -441,6 +479,9 @@ public class MachineForm extends VerticalLayout {
 
 	}
 
+	/**
+	 * Submits a washing update and if all is OK it starts closing the form
+	 */
 	private void sendWashingUpdate() {
 		boolean result = false;
 		try {
@@ -457,6 +498,11 @@ public class MachineForm extends VerticalLayout {
 		}
 	}
 
+	/**
+	 * refreshes an washing options objects to the current state of the form
+	 * 
+	 * @param options the options object to be refreshed
+	 */
 	private void refreshWashingOptions(WashineLaundryWashingOptionsLaunderIf options) {
 
 		LocalDateTime washingDateTime = dateTimeWashingPicker.getValue();
@@ -561,6 +607,7 @@ public class MachineForm extends VerticalLayout {
 
 	}
 
+//to be continued...
 	public class FormEvent extends ComponentEvent<Component> {
 		public FormEvent(Component source, boolean fromClient) {
 			super(source, fromClient);
