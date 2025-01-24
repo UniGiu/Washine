@@ -146,15 +146,17 @@ public class MachineForm extends VerticalLayout {
     deliveryAvailabilityField = new TextField("Delivery availability");
     deliveryAvailabilityField.setHelperText("Specify your available time slots for delivery");
 
-    refundTypeField = new TextField("Refound information");
+    refundTypeField = new TextField("Reimbursement information");
     refundTypeField.setHelperText(
-        "Specify if you will ask for a refound, the total amount and the sharing logic");
+        "Specify if you will ask for a refound of your expenses, the total amount and the sharing logic");
 
     participantMaxLoadField = new NumberField("Max load per participant (kilograms)");
 
     accessOpenDatePicker = new DateTimePicker("Participants accepted after Date/Time");
+    accessOpenDatePicker.setStep(Duration.ofMinutes(15));
     accessOpenDatePicker.setHelperText("Specify when people will be able to access the washing");
     accessCloseDatePicker = new DateTimePicker("Participant accepted untill Date/Time");
+    accessCloseDatePicker.setStep(Duration.ofMinutes(15));
     accessCloseDatePicker.setHelperText(
         "Specify till when it will be possible to add clothes to the washing");
 
@@ -372,7 +374,9 @@ public class MachineForm extends VerticalLayout {
     WashineUserIf userData = (WashineUserIf) VaadinSession.getCurrent().getAttribute("currentUser");
     boolean result=false;
     try {
-        result=wCore.createWashing(userData.getId(), getFormOptions());
+    	WashineLaundryWashingOptionsLaunderIf options = wCore.getBlankWashingOptions();
+    	refreshWashingOptions(options);
+        result=wCore.createWashing(userData.getId(), options);
     } catch (WashineCoreException e) {
       UiNotifier.showErrorNotification(e.getMessage());
     }
@@ -392,13 +396,13 @@ public class MachineForm extends VerticalLayout {
     
   }
   private void askConfirmationBeforeUpdate(){
-        //TODO:see if the dialog will be garbage collected although it has listeners added
         ConfirmDialog dialog = new ConfirmDialog();
         dialog.setHeader("Update already participated washing?");
         dialog.setText(
                 "This washing already has participants, are you sure you want to update it?");
 
         dialog.setCancelable(true);
+        //
         //dialog.addCancelListener(event -> setStatus("Canceled"));
 
         dialog.setConfirmText("Update");
@@ -409,7 +413,8 @@ public class MachineForm extends VerticalLayout {
   private void sendWashingUpdate(){
     boolean result=false;
     try {     
-        wCore.updateWashingOptions(washingInfo.getId(), getFormOptions());
+    	refreshWashingOptions(washingInfo.getWashingOptionsLaunder());
+        wCore.updateWashingOptions(washingInfo);
       } catch (WashineCoreException e) {
         UiNotifier.showErrorNotification(e.getMessage());
       }
@@ -419,14 +424,8 @@ public class MachineForm extends VerticalLayout {
         }
   }
 
-  private WashineLaundryWashingOptionsLaunderIf getFormOptions() {
-    /*
-    nullified values should be updated in this case 
-    WashineLaundryWashingOptionsLaunderIf options = (washingInfo == null)
-    ?wCore.getBlankWashingOptions()
-    : washingInfo.getWashingOptionsLaunder();
-    */
-    WashineLaundryWashingOptionsLaunderIf options = wCore.getBlankWashingOptions();
+  private void refreshWashingOptions(WashineLaundryWashingOptionsLaunderIf options) {
+   //TODO Manage null values in the form that update a set value in the data!!!
     LocalDateTime washingDateTime = dateTimeWashingPicker.getValue();
     if (washingDateTime != null) {
       options.setDateTime((int) washingDateTime.atZone(ZoneId.systemDefault()).toEpochSecond());
@@ -528,7 +527,7 @@ public class MachineForm extends VerticalLayout {
     if (refundType != null) {
       options.setRefundTypes(refundType);
     }
-    return options;
+    
   }
 public class FormEvent
         extends ComponentEvent<Component> {
