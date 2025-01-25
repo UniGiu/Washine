@@ -137,7 +137,7 @@ public List<String> getCommunityMembersIds(String userId) {
     try {
         // Ottieni gli ID dei membri della comunità usando solo l'ID dell'utente
        
-        return washineCommunity.getGroupParticipants(userId);
+        return washineCommunity.getCommunityMembersIds(userId);
     } catch (SQLException e) {
     	return null;
     }

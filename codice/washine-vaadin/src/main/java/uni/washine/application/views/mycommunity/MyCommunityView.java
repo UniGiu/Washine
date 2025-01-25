@@ -71,7 +71,7 @@ public class MyCommunityView extends Composite<VerticalLayout>  implements Befor
        
         configureGrid(); // Configura le colonne della griglia
         
-        setGridSampleData(multiSelectGrid); // Popola i dati della griglia con il metodo setGridSampleData
+        //setGridSampleData(multiSelectGrid); // Popola i dati della griglia con il metodo setGridSampleData
         
         
         Button buttonPrimary = new Button();
@@ -148,45 +148,42 @@ public class MyCommunityView extends Composite<VerticalLayout>  implements Befor
     
     //RIVEDERE
     private void setGridSampleData(Grid<WashineUserIf> grid) {
+    	System.out.println("setGridSampleData method called.");
         if (userData != null) {
-            // Ottieni l'ID della comunità dell'utente loggato
-            String userId = userData.getId();  // Supponiamo che userData abbia un metodo per ottenere l'ID della comunità
-            
-         // Chiamata al core per ottenere gli ID membri della comunità
-            List<String> memberIds = wCore.getCommunityMembersIds(userId);  // Passa userId al metodo getCommunityMembersIds
-         
-         // Aggiungi un log per vedere i dati restituiti
-            System.out.println("Community Member IDs for User " + userId + ": " + memberIds);
-      
-         // Lista per memorizzare gli oggetti WashineUserIf
+            String userId = userData.getId(); // Ottieni l'ID dell'utente loggato
+            System.out.println("User ID (Chiara): " + userId);
+
+            // Chiamata al core per ottenere i membri della comunità
+            List<String> memberIds = wCore.getCommunityMembersIds(userId);
+            System.out.println("Community Member IDs: " + memberIds);
+
+            // Lista per memorizzare gli oggetti WashineUserIf
             List<WashineUserIf> members = new ArrayList<>();
-            
-            
             for (String memberId : memberIds) {
-            	try {
-                    // Converte il memberId in Long
-                    Long id = Long.valueOf(memberId);
-
-                    // Recupera i dettagli del membro usando SamplePersonService
-                    Optional<SamplePerson> samplePerson = samplePersonService.get(id);
-
-                    // Se l'utente esiste, usa la sua email
+                try {
+                    Long id = Long.valueOf(memberId); // Converti la String in Long
+                    Optional<SamplePerson> samplePerson = samplePersonService.get(id); // Usa il metodo get(Long)
                     if (samplePerson.isPresent()) {
                         String email = samplePerson.get().getEmail();
-                        members.add(new WashineUser(email, memberId)); // Usa email reale
-                        
-                    } 
+                        members.add(new WashineUser(email, memberId));
+                        System.out.println("Found member: ID = " + memberId + ", Email = " + email);
+                    } else {
+                        System.out.println("No SamplePerson found for ID: " + memberId);
+                    }
                 } catch (NumberFormatException e) {
-                    
+                    System.out.println("Invalid member ID format: " + memberId);
                 }
-            
             }
 
+
             // Imposta i membri come elementi della griglia
+            System.out.println("Adding members to grid: " + members.size());
             grid.setItems(members);
-        
+        } else {
+            System.out.println("User data is null");
         }
     }
+
 
 /**
  * Redirects anonymous users to home
@@ -196,6 +193,8 @@ public class MyCommunityView extends Composite<VerticalLayout>  implements Befor
 	  userData = (WashineUserIf) VaadinSession.getCurrent().getAttribute("currentUser");
 	  if(userData==null) {
 		  event.forwardTo("/");
+	  }else {
+		  setGridSampleData(multiSelectGrid);
 	  }
   }
 }
