@@ -24,12 +24,14 @@ import com.vaadin.flow.theme.lumo.LumoUtility.Gap;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.vaadin.lineawesome.LineAwesomeIconUrl;
 import uni.washine.application.data.SamplePerson;
 import uni.washine.application.services.SamplePersonService;
+import uni.washine.application.views.mymachine.MachineForm;
 import washine.washineCore.AbstractCoreFactory;
 import washine.washineCore.WashineCoreCommunityIf;
 import washine.washineCore.user.WashineUser;
@@ -42,8 +44,12 @@ import washine.washineCore.user.WashineUserIf;
 public class MyCommunityView extends Composite<VerticalLayout>  implements BeforeEnterObserver{
 	
 	
+	@Autowired
+	private SamplePersonService samplePersonService;
+
 	private WashineUserIf userData;
-	private final WashineCoreCommunityIf wCore; // Istanza Core Washine
+	final WashineCoreCommunityIf wCore; // Istanza Core Washine
+	
 	private final Grid<WashineUserIf> multiSelectGrid; //Griglia dati community
 
     public MyCommunityView() {
@@ -67,7 +73,7 @@ public class MyCommunityView extends Composite<VerticalLayout>  implements Befor
         
         setGridSampleData(multiSelectGrid); // Popola i dati della griglia con il metodo setGridSampleData
         
-        //Grid multiSelectGrid = new Grid(SamplePerson.class);
+        
         Button buttonPrimary = new Button();
         Button buttonPrimary2 = new Button();
         VerticalLayout layoutColumn3 = new VerticalLayout();
@@ -97,10 +103,6 @@ public class MyCommunityView extends Composite<VerticalLayout>  implements Befor
         textLarge.getStyle().set("font-size", "var(--lumo-font-size-xl)");
         h3.setText("Community members");
         h3.setWidth("max-content");
-       // multiSelectGrid.setSelectionMode(Grid.SelectionMode.MULTI);
-       //multiSelectGrid.setWidth("100%");
-       //multiSelectGrid.getStyle().set("flex-grow", "0");
-        //setGridSampleData(multiSelectGrid);
         buttonPrimary.setText("Remove selected members from the community");
         buttonPrimary.setWidth("min-content");
         buttonPrimary.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
@@ -118,11 +120,8 @@ public class MyCommunityView extends Composite<VerticalLayout>  implements Befor
         textLarge2.setWidth("100%");
         textLarge2.getStyle().set("font-size", "var(--lumo-font-size-xl)");
         details.setWidth("100%");
-        //setDetailsSampleData(details);
         details2.setWidth("100%");
-        //setDetailsSampleData(details2);
         details3.setWidth("100%");
-        //setDetailsSampleData(details3);
         getContent().add(layoutRow);
         layoutRow.add(h2);
         getContent().add(layoutRow2);
@@ -147,19 +146,40 @@ public class MyCommunityView extends Composite<VerticalLayout>  implements Befor
         
     }
     
-    //RIVEDEREEEEEEEEEE
+    //RIVEDERE
     private void setGridSampleData(Grid<WashineUserIf> grid) {
         if (userData != null) {
             // Ottieni l'ID della comunità dell'utente loggato
             String userId = userData.getId();  // Supponiamo che userData abbia un metodo per ottenere l'ID della comunità
             
-         // Chiamata al core per ottenere i membri della comunità
+         // Chiamata al core per ottenere gli ID membri della comunità
             List<String> memberIds = wCore.getCommunityMembersIds(userId);  // Passa userId al metodo getCommunityMembersIds
-         // Converte gli ID dei membri in oggetti WashineUserIf se necessario
+         
+         // Aggiungi un log per vedere i dati restituiti
+            System.out.println("Community Member IDs for User " + userId + ": " + memberIds);
+      
+         // Lista per memorizzare gli oggetti WashineUserIf
             List<WashineUserIf> members = new ArrayList<>();
+            
+            
             for (String memberId : memberIds) {
-                // Per ogni ID membro, crea un oggetto WashineUserIf (presumendo che tu abbia un costruttore per questo)
-                members.add(new WashineUser(memberId, "example@example.com"));  // Supponiamo che l'email venga recuperata da un altro servizio
+            	try {
+                    // Converte il memberId in Long
+                    Long id = Long.valueOf(memberId);
+
+                    // Recupera i dettagli del membro usando SamplePersonService
+                    Optional<SamplePerson> samplePerson = samplePersonService.get(id);
+
+                    // Se l'utente esiste, usa la sua email
+                    if (samplePerson.isPresent()) {
+                        String email = samplePerson.get().getEmail();
+                        members.add(new WashineUser(email, memberId)); // Usa email reale
+                        
+                    } 
+                } catch (NumberFormatException e) {
+                    
+                }
+            
             }
 
             // Imposta i membri come elementi della griglia
@@ -167,30 +187,6 @@ public class MyCommunityView extends Composite<VerticalLayout>  implements Befor
         
         }
     }
-
-
-    //FINE
-
-    /*private void setGridSampleData(Grid grid) {
-        grid.setItems(query -> samplePersonService.list(
-                PageRequest.of(query.getPage(), query.getPageSize(), VaadinSpringDataHelpers.toSpringDataSort(query)))
-                .stream());
-    }
-    @Autowired()
-    private SamplePersonService samplePersonService;
-    
-   
-    private void setDetailsSampleData(Details details) {
-        Span name = new Span("Sophia Williams");
-        Span email = new Span("sophia.williams@company.com");
-        Span phone = new Span("(501) 555-9128");
-        VerticalLayout content = new VerticalLayout(name, email, phone);
-        content.setSpacing(false);
-        content.setPadding(false);
-        details.setSummaryText("Contact information");
-        details.setOpened(true);
-        details.setContent(content);
-    }*/
 
 /**
  * Redirects anonymous users to home
