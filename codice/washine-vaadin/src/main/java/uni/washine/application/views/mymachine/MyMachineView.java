@@ -14,6 +14,10 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.VaadinSession;
 import com.vaadin.flow.theme.lumo.LumoUtility.Gap;
+
+import elemental.json.JsonObject;
+import uni.washine.application.utils.UiNotifier;
+
 import org.vaadin.lineawesome.LineAwesomeIconUrl;
 
 import org.apache.logging.log4j.Logger;
@@ -21,26 +25,23 @@ import org.apache.logging.log4j.LogManager;
 
 import washine.washineCore.user.WashineUserIf;
 
-
 @PageTitle("My Machine")
 @Route("my-machine")
 @Menu(order = 1, icon = LineAwesomeIconUrl.CC_DINERS_CLUB)
 public class MyMachineView extends Composite<VerticalLayout> implements BeforeEnterObserver {
-	
-	private static Logger logger = LogManager.getLogger();
-	
+
+  private static Logger logger = LogManager.getLogger();
+
   private WashineUserIf userData;
-  private MachineBuilder machineBuilder;
   private MachineForm machineForm;
   private VerticalLayout layoutMachinesListContainer;
   private LaunderWashingsList layoutMachinesList;
 
   public MyMachineView() {
-    machineBuilder = new MachineBuilder();
-    machineForm = machineBuilder.getMachineForm();
+    machineForm = new MachineForm();
     layoutMachinesListContainer = new VerticalLayout();
     layoutMachinesList = new LaunderWashingsList();
-    logger.debug("MACHINE VIEW");
+
     HorizontalLayout layoutRow = new HorizontalLayout();
     H2 h2 = new H2();
     Paragraph textLarge = new Paragraph();
@@ -74,11 +75,25 @@ public class MyMachineView extends Composite<VerticalLayout> implements BeforeEn
       showList();
     });
     machineForm.addSavedListener(event -> {
+      machineForm.reset();
       showList();
     });
     buttonAddWash.addClickListener(event -> {
       showForm();
     });
+
+    layoutMachinesList.getElement().addEventListener("washingdeleted", event -> {
+      layoutMachinesList.refreshData();
+      UiNotifier.showErrorNotification("DELETED");
+    });
+    //TOREMEMBER: addEventata("event.detail")!!!!!
+    layoutMachinesList.getElement().addEventListener("washingedit", event -> {
+      JsonObject evtData = event.getEventData();    
+      JsonObject evtDetails=evtData.getObject("event.detail");
+       String washingId =evtDetails.getString("washingId");     
+      machineForm.init(washingId);
+      showForm();
+    }).addEventData("event.detail");
     showList();
   }
 
@@ -97,8 +112,8 @@ public class MyMachineView extends Composite<VerticalLayout> implements BeforeEn
   private void showList() {
     machineForm.setVisible(false);
     layoutMachinesListContainer.setVisible(true);
-    //TODO: think if the refres can be in the constructor for initializing and
-    // in the SavedEvent handler (so no refresh on cancel) 
+    // TODO: think if the refresh can be in the constructor for initializing and
+    // in the SavedEvent handler (so no refresh on cancel)
     layoutMachinesList.refreshData();
   }
 

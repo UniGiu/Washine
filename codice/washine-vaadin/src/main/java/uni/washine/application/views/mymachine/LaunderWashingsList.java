@@ -8,7 +8,8 @@ public class LaunderWashingsList extends WashingsList{
    
    @Override
    protected void addItem(WashineLaundryWashingIf washing) {
-		add(new LaunderWashingListItem(washing));
+		LaunderWashingListItem item = new LaunderWashingListItem(washing);
+      add(item);
 	}
     
 }

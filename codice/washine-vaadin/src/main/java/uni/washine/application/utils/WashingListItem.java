@@ -9,11 +9,8 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.progressbar.ProgressBar;
 import com.vaadin.flow.component.details.Details;
 
-import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
@@ -42,7 +39,7 @@ public class WashingListItem extends HorizontalLayout {
         getStyle().set("flex-wrap", "wrap");
         getStyle().set("max-width", "500px"); 
 
-        // Left section with primary info
+        //visible info
         VerticalLayout layoutPrimaryInfo = new VerticalLayout();
         layoutPrimaryInfo.setSpacing(false);
         layoutPrimaryInfo.setPadding(false);
