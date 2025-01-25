@@ -32,6 +32,7 @@ import uni.washine.application.data.SamplePerson;
 import uni.washine.application.services.SamplePersonService;
 import washine.washineCore.AbstractCoreFactory;
 import washine.washineCore.WashineCoreCommunityIf;
+import washine.washineCore.user.WashineUser;
 import washine.washineCore.user.WashineUserIf;
 
 @PageTitle("My Community")
@@ -117,11 +118,11 @@ public class MyCommunityView extends Composite<VerticalLayout>  implements Befor
         textLarge2.setWidth("100%");
         textLarge2.getStyle().set("font-size", "var(--lumo-font-size-xl)");
         details.setWidth("100%");
-        setDetailsSampleData(details);
+        //setDetailsSampleData(details);
         details2.setWidth("100%");
-        setDetailsSampleData(details2);
+        //setDetailsSampleData(details2);
         details3.setWidth("100%");
-        setDetailsSampleData(details3);
+        //setDetailsSampleData(details3);
         getContent().add(layoutRow);
         layoutRow.add(h2);
         getContent().add(layoutRow2);
@@ -150,12 +151,20 @@ public class MyCommunityView extends Composite<VerticalLayout>  implements Befor
     private void setGridSampleData(Grid<WashineUserIf> grid) {
         if (userData != null) {
             // Ottieni l'ID della comunità dell'utente loggato
-            String communityId = userData.getCommunityId();  // Supponiamo che userData abbia un metodo per ottenere l'ID della comunità
-            // Chiama il servizio per ottenere i membri della comunità
-            List<WashineUserIf> members = wCore.getCommunityMembersIds(userData);  // Chiamata al core per ottenere i membri della comunità
+            String userId = userData.getId();  // Supponiamo che userData abbia un metodo per ottenere l'ID della comunità
             
+         // Chiamata al core per ottenere i membri della comunità
+            List<String> memberIds = wCore.getCommunityMembersIds(userId);  // Passa userId al metodo getCommunityMembersIds
+         // Converte gli ID dei membri in oggetti WashineUserIf se necessario
+            List<WashineUserIf> members = new ArrayList<>();
+            for (String memberId : memberIds) {
+                // Per ogni ID membro, crea un oggetto WashineUserIf (presumendo che tu abbia un costruttore per questo)
+                members.add(new WashineUser(memberId, "example@example.com"));  // Supponiamo che l'email venga recuperata da un altro servizio
+            }
+
             // Imposta i membri come elementi della griglia
             grid.setItems(members);
+        
         }
     }
 
@@ -166,7 +175,7 @@ public class MyCommunityView extends Composite<VerticalLayout>  implements Befor
         grid.setItems(query -> samplePersonService.list(
                 PageRequest.of(query.getPage(), query.getPageSize(), VaadinSpringDataHelpers.toSpringDataSort(query)))
                 .stream());
-    }*/
+    }
     @Autowired()
     private SamplePersonService samplePersonService;
     
@@ -181,7 +190,7 @@ public class MyCommunityView extends Composite<VerticalLayout>  implements Befor
         details.setSummaryText("Contact information");
         details.setOpened(true);
         details.setContent(content);
-    }
+    }*/
 
 /**
  * Redirects anonymous users to home
