@@ -21,6 +21,10 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.VaadinSession;
 import com.vaadin.flow.spring.data.VaadinSpringDataHelpers;
 import com.vaadin.flow.theme.lumo.LumoUtility.Gap;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.vaadin.lineawesome.LineAwesomeIconUrl;
@@ -35,18 +39,16 @@ import washine.washineCore.user.WashineUserIf;
 @Menu(order = 4, icon = LineAwesomeIconUrl.USER_FRIENDS_SOLID)
 @Uses(Icon.class)
 public class MyCommunityView extends Composite<VerticalLayout>  implements BeforeEnterObserver{
-
+	
+	
 	private WashineUserIf userData;
-	//AGGIUNTA
-	// Istanza Core Washine
-	private final WashineCoreCommunityIf wCore;
-	//griglia dati community
-	private final Grid<WashineUser> multiSelectGrid;
+	private final WashineCoreCommunityIf wCore; // Istanza Core Washine
+	private final Grid<WashineUserIf> multiSelectGrid; //Griglia dati community
 
     public MyCommunityView() {
-    	//AGGIUNTA
-    	//Inizializzazione WashineCore
-    	wCore = AbstractCoreFactory.getInstance("vaadin").createCoreWashing();
+    	
+    	
+    	wCore = AbstractCoreFactory.getInstance("vaadin").createCoreWashineCommunity(); //Inizializzazione WashineCore
 
 		HorizontalLayout layoutRow = new HorizontalLayout();
         H2 h2 = new H2();
@@ -56,15 +58,13 @@ public class MyCommunityView extends Composite<VerticalLayout>  implements Befor
         H3 h3 = new H3();
         
      // Griglia
-        multiSelectGrid = new Grid<>(WashineUser.class, false);
+        multiSelectGrid = new Grid<>(WashineUserIf.class, false);
         multiSelectGrid.setSelectionMode(Grid.SelectionMode.MULTI);
         multiSelectGrid.setWidthFull();
+       
+        configureGrid(); // Configura le colonne della griglia
         
-     // Configura le colonne della griglia
-        configureGrid();
-        
-     // Popola i dati della griglia con il metodo setGridSampleData
-        setGridSampleData(multiSelectGrid);
+        setGridSampleData(multiSelectGrid); // Popola i dati della griglia con il metodo setGridSampleData
         
         //Grid multiSelectGrid = new Grid(SamplePerson.class);
         Button buttonPrimary = new Button();
@@ -141,18 +141,26 @@ public class MyCommunityView extends Composite<VerticalLayout>  implements Befor
     }
     
     private void configureGrid() {
-        multiSelectGrid.addColumn(WashineUser::getId).setHeader("Id");
-        multiSelectGrid.addColumn(WashineUser::getEmail).setHeader("Email");
+        multiSelectGrid.addColumn(WashineUserIf::getId).setHeader("Id");
+        multiSelectGrid.addColumn(WashineUserIf::getEmail).setHeader("Email");
         
     }
     
-    private void setGridSampleData(Grid<WashineUser> grid) {
+    //RIVEDEREEEEEEEEEE
+    private void setGridSampleData(Grid<WashineUserIf> grid) {
         if (userData != null) {
-            List<WashineUser> members = wCore.getWashineUser(userData);
-            grid.setItems(members); // Imposta i membri come elementi della griglia
+            // Ottieni l'ID della comunità dell'utente loggato
+            String communityId = userData.getCommunityId();  // Supponiamo che userData abbia un metodo per ottenere l'ID della comunità
+            // Chiama il servizio per ottenere i membri della comunità
+            List<WashineUserIf> members = wCore.getCommunityMembersIds(userData);  // Chiamata al core per ottenere i membri della comunità
+            
+            // Imposta i membri come elementi della griglia
+            grid.setItems(members);
         }
     }
-    
+
+
+    //FINE
 
     /*private void setGridSampleData(Grid grid) {
         grid.setItems(query -> samplePersonService.list(
@@ -161,7 +169,8 @@ public class MyCommunityView extends Composite<VerticalLayout>  implements Befor
     }*/
     @Autowired()
     private SamplePersonService samplePersonService;
-
+    
+   
     private void setDetailsSampleData(Details details) {
         Span name = new Span("Sophia Williams");
         Span email = new Span("sophia.williams@company.com");

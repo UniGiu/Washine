@@ -1,5 +1,6 @@
 package washine.washineCore;
 
+import java.util.List;
 import java.util.Random;
 import java.sql.SQLException;
 import java.time.Instant;
@@ -126,15 +127,25 @@ public class WashineCoreCommunity implements WashineCoreCommunityIf {
     WashineGroupDb washineCommunity = new WashineGroupDb();
     return washineCommunity.nameInInvitations(name, communityId);
   }
-  //AGGIUNTA DA VEDERE SE HA SENSO 
-  public List<WashineCommunityMember> getCommunityMembers(String communityUid) {
-	    WashineGroupDb washineCommunity = new WashineGroupDb();
-	    try {
-	        return washineCommunity.getCommunityMembers(communityUid);
-	    } catch (SQLException e) {
-	        e.printStackTrace(); // Log dell'errore
-	        return Collections.emptyList(); // Ritorna una lista vuota in caso di errore
-	    }
-	}
+  
+//AGGIUNTA
+@Override
+public List<String> getCommunityMembersIds(String userId) {
+	
+	WashineGroupDb washineCommunity = new WashineGroupDb();
+   
+    try {
+        // Ottieni gli ID dei membri della comunità usando solo l'ID dell'utente
+       
+        return washineCommunity.getGroupParticipants(userId);
+    } catch (SQLException e) {
+    	return null;
+    }
+   
+}
+
+
+
+  
 
 }

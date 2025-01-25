@@ -1,6 +1,8 @@
 package uni.washine.application.data;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.Email;
 import java.time.LocalDate;
 
@@ -16,6 +18,9 @@ public class SamplePerson extends AbstractEntity {
     private String occupation;
     private String role;
     private boolean important;
+    
+   
+
 
     public String getFirstName() {
         return firstName;
@@ -65,5 +70,7 @@ public class SamplePerson extends AbstractEntity {
     public void setImportant(boolean important) {
         this.important = important;
     }
+    
+   
 
 }
