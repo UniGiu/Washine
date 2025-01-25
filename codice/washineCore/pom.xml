@@ -23,6 +23,13 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
+       <dependency>
+     			 <groupId>org.apache.logging.log4j</groupId>
+     				 <artifactId>log4j-bom</artifactId>
+     				 <version>2.24.3</version>
+     				 <scope>import</scope>
+     			 <type>pom</type>
+  			  </dependency>
     </dependencies>
   </dependencyManagement>
 
@@ -38,6 +45,15 @@
       <artifactId>junit-jupiter-params</artifactId>
       <scope>test</scope>
     </dependency>
+    <dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>			
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+		</dependency>
     <dependency>
     	<groupId>washine</groupId>
     	<artifactId>washine_db</artifactId>

@@ -16,13 +16,13 @@ import com.vaadin.flow.server.VaadinSession;
 import com.vaadin.flow.shared.Registration;
 
 import uni.washine.application.utils.UiNotifier;
+import uni.washine.application.utils.WashineTimeUtils;
 
 import com.vaadin.flow.component.ComponentEvent;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 
 import java.time.Duration;
-import java.time.Instant;
 
 import washine.washineCore.AbstractCoreFactory;
 import washine.washineCore.WashineCoreWashingIf;
@@ -36,7 +36,6 @@ import com.vaadin.flow.component.ComponentEventListener;
 
 public class MachineForm extends VerticalLayout {
 	final WashineCoreWashingIf wCore;
-	private static MachineForm uniqueInstance;
 	private WashineLaundryWashingIf washingInfo;
 	private Button submitButton;
 
@@ -63,7 +62,7 @@ public class MachineForm extends VerticalLayout {
 	private DateTimePicker accessOpenDatePicker;
 	private DateTimePicker accessCloseDatePicker;
 
-	private MachineForm() {
+	public MachineForm() {
 		wCore = AbstractCoreFactory.getInstance("vaadin").createCoreWashing();
 		FormLayout formLayout = new FormLayout();
 		FormLayout formLayoutNotRequired = new FormLayout();
@@ -187,29 +186,27 @@ public class MachineForm extends VerticalLayout {
 
 	}
 
-	public static MachineForm getInstance() {
-		if (uniqueInstance == null) {
-			uniqueInstance = new MachineForm();
-		}
-		return uniqueInstance;
-	}
-
 	/**
 	 * Initializes the form with an existing washing in order to edit it
 	 * 
 	 * @param washing the washing to be edited
 	 */
-	public void init(WashineLaundryWashingIf washing) {
-		washingInfo = washing;
-		WashineLaundryWashingOptionsLaunderIf options = washing.getWashingOptionsLaunder();
+	public void init(String washingId) {
+		try{
+			washingInfo = wCore.getWashing(washingId);
+		}catch(WashineCoreException e){
+			UiNotifier.showErrorNotification(e.getMessage());
+		}
+		
+		WashineLaundryWashingOptionsLaunderIf options = washingInfo.getWashingOptionsLaunder();
 
 		// int fields set to 0 are the default unset value
 		if (options.getDatetime() > 0)
-			dateTimeWashingPicker.setValue(convertToLocalDateTimeViaInstant(options.getDatetime()));
+			dateTimeWashingPicker.setValue(WashineTimeUtils.unixTimestampToLocalDate(options.getDatetime()));
 		if (options.getWashingAccessOpenDate() > 0)
-			accessOpenDatePicker.setValue(convertToLocalDateTimeViaInstant(options.getWashingAccessOpenDate()));
+			accessOpenDatePicker.setValue(WashineTimeUtils.unixTimestampToLocalDate(options.getWashingAccessOpenDate()));
 		if (options.getWashingAccessCloseDate() > 0)
-			accessCloseDatePicker.setValue(convertToLocalDateTimeViaInstant(options.getWashingAccessCloseDate()));
+			accessCloseDatePicker.setValue(WashineTimeUtils.unixTimestampToLocalDate(options.getWashingAccessCloseDate()));
 
 		if (options.getDurationMinutes() > 0)
 			durationField.setValue((double) options.getDurationMinutes());
@@ -444,7 +441,7 @@ public class MachineForm extends VerticalLayout {
 	 */
 	private void submitWashingUpdate() {
 
-		if (washingInfo.getEnabledParticipants().isEmpty()) {
+		if (washingInfo.getParticipantIds().isEmpty()) {
 			sendWashingUpdate();
 		} else {
 			askConfirmationBeforeUpdate();
@@ -462,13 +459,11 @@ public class MachineForm extends VerticalLayout {
 		dialog.setText("This washing already has participants, are you sure you want to update it?");
 
 		dialog.setCancelable(true);
-		//
-		// dialog.addCancelListener(event -> setStatus("Canceled"));
-
+	
 		dialog.setConfirmText("Update");
 		dialog.setConfirmButtonTheme("error primary");
 		dialog.addConfirmListener(event -> sendWashingUpdate());
-
+		dialog.open();
 	}
 
 	/**
@@ -628,16 +623,5 @@ public class MachineForm extends VerticalLayout {
 		return addListener(SavedEvent.class, listener);
 	}
 
-		/**
-	 * Utility function to transoform unix timestamp in seconds to LocalDateTime
-	 * needed by the DateTinePicker component
-	 * 
-	 * @param timestampSeconds
-	 * @return
-	 */
-	private LocalDateTime convertToLocalDateTimeViaInstant(int timestampSeconds) {
-		Instant instant = Instant.ofEpochSecond(timestampSeconds);
-		return instant.atZone(ZoneId.systemDefault()).toLocalDateTime();
-	}
 
 }

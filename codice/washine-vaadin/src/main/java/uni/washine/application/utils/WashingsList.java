@@ -28,6 +28,7 @@ public class WashingsList extends VerticalLayout{
     public void refreshData(){
         WashineUserIf userData = (WashineUserIf) VaadinSession.getCurrent().getAttribute("currentUser");
         try{
+            removeItems();
             List<WashineLaundryWashingIf> washings = wCore.getLaunderWashings(userData.getId());
             for (WashineLaundryWashingIf washing : washings) {
             	addItem(washing);
