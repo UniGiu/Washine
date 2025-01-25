@@ -7,8 +7,6 @@ import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.progressbar.ProgressBar;
-import washine.washineCore.washing.WashineLaundryWashingIf;
-import washine.washineCore.washing.WashineLaundryWashingOptionsIf;
 import com.vaadin.flow.component.details.Details;
 
 import java.time.Instant;
@@ -17,8 +15,16 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+
+import washine.washineCore.washing.WashineLaundryWashingIf;
+import washine.washineCore.washing.WashineLaundryWashingOptionsIf;
+
 public class WashingListItem extends HorizontalLayout {
     private final WashineLaundryWashingIf washing;
+    
+	private static Logger logger = LogManager.getLogger();
 
     public WashingListItem(WashineLaundryWashingIf washing) {
         this.washing = washing;
@@ -37,19 +43,21 @@ public class WashingListItem extends HorizontalLayout {
         getStyle().set("max-width", "500px"); 
 
         // Left section with primary info
-        VerticalLayout primaryInfo = new VerticalLayout();
-        primaryInfo.setSpacing(false);
-        primaryInfo.setPadding(false);
+        VerticalLayout layoutPrimaryInfo = new VerticalLayout();
+        layoutPrimaryInfo.setSpacing(false);
+        layoutPrimaryInfo.setPadding(false);
         
-               
-        Span dateTime = new Span(unixTimestampToString(options.getDatetime()));
-        dateTime.getStyle().set("font-weight", "bold");
+        Span spanDateTime = new Span(WashineTimeUtils.unixTimestampToString(options.getDatetime()));
+        spanDateTime.getStyle().set("font-weight", "bold");
         
-      
-        Span availableLoad = new Span(String.format("Available Load: %.1f/%.1f kg", 
-            options.getInitialLoad(), 
-            options.getMaxLoad()));
-        availableLoad.getStyle().set("color", "var(--lumo-secondary-text-color)");
+        Double currentLoad = washing.getLoad();
+        Double maxLoad = options.getMaxLoad();
+        Double availableLoad = maxLoad - currentLoad;
+        Span spanLoadInfo = new Span(String.format(
+            "Available Load: %.1f/%.1f kg", 
+            availableLoad, maxLoad));
+       
+        spanLoadInfo.getStyle().set("color", "var(--lumo-secondary-text-color)");
         
         // Progress bar
         ProgressBar progressBar = new ProgressBar();
@@ -58,41 +66,38 @@ public class WashingListItem extends HorizontalLayout {
         progressBar.setWidth("100%");
         progressBar.setHeight("10px");
         
-        primaryInfo.add(dateTime, availableLoad, progressBar);
+        layoutPrimaryInfo.add(spanDateTime, spanLoadInfo, progressBar);
         
-      
-        VerticalLayout characteristics = new VerticalLayout();
-        characteristics.setSpacing(false);
-        characteristics.setPadding(false);
+        VerticalLayout layoutCharacteristics = new VerticalLayout();
+        layoutCharacteristics.setSpacing(false);
+        layoutCharacteristics.setPadding(false);
         
-       
-        Div washingSpecs = new Div();
-        washingSpecs.add(new Span(options.getTemperature()));
-        washingSpecs.add(new Span(" • "));
-        washingSpecs.add(new Span(options.getFabricType()));
-        washingSpecs.add(new Span(" • "));
-        washingSpecs.add(new Span(options.getColor()));
+        Div divWashingSpecs = new Div();
+        divWashingSpecs.add(new Span(options.getTemperature()));
+        divWashingSpecs.add(new Span(" • "));
+        divWashingSpecs.add(new Span(options.getFabricType()));
+        divWashingSpecs.add(new Span(" • "));
+        divWashingSpecs.add(new Span(options.getColor()));
         
-       
-        Span participants = new Span(new Icon(VaadinIcon.USERS));
-        participants.add(String.format(" %d participants", washing.getParticipantIds().size()));
-        participants.getStyle().set("color", "var(--lumo-secondary-text-color)");
+        Span spanParticipants = new Span(new Icon(VaadinIcon.USERS));
+        spanParticipants.add(String.format(" %d participants", washing.getParticipantIds().size()));
+        spanParticipants.getStyle().set("color", "var(--lumo-secondary-text-color)");
         
-        characteristics.add(washingSpecs, participants);
+        layoutCharacteristics.add(divWashingSpecs, spanParticipants);
               
-        addAdditionalDetails(characteristics, options);
+        addAdditionalDetails(layoutCharacteristics, options);
               
-        Span status = createStateBadge(options);
+        Span spanStatus = createStateBadge(options);
                 
-        status.getStyle()
+        spanStatus.getStyle()
             .set("margin-left", "auto")
             .set("flex-shrink", "0"); 
               
-        add(primaryInfo, characteristics, status);             
-        expand(characteristics);               
+        add(layoutPrimaryInfo, layoutCharacteristics, spanStatus);             
+        expand(layoutCharacteristics);               
     }
 
-    private void addAdditionalDetails(VerticalLayout characteristics, WashineLaundryWashingOptionsIf options) {
+    private void addAdditionalDetails(VerticalLayout layoutCharacteristics, WashineLaundryWashingOptionsIf options) {
   
         Details additionalInfo = new Details();
         additionalInfo.setSummaryText("More details");        
@@ -146,20 +151,20 @@ public class WashingListItem extends HorizontalLayout {
             addDetailRow(detailsContent, "Reimbursement", options.getRefundType());
         }        
       
-        
+      
         if (options.getWashingAccessOpenDate() > 0) {
-            addDetailRow(detailsContent, "Opening Date", unixTimestampToString(options.getWashingAccessOpenDate()));
+            addDetailRow(detailsContent, "Opening Date", WashineTimeUtils.unixTimestampToString(options.getWashingAccessOpenDate()));
         }
 
       
         if (options.getWashingAccessCloseDate() > 0) {
-            addDetailRow(detailsContent, "Opening Date", unixTimestampToString(options.getWashingAccessCloseDate()));
+            addDetailRow(detailsContent, "Opening Date", WashineTimeUtils.unixTimestampToString(options.getWashingAccessCloseDate()));
         }
       
         //Only if there is something to shw
         if (detailsContent.getChildren().count() > 0) {
             additionalInfo.add(detailsContent);
-            characteristics.add(additionalInfo);
+            layoutCharacteristics.add(additionalInfo);
         }
     }
 
@@ -181,14 +186,14 @@ public class WashingListItem extends HorizontalLayout {
 
     private Span createStateBadge(WashineLaundryWashingOptionsIf options) {
         LocalDateTime now = LocalDateTime.now();
-        LocalDateTime washingDateTime = unixTimestampToLocalDate(options.getDatetime());
+        LocalDateTime washingDateTime = WashineTimeUtils.unixTimestampToLocalDate(options.getDatetime());
         
         String statusText;
         String theme;
         
         // Check opening date
         if (options.getWashingAccessOpenDate() > 0) {
-            LocalDateTime openingDateTime = unixTimestampToLocalDate((options.getWashingAccessOpenDate()));
+            LocalDateTime openingDateTime = WashineTimeUtils.unixTimestampToLocalDate((options.getWashingAccessOpenDate()));
                            
             if (now.isBefore(openingDateTime)) {
                 statusText = "Opens on " + openingDateTime.format(DateTimeFormatter.ofPattern("dd/MM HH:mm"));
@@ -199,7 +204,7 @@ public class WashingListItem extends HorizontalLayout {
         
         // Check closing date
         if (options.getWashingAccessCloseDate() > 0) {
-            LocalDateTime closingDateTime = unixTimestampToLocalDate(options.getWashingAccessCloseDate());
+            LocalDateTime closingDateTime = WashineTimeUtils.unixTimestampToLocalDate(options.getWashingAccessCloseDate());
 
                 
             if (now.isAfter(closingDateTime)) {
@@ -208,9 +213,9 @@ public class WashingListItem extends HorizontalLayout {
                 return createBadge(statusText, theme);
             }
             
-            statusText = "Closing on " + dateTimeToString(closingDateTime);
+            statusText = "Closing on " + WashineTimeUtils.dateTimeToString(closingDateTime);
         } else {
-            statusText = "Closing on " + dateTimeToString(washingDateTime);
+            statusText = "Closing on " + WashineTimeUtils.dateTimeToString(washingDateTime);
         }
         
         // Check if washing date has passed
@@ -239,34 +244,4 @@ public class WashingListItem extends HorizontalLayout {
         return washing;
     }
 
-    	/**
-	 * Utility function to transoform unix timestamp in seconds to LocalDateTime
-	 * 
-	 * @param timestampSeconds
-	 * @return the LocalDateTime of the date
-	 */
-	private LocalDateTime unixTimestampToLocalDate(int timestampSeconds) {
-		Instant instant = Instant.ofEpochSecond(timestampSeconds);
-		return instant.atZone(ZoneId.systemDefault()).toLocalDateTime();
-	}
-     	/**
-	 * Utility function to transoform LocalDateTime to local
-	 * String
-	 * 
-	 * @param ldt
-	 * @return the date in local format string
-	 */
-	private String dateTimeToString(LocalDateTime ldt) {		
-		return ldt.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM));
-	}
-    	/**
-	 * Utility function to transoform unix timestamp in seconds to local
-	 * String
-	 * 
-	 * @param timestampSeconds
-	 * @return the date in local format string
-	 */
-	private String unixTimestampToString(int timestampSeconds) {		
-		return dateTimeToString(unixTimestampToLocalDate(timestampSeconds));
-	}
 }

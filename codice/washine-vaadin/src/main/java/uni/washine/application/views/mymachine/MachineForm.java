@@ -16,6 +16,7 @@ import com.vaadin.flow.server.VaadinSession;
 import com.vaadin.flow.shared.Registration;
 
 import uni.washine.application.utils.UiNotifier;
+import uni.washine.application.utils.WashineTimeUtils;
 
 import com.vaadin.flow.component.ComponentEvent;
 import com.vaadin.flow.component.button.Button;
@@ -205,11 +206,11 @@ public class MachineForm extends VerticalLayout {
 
 		// int fields set to 0 are the default unset value
 		if (options.getDatetime() > 0)
-			dateTimeWashingPicker.setValue(convertToLocalDateTimeViaInstant(options.getDatetime()));
+			dateTimeWashingPicker.setValue(WashineTimeUtils.unixTimestampToLocalDate(options.getDatetime()));
 		if (options.getWashingAccessOpenDate() > 0)
-			accessOpenDatePicker.setValue(convertToLocalDateTimeViaInstant(options.getWashingAccessOpenDate()));
+			accessOpenDatePicker.setValue(WashineTimeUtils.unixTimestampToLocalDate(options.getWashingAccessOpenDate()));
 		if (options.getWashingAccessCloseDate() > 0)
-			accessCloseDatePicker.setValue(convertToLocalDateTimeViaInstant(options.getWashingAccessCloseDate()));
+			accessCloseDatePicker.setValue(WashineTimeUtils.unixTimestampToLocalDate(options.getWashingAccessCloseDate()));
 
 		if (options.getDurationMinutes() > 0)
 			durationField.setValue((double) options.getDurationMinutes());
@@ -628,16 +629,5 @@ public class MachineForm extends VerticalLayout {
 		return addListener(SavedEvent.class, listener);
 	}
 
-		/**
-	 * Utility function to transoform unix timestamp in seconds to LocalDateTime
-	 * needed by the DateTinePicker component
-	 * 
-	 * @param timestampSeconds
-	 * @return
-	 */
-	private LocalDateTime convertToLocalDateTimeViaInstant(int timestampSeconds) {
-		Instant instant = Instant.ofEpochSecond(timestampSeconds);
-		return instant.atZone(ZoneId.systemDefault()).toLocalDateTime();
-	}
 
 }

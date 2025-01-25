@@ -14,16 +14,21 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.VaadinSession;
 import com.vaadin.flow.theme.lumo.LumoUtility.Gap;
+import org.vaadin.lineawesome.LineAwesomeIconUrl;
+
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 import washine.washineCore.user.WashineUserIf;
 
-import org.vaadin.lineawesome.LineAwesomeIconUrl;
 
 @PageTitle("My Machine")
 @Route("my-machine")
 @Menu(order = 1, icon = LineAwesomeIconUrl.CC_DINERS_CLUB)
 public class MyMachineView extends Composite<VerticalLayout> implements BeforeEnterObserver {
-
+	
+	private static Logger logger = LogManager.getLogger();
+	
   private WashineUserIf userData;
   private MachineBuilder machineBuilder;
   private MachineForm machineForm;
@@ -35,7 +40,7 @@ public class MyMachineView extends Composite<VerticalLayout> implements BeforeEn
     machineForm = machineBuilder.getMachineForm();
     layoutMachinesListContainer = new VerticalLayout();
     layoutMachinesList = new LaunderWashingsList();
-
+    logger.debug("MACHINE VIEW");
     HorizontalLayout layoutRow = new HorizontalLayout();
     H2 h2 = new H2();
     Paragraph textLarge = new Paragraph();
