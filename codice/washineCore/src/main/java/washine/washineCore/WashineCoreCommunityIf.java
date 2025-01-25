@@ -71,4 +71,7 @@ public interface WashineCoreCommunityIf {
   public String updateCode(String invitedName);
 
   public boolean nameInInvitations(String name, String communityId);
+  
+  List<WashineCommunityMember> getCommunityMembers(String communityUid);
+
 }

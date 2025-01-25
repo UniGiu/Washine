@@ -126,4 +126,15 @@ public class WashineCoreCommunity implements WashineCoreCommunityIf {
     WashineGroupDb washineCommunity = new WashineGroupDb();
     return washineCommunity.nameInInvitations(name, communityId);
   }
+  //AGGIUNTA DA VEDERE SE HA SENSO 
+  public List<WashineCommunityMember> getCommunityMembers(String communityUid) {
+	    WashineGroupDb washineCommunity = new WashineGroupDb();
+	    try {
+	        return washineCommunity.getCommunityMembers(communityUid);
+	    } catch (SQLException e) {
+	        e.printStackTrace(); // Log dell'errore
+	        return Collections.emptyList(); // Ritorna una lista vuota in caso di errore
+	    }
+	}
+
 }

@@ -26,6 +26,8 @@ import org.springframework.data.domain.PageRequest;
 import org.vaadin.lineawesome.LineAwesomeIconUrl;
 import uni.washine.application.data.SamplePerson;
 import uni.washine.application.services.SamplePersonService;
+import washine.washineCore.AbstractCoreFactory;
+import washine.washineCore.WashineCoreCommunityIf;
 import washine.washineCore.user.WashineUserIf;
 
 @PageTitle("My Community")
@@ -35,15 +37,36 @@ import washine.washineCore.user.WashineUserIf;
 public class MyCommunityView extends Composite<VerticalLayout>  implements BeforeEnterObserver{
 
 	private WashineUserIf userData;
+	//AGGIUNTA
+	// Istanza Core Washine
+	private final WashineCoreCommunityIf wCore;
+	//griglia dati community
+	private final Grid<WashineUser> multiSelectGrid;
 
     public MyCommunityView() {
-        HorizontalLayout layoutRow = new HorizontalLayout();
+    	//AGGIUNTA
+    	//Inizializzazione WashineCore
+    	wCore = AbstractCoreFactory.getInstance("vaadin").createCoreWashing();
+
+		HorizontalLayout layoutRow = new HorizontalLayout();
         H2 h2 = new H2();
         HorizontalLayout layoutRow2 = new HorizontalLayout();
         VerticalLayout layoutColumn2 = new VerticalLayout();
         Paragraph textLarge = new Paragraph();
         H3 h3 = new H3();
-        Grid multiSelectGrid = new Grid(SamplePerson.class);
+        
+     // Griglia
+        multiSelectGrid = new Grid<>(WashineUser.class, false);
+        multiSelectGrid.setSelectionMode(Grid.SelectionMode.MULTI);
+        multiSelectGrid.setWidthFull();
+        
+     // Configura le colonne della griglia
+        configureGrid();
+        
+     // Popola i dati della griglia con il metodo setGridSampleData
+        setGridSampleData(multiSelectGrid);
+        
+        //Grid multiSelectGrid = new Grid(SamplePerson.class);
         Button buttonPrimary = new Button();
         Button buttonPrimary2 = new Button();
         VerticalLayout layoutColumn3 = new VerticalLayout();
@@ -73,10 +96,10 @@ public class MyCommunityView extends Composite<VerticalLayout>  implements Befor
         textLarge.getStyle().set("font-size", "var(--lumo-font-size-xl)");
         h3.setText("Community members");
         h3.setWidth("max-content");
-        multiSelectGrid.setSelectionMode(Grid.SelectionMode.MULTI);
-        multiSelectGrid.setWidth("100%");
-        multiSelectGrid.getStyle().set("flex-grow", "0");
-        setGridSampleData(multiSelectGrid);
+       // multiSelectGrid.setSelectionMode(Grid.SelectionMode.MULTI);
+       //multiSelectGrid.setWidth("100%");
+       //multiSelectGrid.getStyle().set("flex-grow", "0");
+        //setGridSampleData(multiSelectGrid);
         buttonPrimary.setText("Remove selected members from the community");
         buttonPrimary.setWidth("min-content");
         buttonPrimary.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
@@ -114,14 +137,28 @@ public class MyCommunityView extends Composite<VerticalLayout>  implements Befor
         layoutColumn3.add(details);
         layoutColumn3.add(details2);
         layoutColumn3.add(details3);
+    
     }
+    
+    private void configureGrid() {
+        multiSelectGrid.addColumn(WashineUser::getId).setHeader("Id");
+        multiSelectGrid.addColumn(WashineUser::getEmail).setHeader("Email");
+        
+    }
+    
+    private void setGridSampleData(Grid<WashineUser> grid) {
+        if (userData != null) {
+            List<WashineUser> members = wCore.getWashineUser(userData);
+            grid.setItems(members); // Imposta i membri come elementi della griglia
+        }
+    }
+    
 
-    private void setGridSampleData(Grid grid) {
+    /*private void setGridSampleData(Grid grid) {
         grid.setItems(query -> samplePersonService.list(
                 PageRequest.of(query.getPage(), query.getPageSize(), VaadinSpringDataHelpers.toSpringDataSort(query)))
                 .stream());
-    }
-
+    }*/
     @Autowired()
     private SamplePersonService samplePersonService;
 
