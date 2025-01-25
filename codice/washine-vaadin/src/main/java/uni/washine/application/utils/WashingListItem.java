@@ -94,7 +94,9 @@ public class WashingListItem extends HorizontalLayout {
             .set("flex-shrink", "0"); 
               
         add(layoutPrimaryInfo, layoutCharacteristics, spanStatus);             
-        expand(layoutCharacteristics);               
+        expand(layoutCharacteristics);   
+        getStyle().set("background-image", "linear-gradient(#0000 , #EEEE)");
+		
     }
 
     private void addAdditionalDetails(VerticalLayout layoutCharacteristics, WashineLaundryWashingOptionsIf options) {
