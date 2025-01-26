@@ -410,7 +410,7 @@ public class WashineGroupDb implements WashineGroupDbIf {
   }
   
   //AGGIUNTA
-  /*public List<String> getCommunityMembersIds(String communityId) throws SQLException {
+ public List<String> getCommunityMembersIds(String communityId) throws SQLException {
 	    Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
 	    DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
 
@@ -422,5 +422,4 @@ public class WashineGroupDb implements WashineGroupDbIf {
 	        .fetchInto(String.class); // Ritorna una lista di stringhe
 	}
 
-*/
 }
