@@ -409,17 +409,16 @@ public class WashineGroupDb implements WashineGroupDbIf {
     return false;
   }
   
-  //AGGIUNTA
+
  public List<String> getCommunityMembersIds(String communityId) throws SQLException {
 	    Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
 	    DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
 
-	    // Seleziona gli ID dei partecipanti dalla tabella Communityuserslist
 	    return create
 	        .select(Communityuserslist.COMMUNITYUSERSLIST.PARTICIPANTID)
 	        .from(Communityuserslist.COMMUNITYUSERSLIST)
 	        .where(Communityuserslist.COMMUNITYUSERSLIST.LAUNDRYPERSONID.eq(communityId))
-	        .fetchInto(String.class); // Ritorna una lista di stringhe
+	        .fetchInto(String.class); 
 	}
 
 }

@@ -73,7 +73,7 @@ public interface WashineCoreCommunityIf {
 
   public boolean nameInInvitations(String name, String communityId);
   
-  //AGGIUNTA
+  
   /**
    * Retrieves all members of the community the user belongs to.
    *

@@ -128,7 +128,7 @@ public class WashineCoreCommunity implements WashineCoreCommunityIf {
     return washineCommunity.nameInInvitations(name, communityId);
   }
   
-//AGGIUNTA
+
 @Override
 public List<String> getCommunityMembersIds(String userId) {
 	
@@ -145,9 +145,5 @@ public List<String> getCommunityMembersIds(String userId) {
     }
    
 }
-
-
-
-  
 
 }
