@@ -28,8 +28,9 @@ static public  LocalDateTime unixTimestampToLocalDate(int timestampSeconds) {
  * @param ldt
  * @return the date in local format string
  */
-static public String dateTimeToString(LocalDateTime ldt) {		
-	return ldt.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM));
+static public String dateTimeToString(LocalDateTime ldt) {	
+	
+	return ldt.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT));
 }
 	/**
  * Utility function to transoform unix timestamp in seconds to local
