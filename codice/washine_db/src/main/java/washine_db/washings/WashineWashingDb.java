@@ -421,6 +421,7 @@ public class WashineWashingDb implements WashineWashingDbIf {
           .leftJoin(Washing.WASHING)
           .on(Washing.WASHING.WASHINGID.eq(Washingoptions.WASHINGOPTIONS.WASHINGID))
           .where(Washing.WASHING.LAUNDRYPERSONID.eq(laundryPersonId))
+          .orderBy(Washingoptions.WASHINGOPTIONS.DATETIME)
           .fetch();
     } catch (SQLException e) {
       throw new WashineDataException("WashineDataException");
@@ -440,6 +441,7 @@ public class WashineWashingDb implements WashineWashingDbIf {
               Washingparticipation.WASHINGPARTICIPATION.PARTICIPANTID.eq(
                   Washingoptions.WASHINGOPTIONS.WASHINGID))
           .where(Washingparticipation.WASHINGPARTICIPATION.PARTICIPANTID.eq(participantId))
+          .orderBy(Washingoptions.WASHINGOPTIONS.DATETIME)
           .fetch();
     } catch (SQLException e) {
       throw new WashineDataException("WashineDataException");
