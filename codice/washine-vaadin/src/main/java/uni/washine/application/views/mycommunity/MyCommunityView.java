@@ -22,6 +22,7 @@ import com.vaadin.flow.server.VaadinSession;
 import com.vaadin.flow.spring.data.VaadinSpringDataHelpers;
 import com.vaadin.flow.theme.lumo.LumoUtility.Gap;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -34,6 +35,7 @@ import uni.washine.application.services.SamplePersonService;
 import uni.washine.application.views.mymachine.MachineForm;
 import washine.washineCore.AbstractCoreFactory;
 import washine.washineCore.WashineCoreCommunityIf;
+import washine.washineCore.exceptions.WashineCoreException;
 import washine.washineCore.user.WashineUser;
 import washine.washineCore.user.WashineUserIf;
 
@@ -48,14 +50,14 @@ public class MyCommunityView extends Composite<VerticalLayout>  implements Befor
 	private SamplePersonService samplePersonService;
 
 	private WashineUserIf userData;
-	final WashineCoreCommunityIf wCore; // Istanza Core Washine
+	final WashineCoreCommunityIf wCore; 
 	
-	private final Grid<WashineUserIf> multiSelectGrid; //Griglia dati community
+	private final Grid<WashineUserIf> multiSelectGrid;
 
     public MyCommunityView() {
     	
     	
-    	wCore = AbstractCoreFactory.getInstance("vaadin").createCoreWashineCommunity(); //Inizializzazione WashineCore
+    	wCore = AbstractCoreFactory.getInstance("vaadin").createCoreWashineCommunity(); 
 
 		HorizontalLayout layoutRow = new HorizontalLayout();
         H2 h2 = new H2();
@@ -64,14 +66,14 @@ public class MyCommunityView extends Composite<VerticalLayout>  implements Befor
         Paragraph textLarge = new Paragraph();
         H3 h3 = new H3();
         
-     // Griglia
+     
         multiSelectGrid = new Grid<>(WashineUserIf.class, false);
         multiSelectGrid.setSelectionMode(Grid.SelectionMode.MULTI);
         multiSelectGrid.setWidthFull();
        
-        configureGrid(); // Configura le colonne della griglia
+        configureGrid(); 
         
-        //setGridSampleData(multiSelectGrid); // Popola i dati della griglia con il metodo setGridSampleData
+        //setGridSampleData(multiSelectGrid); 
         
         
         Button buttonPrimary = new Button();
@@ -146,41 +148,22 @@ public class MyCommunityView extends Composite<VerticalLayout>  implements Befor
         
     }
     
-    //RIVEDERE
+    
     private void setGridSampleData(Grid<WashineUserIf> grid) {
     	System.out.println("setGridSampleData method called.");
         if (userData != null) {
-            String userId = userData.getId(); // Ottieni l'ID dell'utente loggato
-            System.out.println("User ID (Chiara): " + userId);
-
-            // Chiamata al core per ottenere i membri della comunità
-            List<String> memberIds = wCore.getCommunityMembersIds(userId);
-            System.out.println("Community Member IDs: " + memberIds);
-
-            // Lista per memorizzare gli oggetti WashineUserIf
-            List<WashineUserIf> members = new ArrayList<>();
-            for (String memberId : memberIds) {
-                try {
-                    Long id = Long.valueOf(memberId); // Converti la String in Long
-                    Optional<SamplePerson> samplePerson = samplePersonService.get(id); // Usa il metodo get(Long)
-                    if (samplePerson.isPresent()) {
-                        String email = samplePerson.get().getEmail();
-                        members.add(new WashineUser(email, memberId));
-                        System.out.println("Found member: ID = " + memberId + ", Email = " + email);
-                    } else {
-                        System.out.println("No SamplePerson found for ID: " + memberId);
-                    }
-                } catch (NumberFormatException e) {
-                    System.out.println("Invalid member ID format: " + memberId);
-                }
-            }
-
-
-            // Imposta i membri come elementi della griglia
-            System.out.println("Adding members to grid: " + members.size());
-            grid.setItems(members);
-        } else {
-            System.out.println("User data is null");
+        	String userId = userData.getId(); //ottieni id utente loggato
+        	try {
+        		List<WashineUserIf> members = wCore.getCommunityMembers(userId);
+        		grid.setItems(members);
+		
+			} catch (WashineCoreException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         }
     }
 
@@ -190,6 +173,7 @@ public class MyCommunityView extends Composite<VerticalLayout>  implements Befor
  */
   @Override
   public void beforeEnter(BeforeEnterEvent event) {
+	  
 	  userData = (WashineUserIf) VaadinSession.getCurrent().getAttribute("currentUser");
 	  if(userData==null) {
 		  event.forwardTo("/");

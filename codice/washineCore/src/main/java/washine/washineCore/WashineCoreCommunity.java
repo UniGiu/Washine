@@ -1,11 +1,26 @@
 package washine.washineCore;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import org.jooq.Result;
+
+import washine.washineCore.exceptions.WashineCoreException;
+import washine.washineCore.user.WashineUserIf;
+import washine.washineCore.user.WashineUser;
+
+import washine.washineCore.washing.WashineLaundryWashingIf;
+import washine.washineCore.washing.WashineWashing;
+import washine.washineCore.washing.WashineWashingOptions;
+
 import java.sql.SQLException;
 import java.time.Instant;
 
+import washine_db.exceptions.WashineDataException;
 import washine_db.groups.WashineGroupDb;
+import washine_db.jooq.generated.tables.Washingoptions;
+import washine_db.washings.WashineWashingDb;
 
 public class WashineCoreCommunity implements WashineCoreCommunityIf {
 
@@ -128,22 +143,26 @@ public class WashineCoreCommunity implements WashineCoreCommunityIf {
     return washineCommunity.nameInInvitations(name, communityId);
   }
   
+  @Override
+  public List<WashineUserIf> getCommunityMembers(String userId)
+		  throws WashineCoreException, SQLException {
+	  
+      WashineGroupDb communityDb = new WashineGroupDb(); 
+      List<WashineUserIf> communityMembers = new ArrayList<>();
 
-@Override
-public List<String> getCommunityMembersIds(String userId) {
-	
-	WashineGroupDb washineCommunity = new WashineGroupDb();
-   
-    try {
-        // Ottieni gli ID dei membri della comunità usando solo l'ID dell'utente
-       
-        return washineCommunity.getCommunityMembersIds(userId);
-    	
-    	
-    } catch (SQLException e) {
-    	return null;
-    }
-   
-}
+      try {
+    	  List<String> memberIds = communityDb.getCommunityMemberIds(userId); 
 
+    	  for (String memberId : memberIds) {
+	      
+    		  WashineUser user = new WashineUser(null, memberId);
+    		  String email = user.getEmail();
+    		  WashineUser userFinal = new WashineUser(email, memberId); 
+    		  communityMembers.add(user); 
+    	  }
+    	  return communityMembers;
+      } catch (SQLException e) {
+          throw new WashineCoreException("Errore durante il recupero dei membri della community", e);
+      }
+  }
 }
