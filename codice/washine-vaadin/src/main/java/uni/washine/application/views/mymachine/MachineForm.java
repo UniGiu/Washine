@@ -61,12 +61,12 @@ public class MachineForm extends VerticalLayout {
 	private NumberField participantMaxLoadField;
 	private DateTimePicker accessOpenDatePicker;
 	private DateTimePicker accessCloseDatePicker;
-
+	private Details optionalInputs;
 	public MachineForm() {
 		wCore = AbstractCoreFactory.getInstance("vaadin").createCoreWashing();
 		FormLayout formLayout = new FormLayout();
 		FormLayout formLayoutNotRequired = new FormLayout();
-		Details optionalInputs = new Details();
+		optionalInputs = new Details();
 		optionalInputs.setWidth("100%");
 		optionalInputs.setSummaryText("Non required options");
 		Button cancelButton;
@@ -127,7 +127,7 @@ public class MachineForm extends VerticalLayout {
 
 		dryingTypeGroup = new RadioButtonGroup<>();
 		dryingTypeGroup.setLabel("Drying type");
-		dryingTypeGroup.setItems("Air Dry", "Tumble Dry", "Hang Dry", "None");
+		dryingTypeGroup.setItems("None", "Air Dry", "Tumble Dry", "Hang Dry", "Depends on weather" );
 		dryingTypeGroup.setRequired(true);
 
 		underwearCheckbox = new Checkbox("Include Underwear/Lingerie");
@@ -199,11 +199,11 @@ public class MachineForm extends VerticalLayout {
 		}
 		
 		WashineLaundryWashingOptionsLaunderIf options = washingInfo.getWashingOptionsLaunder();
-
-		// int fields set to 0 are the default unset value
+		System.out.printf("------------------%d",options.getDatetime());
 		if (options.getDatetime() > 0)
 			dateTimeWashingPicker.setValue(WashineTimeUtils.unixTimestampToLocalDate(options.getDatetime()));
-		if (options.getWashingAccessOpenDate() > 0)
+		
+			if (options.getWashingAccessOpenDate() > 0)
 			accessOpenDatePicker.setValue(WashineTimeUtils.unixTimestampToLocalDate(options.getWashingAccessOpenDate()));
 		if (options.getWashingAccessCloseDate() > 0)
 			accessCloseDatePicker.setValue(WashineTimeUtils.unixTimestampToLocalDate(options.getWashingAccessCloseDate()));
@@ -273,6 +273,9 @@ public class MachineForm extends VerticalLayout {
 		deliveryAvailabilityField.clear();
 		refundTypeField.clear();
 
+		resetValidations();
+
+		optionalInputs.setOpened(false);
 		updateSubmitButtonLabel();
 	}
 
@@ -286,16 +289,7 @@ public class MachineForm extends VerticalLayout {
 			submitButton.setText("Update Washing");
 		}
 	}
-
-	/**
-	 * Provides validation state of the form and updates the fields to their
-	 * validity state
-	 * 
-	 * @return true if all fields are valid, otherwise false
-	 */
-	private boolean validateForm() {
-		boolean valid = true;
-
+	private void resetValidations(){
 		// reset validity states
 		dateTimeWashingPicker.setInvalid(false);
 		durationField.setInvalid(false);
@@ -308,6 +302,17 @@ public class MachineForm extends VerticalLayout {
 		colorGroup.setInvalid(false);
 		detergentTypeGroup.setInvalid(false);
 		dryingTypeGroup.setInvalid(false);
+	}
+	/**
+	 * Provides validation state of the form and updates the fields to their
+	 * validity state
+	 * 
+	 * @return true if all fields are valid, otherwise false
+	 */
+	private boolean validateForm() {
+		boolean valid = true;
+
+		resetValidations();
 
 		// validate and set validity states
 		if (dateTimeWashingPicker.getValue() == null) {
@@ -427,8 +432,7 @@ public class MachineForm extends VerticalLayout {
 		} catch (WashineCoreException e) {
 			UiNotifier.showErrorNotification(e.getMessage());
 		}
-		if (result) {
-			// FIRE AN EVENT HERE
+		if (result) {			
 			UiNotifier.showSuccessNotification("New washing ready");
 			fireEvent(new SavedEvent(this));
 		}
@@ -475,7 +479,7 @@ public class MachineForm extends VerticalLayout {
 			WashineLaundryWashingOptionsLaunderIf options = washingInfo.getWashingOptionsLaunder();
 			options.reset();
 			refreshWashingOptions(options);
-			wCore.updateWashingOptions(washingInfo);
+			result=wCore.updateWashingOptions(washingInfo);
 		} catch (WashineCoreException e) {
 			UiNotifier.showErrorNotification(e.getMessage());
 		}
