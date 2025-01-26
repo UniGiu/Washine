@@ -241,8 +241,8 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
       if (calculateWashingTotalLoad(washing) > options.getMaxLoad()) {
         throw new WashineCoreException("New max load exceeded");
       }
-      if (washingDb.existsWashing(washingId)) {
-        throw new WashineCoreException("Washing already exists");
+      if (!washingDb.existsWashing(washingId)) {
+        throw new WashineCoreException("Washing does not exist");
       }
       if (options.getDatetime() < 0) {
         throw new WashineCoreException("invalid washing date time");
