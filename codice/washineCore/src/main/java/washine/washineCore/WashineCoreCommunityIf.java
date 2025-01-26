@@ -1,6 +1,7 @@
 package washine.washineCore;
 
 import java.sql.SQLException;
+import java.util.List;
 
 /** Community management interface */
 public interface WashineCoreCommunityIf {
@@ -71,4 +72,15 @@ public interface WashineCoreCommunityIf {
   public String updateCode(String invitedName);
 
   public boolean nameInInvitations(String name, String communityId);
+  
+  
+  /**
+   * Retrieves all members of the community the user belongs to.
+   *
+   * @param user the user whose community members are retrieved
+   * @return a list of users in the same community
+   */
+  public List<String> getCommunityMembersIds(String userId);
+
+  
 }
