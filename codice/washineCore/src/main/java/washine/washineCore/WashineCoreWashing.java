@@ -46,6 +46,9 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
       if (options.getMaxLoad() < 0) {
         throw new WashineCoreException("invalid max load");
       }
+      if (options.getInitialLoad() > options.getMaxLoad()) {
+        throw new WashineCoreException("Max load exceeded");
+      }
       if (options.getTemperature() == null) {
         throw new WashineCoreException("invalid temperature");
       }
@@ -118,9 +121,8 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
           throw new WashineCoreException("Exceded maximum load");
         }
       }
-      double totalWashingLoad = calculateWashingTotalLoad(washing);
 
-      if (totalWashingLoad >= options.getMaxLoad()) {
+      if (washing.getLoad() >= options.getMaxLoad()) {
         throw new WashineCoreException("Max load Reached");
       }
       washingDb.participateToWashing(washingId, participantId, load);
@@ -207,9 +209,9 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
               washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.REFUNDTYPE),
               washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.PICKUPADDRESS),
               washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.DELIVERYADDRESS),
+              washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.DRYING),
               washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.PICKUPAVAILABILITY),
               washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.DELIVERYAVAILABILITY),
-              washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.DRYING),
               washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.IRONING),
               washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.PARTICIPANTMAXLOAD),
               washingOptionsDb.getValue(0, Washingoptions.WASHINGOPTIONS.WASHINGACCESSOPENDATE),
@@ -218,6 +220,9 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
       for (String s : washingDb.getParticipantIds(washingId)) {
         washing.addParticipant(s);
       }
+      double washineTotalLoad = calculateWashingTotalLoad(washing);
+      washing.addToLoad(washineTotalLoad);
+
       return washing;
     } catch (WashineDataException e) {
       throw new WashineCoreException("WashineCoreException");
@@ -236,8 +241,8 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
       if (calculateWashingTotalLoad(washing) > options.getMaxLoad()) {
         throw new WashineCoreException("New max load exceeded");
       }
-      if (washingDb.existsWashing(washingId)) {
-        throw new WashineCoreException("Washing already exists");
+      if (!washingDb.existsWashing(washingId)) {
+        throw new WashineCoreException("Washing does not exist");
       }
       if (options.getDatetime() < 0) {
         throw new WashineCoreException("invalid washing date time");
@@ -355,43 +360,30 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
 
   @Override
   public List<WashineLaundryWashingIf> getLaunderWashings(String laundryPersonId)
-      throws WashineDataException {
+      throws WashineCoreException {
     WashineWashingDb washingDb = new WashineWashingDb();
     List<WashineLaundryWashingIf> washings = new ArrayList<WashineLaundryWashingIf>();
-    Result<?> records = washingDb.getLaunderWashings(laundryPersonId);
-    for (org.jooq.Record r : records) {
-      WashineWashingOptions washingOptions =
-          new WashineWashingOptions(
-              r.getValue(Washingoptions.WASHINGOPTIONS.VISIBILITYTIME),
-              r.getValue(Washingoptions.WASHINGOPTIONS.DATETIME),
-              r.getValue(Washingoptions.WASHINGOPTIONS.DURATIONMINUTES),
-              r.getValue(Washingoptions.WASHINGOPTIONS.INITIALLOAD),
-              r.getValue(Washingoptions.WASHINGOPTIONS.MAXLOAD),
-              r.getValue(Washingoptions.WASHINGOPTIONS.TEMPERATURE),
-              r.getValue(Washingoptions.WASHINGOPTIONS.SPINSPEED),
-              r.getValue(Washingoptions.WASHINGOPTIONS.FABRICTYPE),
-              r.getValue(Washingoptions.WASHINGOPTIONS.COLOR),
-              r.getValue(Washingoptions.WASHINGOPTIONS.DETERGENTTYPES),
-              r.getValue(Washingoptions.WASHINGOPTIONS.UNDERWEAR),
-              r.getValue(Washingoptions.WASHINGOPTIONS.REFUNDTYPE),
-              r.getValue(Washingoptions.WASHINGOPTIONS.PICKUPADDRESS),
-              r.getValue(Washingoptions.WASHINGOPTIONS.DELIVERYADDRESS),
-              r.getValue(Washingoptions.WASHINGOPTIONS.PICKUPAVAILABILITY),
-              r.getValue(Washingoptions.WASHINGOPTIONS.DELIVERYAVAILABILITY),
-              r.getValue(Washingoptions.WASHINGOPTIONS.DRYING),
-              r.getValue(Washingoptions.WASHINGOPTIONS.IRONING),
-              r.getValue(Washingoptions.WASHINGOPTIONS.PARTICIPANTMAXLOAD),
-              r.getValue(Washingoptions.WASHINGOPTIONS.WASHINGACCESSOPENDATE),
-              r.getValue(Washingoptions.WASHINGOPTIONS.WASHINGACCESSCLOSEDATE));
-      String washingId = r.getValue(Washingoptions.WASHINGOPTIONS.WASHINGID);
-      WashineLaundryWashingIf washing = new WashineWashing(washingId, null, washingOptions);
-      for (String s : washingDb.getParticipantIds(washingId)) {
-        washing.addParticipant(s);
-      }
-      washings.add(washing);
-    }
+    Result<?> records;
+    try {
+      records = washingDb.getLaunderWashings(laundryPersonId);
+      for (org.jooq.Record r : records) {
 
-    return washings;
+        WashineWashingOptions washingOptions = fetchWashingOptions(r);
+        String washingId = r.getValue(Washingoptions.WASHINGOPTIONS.WASHINGID);
+        WashineLaundryWashingIf washing = new WashineWashing(washingId, null, washingOptions);
+
+        for (String s : washingDb.getParticipantIds(washingId)) {
+          washing.addParticipant(s);
+        }
+        double washineTotalLoad = calculateWashingTotalLoad(washing);
+        washing.addToLoad(washineTotalLoad);
+        washings.add(washing);
+      }
+
+      return washings;
+    } catch (WashineDataException e) {
+      throw new WashineCoreException("WashineCoreException");
+    }
   }
 
   public WashineLaundryWashingOptionsLaunderIf getBlankWashingOptions() {
@@ -400,42 +392,56 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
 
   @Override
   public List<WashineLaundryWashingIf> getParticipantWashings(String participantId)
-      throws WashineDataException {
+      throws WashineCoreException {
     WashineWashingDb washingDb = new WashineWashingDb();
     List<WashineLaundryWashingIf> washings = new ArrayList<WashineLaundryWashingIf>();
-    Result<?> records = washingDb.getParticipantWashings(participantId);
-    for (org.jooq.Record r : records) {
-      WashineWashingOptions washingOptions =
-          new WashineWashingOptions(
-              r.getValue(Washingoptions.WASHINGOPTIONS.VISIBILITYTIME),
-              r.getValue(Washingoptions.WASHINGOPTIONS.DATETIME),
-              r.getValue(Washingoptions.WASHINGOPTIONS.DURATIONMINUTES),
-              r.getValue(Washingoptions.WASHINGOPTIONS.INITIALLOAD),
-              r.getValue(Washingoptions.WASHINGOPTIONS.MAXLOAD),
-              r.getValue(Washingoptions.WASHINGOPTIONS.TEMPERATURE),
-              r.getValue(Washingoptions.WASHINGOPTIONS.SPINSPEED),
-              r.getValue(Washingoptions.WASHINGOPTIONS.FABRICTYPE),
-              r.getValue(Washingoptions.WASHINGOPTIONS.COLOR),
-              r.getValue(Washingoptions.WASHINGOPTIONS.DETERGENTTYPES),
-              r.getValue(Washingoptions.WASHINGOPTIONS.UNDERWEAR),
-              r.getValue(Washingoptions.WASHINGOPTIONS.REFUNDTYPE),
-              r.getValue(Washingoptions.WASHINGOPTIONS.PICKUPADDRESS),
-              r.getValue(Washingoptions.WASHINGOPTIONS.DELIVERYADDRESS),
-              r.getValue(Washingoptions.WASHINGOPTIONS.PICKUPAVAILABILITY),
-              r.getValue(Washingoptions.WASHINGOPTIONS.DELIVERYAVAILABILITY),
-              r.getValue(Washingoptions.WASHINGOPTIONS.DRYING),
-              r.getValue(Washingoptions.WASHINGOPTIONS.IRONING),
-              r.getValue(Washingoptions.WASHINGOPTIONS.PARTICIPANTMAXLOAD),
-              r.getValue(Washingoptions.WASHINGOPTIONS.WASHINGACCESSOPENDATE),
-              r.getValue(Washingoptions.WASHINGOPTIONS.WASHINGACCESSCLOSEDATE));
-      String washingId = r.getValue(Washingoptions.WASHINGOPTIONS.WASHINGID);
-      WashineLaundryWashingIf washing = new WashineWashing(washingId, null, washingOptions);
-      for (String s : washingDb.getParticipantIds(washingId)) {
-        washing.addParticipant(s);
-      }
-      washings.add(washing);
-    }
+    Result<?> records;
+    try {
+      records = washingDb.getParticipantWashings(participantId);
+      for (org.jooq.Record r : records) {
 
-    return washings;
+        WashineWashingOptions washingOptions = fetchWashingOptions(r);
+        String washingId = r.getValue(Washingoptions.WASHINGOPTIONS.WASHINGID);
+        WashineLaundryWashingIf washing = new WashineWashing(washingId, null, washingOptions);
+
+        for (String s : washingDb.getParticipantIds(washingId)) {
+
+          washing.addParticipant(s);
+        }
+
+        double washineTotalLoad = calculateWashingTotalLoad(washing);
+        washing.addToLoad(washineTotalLoad);
+        washings.add(washing);
+      }
+
+      return washings;
+    } catch (WashineDataException e) {
+      throw new WashineCoreException("WashineCoreException");
+    }
+  }
+
+  public WashineWashingOptions fetchWashingOptions(org.jooq.Record r) {
+    return new WashineWashingOptions(
+        r.getValue(Washingoptions.WASHINGOPTIONS.VISIBILITYTIME),
+        r.getValue(Washingoptions.WASHINGOPTIONS.DATETIME),
+        r.getValue(Washingoptions.WASHINGOPTIONS.DURATIONMINUTES),
+        r.getValue(Washingoptions.WASHINGOPTIONS.INITIALLOAD),
+        r.getValue(Washingoptions.WASHINGOPTIONS.MAXLOAD),
+        r.getValue(Washingoptions.WASHINGOPTIONS.TEMPERATURE),
+        r.getValue(Washingoptions.WASHINGOPTIONS.SPINSPEED),
+        r.getValue(Washingoptions.WASHINGOPTIONS.FABRICTYPE),
+        r.getValue(Washingoptions.WASHINGOPTIONS.COLOR),
+        r.getValue(Washingoptions.WASHINGOPTIONS.DETERGENTTYPES),
+        r.getValue(Washingoptions.WASHINGOPTIONS.UNDERWEAR),
+        r.getValue(Washingoptions.WASHINGOPTIONS.REFUNDTYPE),
+        r.getValue(Washingoptions.WASHINGOPTIONS.PICKUPADDRESS),
+        r.getValue(Washingoptions.WASHINGOPTIONS.DELIVERYADDRESS),
+        r.getValue(Washingoptions.WASHINGOPTIONS.DRYING),
+        r.getValue(Washingoptions.WASHINGOPTIONS.PICKUPAVAILABILITY),
+        r.getValue(Washingoptions.WASHINGOPTIONS.DELIVERYAVAILABILITY),
+        r.getValue(Washingoptions.WASHINGOPTIONS.IRONING),
+        r.getValue(Washingoptions.WASHINGOPTIONS.PARTICIPANTMAXLOAD),
+        r.getValue(Washingoptions.WASHINGOPTIONS.WASHINGACCESSOPENDATE),
+        r.getValue(Washingoptions.WASHINGOPTIONS.WASHINGACCESSCLOSEDATE));
   }
 }

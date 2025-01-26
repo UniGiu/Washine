@@ -10,6 +10,7 @@ public class WashineWashing implements WashineLaundryWashingIf {
   private boolean active;
   private WashineWashingOptions washingOptions;
   private List<String> participantIds;
+  private double load;
 
   public WashineWashing(
       String id, List<String> enabledParticipants, WashineWashingOptions washingOptions) {
@@ -18,6 +19,7 @@ public class WashineWashing implements WashineLaundryWashingIf {
     this.washingOptions = washingOptions;
     this.active = true; // default attivo
     this.participantIds = new ArrayList<>();
+    this.load = 0;
   }
 
   @Override
@@ -51,5 +53,13 @@ public class WashineWashing implements WashineLaundryWashingIf {
 
   public List<String> getParticipantIds() {
     return participantIds;
+  }
+
+  public void addToLoad(double weight) {
+    this.load += weight;
+  }
+
+  public double getLoad() {
+    return load;
   }
 }

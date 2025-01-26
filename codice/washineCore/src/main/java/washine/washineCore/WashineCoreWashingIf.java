@@ -105,7 +105,7 @@ public interface WashineCoreWashingIf {
    * @throws WashineDataException
    */
   public List<WashineLaundryWashingIf> getLaunderWashings(String laundryPersonId)
-      throws WashineDataException;
+      throws WashineCoreException;
 
   /**
    * Gets the list of washings which a person participated to
@@ -115,7 +115,7 @@ public interface WashineCoreWashingIf {
    * @throws WashineDataException
    */
   public List<WashineLaundryWashingIf> getParticipantWashings(String participantId)
-      throws WashineDataException;
+      throws WashineCoreException;
 
   /**
    * Gets a blank washing options object that can be set by the up to create a new washing

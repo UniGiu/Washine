@@ -45,5 +45,9 @@ public interface WashineLaundryWashingIf {
 
   List<String> getParticipantIds();
 
-void addParticipant(String s);
+  void addParticipant(String s);
+
+  void addToLoad(double weight);
+
+  public double getLoad();
 }
