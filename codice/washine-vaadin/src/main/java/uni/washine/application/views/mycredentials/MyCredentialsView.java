@@ -23,6 +23,7 @@ import uni.washine.application.utils.UiNotifier;
 
 import washine.washineCore.AbstractCoreFactory;
 import washine.washineCore.WashineCoreAuthIf;
+import washine.washineCore.exceptions.WashineCoreException;
 import washine.washineCore.user.WashineUserIf;
 
 import org.vaadin.lineawesome.LineAwesomeIconUrl;
@@ -112,14 +113,18 @@ public class MyCredentialsView extends Composite<VerticalLayout> implements Befo
 		
 		WashineUserIf userWithNewEmail;
 		
-			userWithNewEmail = wCore.updateUserEmail(userData.getId(), email);
+			try {
+				userWithNewEmail = wCore.updateUserEmail(userData.getId(), email);
 
-			if (userWithNewEmail != null) {
-				VaadinSession.getCurrent().setAttribute("currentUser", userWithNewEmail);
-				UiNotifier.showSuccessNotification("Email changed to " + userWithNewEmail.getEmail());
-			} else {
-				UiNotifier.showErrorNotification("Email not updated, are you already registered with this email?");
-			}	
+				if (userWithNewEmail != null) {
+					VaadinSession.getCurrent().setAttribute("currentUser", userWithNewEmail);
+					UiNotifier.showSuccessNotification("Email changed to " + userWithNewEmail.getEmail());
+				} else {
+					UiNotifier.showErrorNotification("Email not updated, are you already registered with this email?");
+				}
+			} catch (WashineCoreException e) {
+				UiNotifier.showErrorNotification("An error occurred while updating the email");
+			}
 			return true;
 	}
 
@@ -134,11 +139,15 @@ public class MyCredentialsView extends Composite<VerticalLayout> implements Befo
 		}
 	
 		WashineUserIf userWithNewPassword;		
-			userWithNewPassword = wCore.updateUserPassword(userData.getId(), password);
-			if (userWithNewPassword != null) {
-				UiNotifier.showSuccessNotification("Your password has changed");
-			} else {
-				UiNotifier.showErrorNotification("Password change failure");
+			try {
+				userWithNewPassword = wCore.updateUserPassword(userData.getId(), password);
+				if (userWithNewPassword != null) {
+					UiNotifier.showSuccessNotification("Your password has changed");
+				} else {
+					UiNotifier.showErrorNotification("Password change failure");
+				}
+			} catch (WashineCoreException e) {
+				UiNotifier.showErrorNotification("An error occurred while updating the password");
 			}
 		
 			return true;

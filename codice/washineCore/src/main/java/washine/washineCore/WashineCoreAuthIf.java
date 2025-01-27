@@ -1,5 +1,6 @@
 package washine.washineCore;
 
+import washine.washineCore.exceptions.WashineCoreException;
 import washine.washineCore.user.WashineUserIf;
 /**
  * Authentication management interface
@@ -13,7 +14,7 @@ public interface WashineCoreAuthIf {
    * @param password the password of the user
    * @return the authenticated user, or null if authentication fails
    */
-  WashineUserIf authenticateUser(String email, String password);
+  WashineUserIf authenticateUser(String email, String password) throws WashineCoreException;
 
   /**
    * Logs out the currently authenticated user.
@@ -29,7 +30,7 @@ public interface WashineCoreAuthIf {
    * @param password the password of the new user
    * @return the newly created user
    */
-  WashineUserIf addUser(String email, String password);
+  WashineUserIf addUser(String email, String password) throws WashineCoreException;
 
   /**
    * Updates the email of an existing user.
@@ -38,7 +39,7 @@ public interface WashineCoreAuthIf {
    * @param newEmail the new email to set
    * @return the updated user
    */
-  WashineUserIf updateUserEmail(String userId, String newEmail);
+  WashineUserIf updateUserEmail(String userId, String newEmail) throws WashineCoreException;
 
   /**
    * Updates the password of an existing user.
@@ -47,7 +48,7 @@ public interface WashineCoreAuthIf {
    * @param newPassword the new password to set
    * @return the updated user
    */
-  WashineUserIf updateUserPassword(String userId, String newPassword);
+  WashineUserIf updateUserPassword(String userId, String newPassword) throws WashineCoreException;
 
   /**
    * Blocks a user by the admin.
@@ -56,7 +57,7 @@ public interface WashineCoreAuthIf {
    * @param userId the ID of the user to block
    * @return the blocked user
    */
-  WashineUserIf blockUser(String adminId, String userId);
+  WashineUserIf blockUser(String adminId, String userId) throws WashineCoreException;
 
   /**
    * Unblocks a user by the admin.
@@ -65,7 +66,7 @@ public interface WashineCoreAuthIf {
    * @param userId the ID of the user to unblock
    * @return the unblocked user
    */
-  WashineUserIf unblockUser(String adminId, String userId);
+  WashineUserIf unblockUser(String adminId, String userId) throws WashineCoreException;
 
   /**
    * Authenticates an admin with the provided ID.
@@ -73,5 +74,5 @@ public interface WashineCoreAuthIf {
    * @param id the ID of the admin
    * @return the authenticated admin, or null if authentication fails
    */
-  WashineUserIf authenticateAdmin(String id);
+  WashineUserIf authenticateAdmin(String id) throws WashineCoreException;
 }

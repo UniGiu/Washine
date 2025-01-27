@@ -1,7 +1,9 @@
 package washine.washineCore;
 
 import washine.washineCore.user.WashineUserIf;
+import washine_db.exceptions.WashineDataException;
 import washine_db.user.WashineUserDb;
+import washine.washineCore.exceptions.WashineCoreException;
 
 import java.sql.SQLException;
 
@@ -10,7 +12,7 @@ import washine.washineCore.user.WashineUser;
 public class WashineCoreAuth implements WashineCoreAuthIf {
 
   @Override
-  public WashineUserIf authenticateUser(String email, String password) {
+  public WashineUserIf authenticateUser(String email, String password)  throws WashineCoreException{
     // crea il gestore utenti
     WashineUserDb userDb = new WashineUserDb();
     try {
@@ -18,36 +20,37 @@ public class WashineCoreAuth implements WashineCoreAuthIf {
         String id = userDb.getUserId(email);
         return new WashineUser(email, id);
       }
-    } catch (SQLException e) {
-      e.printStackTrace();
+    } catch (WashineDataException e) {
+      throw new WashineCoreException("Core error authenticating user");
     }
     return null;
   }
 
   @Override
-  public WashineUserIf addUser(String email, String password) {
+  public WashineUserIf addUser(String email, String password) throws WashineCoreException{
     // crea il gestore utenti
     WashineUserDb userDb = new WashineUserDb();
     try {
-      if (!userDb.alreadyAddedUser(email) && userDb.addUser(email, password)) {
+      if (!userDb.alreadyAddedUser(email) && userDb.addUser(email, password))  {
         String id = userDb.getUserId(email);
         return new WashineUser(email, id);
       }
-    } catch (SQLException e) {
-      e.printStackTrace();
+    } catch (WashineDataException e) {
+      throw new WashineCoreException("Core error adding user");
     }
     return null;
   }
 
   //Not already in interface - for test only
-  public boolean removeUserByEmail( String email) {
+  public boolean removeUserByEmail( String email)  throws WashineCoreException{
     WashineUserDb userDb = new WashineUserDb();
+    boolean result;
     try {          
-          return  userDb.removeUserByEmail(email);   
-    } catch (SQLException e) {
-      e.printStackTrace();
+      result=  userDb.removeUserByEmail(email);   
+    } catch (WashineDataException e) {
+      throw new WashineCoreException("Core error removing user by email");
     }
-    return false;
+    return result;
   }
   @Override
   public boolean logOut() {
@@ -56,7 +59,7 @@ public class WashineCoreAuth implements WashineCoreAuthIf {
   }
 
   @Override
-  public WashineUserIf updateUserEmail(String userId, String newEmail) {
+  public WashineUserIf updateUserEmail(String userId, String newEmail)  throws WashineCoreException{
     WashineUserDb userDb = new WashineUserDb();
     try {
       if (!userDb.alreadyAddedUser(newEmail)) {
@@ -66,14 +69,14 @@ public class WashineCoreAuth implements WashineCoreAuthIf {
         }
       }
 
-    } catch (SQLException e) {
-      e.printStackTrace();
+    } catch (WashineDataException e) {
+      throw new WashineCoreException("Core error updating user email");
     }
     return null;
   }
 
   @Override
-  public WashineUserIf updateUserPassword(String userId, String newPassword) {
+  public WashineUserIf updateUserPassword(String userId, String newPassword)  throws WashineCoreException{
 
     WashineUserDb userDb = new WashineUserDb();
     try {
@@ -82,49 +85,48 @@ public class WashineCoreAuth implements WashineCoreAuthIf {
       // new login
       WashineUserIf userWithNewPassword = authenticateUser(email, newPassword);
       return userWithNewPassword;
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
-    return null;
+    } catch (WashineDataException e) {
+      throw new WashineCoreException("Core error updating user password");
+    }    
   }
 
   @Override
-  public WashineUserIf blockUser(String adminId, String userId) {
+  public WashineUserIf blockUser(String adminId, String userId)  throws WashineCoreException{
     WashineUserDb userDb = new WashineUserDb();
     try {
       if (userDb.isAdmin(adminId)) {
         userDb.blockUser(userId);
         return new WashineUser(userDb.getUserEmail(userId), userId);
       }
-    } catch (SQLException e) {
-      e.printStackTrace();
+    } catch (WashineDataException e) {
+      throw new WashineCoreException("Core error blocking user");
     }
     return null;
   }
 
   @Override
-  public WashineUserIf unblockUser(String adminId, String userId) {
+  public WashineUserIf unblockUser(String adminId, String userId)  throws WashineCoreException{
     WashineUserDb userDb = new WashineUserDb();
     try {
       if (userDb.isAdmin(adminId)) {
         userDb.unblockUser(userId);
         return new WashineUser(userDb.getUserEmail(userId), userId);
       }
-    } catch (SQLException e) {
-      e.printStackTrace();
+    } catch (WashineDataException e) {
+      throw new WashineCoreException("Core error unblocking user");
     }
     return null;
   }
 
   @Override
-  public WashineUserIf authenticateAdmin(String id) {
+  public WashineUserIf authenticateAdmin(String id)  throws WashineCoreException{
     WashineUserDb userDb = new WashineUserDb();
     try {
       if (userDb.isAdmin(id)) {
         return new WashineUser(userDb.getUserEmail(id), id);
       }
-    } catch (SQLException e) {
-      e.printStackTrace();
+    } catch (WashineDataException e) {
+      throw new WashineCoreException("Core error authenticating admin");
     }
     return null;
   }
