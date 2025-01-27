@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.jooq.DSLContext;
-import org.jooq.Record;
 import org.jooq.Record1;
 import org.jooq.Result;
 import org.jooq.SQLDialect;
