@@ -73,7 +73,7 @@ public class MyCommunityView extends Composite<VerticalLayout>  implements Befor
        
         configureGrid(); 
         
-        //setGridSampleData(multiSelectGrid); 
+        setGridSampleData(multiSelectGrid); 
         
         
         Button buttonPrimary = new Button();
@@ -150,7 +150,7 @@ public class MyCommunityView extends Composite<VerticalLayout>  implements Befor
     
     
     private void setGridSampleData(Grid<WashineUserIf> grid) {
-    	System.out.println("setGridSampleData method called.");
+    	
         if (userData != null) {
         	String userId = userData.getId(); //ottieni id utente loggato
         	try {

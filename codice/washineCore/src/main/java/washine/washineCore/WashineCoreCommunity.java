@@ -158,7 +158,7 @@ public class WashineCoreCommunity implements WashineCoreCommunityIf {
     		  WashineUser user = new WashineUser(null, memberId);
     		  String email = user.getEmail();
     		  WashineUser userFinal = new WashineUser(email, memberId); 
-    		  communityMembers.add(user); 
+    		  communityMembers.add(userFinal); 
     	  }
     	  return communityMembers;
       } catch (SQLException e) {
