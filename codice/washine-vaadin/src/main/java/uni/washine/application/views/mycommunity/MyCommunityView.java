@@ -108,7 +108,7 @@ public class MyCommunityView extends Composite<VerticalLayout>  implements Befor
         buttonPrimary.setText("Remove selected members from the community");
         buttonPrimary.setWidth("min-content");
         buttonPrimary.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-        //buttonPrimary.addClickListener(event -> removeSelectedMembers());
+        buttonPrimary.addClickListener(event -> removeSelectedMembers());
 
         buttonPrimary2.setText("Create a washing group with selected members");
         buttonPrimary2.setWidth("min-content");
@@ -176,20 +176,18 @@ public class MyCommunityView extends Composite<VerticalLayout>  implements Befor
 			}
         }
     }
-   /* private void removeSelectedMembers() {
-        // Ottieni gli utenti selezionati nella griglia
-        List<WashineUserIf> selectedUsers = new ArrayList<>(multiSelectGrid.getSelectedItems());
+   private void removeSelectedMembers() {
+        
+	   List<String[]> selectedUsers = new ArrayList<>(multiSelectGrid.getSelectedItems());
+	   
+	   for (String[] user : selectedUsers) {
+		   String memberId = user[0]; 
+		   wCore.removeUserFromCommunity(memberId, userData.getId());
+	}
+	   setGridSampleData(multiSelectGrid);
 
-        if (selectedUsers.isEmpty()) {
-            return; 
-        }
-
-        for (WashineUserIf user : selectedUsers) {
-		    wCore.removeUserFromCommunity(user.getId(), userData.getId()); 
-		}
-         
-		setGridSampleData(multiSelectGrid);
-    }*/
+   }
+   
     /*private void createWashingGroup() {
         List<WashineUserIf> selectedUsers = new ArrayList<>(multiSelectGrid.getSelectedItems());
 
