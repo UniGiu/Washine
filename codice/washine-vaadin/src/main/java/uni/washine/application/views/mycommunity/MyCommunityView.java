@@ -108,6 +108,8 @@ public class MyCommunityView extends Composite<VerticalLayout>  implements Befor
         buttonPrimary.setText("Remove selected members from the community");
         buttonPrimary.setWidth("min-content");
         buttonPrimary.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        buttonPrimary.addClickListener(event -> removeSelectedMembers());
+
         buttonPrimary2.setText("Create a washing group with selected members");
         buttonPrimary2.setWidth("min-content");
         buttonPrimary2.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
@@ -145,6 +147,7 @@ public class MyCommunityView extends Composite<VerticalLayout>  implements Befor
     private void configureGrid() {
         multiSelectGrid.addColumn(WashineUserIf::getId).setHeader("Id");
         multiSelectGrid.addColumn(WashineUserIf::getEmail).setHeader("Email");
+        //multiSelectGrid.addColumn(WashineUserIf::getName).setHeader("Name");
         
     }
     
@@ -166,6 +169,33 @@ public class MyCommunityView extends Composite<VerticalLayout>  implements Befor
 			}
         }
     }
+    private void removeSelectedMembers() {
+        // Ottieni gli utenti selezionati nella griglia
+        List<WashineUserIf> selectedUsers = new ArrayList<>(multiSelectGrid.getSelectedItems());
+
+        if (selectedUsers.isEmpty()) {
+            return; 
+        }
+
+        for (WashineUserIf user : selectedUsers) {
+		    wCore.removeUserFromCommunity(user.getId(), userData.getId()); 
+		}
+         
+		setGridSampleData(multiSelectGrid);
+    }
+    /*private void createWashingGroup() {
+        List<WashineUserIf> selectedUsers = new ArrayList<>(multiSelectGrid.getSelectedItems());
+
+        if (selectedUsers.isEmpty()) {
+            return;
+        }
+
+        try {
+            String groupId = wCore.createWashingGroup(userData.getId(), selectedUsers);
+            System.out.println("Created washing group with ID: " + groupId);
+        } catch (WashineCoreException | SQLException e) {
+            e.printStackTrace();
+        }*/
 
 
 /**
