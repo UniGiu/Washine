@@ -2,21 +2,25 @@ package uni.washine.application.views.washes;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.page.Page;
 import com.vaadin.flow.component.popover.Popover;
 import com.vaadin.flow.component.popover.PopoverPosition;
 import com.vaadin.flow.component.popover.PopoverVariant;
 import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.component.textfield.TextField;
 
+import uni.washine.application.utils.UiNotifier;
+
 public class LoadCalculator extends VerticalLayout {
-  public static final double averageTShirtWeight = 0.2;
-  public static final double averageJeansWeight = 0.6;
-  public static final double averagePantsWeight = 0.6;
-  public static final double averageShirtWeight = 0.15;
-  public static final double averageShortsWeight = 0.2;
-  public static final double averageTowelWeight = 0.4;
-  public static final double averageBedsheetWeight = 0.8;
+  public static final double AVERAGE_TSHIRT_WEIGHT = 0.2;
+  public static final double AVERAGE_JEANS_WEIGHT = 0.6;
+  public static final double AVERAGE_PANTS_WEIGHT = 0.6;
+  public static final double AVERAGE_SHIRT_WEIGHT = 0.15;
+  public static final double AVERAGE_SHORT_WEIGHT = 0.2;
+  public static final double AVERAGE_TOWEL_WEIGHT = 0.4;
+  public static final double AVERAGE_BEDSHEET_WEIGHT = 0.8;
 
   public LoadCalculator() {
     Button button = new Button();
@@ -56,13 +60,13 @@ public class LoadCalculator extends VerticalLayout {
         new Button(
             "Calculate",
             event -> {
-              double tshirtWeight = tshirtsField.getValue() * averageTShirtWeight;
-              double jeansWeight = jeansField.getValue() * averageJeansWeight;
-              double towelWeight = towelsField.getValue() * averageTowelWeight;
-              double bedsheetWeight = bedsheetField.getValue() * averageBedsheetWeight;
-              double pantsWeight = pantsField.getValue() * averagePantsWeight;
-              double shirtsWeight = shirtsField.getValue() * averageShirtWeight;
-              double shortsWeight = shortsField.getValue() * averageShortsWeight;
+              double tshirtWeight = tshirtsField.getValue() * AVERAGE_TSHIRT_WEIGHT;
+              double jeansWeight = jeansField.getValue() * AVERAGE_JEANS_WEIGHT;
+              double towelWeight = towelsField.getValue() * AVERAGE_TOWEL_WEIGHT;
+              double bedsheetWeight = bedsheetField.getValue() * AVERAGE_BEDSHEET_WEIGHT;
+              double pantsWeight = pantsField.getValue() * AVERAGE_PANTS_WEIGHT;
+              double shirtsWeight = shirtsField.getValue() * AVERAGE_SHIRT_WEIGHT;
+              double shortsWeight = shortsField.getValue() * AVERAGE_SHORT_WEIGHT;
 
               double totalWeight =
                   tshirtWeight
@@ -81,6 +85,24 @@ public class LoadCalculator extends VerticalLayout {
               towelsField.setValue(0.0);
               bedsheetField.setValue(0.0);
             });
+    Button copyButton =
+        new Button(
+            VaadinIcon.COPY.create(),
+            event -> {
+              String value = totalWeightField.getValue();
+              if (!value.isEmpty()) {
+                Page page = getUI().get().getPage();
+                page.executeJs(
+                    "var input = document.createElement('input');"
+                        + "document.body.appendChild(input);"
+                        + "input.value = $0;"
+                        + "input.select();"
+                        + "document.execCommand('copy');"
+                        + "document.body.removeChild(input);",
+                    value);
+                UiNotifier.showSuccessNotification("Weight copied: " + value);
+              }
+            });
     popover.add(
         tshirtsField,
         jeansField,
@@ -90,7 +112,8 @@ public class LoadCalculator extends VerticalLayout {
         shortsField,
         pantsField,
         calculateButton,
-        totalWeightField);
+        totalWeightField,
+        copyButton);
     add(button, popover);
   }
 }
