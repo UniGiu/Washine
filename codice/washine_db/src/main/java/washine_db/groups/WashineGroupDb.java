@@ -426,4 +426,21 @@ public class WashineGroupDb implements WashineGroupDbIf {
     }
   return null;
   }
+  @Override
+  public List<String> getCommunityMemberNames(String communityId) throws SQLException {
+    Connection conn;
+    try {
+      conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
+      DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
+      
+      return create
+    		  .select(Communityuserslist.COMMUNITYUSERSLIST.USERNAME)
+    		  .from(Communityuserslist.COMMUNITYUSERSLIST)
+    		  .where(Communityuserslist.COMMUNITYUSERSLIST.LAUNDRYPERSONID.eq(communityId))
+    		  .fetchInto(String.class);
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  return null;
+  }
 }

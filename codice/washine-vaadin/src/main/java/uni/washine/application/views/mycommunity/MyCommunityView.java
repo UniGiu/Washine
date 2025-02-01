@@ -52,7 +52,7 @@ public class MyCommunityView extends Composite<VerticalLayout>  implements Befor
 	private WashineUserIf userData;
 	final WashineCoreCommunityIf wCore; 
 	
-	private final Grid<WashineUserIf> multiSelectGrid;
+	private final Grid<String[]> multiSelectGrid;
 
     public MyCommunityView() {
     	
@@ -67,7 +67,7 @@ public class MyCommunityView extends Composite<VerticalLayout>  implements Befor
         H3 h3 = new H3();
         
      
-        multiSelectGrid = new Grid<>(WashineUserIf.class, false);
+        multiSelectGrid = new Grid<>();
         multiSelectGrid.setSelectionMode(Grid.SelectionMode.MULTI);
         multiSelectGrid.setWidthFull();
        
@@ -108,7 +108,7 @@ public class MyCommunityView extends Composite<VerticalLayout>  implements Befor
         buttonPrimary.setText("Remove selected members from the community");
         buttonPrimary.setWidth("min-content");
         buttonPrimary.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-        buttonPrimary.addClickListener(event -> removeSelectedMembers());
+        //buttonPrimary.addClickListener(event -> removeSelectedMembers());
 
         buttonPrimary2.setText("Create a washing group with selected members");
         buttonPrimary2.setWidth("min-content");
@@ -145,20 +145,27 @@ public class MyCommunityView extends Composite<VerticalLayout>  implements Befor
     }
     
     private void configureGrid() {
-        multiSelectGrid.addColumn(WashineUserIf::getId).setHeader("Id");
-        multiSelectGrid.addColumn(WashineUserIf::getEmail).setHeader("Email");
-        //multiSelectGrid.addColumn(WashineUserIf::getName).setHeader("Name");
+    	multiSelectGrid.addColumn(data -> data[0]).setHeader("ID");
+        multiSelectGrid.addColumn(data -> data[1]).setHeader("Name");
         
     }
     
     
-    private void setGridSampleData(Grid<WashineUserIf> grid) {
+    private void setGridSampleData(Grid<String[]> grid) {
     	
         if (userData != null) {
         	String userId = userData.getId(); //ottieni id utente loggato
         	try {
-        		List<WashineUserIf> members = wCore.getCommunityMembers(userId);
-        		grid.setItems(members);
+        		List<String> Idmembers = wCore.getCommunityMemberId(userId);
+        		List<String> names = wCore.getCommunityMemberName(userId);
+        		
+
+        		List<String[]> dataList = new ArrayList<>();
+                for (int i = 0; i < Idmembers.size(); i++) {
+                    dataList.add(new String[]{Idmembers.get(i), names.get(i)});
+                }
+
+                grid.setItems(dataList);
 		
 			} catch (WashineCoreException e) {
 				// TODO Auto-generated catch block
@@ -169,7 +176,7 @@ public class MyCommunityView extends Composite<VerticalLayout>  implements Befor
 			}
         }
     }
-    private void removeSelectedMembers() {
+   /* private void removeSelectedMembers() {
         // Ottieni gli utenti selezionati nella griglia
         List<WashineUserIf> selectedUsers = new ArrayList<>(multiSelectGrid.getSelectedItems());
 
@@ -182,7 +189,7 @@ public class MyCommunityView extends Composite<VerticalLayout>  implements Befor
 		}
          
 		setGridSampleData(multiSelectGrid);
-    }
+    }*/
     /*private void createWashingGroup() {
         List<WashineUserIf> selectedUsers = new ArrayList<>(multiSelectGrid.getSelectedItems());
 

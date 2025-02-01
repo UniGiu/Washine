@@ -83,7 +83,7 @@ public interface WashineCoreCommunityIf {
    * @param user the user whose community members are retrieved
    * @return a list of users in the same community
    */
-  public List<WashineUserIf> getCommunityMembers(String userId) throws WashineCoreException, SQLException;
-		 
+  public List<String> getCommunityMemberId(String userId) throws WashineCoreException, SQLException;
+  public List<String> getCommunityMemberName(String userId) throws WashineCoreException, SQLException;
   
 }

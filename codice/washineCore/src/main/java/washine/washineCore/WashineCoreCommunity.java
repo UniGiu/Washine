@@ -144,25 +144,29 @@ public class WashineCoreCommunity implements WashineCoreCommunityIf {
   }
   
   @Override
-  public List<WashineUserIf> getCommunityMembers(String userId)
+  public List<String> getCommunityMemberId(String userId)
 		  throws WashineCoreException, SQLException {
 	  
       WashineGroupDb communityDb = new WashineGroupDb(); 
-      List<WashineUserIf> communityMembers = new ArrayList<>();
-
+      
       try {
-    	  List<String> memberIds = communityDb.getCommunityMemberIds(userId); 
+    	  return communityDb.getCommunityMemberIds(userId); 
 
-    	  for (String memberId : memberIds) {
-	      
-    		  WashineUser user = new WashineUser(null, memberId);
-    		  String email = user.getEmail();
-    		  WashineUser userFinal = new WashineUser(email, memberId); 
-    		  communityMembers.add(userFinal); 
-    	  }
-    	  return communityMembers;
       } catch (SQLException e) {
-          throw new WashineCoreException("Errore durante il recupero dei membri della community", e);
+         return null;
+      }
+  }
+  @Override
+  public List<String> getCommunityMemberName(String userId)
+		  throws WashineCoreException, SQLException {
+	  
+      WashineGroupDb communityDb = new WashineGroupDb(); 
+      
+      try {
+    	  return communityDb.getCommunityMemberNames(userId); 
+
+      } catch (SQLException e) {
+         return null;
       }
   }
 }
