@@ -43,191 +43,170 @@ import washine.washineCore.user.WashineUserIf;
 @Route("my-community")
 @Menu(order = 4, icon = LineAwesomeIconUrl.USER_FRIENDS_SOLID)
 @Uses(Icon.class)
-public class MyCommunityView extends Composite<VerticalLayout>  implements BeforeEnterObserver{
-	
-	
-	@Autowired
-	private SamplePersonService samplePersonService;
+public class MyCommunityView extends Composite<VerticalLayout> implements BeforeEnterObserver {
 
-	private WashineUserIf userData;
-	final WashineCoreCommunityIf wCore; 
-	
-	private final Grid<String[]> multiSelectGrid;
+  @Autowired private SamplePersonService samplePersonService;
 
-    public MyCommunityView() {
-    	
-    	
-    	wCore = AbstractCoreFactory.getInstance("vaadin").createCoreWashineCommunity(); 
+  private WashineUserIf userData;
+  final WashineCoreCommunityIf wCore;
 
-		HorizontalLayout layoutRow = new HorizontalLayout();
-        H2 h2 = new H2();
-        HorizontalLayout layoutRow2 = new HorizontalLayout();
-        VerticalLayout layoutColumn2 = new VerticalLayout();
-        Paragraph textLarge = new Paragraph();
-        H3 h3 = new H3();
-        
-     
-        multiSelectGrid = new Grid<>();
-        multiSelectGrid.setSelectionMode(Grid.SelectionMode.MULTI);
-        multiSelectGrid.setWidthFull();
-       
-        configureGrid(); 
-        
-        setGridSampleData(multiSelectGrid); 
-        
-        
-        Button buttonPrimary = new Button();
-        Button buttonPrimary2 = new Button();
-        VerticalLayout layoutColumn3 = new VerticalLayout();
-        H3 h32 = new H3();
-        Paragraph textLarge2 = new Paragraph();
-        Details details = new Details();
-        Details details2 = new Details();
-        Details details3 = new Details();
-        getContent().setWidth("100%");
-        getContent().getStyle().set("flex-grow", "1");
-        layoutRow.addClassName(Gap.MEDIUM);
-        layoutRow.setWidth("100%");
-        layoutRow.setHeight("min-content");
-        h2.setText("Your Laundry Community");
-        h2.setWidth("max-content");
-        layoutRow2.setWidthFull();
-        getContent().setFlexGrow(1.0, layoutRow2);
-        layoutRow2.addClassName(Gap.MEDIUM);
-        layoutRow2.setWidth("100%");
-        layoutRow2.getStyle().set("flex-grow", "1");
-        layoutColumn2.setHeightFull();
-        layoutRow2.setFlexGrow(1.0, layoutColumn2);
-        layoutColumn2.setWidth("100%");
-        layoutColumn2.getStyle().set("flex-grow", "1");
-        textLarge.setText("Here you can find the list of people who joined your washing community");
-        textLarge.setWidth("100%");
-        textLarge.getStyle().set("font-size", "var(--lumo-font-size-xl)");
-        h3.setText("Community members");
-        h3.setWidth("max-content");
-        buttonPrimary.setText("Remove selected members from the community");
-        buttonPrimary.setWidth("min-content");
-        buttonPrimary.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-        buttonPrimary.addClickListener(event -> removeSelectedMembers());
+  private final Grid<String[]> multiSelectGrid;
 
-        buttonPrimary2.setText("Create a washing group with selected members");
-        buttonPrimary2.setWidth("min-content");
-        buttonPrimary2.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-        
-        buttonPrimary2.addClickListener(event -> createWashingGroup());
-        
-        layoutColumn3.setHeightFull();
-        layoutRow2.setFlexGrow(1.0, layoutColumn3);
-        layoutColumn3.setWidth("50%");
-        layoutColumn3.getStyle().set("flex-grow", "1");
-        h32.setText("Washing Groups");
-        h32.setWidth("max-content");
-        textLarge2.setText(
-                "Washing groups are sets of people you can enable to partecipate when setting up a washing. To create a group select the partecipants from the community members and then press the \"Create group\" Button");
-        textLarge2.setWidth("100%");
-        textLarge2.getStyle().set("font-size", "var(--lumo-font-size-xl)");
-        details.setWidth("100%");
-        details2.setWidth("100%");
-        details3.setWidth("100%");
-        getContent().add(layoutRow);
-        layoutRow.add(h2);
-        getContent().add(layoutRow2);
-        layoutRow2.add(layoutColumn2);
-        layoutColumn2.add(textLarge);
-        layoutColumn2.add(h3);
-        layoutColumn2.add(multiSelectGrid);
-        layoutColumn2.add(buttonPrimary);
-        layoutColumn2.add(buttonPrimary2);
-        layoutRow2.add(layoutColumn3);
-        layoutColumn3.add(h32);
-        layoutColumn3.add(textLarge2);
-        layoutColumn3.add(details);
-        layoutColumn3.add(details2);
-        layoutColumn3.add(details3);
-    
+  public MyCommunityView() {
+
+    wCore = AbstractCoreFactory.getInstance("vaadin").createCoreWashineCommunity();
+
+    HorizontalLayout layoutRow = new HorizontalLayout();
+    H2 h2 = new H2();
+    HorizontalLayout layoutRow2 = new HorizontalLayout();
+    VerticalLayout layoutColumn2 = new VerticalLayout();
+    Paragraph textLarge = new Paragraph();
+    H3 h3 = new H3();
+
+    multiSelectGrid = new Grid<>();
+    multiSelectGrid.setSelectionMode(Grid.SelectionMode.MULTI);
+    multiSelectGrid.setWidthFull();
+
+    configureGrid();
+
+    setGridSampleData(multiSelectGrid);
+
+    Button buttonPrimary = new Button();
+    Button buttonPrimary2 = new Button();
+    VerticalLayout layoutColumn3 = new VerticalLayout();
+    H3 h32 = new H3();
+    Paragraph textLarge2 = new Paragraph();
+    Details details = new Details();
+    Details details2 = new Details();
+    Details details3 = new Details();
+    getContent().setWidth("100%");
+    getContent().getStyle().set("flex-grow", "1");
+    layoutRow.addClassName(Gap.MEDIUM);
+    layoutRow.setWidth("100%");
+    layoutRow.setHeight("min-content");
+    h2.setText("Your Laundry Community");
+    h2.setWidth("max-content");
+    layoutRow2.setWidthFull();
+    getContent().setFlexGrow(1.0, layoutRow2);
+    layoutRow2.addClassName(Gap.MEDIUM);
+    layoutRow2.setWidth("100%");
+    layoutRow2.getStyle().set("flex-grow", "1");
+    layoutColumn2.setHeightFull();
+    layoutRow2.setFlexGrow(1.0, layoutColumn2);
+    layoutColumn2.setWidth("100%");
+    layoutColumn2.getStyle().set("flex-grow", "1");
+    textLarge.setText("Here you can find the list of people who joined your washing community");
+    textLarge.setWidth("100%");
+    textLarge.getStyle().set("font-size", "var(--lumo-font-size-xl)");
+    h3.setText("Community members");
+    h3.setWidth("max-content");
+    buttonPrimary.setText("Remove selected members from the community");
+    buttonPrimary.setWidth("min-content");
+    buttonPrimary.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+    buttonPrimary.addClickListener(event -> removeSelectedMembers());
+
+    buttonPrimary2.setText("Create a washing group with selected members");
+    buttonPrimary2.setWidth("min-content");
+    buttonPrimary2.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+
+    // buttonPrimary2.addClickListener(event -> createWashingGroup());
+
+    layoutColumn3.setHeightFull();
+    layoutRow2.setFlexGrow(1.0, layoutColumn3);
+    layoutColumn3.setWidth("50%");
+    layoutColumn3.getStyle().set("flex-grow", "1");
+    h32.setText("Washing Groups");
+    h32.setWidth("max-content");
+    textLarge2.setText(
+        "Washing groups are sets of people you can enable to partecipate when setting up a washing. To create a group select the partecipants from the community members and then press the \"Create group\" Button");
+    textLarge2.setWidth("100%");
+    textLarge2.getStyle().set("font-size", "var(--lumo-font-size-xl)");
+    details.setWidth("100%");
+    details2.setWidth("100%");
+    details3.setWidth("100%");
+    getContent().add(layoutRow);
+    layoutRow.add(h2);
+    getContent().add(layoutRow2);
+    layoutRow2.add(layoutColumn2);
+    layoutColumn2.add(textLarge);
+    layoutColumn2.add(h3);
+    layoutColumn2.add(multiSelectGrid);
+    layoutColumn2.add(buttonPrimary);
+    layoutColumn2.add(buttonPrimary2);
+    layoutRow2.add(layoutColumn3);
+    layoutColumn3.add(h32);
+    layoutColumn3.add(textLarge2);
+    layoutColumn3.add(details);
+    layoutColumn3.add(details2);
+    layoutColumn3.add(details3);
+  }
+
+  private void configureGrid() {
+    multiSelectGrid.addColumn(data -> data[0]).setHeader("ID");
+    multiSelectGrid.addColumn(data -> data[1]).setHeader("Name");
+  }
+
+  private void setGridSampleData(Grid<String[]> grid) {
+
+    if (userData != null) {
+      String userId = userData.getId(); // ottieni id utente loggato
+      List<String> Idmembers = wCore.getCommunityMemberId(userId);
+      List<String> names = wCore.getCommunityMemberName(userId);
+
+      List<String[]> dataList = new ArrayList<>();
+      for (int i = 0; i < Idmembers.size(); i++) {
+        dataList.add(new String[] {Idmembers.get(i), names.get(i)});
+      }
+
+      grid.setItems(dataList);
     }
-    
-    private void configureGrid() {
-    	multiSelectGrid.addColumn(data -> data[0]).setHeader("ID");
-        multiSelectGrid.addColumn(data -> data[1]).setHeader("Name");
-        
+  }
+
+  private void removeSelectedMembers() {
+
+    List<String[]> selectedUsers = new ArrayList<>(multiSelectGrid.getSelectedItems());
+
+    for (String[] user : selectedUsers) {
+      String memberId = user[0];
+      wCore.removeUserFromCommunity(memberId, userData.getId());
     }
-    
-    
-    private void setGridSampleData(Grid<String[]> grid) {
-    	
-        if (userData != null) {
-        	String userId = userData.getId(); //ottieni id utente loggato
-        	try {
-        		List<String> Idmembers = wCore.getCommunityMemberId(userId);
-        		List<String> names = wCore.getCommunityMemberName(userId);
-        		
+    setGridSampleData(multiSelectGrid);
+  }
 
-        		List<String[]> dataList = new ArrayList<>();
-                for (int i = 0; i < Idmembers.size(); i++) {
-                    dataList.add(new String[]{Idmembers.get(i), names.get(i)});
-                }
+  /*
+    private void createWashingGroup() {
 
-                grid.setItems(dataList);
-		
-			} catch (WashineCoreException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-        }
+      List<String[]> selectedUsers = new ArrayList<>(multiSelectGrid.getSelectedItems());
+
+      if (selectedUsers.isEmpty()) {
+        return;
+      }
+
+      List<String> memberIds = new ArrayList<>();
+      for (String[] user : selectedUsers) {
+        memberIds.add(user[0]);
+      }
+      try {
+
+        String groupId = wCore.createWashingGroup(userData.getId(), memberIds);
+
+        System.out.println("Created washing group with ID: " + groupId);
+
+      } catch (WashineCoreException | SQLException e) {
+        e.printStackTrace();
+      }
     }
-   private void removeSelectedMembers() {
-        
-	   List<String[]> selectedUsers = new ArrayList<>(multiSelectGrid.getSelectedItems());
-	   
-	   for (String[] user : selectedUsers) {
-		   String memberId = user[0]; 
-		   wCore.removeUserFromCommunity(memberId, userData.getId());
-	}
-	   setGridSampleData(multiSelectGrid);
+  */
 
-   }
-   
-   private void createWashingGroup() {
-	   
-	   List<String[]> selectedUsers = new ArrayList<>(multiSelectGrid.getSelectedItems());
-	   
-	   if (selectedUsers.isEmpty()) {
-           return;
-       }
-
-	   List<String> memberIds = new ArrayList<>();
-	    for (String[] user : selectedUsers) {
-	        memberIds.add(user[0]); 
-	        
-	    }
-	    try {
-	        
-	        String groupId = wCore.createWashingGroup(userData.getId(), memberIds);
-
-	       
-	        System.out.println("Created washing group with ID: " + groupId);
-
-	    } catch (WashineCoreException | SQLException e) {
-	        e.printStackTrace();
-	    }
-	   
-	   
-   }
-/**
- * Redirects anonymous users to home
- */
+  /** Redirects anonymous users to home */
   @Override
   public void beforeEnter(BeforeEnterEvent event) {
-	  
-	  userData = (WashineUserIf) VaadinSession.getCurrent().getAttribute("currentUser");
-	  if(userData==null) {
-		  event.forwardTo("/");
-	  }else {
-		  setGridSampleData(multiSelectGrid);
-	  }
+
+    userData = (WashineUserIf) VaadinSession.getCurrent().getAttribute("currentUser");
+    if (userData == null) {
+      event.forwardTo("/");
+    } else {
+      setGridSampleData(multiSelectGrid);
+    }
   }
 }

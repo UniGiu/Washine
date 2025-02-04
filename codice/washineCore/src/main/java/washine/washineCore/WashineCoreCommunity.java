@@ -1,28 +1,12 @@
 package washine.washineCore;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import org.jooq.Result;
-
-import washine.washineCore.exceptions.WashineCoreException;
-import washine.washineCore.user.WashineUserIf;
-import washine.washineCore.user.WashineUser;
-
-import washine.washineCore.washing.WashineLaundryWashingIf;
-import washine.washineCore.washing.WashineWashing;
-import washine.washineCore.washing.WashineWashingOptions;
-
-import java.sql.SQLException;
 import java.time.Instant;
 
 import washine_db.exceptions.WashineDataException;
 import washine_db.groups.WashineGroupDb;
-
-import washine_db.jooq.generated.tables.Washingoptions;
-import washine_db.washings.WashineWashingDb;
-import washine_db.exceptions.WashineDataException;
 
 public class WashineCoreCommunity implements WashineCoreCommunityIf {
 
@@ -41,7 +25,7 @@ public class WashineCoreCommunity implements WashineCoreCommunityIf {
   @Override
   public boolean nameInCommunity(String name, String communityUid) {
     WashineGroupDb washineCommunity = new WashineGroupDb();
-   
+
     try {
       washineCommunity.clearExpiredInvitations(INVITATIONS_TIME_TO_LIVE);
       return washineCommunity.nameInCommunity(name, communityUid);
@@ -80,7 +64,7 @@ public class WashineCoreCommunity implements WashineCoreCommunityIf {
   public String getInvitationCodeCommunityId(String code) {
 
     WashineGroupDb washineCommunity = new WashineGroupDb();
-   
+
     try {
       washineCommunity.clearExpiredInvitations(INVITATIONS_TIME_TO_LIVE);
       return washineCommunity.getLaundryPersonId(code);
@@ -149,36 +133,35 @@ public class WashineCoreCommunity implements WashineCoreCommunityIf {
   public boolean nameInInvitations(String name, String communityId) {
     WashineGroupDb washineCommunity = new WashineGroupDb();
     try {
-        return washineCommunity.nameInInvitations(name, communityId);
+      return washineCommunity.nameInInvitations(name, communityId);
     } catch (WashineDataException e) {
-        return false;
+      return false;
     }
   }
-  
-  @Override
-  public List<String> getCommunityMemberId(String userId)
-		  throws WashineCoreException, SQLException {
-	  
-      WashineGroupDb communityDb = new WashineGroupDb(); 
-      
-      try {
-    	  return communityDb.getCommunityMemberIds(userId); 
 
-      } catch (SQLException e) {
-         return null;
-      }
+  @Override
+  public List<String> getCommunityMemberId(String userId) {
+
+    WashineGroupDb communityDb = new WashineGroupDb();
+
+    try {
+      return communityDb.getCommunityMemberIds(userId);
+
+    } catch (WashineDataException e) {
+      return null;
+    }
   }
-  @Override
-  public List<String> getCommunityMemberName(String userId)
-		  throws WashineCoreException, SQLException {
-	  
-      WashineGroupDb communityDb = new WashineGroupDb(); 
-      
-      try {
-    	  return communityDb.getCommunityMemberNames(userId); 
 
-      } catch (SQLException e) {
-         return null;
-      }
+  @Override
+  public List<String> getCommunityMemberName(String userId) {
+
+    WashineGroupDb communityDb = new WashineGroupDb();
+
+    try {
+      return communityDb.getCommunityMemberNames(userId);
+
+    } catch (WashineDataException e) {
+      return null;
+    }
   }
 }

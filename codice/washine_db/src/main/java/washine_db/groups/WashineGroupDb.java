@@ -119,7 +119,8 @@ public class WashineGroupDb implements WashineGroupDbIf {
     try {
       Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
       DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
-      int result = create.deleteFrom(Invites.INVITES).where(Invites.INVITES.CODE.eq(code)).execute();
+      int result =
+          create.deleteFrom(Invites.INVITES).where(Invites.INVITES.CODE.eq(code)).execute();
       return result == 1;
     } catch (SQLException e) {
       throw new WashineDataException("Error removing invite");
@@ -221,7 +222,8 @@ public class WashineGroupDb implements WashineGroupDbIf {
    * @param invitedName name of the invited person
    * @return true if the person has already been invited or false if he has not been invited yet
    */
-  public boolean alreadyInvited(String laundryPersonId, String invitedName) throws WashineDataException {
+  public boolean alreadyInvited(String laundryPersonId, String invitedName)
+      throws WashineDataException {
     try {
       Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
       DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
@@ -250,7 +252,8 @@ public class WashineGroupDb implements WashineGroupDbIf {
    * @return true if the person has already been added to the group or false if he has not been
    *     added yet
    */
-  public boolean alreadyAdded(String laundryPersonId, String participantId) throws WashineDataException {
+  public boolean alreadyAdded(String laundryPersonId, String participantId)
+      throws WashineDataException {
     try {
       Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
       DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
@@ -461,21 +464,21 @@ public class WashineGroupDb implements WashineGroupDbIf {
       throw new WashineDataException("Error fetching community member ids");
     }
   }
+
   @Override
-  public List<String> getCommunityMemberNames(String communityId) throws SQLException {
+  public List<String> getCommunityMemberNames(String communityId) throws WashineDataException {
     Connection conn;
     try {
       conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
       DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
-      
+
       return create
-    		  .select(Communityuserslist.COMMUNITYUSERSLIST.USERNAME)
-    		  .from(Communityuserslist.COMMUNITYUSERSLIST)
-    		  .where(Communityuserslist.COMMUNITYUSERSLIST.LAUNDRYPERSONID.eq(communityId))
-    		  .fetchInto(String.class);
+          .select(Communityuserslist.COMMUNITYUSERSLIST.USERNAME)
+          .from(Communityuserslist.COMMUNITYUSERSLIST)
+          .where(Communityuserslist.COMMUNITYUSERSLIST.LAUNDRYPERSONID.eq(communityId))
+          .fetchInto(String.class);
     } catch (SQLException e) {
-      e.printStackTrace();
+      throw new WashineDataException("Error fetching community member ids");
     }
-  return null;
   }
 }

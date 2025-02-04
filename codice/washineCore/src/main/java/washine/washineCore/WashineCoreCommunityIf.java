@@ -75,15 +75,14 @@ public interface WashineCoreCommunityIf {
   public String updateCode(String invitedName);
 
   public boolean nameInInvitations(String name, String communityId);
-  
-  
+
   /**
    * Retrieves all members of the community the user belongs to.
    *
    * @param user the user whose community members are retrieved
    * @return a list of users in the same community
    */
-  public List<String> getCommunityMemberId(String userId) throws WashineCoreException, SQLException;
-  public List<String> getCommunityMemberName(String userId) throws WashineCoreException, SQLException;
-  
+  public List<String> getCommunityMemberId(String userId);
+
+  public List<String> getCommunityMemberName(String userId);
 }
