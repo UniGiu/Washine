@@ -22,6 +22,7 @@ import com.vaadin.flow.server.VaadinSession;
 import com.vaadin.flow.spring.data.VaadinSpringDataHelpers;
 import com.vaadin.flow.theme.lumo.LumoUtility.Gap;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -34,6 +35,7 @@ import uni.washine.application.services.SamplePersonService;
 import uni.washine.application.views.mymachine.MachineForm;
 import washine.washineCore.AbstractCoreFactory;
 import washine.washineCore.WashineCoreCommunityIf;
+import washine.washineCore.exceptions.WashineCoreException;
 import washine.washineCore.user.WashineUser;
 import washine.washineCore.user.WashineUserIf;
 
@@ -48,14 +50,14 @@ public class MyCommunityView extends Composite<VerticalLayout>  implements Befor
 	private SamplePersonService samplePersonService;
 
 	private WashineUserIf userData;
-	final WashineCoreCommunityIf wCore; // Istanza Core Washine
+	final WashineCoreCommunityIf wCore; 
 	
-	private final Grid<WashineUserIf> multiSelectGrid; //Griglia dati community
+	private final Grid<String[]> multiSelectGrid;
 
     public MyCommunityView() {
     	
     	
-    	wCore = AbstractCoreFactory.getInstance("vaadin").createCoreWashineCommunity(); //Inizializzazione WashineCore
+    	wCore = AbstractCoreFactory.getInstance("vaadin").createCoreWashineCommunity(); 
 
 		HorizontalLayout layoutRow = new HorizontalLayout();
         H2 h2 = new H2();
@@ -64,14 +66,14 @@ public class MyCommunityView extends Composite<VerticalLayout>  implements Befor
         Paragraph textLarge = new Paragraph();
         H3 h3 = new H3();
         
-     // Griglia
-        multiSelectGrid = new Grid<>(WashineUserIf.class, false);
+     
+        multiSelectGrid = new Grid<>();
         multiSelectGrid.setSelectionMode(Grid.SelectionMode.MULTI);
         multiSelectGrid.setWidthFull();
        
-        configureGrid(); // Configura le colonne della griglia
+        configureGrid(); 
         
-        //setGridSampleData(multiSelectGrid); // Popola i dati della griglia con il metodo setGridSampleData
+        setGridSampleData(multiSelectGrid); 
         
         
         Button buttonPrimary = new Button();
@@ -106,9 +108,14 @@ public class MyCommunityView extends Composite<VerticalLayout>  implements Befor
         buttonPrimary.setText("Remove selected members from the community");
         buttonPrimary.setWidth("min-content");
         buttonPrimary.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        buttonPrimary.addClickListener(event -> removeSelectedMembers());
+
         buttonPrimary2.setText("Create a washing group with selected members");
         buttonPrimary2.setWidth("min-content");
         buttonPrimary2.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        
+        buttonPrimary2.addClickListener(event -> createWashingGroup());
+        
         layoutColumn3.setHeightFull();
         layoutRow2.setFlexGrow(1.0, layoutColumn3);
         layoutColumn3.setWidth("50%");
@@ -141,55 +148,81 @@ public class MyCommunityView extends Composite<VerticalLayout>  implements Befor
     }
     
     private void configureGrid() {
-        multiSelectGrid.addColumn(WashineUserIf::getId).setHeader("Id");
-        multiSelectGrid.addColumn(WashineUserIf::getEmail).setHeader("Email");
+    	multiSelectGrid.addColumn(data -> data[0]).setHeader("ID");
+        multiSelectGrid.addColumn(data -> data[1]).setHeader("Name");
         
     }
     
-    //RIVEDERE
-    private void setGridSampleData(Grid<WashineUserIf> grid) {
-    	System.out.println("setGridSampleData method called.");
+    
+    private void setGridSampleData(Grid<String[]> grid) {
+    	
         if (userData != null) {
-            String userId = userData.getId(); // Ottieni l'ID dell'utente loggato
-            System.out.println("User ID (Chiara): " + userId);
+        	String userId = userData.getId(); //ottieni id utente loggato
+        	try {
+        		List<String> Idmembers = wCore.getCommunityMemberId(userId);
+        		List<String> names = wCore.getCommunityMemberName(userId);
+        		
 
-            // Chiamata al core per ottenere i membri della comunità
-            List<String> memberIds = wCore.getCommunityMembersIds(userId);
-            System.out.println("Community Member IDs: " + memberIds);
-
-            // Lista per memorizzare gli oggetti WashineUserIf
-            List<WashineUserIf> members = new ArrayList<>();
-            for (String memberId : memberIds) {
-                try {
-                    Long id = Long.valueOf(memberId); // Converti la String in Long
-                    Optional<SamplePerson> samplePerson = samplePersonService.get(id); // Usa il metodo get(Long)
-                    if (samplePerson.isPresent()) {
-                        String email = samplePerson.get().getEmail();
-                        members.add(new WashineUser(email, memberId));
-                        System.out.println("Found member: ID = " + memberId + ", Email = " + email);
-                    } else {
-                        System.out.println("No SamplePerson found for ID: " + memberId);
-                    }
-                } catch (NumberFormatException e) {
-                    System.out.println("Invalid member ID format: " + memberId);
+        		List<String[]> dataList = new ArrayList<>();
+                for (int i = 0; i < Idmembers.size(); i++) {
+                    dataList.add(new String[]{Idmembers.get(i), names.get(i)});
                 }
-            }
 
-
-            // Imposta i membri come elementi della griglia
-            System.out.println("Adding members to grid: " + members.size());
-            grid.setItems(members);
-        } else {
-            System.out.println("User data is null");
+                grid.setItems(dataList);
+		
+			} catch (WashineCoreException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         }
     }
+   private void removeSelectedMembers() {
+        
+	   List<String[]> selectedUsers = new ArrayList<>(multiSelectGrid.getSelectedItems());
+	   
+	   for (String[] user : selectedUsers) {
+		   String memberId = user[0]; 
+		   wCore.removeUserFromCommunity(memberId, userData.getId());
+	}
+	   setGridSampleData(multiSelectGrid);
 
+   }
+   
+   private void createWashingGroup() {
+	   
+	   List<String[]> selectedUsers = new ArrayList<>(multiSelectGrid.getSelectedItems());
+	   
+	   if (selectedUsers.isEmpty()) {
+           return;
+       }
 
+	   List<String> memberIds = new ArrayList<>();
+	    for (String[] user : selectedUsers) {
+	        memberIds.add(user[0]); 
+	        
+	    }
+	    try {
+	        
+	        String groupId = wCore.createWashingGroup(userData.getId(), memberIds);
+
+	       
+	        System.out.println("Created washing group with ID: " + groupId);
+
+	    } catch (WashineCoreException | SQLException e) {
+	        e.printStackTrace();
+	    }
+	   
+	   
+   }
 /**
  * Redirects anonymous users to home
  */
   @Override
   public void beforeEnter(BeforeEnterEvent event) {
+	  
 	  userData = (WashineUserIf) VaadinSession.getCurrent().getAttribute("currentUser");
 	  if(userData==null) {
 		  event.forwardTo("/");
