@@ -14,6 +14,7 @@ import washine.washineCore.washing.WashineLaundryWashingOptionsLaunderIf;
 import washine.washineCore.washing.WashineWashing;
 import washine.washineCore.washing.WashineWashingOptions;
 import washine_db.exceptions.WashineDataException;
+import washine_db.groups.WashineGroupDb;
 import washine_db.jooq.generated.tables.Washingoptions;
 import washine_db.jooq.generated.tables.records.WashingoptionsRecord;
 import washine_db.washings.WashineWashingDb;
@@ -415,6 +416,37 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
       }
 
       return washings;
+    } catch (WashineDataException e) {
+      throw new WashineCoreException("WashineCoreException");
+    }
+  }
+
+  public List<WashineLaundryWashingIf> getCommunitiesWashings(String uId)
+      throws WashineCoreException {
+    List<WashineLaundryWashingIf> washings = new ArrayList<WashineLaundryWashingIf>();
+    WashineWashingDb washingDb = new WashineWashingDb();
+    WashineGroupDb groupDb = new WashineGroupDb();
+    Result<?> records;
+    try {
+      List<String> communities = groupDb.getParticipatedGroups(uId);
+      for (String c : communities) {
+        records = washingDb.getLaunderWashings(c);
+        for (org.jooq.Record r : records) {
+
+          WashineWashingOptions washingOptions = fetchWashingOptions(r);
+          String washingId = r.getValue(Washingoptions.WASHINGOPTIONS.WASHINGID);
+          WashineLaundryWashingIf washing = new WashineWashing(washingId, null, washingOptions);
+
+          for (String s : washingDb.getParticipantIds(washingId)) {
+            washing.addParticipant(s);
+          }
+          double washineTotalLoad = calculateWashingTotalLoad(washing);
+          washing.addToLoad(washineTotalLoad);
+          washings.add(washing);
+        }
+      }
+      return washings;
+
     } catch (WashineDataException e) {
       throw new WashineCoreException("WashineCoreException");
     }
