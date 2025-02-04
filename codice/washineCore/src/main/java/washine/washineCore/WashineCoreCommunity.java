@@ -19,8 +19,10 @@ import java.time.Instant;
 
 import washine_db.exceptions.WashineDataException;
 import washine_db.groups.WashineGroupDb;
+
 import washine_db.jooq.generated.tables.Washingoptions;
 import washine_db.washings.WashineWashingDb;
+import washine_db.exceptions.WashineDataException;
 
 public class WashineCoreCommunity implements WashineCoreCommunityIf {
 
@@ -31,7 +33,7 @@ public class WashineCoreCommunity implements WashineCoreCommunityIf {
     WashineGroupDb washineCommunity = new WashineGroupDb();
     try {
       return washineCommunity.alreadyAdded(communityUid, uid);
-    } catch (SQLException e) {
+    } catch (WashineDataException e) {
       return false;
     }
   }
@@ -39,10 +41,11 @@ public class WashineCoreCommunity implements WashineCoreCommunityIf {
   @Override
   public boolean nameInCommunity(String name, String communityUid) {
     WashineGroupDb washineCommunity = new WashineGroupDb();
-    washineCommunity.clearExpiredInvitations(INVITATIONS_TIME_TO_LIVE);
+   
     try {
+      washineCommunity.clearExpiredInvitations(INVITATIONS_TIME_TO_LIVE);
       return washineCommunity.nameInCommunity(name, communityUid);
-    } catch (SQLException e) {
+    } catch (WashineDataException e) {
       return false;
     }
   }
@@ -58,7 +61,7 @@ public class WashineCoreCommunity implements WashineCoreCommunityIf {
         washineCommunity.addInvite(communityUid, name, code, (int) Instant.now().getEpochSecond());
         return code;
       }
-    } catch (SQLException e) {
+    } catch (WashineDataException e) {
       return null;
     }
   }
@@ -66,17 +69,22 @@ public class WashineCoreCommunity implements WashineCoreCommunityIf {
   @Override
   public boolean nameInJoinedCommunities(String name, String userId) {
     WashineGroupDb washineCommunity = new WashineGroupDb();
-    return washineCommunity.nameInJoinedCommunities(name, userId);
+    try {
+      return washineCommunity.nameInJoinedCommunities(name, userId);
+    } catch (WashineDataException e) {
+      return false;
+    }
   }
 
   @Override
   public String getInvitationCodeCommunityId(String code) {
 
     WashineGroupDb washineCommunity = new WashineGroupDb();
-    washineCommunity.clearExpiredInvitations(INVITATIONS_TIME_TO_LIVE);
+   
     try {
+      washineCommunity.clearExpiredInvitations(INVITATIONS_TIME_TO_LIVE);
       return washineCommunity.getLaundryPersonId(code);
-    } catch (SQLException e) {
+    } catch (WashineDataException e) {
       return null;
     }
   }
@@ -95,7 +103,7 @@ public class WashineCoreCommunity implements WashineCoreCommunityIf {
             communityUid, uid, washineCommunity.getInvitationName(invitationCode), communityName);
         return washineCommunity.removeInvite(invitationCode);
       }
-    } catch (SQLException e) {
+    } catch (WashineDataException e) {
       return false;
     }
   }
@@ -109,7 +117,7 @@ public class WashineCoreCommunity implements WashineCoreCommunityIf {
       } else {
         return false;
       }
-    } catch (SQLException e) {
+    } catch (WashineDataException e) {
       return false;
     }
   }
@@ -132,7 +140,7 @@ public class WashineCoreCommunity implements WashineCoreCommunityIf {
       if (washineCommunity.updateCode(invitedName, newCode)) {
         return newCode;
       }
-    } catch (SQLException e) {
+    } catch (WashineDataException e) {
       return null;
     }
     return null;
@@ -140,7 +148,11 @@ public class WashineCoreCommunity implements WashineCoreCommunityIf {
 
   public boolean nameInInvitations(String name, String communityId) {
     WashineGroupDb washineCommunity = new WashineGroupDb();
-    return washineCommunity.nameInInvitations(name, communityId);
+    try {
+        return washineCommunity.nameInInvitations(name, communityId);
+    } catch (WashineDataException e) {
+        return false;
+    }
   }
   
   @Override

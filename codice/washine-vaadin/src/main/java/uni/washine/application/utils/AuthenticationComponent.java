@@ -12,6 +12,7 @@ import com.vaadin.flow.server.VaadinSession;
 
 import washine.washineCore.AbstractCoreFactory;
 import washine.washineCore.WashineCoreAuthIf;
+import washine.washineCore.exceptions.WashineCoreException;
 import washine.washineCore.user.WashineUserIf;
 
 public class AuthenticationComponent extends VerticalLayout {
@@ -123,22 +124,31 @@ public class AuthenticationComponent extends VerticalLayout {
 	    }
 
 	    private void handleLogin(String email, String password) throws SQLException {
-	        WashineUserIf loggedUser = authCore.authenticateUser(email, password);
+	       
+			try {
+			    WashineUserIf loggedUser = authCore.authenticateUser(email, password);
 
-	        if (loggedUser != null) {
-	            VaadinSession.getCurrent().setAttribute("currentUser", loggedUser);
-	            getUI().ifPresent(ui -> ui.getPage().reload());
-	        } else {
-	        	UiNotifier.showErrorNotification("Invalid email or password");
-	        }
+			    if (loggedUser != null) {
+			        VaadinSession.getCurrent().setAttribute("currentUser", loggedUser);
+			        getUI().ifPresent(ui -> ui.getPage().reload());
+			    } else {
+			        UiNotifier.showErrorNotification("Invalid email or password");
+			    }
+			} catch (WashineCoreException e) {
+			    UiNotifier.showErrorNotification("An error occurred during authentication");
+			}
 	    }
 
 	    private void handleSignUp(String email, String password) throws SQLException {
-	        WashineUserIf createdUser = authCore.addUser(email, password);        
-	        if (createdUser != null) {          
-	        	UiNotifier.showSuccessNotification("Account created for " + createdUser.getEmail()+ ", please log in.");           
-	        } else {
-	        	UiNotifier.showErrorNotification("Invalid email or password, or user already registered");
+	        try {
+	            WashineUserIf createdUser = authCore.addUser(email, password);        
+	            if (createdUser != null) {          
+	                UiNotifier.showSuccessNotification("Account created for " + createdUser.getEmail()+ ", please log in.");           
+	            } else {
+	                UiNotifier.showErrorNotification("Invalid email or password, or user already registered");
+	            }
+	        } catch (WashineCoreException e) {
+	            UiNotifier.showErrorNotification("An error occurred during account creation");
 	        }
 	    }
 }

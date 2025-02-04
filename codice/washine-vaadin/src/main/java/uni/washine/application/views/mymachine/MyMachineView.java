@@ -75,7 +75,6 @@ public class MyMachineView extends Composite<VerticalLayout> implements BeforeEn
       showList();
     });
     machineForm.addSavedListener(event -> {
-      machineForm.reset();
       showList();
     });
     buttonAddWash.addClickListener(event -> {
@@ -86,13 +85,13 @@ public class MyMachineView extends Composite<VerticalLayout> implements BeforeEn
       layoutMachinesList.refreshData();
       UiNotifier.showErrorNotification("DELETED");
     });
-    //TOREMEMBER: addEventata("event.detail")!!!!!
+    //TOREMEMBER: addEventata("event.detail")
     layoutMachinesList.getElement().addEventListener("washingedit", event -> {
       JsonObject evtData = event.getEventData();    
       JsonObject evtDetails=evtData.getObject("event.detail");
-       String washingId =evtDetails.getString("washingId");     
-      machineForm.init(washingId);
+       String washingId =evtDetails.getString("washingId");       
       showForm();
+      machineForm.init(washingId);
     }).addEventData("event.detail");
     showList();
   }
@@ -102,6 +101,7 @@ public class MyMachineView extends Composite<VerticalLayout> implements BeforeEn
    * 
    */
   private void showForm() {
+	  machineForm.reset();
     machineForm.setVisible(true);
     layoutMachinesListContainer.setVisible(false);
   }
