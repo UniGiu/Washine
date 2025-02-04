@@ -113,6 +113,9 @@ public class MyCommunityView extends Composite<VerticalLayout>  implements Befor
         buttonPrimary2.setText("Create a washing group with selected members");
         buttonPrimary2.setWidth("min-content");
         buttonPrimary2.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        
+        buttonPrimary2.addClickListener(event -> createWashingGroup());
+        
         layoutColumn3.setHeightFull();
         layoutRow2.setFlexGrow(1.0, layoutColumn3);
         layoutColumn3.setWidth("50%");
@@ -188,21 +191,32 @@ public class MyCommunityView extends Composite<VerticalLayout>  implements Befor
 
    }
    
-    /*private void createWashingGroup() {
-        List<WashineUserIf> selectedUsers = new ArrayList<>(multiSelectGrid.getSelectedItems());
+   private void createWashingGroup() {
+	   
+	   List<String[]> selectedUsers = new ArrayList<>(multiSelectGrid.getSelectedItems());
+	   
+	   if (selectedUsers.isEmpty()) {
+           return;
+       }
 
-        if (selectedUsers.isEmpty()) {
-            return;
-        }
+	   List<String> memberIds = new ArrayList<>();
+	    for (String[] user : selectedUsers) {
+	        memberIds.add(user[0]); 
+	        
+	    }
+	    try {
+	        
+	        String groupId = wCore.createWashingGroup(userData.getId(), memberIds);
 
-        try {
-            String groupId = wCore.createWashingGroup(userData.getId(), selectedUsers);
-            System.out.println("Created washing group with ID: " + groupId);
-        } catch (WashineCoreException | SQLException e) {
-            e.printStackTrace();
-        }*/
+	       
+	        System.out.println("Created washing group with ID: " + groupId);
 
-
+	    } catch (WashineCoreException | SQLException e) {
+	        e.printStackTrace();
+	    }
+	   
+	   
+   }
 /**
  * Redirects anonymous users to home
  */
