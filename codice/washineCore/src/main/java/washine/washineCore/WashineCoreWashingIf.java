@@ -118,6 +118,16 @@ public interface WashineCoreWashingIf {
       throws WashineCoreException;
 
   /**
+   * Gets the list of all the washing available to the user identified by uId
+   * 
+   * @param uId the user id
+   * @return a list of alla the washings available to the user
+   * @throws WashineCoreException
+   */
+  public List<WashineLaundryWashingIf> getCommunitiesWashings(String uId)
+	      throws WashineCoreException;
+  
+  /**
    * Gets a blank washing options object that can be set by the up to create a new washing
    *
    * @return a blank WashineLaundryWashingOptionsLaunderIf

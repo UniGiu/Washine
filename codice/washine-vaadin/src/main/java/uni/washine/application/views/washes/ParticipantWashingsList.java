@@ -24,11 +24,13 @@ public class ParticipantWashingsList extends WashingsList{
 		String userId=userData.getId();
 
 		try{
-			List<String> participatedWashings=wCore.getParticipatedWashingIds(userId);			
-			List<WashineLaundryWashingIf> washings = wCore.getParticipantWashings(userId);
+			//List<String> participatedWashings=wCore.getParticipatedWashingIds(userId);			
+			List<WashineLaundryWashingIf> washings = wCore.getCommunitiesWashings(userId);
+			
 			for (WashineLaundryWashingIf washing : washings) {				
-				boolean particpates=participatedWashings.contains(washing.getId());
-				addItem(washing,particpates);
+				//boolean particpates=participatedWashings.contains(washing.getId());
+				//addItem(washing,particpates);
+				addItem(washing);
 			}
 		}catch(WashineCoreException e){
 			UiNotifier.showErrorNotification(e.getMessage());
@@ -36,11 +38,15 @@ public class ParticipantWashingsList extends WashingsList{
    }
    @Override
    protected void addItem(WashineLaundryWashingIf washing) {
-    this.addItem(washing,false);
+   // this.addItem(washing,false);
+	 
+	   ParticipantWashingListItem item = new ParticipantWashingListItem(washing);
+	   add(item);
 	}
-	protected void addItem(WashineLaundryWashingIf washing, boolean participates) {
+	/*protected void addItem(WashineLaundryWashingIf washing, boolean participates) {
 		ParticipantWashingListItem item = new ParticipantWashingListItem(washing,participates);
 		 
 		add(item);
 		}
+		*/
 }
