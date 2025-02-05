@@ -110,20 +110,11 @@ public class MyCommunityView extends Composite<VerticalLayout>  implements Befor
         buttonPrimary.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         buttonPrimary.addClickListener(event -> removeSelectedMembers());
 
-        buttonPrimary2.setText("Create a washing group with selected members");
-        buttonPrimary2.setWidth("min-content");
-        buttonPrimary2.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-        
-        buttonPrimary2.addClickListener(event -> createWashingGroup());
-        
         layoutColumn3.setHeightFull();
         layoutRow2.setFlexGrow(1.0, layoutColumn3);
         layoutColumn3.setWidth("50%");
         layoutColumn3.getStyle().set("flex-grow", "1");
-        h32.setText("Washing Groups");
-        h32.setWidth("max-content");
-        textLarge2.setText(
-                "Washing groups are sets of people you can enable to partecipate when setting up a washing. To create a group select the partecipants from the community members and then press the \"Create group\" Button");
+        
         textLarge2.setWidth("100%");
         textLarge2.getStyle().set("font-size", "var(--lumo-font-size-xl)");
         details.setWidth("100%");
@@ -137,13 +128,11 @@ public class MyCommunityView extends Composite<VerticalLayout>  implements Befor
         layoutColumn2.add(h3);
         layoutColumn2.add(multiSelectGrid);
         layoutColumn2.add(buttonPrimary);
-        layoutColumn2.add(buttonPrimary2);
+        
         layoutRow2.add(layoutColumn3);
         layoutColumn3.add(h32);
         layoutColumn3.add(textLarge2);
-        layoutColumn3.add(details);
-        layoutColumn3.add(details2);
-        layoutColumn3.add(details3);
+        
     
     }
     
@@ -157,7 +146,7 @@ public class MyCommunityView extends Composite<VerticalLayout>  implements Befor
     private void setGridSampleData(Grid<String[]> grid) {
     	
         if (userData != null) {
-        	String userId = userData.getId(); //ottieni id utente loggato
+        	String userId = userData.getId(); 
         	try {
         		List<String> Idmembers = wCore.getCommunityMemberId(userId);
         		List<String> names = wCore.getCommunityMemberName(userId);
@@ -190,33 +179,7 @@ public class MyCommunityView extends Composite<VerticalLayout>  implements Befor
 	   setGridSampleData(multiSelectGrid);
 
    }
-   
-   private void createWashingGroup() {
-	   
-	   List<String[]> selectedUsers = new ArrayList<>(multiSelectGrid.getSelectedItems());
-	   
-	   if (selectedUsers.isEmpty()) {
-           return;
-       }
-
-	   List<String> memberIds = new ArrayList<>();
-	    for (String[] user : selectedUsers) {
-	        memberIds.add(user[0]); 
-	        
-	    }
-	    try {
-	        
-	        String groupId = wCore.createWashingGroup(userData.getId(), memberIds);
-
-	       
-	        System.out.println("Created washing group with ID: " + groupId);
-
-	    } catch (WashineCoreException | SQLException e) {
-	        e.printStackTrace();
-	    }
-	   
-	   
-   }
+ 
 /**
  * Redirects anonymous users to home
  */

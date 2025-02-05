@@ -155,7 +155,7 @@ public class WashineCoreCommunity implements WashineCoreCommunityIf {
     }
   }
   
-  @Override
+ @Override
   public List<String> getCommunityMemberId(String userId)
 		  throws WashineCoreException, SQLException {
 	  
@@ -164,7 +164,7 @@ public class WashineCoreCommunity implements WashineCoreCommunityIf {
       try {
     	  return communityDb.getCommunityMemberIds(userId); 
 
-      } catch (SQLException e) {
+      } catch (WashineDataException e) {
          return null;
       }
   }
