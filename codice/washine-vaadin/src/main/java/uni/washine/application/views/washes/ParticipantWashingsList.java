@@ -27,7 +27,8 @@ public class ParticipantWashingsList extends WashingsList{
 			//List<String> participatedWashings=wCore.getParticipatedWashingIds(userId);			
 			List<WashineLaundryWashingIf> washings = wCore.getCommunitiesWashings(userId);
 			
-			for (WashineLaundryWashingIf washing : washings) {				
+			for (WashineLaundryWashingIf washing : washings) {	
+						
 				//boolean particpates=participatedWashings.contains(washing.getId());
 				//addItem(washing,particpates);
 				addItem(washing);

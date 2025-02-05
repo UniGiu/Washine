@@ -6,13 +6,13 @@ import com.vaadin.flow.component.confirmdialog.ConfirmDialog;
 
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 
-public class PartecipantWashngItemUi extends HorizontalLayout {
+public class ParticipantWashngItemUi extends HorizontalLayout {
 	private Button editButton;
 	private Button joinButton;	
 	private Button retireButton;
 	private String washingId;
 	
-	PartecipantWashngItemUi(String washingId){
+	ParticipantWashngItemUi(String washingId){
 
 		editButton = new Button();
 		joinButton = new Button();	
