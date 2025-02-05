@@ -112,11 +112,19 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
       }
       WashineLaundryWashingIf washing = getWashing(washingId);
       WashineLaundryWashingOptionsIf options = washing.getWashingOptions();
-      if (!((options.getDatetime() >= (int) Instant.now().getEpochSecond())
-          && (options.getWashingAccessOpenDate() <= (int) Instant.now().getEpochSecond())
-          && (options.getWashingAccessCloseDate() >= (int) Instant.now().getEpochSecond()))) {
+      if (options.getDatetime() < (int) Instant.now().getEpochSecond()) {
         throw new WashineCoreException("Washing expired");
       }
+
+      if (options.getWashingAccessOpenDate() != 0
+          && options.getWashingAccessOpenDate() > (int) Instant.now().getEpochSecond()) {
+        throw new WashineCoreException("Access date has yet to happen");
+      }
+      if (options.getWashingAccessCloseDate() != 0
+          && options.getWashingAccessCloseDate() < (int) Instant.now().getEpochSecond()) {
+        throw new WashineCoreException("Washing closed");
+      }
+
       if (options.getMaxLoadParticipant() != 0) {
         if (load > options.getMaxLoadParticipant()) {
           throw new WashineCoreException("Exceded maximum load");
