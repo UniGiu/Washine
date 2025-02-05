@@ -162,11 +162,9 @@ public class WashineGroupDb implements WashineGroupDbIf {
       DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
       return create
           .select()
-          .from(Groups.GROUPS)
-          .join(Communityuserslist.COMMUNITYUSERSLIST)
-          .on(Groups.GROUPS.USERID.eq(Communityuserslist.COMMUNITYUSERSLIST.LAUNDRYPERSONID))
+          .from(Communityuserslist.COMMUNITYUSERSLIST)
           .where(Communityuserslist.COMMUNITYUSERSLIST.PARTICIPANTID.eq(participantId))
-          .fetch(Groups.GROUPS.GROUPNAME);
+          .fetch(Communityuserslist.COMMUNITYUSERSLIST.LAUNDRYPERSONID);
     } catch (SQLException e) {
       throw new WashineDataException("Error fetching participated groups");
     }
