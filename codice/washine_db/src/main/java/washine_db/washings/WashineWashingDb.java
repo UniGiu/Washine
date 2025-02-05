@@ -12,6 +12,8 @@ import org.jooq.SQLDialect;
 import org.jooq.impl.DSL;
 
 import washine_db.exceptions.WashineDataException;
+import washine_db.jooq.generated.tables.Communityuserslist;
+import washine_db.jooq.generated.tables.Groups;
 import washine_db.jooq.generated.tables.Washing;
 import washine_db.jooq.generated.tables.Washingoptions;
 import washine_db.jooq.generated.tables.Washingparticipation;
