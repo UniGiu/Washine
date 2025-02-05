@@ -199,7 +199,6 @@ public class MachineForm extends VerticalLayout {
 		}
 		
 		WashineLaundryWashingOptionsLaunderIf options = washingInfo.getWashingOptionsLaunder();
-		System.out.printf("------------------%d",options.getDatetime());
 		if (options.getDatetime() > 0)
 			dateTimeWashingPicker.setValue(WashineTimeUtils.unixTimestampToLocalDate(options.getDatetime()));
 		
@@ -284,9 +283,9 @@ public class MachineForm extends VerticalLayout {
 	 */
 	private void updateSubmitButtonLabel() {
 		if (washingInfo == null) {
-			submitButton.setText("Create Washing");
+			submitButton.setText("Create washing");
 		} else {
-			submitButton.setText("Update Washing");
+			submitButton.setText("Update washing");
 		}
 	}
 	private void resetValidations(){

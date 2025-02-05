@@ -30,7 +30,7 @@ public class ParticipantWashingListItem extends WashingListItem {
 		weightDisplay.refresh(userId,washingId);
 		weightDisplay.setVisible(false);
 		
-		PartecipantWashngItemUi layoutUi=new PartecipantWashngItemUi(washingId);	
+		ParticipantWashngItemUi layoutUi=new ParticipantWashngItemUi(washingId);	
 		layoutUi.setEmpty(participates);
 		layoutUi.setWidthFull();
 		add (layoutUi);
