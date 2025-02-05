@@ -47,8 +47,9 @@ public interface WashineGroupDbIf {
   public boolean nameInJoinedCommunities(String name, String userId) throws WashineDataException;
 
   public boolean nameInInvitations(String name, String communityId) throws WashineDataException;
-
+  
   public List<String> getCommunityMemberIds(String communityId) throws WashineDataException;
+  
+  public List<String> getCommunityMemberNames(String communityId) throws SQLException;
 
-  public List<String> getCommunityMemberNames(String communityId) throws WashineDataException;
 }

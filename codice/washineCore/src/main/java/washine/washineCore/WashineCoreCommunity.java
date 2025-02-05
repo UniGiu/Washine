@@ -139,17 +139,19 @@ public class WashineCoreCommunity implements WashineCoreCommunityIf {
     }
   }
 
-  @Override
-  public List<String> getCommunityMemberId(String userId) {
+  
+ @Override
+  public List<String> getCommunityMemberId(String userId)
+		  throws WashineCoreException, SQLException {
+	  
+      WashineGroupDb communityDb = new WashineGroupDb(); 
+      
+      try {
+    	  return communityDb.getCommunityMemberIds(userId); 
 
-    WashineGroupDb communityDb = new WashineGroupDb();
-
-    try {
-      return communityDb.getCommunityMemberIds(userId);
-
-    } catch (WashineDataException e) {
-      return null;
-    }
+      } catch (WashineDataException e) {
+         return null;
+      }
   }
 
   @Override
