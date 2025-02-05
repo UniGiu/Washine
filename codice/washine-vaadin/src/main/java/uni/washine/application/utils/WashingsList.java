@@ -32,8 +32,7 @@ public class WashingsList extends VerticalLayout{
         fetchData();      
     }
     protected void fetchData() {
-    	 try{
-         
+    	 try{         
              List<WashineLaundryWashingIf> washings = wCore.getLaunderWashings(userData.getId());
              for (WashineLaundryWashingIf washing : washings) {
              	addItem(washing);
