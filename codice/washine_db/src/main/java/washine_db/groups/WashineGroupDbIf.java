@@ -1,6 +1,5 @@
 package washine_db.groups;
 
-
 import java.util.List;
 
 import org.jooq.Result;
@@ -29,9 +28,11 @@ public interface WashineGroupDbIf {
 
   public boolean removeGroupMember(String participantId) throws WashineDataException;
 
-  public boolean alreadyInvited(String laundryPersonId, String invitedName) throws WashineDataException;
+  public boolean alreadyInvited(String laundryPersonId, String invitedName)
+      throws WashineDataException;
 
-  public boolean alreadyAdded(String laundryPersonId, String participantId) throws WashineDataException;
+  public boolean alreadyAdded(String laundryPersonId, String participantId)
+      throws WashineDataException;
 
   public boolean updateCode(String invitedName, String newCode) throws WashineDataException;
 

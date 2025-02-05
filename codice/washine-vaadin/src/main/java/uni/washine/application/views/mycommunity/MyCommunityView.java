@@ -43,6 +43,7 @@ import washine.washineCore.user.WashineUserIf;
 @Route("my-community")
 @Menu(order = 4, icon = LineAwesomeIconUrl.USER_FRIENDS_SOLID)
 @Uses(Icon.class)
+
 public class MyCommunityView extends Composite<VerticalLayout>  implements BeforeEnterObserver{
 	
 	
@@ -134,15 +135,16 @@ public class MyCommunityView extends Composite<VerticalLayout>  implements Befor
         layoutColumn3.add(textLarge2);
         
     
+
+  private void configureGrid() {
+    multiSelectGrid.addColumn(data -> data[0]).setHeader("ID");
+    multiSelectGrid.addColumn(data -> data[1]).setHeader("Name");
+  }
+
+  
     }
-    
-    private void configureGrid() {
-    	multiSelectGrid.addColumn(data -> data[0]).setHeader("ID");
-        multiSelectGrid.addColumn(data -> data[1]).setHeader("Name");
-        
-    }
-    
-    
+  }
+
     private void setGridSampleData(Grid<String[]> grid) {
     	
         if (userData != null) {
@@ -180,17 +182,14 @@ public class MyCommunityView extends Composite<VerticalLayout>  implements Befor
 
    }
  
-/**
- * Redirects anonymous users to home
- */
   @Override
   public void beforeEnter(BeforeEnterEvent event) {
-	  
-	  userData = (WashineUserIf) VaadinSession.getCurrent().getAttribute("currentUser");
-	  if(userData==null) {
-		  event.forwardTo("/");
-	  }else {
-		  setGridSampleData(multiSelectGrid);
-	  }
+
+    userData = (WashineUserIf) VaadinSession.getCurrent().getAttribute("currentUser");
+    if (userData == null) {
+      event.forwardTo("/");
+    } else {
+      setGridSampleData(multiSelectGrid);
+    }
   }
 }

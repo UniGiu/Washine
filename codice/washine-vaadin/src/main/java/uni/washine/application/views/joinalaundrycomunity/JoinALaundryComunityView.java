@@ -180,7 +180,7 @@ public class JoinALaundryComunityView extends Composite<VerticalLayout> implemen
 	  //it doesn't display the span into the paragraph
 		//paragraphInvitationCode.add(spanInvitationCode);
 		
-		container.add(formLayout2Col, paragraphInvitationCode,spanInvitationCode, buttonCopyCode,
+		container.add(h3Generate, formLayout2Col, paragraphInvitationCode,spanInvitationCode, buttonCopyCode,
 				paragraphInvitationLinkText, link, buttonCopyLink);
 		buttonCopyLink.setVisible(false);
 		buttonCopyCode.setVisible(false);
