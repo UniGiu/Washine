@@ -40,21 +40,18 @@ public class WashesView extends Composite<VerticalLayout> implements BeforeEnter
 	private WashineUserIf userData;
 	private VerticalLayout layoutAvailWashListContainer;
 	private ParticipantWashingsList layoutAvailWashingsList;
-
+	private String userId;
+	WashineCoreWashingIf wCore;
 	public WashesView() {
-		WashineUserIf uData=(WashineUserIf) VaadinSession.getCurrent().getAttribute("currentUser");
-		String userId = uData.getId();
-		WashineCoreWashingIf wCore = AbstractCoreFactory.getInstance("vaadin").createCoreWashing();
+				
+		wCore = AbstractCoreFactory.getInstance("vaadin").createCoreWashing();
 		HorizontalLayout layoutRow = new HorizontalLayout();
 		H2 h2 = new H2();
 		Paragraph textLarge = new Paragraph();
 		H3 h3 = new H3();
 		WashPictograms washPictograms = new WashPictograms();
 
-		layoutAvailWashListContainer = new VerticalLayout();
-		layoutAvailWashingsList = new ParticipantWashingsList();
-
-		washingForm = new ParticipantForm(userId);
+		layoutAvailWashListContainer = new VerticalLayout();		
 
 		getContent().setWidth("100%");
 		getContent().getStyle().set("flex-grow", "1");
@@ -74,8 +71,9 @@ public class WashesView extends Composite<VerticalLayout> implements BeforeEnter
 		layoutRow.add(washPictograms);
 		layoutRow.add(h2);
 		
-		getContent().add(layoutAvailWashListContainer);
-		layoutAvailWashListContainer.add(layoutAvailWashingsList);
+		getContent().add(layoutAvailWashListContainer);	
+	}
+	private void initListeners(){
 
 		layoutAvailWashingsList.getElement().addEventListener("retirefromwashing", event -> {
 			JsonObject evtData = event.getEventData();
@@ -105,10 +103,12 @@ public class WashesView extends Composite<VerticalLayout> implements BeforeEnter
 			showForm();
 			washingForm.init(washingId, false);
 		}).addEventData("event.detail");
-
-		showList();
+		washingForm.getElement().addEventListener("participantjoincancelled", event -> {
+			
+			showList();
+			
+		}).addEventData("event.detail");
 	}
-
 	/**
 	 * shows the form to add/edit a washing and hides the list of washings
 	 * 
@@ -123,18 +123,31 @@ public class WashesView extends Composite<VerticalLayout> implements BeforeEnter
 	 * hides the form and shows the list of washings and refreshes it
 	 */
 	private void showList() {
+		washingForm.setVisible(false);
 		layoutAvailWashListContainer.setVisible(true);
 		layoutAvailWashingsList.refreshData();
 	}
-
+	private void start(){
+		userId = userData.getId();
+		layoutAvailWashingsList = new ParticipantWashingsList();
+		layoutAvailWashListContainer.add(layoutAvailWashingsList);
+		washingForm = new ParticipantForm();
+		getContent().add(washingForm);
+		initListeners();
+		showList();
+	}
 	/**
 	 * Redirects anonymous users to home
 	 */
-	@Override
-	public void beforeEnter(BeforeEnterEvent event) {
-		userData = (WashineUserIf) VaadinSession.getCurrent().getAttribute("currentUser");
-		if (userData == null) {
-			event.forwardTo("/");
-		}
-	}
+	  @Override
+	  public void beforeEnter(BeforeEnterEvent event) {	  
+		  userData = (WashineUserIf) VaadinSession.getCurrent().getAttribute("currentUser");
+		  if(userData==null) {
+			  event.forwardTo("/");
+			  return;
+		  }	else{
+			start();
+		  }	
+		 
+	  }
 }

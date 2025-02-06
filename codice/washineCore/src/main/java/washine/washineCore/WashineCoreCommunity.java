@@ -3,10 +3,13 @@ package washine.washineCore;
 import java.util.List;
 import java.util.Random;
 
+import washine.washineCore.exceptions.WashineCoreException;
+
 import java.time.Instant;
 
 import washine_db.exceptions.WashineDataException;
 import washine_db.groups.WashineGroupDb;
+import washine_db.groups.WashineGroupDbIf;
 
 public class WashineCoreCommunity implements WashineCoreCommunityIf {
 
@@ -163,5 +166,20 @@ public class WashineCoreCommunity implements WashineCoreCommunityIf {
     } catch (WashineDataException e) {
       return null;
     }
+  }
+  public String getCommunityName(String communityId, String participantId)  throws WashineCoreException
+  {
+	  try {
+		  WashineGroupDbIf groupDb=new WashineGroupDb();
+		  List<String> communityNames=groupDb.getCommunityName(communityId,participantId);
+		  if(communityNames.isEmpty()) {
+			  throw new WashineCoreException("Community not found");
+		  }
+		  String communuityName=communityNames.get(0);
+		  return communuityName;
+		  
+	  }catch (WashineDataException e) {
+	      throw new WashineCoreException("Community doesn not exist");
+	    }
   }
 }
