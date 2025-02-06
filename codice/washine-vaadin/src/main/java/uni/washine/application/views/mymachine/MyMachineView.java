@@ -93,7 +93,7 @@ public class MyMachineView extends Composite<VerticalLayout> implements BeforeEn
       showForm();
       machineForm.init(washingId);
     }).addEventData("event.detail");
-    showList();
+    
   }
 
   /**
@@ -112,11 +112,12 @@ public class MyMachineView extends Composite<VerticalLayout> implements BeforeEn
   private void showList() {
     machineForm.setVisible(false);
     layoutMachinesListContainer.setVisible(true);
-    // TODO: think if the refresh can be in the constructor for initializing and
-    // in the SavedEvent handler (so no refresh on cancel)
+   
     layoutMachinesList.refreshData();
   }
-
+  private void start(){
+    showList();
+  }
   /**
    * Redirects anonymous users to home
    */
@@ -125,6 +126,10 @@ public class MyMachineView extends Composite<VerticalLayout> implements BeforeEn
     userData = (WashineUserIf) VaadinSession.getCurrent().getAttribute("currentUser");
     if (userData == null) {
       event.forwardTo("/");
+      return;
+    }else{
+      start();
     }
+   
   }
 }
