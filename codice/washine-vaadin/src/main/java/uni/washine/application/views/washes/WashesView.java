@@ -35,7 +35,6 @@ import washine.washineCore.user.WashineUserIf;
 public class WashesView extends Composite<VerticalLayout> implements BeforeEnterObserver {
 
 	private static Logger logger = LogManager.getLogger();
-
 	private ParticipantForm washingForm;
 	private WashineUserIf userData;
 	private VerticalLayout layoutAvailWashListContainer;
@@ -68,6 +67,7 @@ public class WashesView extends Composite<VerticalLayout> implements BeforeEnter
 		h3.setWidth("max-content");
 
 		getContent().add(layoutRow, textLarge, h3);
+    layoutRow.add(loadCalculator);
 		layoutRow.add(washPictograms);
 		layoutRow.add(h2);
 		
