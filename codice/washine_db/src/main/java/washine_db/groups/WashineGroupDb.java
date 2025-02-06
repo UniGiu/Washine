@@ -479,4 +479,21 @@ public class WashineGroupDb implements WashineGroupDbIf {
       throw new WashineDataException("Error fetching community member ids");
     }
   }
+  @Override
+  public List<String> getCommunityName(String communityId,String userId) throws WashineDataException {
+    Connection conn;
+    try {
+      conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
+      DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
+
+      return create
+          .select(Communityuserslist.COMMUNITYUSERSLIST.USERNAME)
+          .from(Communityuserslist.COMMUNITYUSERSLIST)
+          .where(Communityuserslist.COMMUNITYUSERSLIST.LAUNDRYPERSONID.eq(communityId))
+          .and(Communityuserslist.COMMUNITYUSERSLIST.PARTICIPANTID.eq(userId))
+          .fetchInto(String.class);
+    } catch (SQLException e) {
+      throw new WashineDataException("Error fetching community member ids");
+    }
+  }
 }

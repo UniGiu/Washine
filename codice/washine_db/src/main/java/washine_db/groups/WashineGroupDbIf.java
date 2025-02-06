@@ -51,5 +51,6 @@ public interface WashineGroupDbIf {
   public List<String> getCommunityMemberIds(String communityId) throws WashineDataException;
   
   public List<String> getCommunityMemberNames(String communityId) throws WashineDataException;
-
+  
+  public List<String> getCommunityName(String communityId,String userId) throws WashineDataException;
 }
