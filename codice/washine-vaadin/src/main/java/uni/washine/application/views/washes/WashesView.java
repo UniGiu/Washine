@@ -48,8 +48,9 @@ public class WashesView extends Composite<VerticalLayout> implements BeforeEnter
 		H2 h2 = new H2();
 		Paragraph textLarge = new Paragraph();
 		H3 h3 = new H3();
+		VerticalLayout utilitiesButtons=new VerticalLayout();
 		WashPictograms washPictograms = new WashPictograms();
-
+		LoadCalculator loadCalculator=new LoadCalculator();
 		layoutAvailWashListContainer = new VerticalLayout();		
 
 		getContent().setWidth("100%");
@@ -65,12 +66,17 @@ public class WashesView extends Composite<VerticalLayout> implements BeforeEnter
 		textLarge.getStyle().set("font-size", "var(--lumo-font-size-xl)");
 		h3.setText("Available washings");
 		h3.setWidth("max-content");
-
-		getContent().add(layoutRow, textLarge, h3);
-    layoutRow.add(loadCalculator);
-		layoutRow.add(washPictograms);
-		layoutRow.add(h2);
 		
+		utilitiesButtons.setWidth("100%");
+		utilitiesButtons.setHeight("min-content");
+		utilitiesButtons.add(loadCalculator);
+		utilitiesButtons.add(washPictograms);
+		
+		
+		getContent().add(layoutRow, textLarge, h3);
+			
+		layoutRow.add(h2);
+		getContent().add(utilitiesButtons);		
 		getContent().add(layoutAvailWashListContainer);	
 	}
 	private void initListeners(){
