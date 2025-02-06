@@ -8,6 +8,7 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.progressbar.ProgressBar;
 import com.vaadin.flow.component.details.Details;
+import com.vaadin.flow.component.html.H2;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -22,7 +23,7 @@ public class WashingListItem extends HorizontalLayout {
     private final WashineLaundryWashingIf washing;
     
 	private static Logger logger = LogManager.getLogger();
-
+    protected H2 h2Title;
     public WashingListItem(WashineLaundryWashingIf washing) {
         this.washing = washing;
         WashineLaundryWashingOptionsIf options = washing.getWashingOptions();
@@ -40,6 +41,7 @@ public class WashingListItem extends HorizontalLayout {
         getStyle().set("max-width", "500px"); 
 
         //visible info
+        h2Title=new H2();
         VerticalLayout layoutPrimaryInfo = new VerticalLayout();
         layoutPrimaryInfo.setSpacing(false);
         layoutPrimaryInfo.setPadding(false);
@@ -90,7 +92,7 @@ public class WashingListItem extends HorizontalLayout {
             .set("margin-left", "auto")
             .set("flex-shrink", "0"); 
               
-        add(layoutPrimaryInfo, layoutCharacteristics, spanStatus);             
+        add(h2Title,layoutPrimaryInfo, layoutCharacteristics, spanStatus);             
         expand(layoutCharacteristics);   
         getStyle().set("background-image", "linear-gradient(#0000 , #EEEE)");
 		

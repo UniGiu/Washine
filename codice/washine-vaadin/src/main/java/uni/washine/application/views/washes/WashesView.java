@@ -123,6 +123,7 @@ public class WashesView extends Composite<VerticalLayout> implements BeforeEnter
 	 * hides the form and shows the list of washings and refreshes it
 	 */
 	private void showList() {
+		washingForm.setVisible(false);
 		layoutAvailWashListContainer.setVisible(true);
 		layoutAvailWashingsList.refreshData();
 	}

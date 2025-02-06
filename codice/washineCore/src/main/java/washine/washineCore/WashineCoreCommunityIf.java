@@ -85,4 +85,11 @@ public interface WashineCoreCommunityIf {
   public List<String> getCommunityMemberId(String userId);
 
   public List<String> getCommunityMemberName(String userId);
+
+  /**
+   * gets the name the participant assigned to the community
+   * @param launderId
+   */
+  public String getCommunityName(String communityId, String participantId)  throws WashineCoreException;
+	  
 }
