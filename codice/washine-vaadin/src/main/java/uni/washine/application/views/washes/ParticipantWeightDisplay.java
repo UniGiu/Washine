@@ -29,6 +29,7 @@ public class ParticipantWeightDisplay extends HorizontalLayout {
     	   weight= wCore.getParticipationWeight( washingId, userId);
        }catch (WashineCoreException e) {
     	   UiNotifier.showErrorNotification("An error occourred in retreiving the weight of your clothes");
+    	   UiNotifier.showErrorNotification(e.getMessage());
        }   
          setWeight(weight);
         }

@@ -23,7 +23,7 @@ public class ParticipantWashingListItem extends WashingListItem {
 		WashineUserIf userData = (WashineUserIf) VaadinSession.getCurrent().getAttribute("currentUser");
 		String washingId = washing.getId();
 		String userId=userData.getId();
-		List<String> participatedWashings=washing.getEnabledParticipants();		
+		List<String> participatedWashings=washing.getParticipantIds();		
 		boolean participates= participatedWashings.contains(userId);
 		
 		ParticipantWeightDisplay weightDisplay=new ParticipantWeightDisplay();

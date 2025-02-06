@@ -26,14 +26,12 @@ public class ParticipantForm  extends VerticalLayout{
 	private boolean edit;
 	private String washingId;
 	
-	public ParticipantForm(String userId) {
+	public ParticipantForm() {
 		wCore = AbstractCoreFactory.getInstance("vaadin").createCoreWashing();
-		if(userId==null) {
+		
 			WashineUserIf userData = (WashineUserIf) VaadinSession.getCurrent().getAttribute("currentUser");			
 			this.userId=userData.getId();
-		}else {
-			this.userId=userId;
-		}
+		
 		FormLayout formLayout = new FormLayout();
 		
 		Button cancelButton;
