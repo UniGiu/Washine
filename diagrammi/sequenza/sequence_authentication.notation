@@ -134,7 +134,12 @@
       <children xmi:type="notation:Shape" xmi:id="_zndo0ONHEe-SOdIRgZGpIQ" type="Comment_Shape">
         <children xmi:type="notation:DecorationNode" xmi:id="_znfeAONHEe-SOdIRgZGpIQ" type="Comment_BodyLabel"/>
         <element xmi:type="uml:Comment" href="sequence_authentication.uml#_zmTyQONHEe-SOdIRgZGpIQ"/>
-        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_zndo0eNHEe-SOdIRgZGpIQ" x="1294" y="91"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_zndo0eNHEe-SOdIRgZGpIQ" x="1254" y="116" width="281"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_OQA4oOSkEe-4RJx51cpgiw" type="Comment_Shape">
+        <children xmi:type="notation:DecorationNode" xmi:id="_OQCGwOSkEe-4RJx51cpgiw" type="Comment_BodyLabel"/>
+        <element xmi:type="uml:Comment" href="sequence_authentication.uml#_OOgcwOSkEe-4RJx51cpgiw"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_OQA4oeSkEe-4RJx51cpgiw" x="1254" y="16" width="281"/>
       </children>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ifcvFOMzEe-MkPfZGn1hTg"/>
     </children>

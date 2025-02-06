@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_s3I-sOS_Ee-4RJx51cpgiw" name="Communication_participation">
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_s3Y2UOS_Ee-4RJx51cpgiw">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Interaction" xmi:id="_s3Kz4OS_Ee-4RJx51cpgiw" name="Interaction1">
+    <ownedComment xmi:type="uml:Comment" xmi:id="_8yH0sOS_Ee-4RJx51cpgiw">
+      <body>Laundry Person interacts with the system through the GUI and is not ra eal class of the application.&#xD;
+Function calls are referred to the methods that the classes use to process the informations coming from the user&#xD;
+Functions' names are for illustrative purpose only and they do not necessarily necesscorrespond to the real methods' name.&#xD;
+&#xD;
+</body>
+    </ownedComment>
+    <ownedComment xmi:type="uml:Comment" xmi:id="_q6SbAOTAEe-4RJx51cpgiw">
+      <body>The diagram describes the functions' calls that take place in the process of creating an invitantion to a community.&#xD;
+&#xD;
+&#xD;
+</body>
+    </ownedComment>
+    <ownedComment xmi:type="uml:Comment" xmi:id="_ARWs8OTGEe-4RJx51cpgiw" annotatedElement="_s3Kz4OS_Ee-4RJx51cpgiw">
+      <body>This function call is preceded by two different methods which are called by the GUI to verify that the name has not been already used for another user or to check if the person has already been invited (in this case the GUI asks the core class to update the invitation code with another function)&#xD;
+&#xD;
+</body>
+    </ownedComment>
+    <ownedComment xmi:type="uml:Comment" xmi:id="_27PAMOTHEe-4RJx51cpgiw" annotatedElement="_znO40OTHEe-4RJx51cpgiw">
+      <body>Select queries to check the validity of the name and insert query to add the invitation to the database&#xD;
+</body>
+    </ownedComment>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_nNGFoOTCEe-4RJx51cpgiw" name="" type="_s3Kz4OS_Ee-4RJx51cpgiw"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_2XBcseTDEe-4RJx51cpgiw" name="" type="_s3Kz4OS_Ee-4RJx51cpgiw"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_FTg_QOTGEe-4RJx51cpgiw" name="" type="_s3Kz4OS_Ee-4RJx51cpgiw"/>
+    <lifeline xmi:type="uml:Lifeline" xmi:id="_tpBHkOS_Ee-4RJx51cpgiw" name="LaundryPerson" coveredBy="_j0cc4OTEEe-4RJx51cpgiw _NSWzMOTIEe-4RJx51cpgiw"/>
+    <lifeline xmi:type="uml:Lifeline" xmi:id="_nNE3gOTCEe-4RJx51cpgiw" name="" represents="_nNGFoOTCEe-4RJx51cpgiw"/>
+    <lifeline xmi:type="uml:Lifeline" xmi:id="_2XBcsOTDEe-4RJx51cpgiw" name="" represents="_2XBcseTDEe-4RJx51cpgiw"/>
+    <lifeline xmi:type="uml:Lifeline" xmi:id="_dAVEwOTEEe-4RJx51cpgiw" name="JoinALaundryCommunityView(GUI)" coveredBy="_j0drAOTEEe-4RJx51cpgiw _yXAucOTEEe-4RJx51cpgiw _yXBVgOTEEe-4RJx51cpgiw _BVzpAOTFEe-4RJx51cpgiw _BV0QEOTFEe-4RJx51cpgiw _W3QYQOTFEe-4RJx51cpgiw _Ifnc8OTIEe-4RJx51cpgiw _NSWMIOTIEe-4RJx51cpgiw"/>
+    <lifeline xmi:type="uml:Lifeline" xmi:id="_QLAisOTFEe-4RJx51cpgiw" name="WashineCoreCommunity(Core)" coveredBy="_W3QYQeTFEe-4RJx51cpgiw _XlYXoOTHEe-4RJx51cpgiw _jPX5kOTHEe-4RJx51cpgiw _jPYgoOTHEe-4RJx51cpgiw _Ad5CMOTIEe-4RJx51cpgiw _Ifm14OTIEe-4RJx51cpgiw"/>
+    <lifeline xmi:type="uml:Lifeline" xmi:id="_FTgYMOTGEe-4RJx51cpgiw" name="" represents="_FTg_QOTGEe-4RJx51cpgiw"/>
+    <lifeline xmi:type="uml:Lifeline" xmi:id="_smWFcOTGEe-4RJx51cpgiw" name="WashineGroupDb(Database)" coveredBy="_XlY-sOTHEe-4RJx51cpgiw _znQG8OTHEe-4RJx51cpgiw _znQuAOTHEe-4RJx51cpgiw _Ad4bIOTIEe-4RJx51cpgiw"/>
+    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_j0cc4OTEEe-4RJx51cpgiw" name="Message10SendEvent" covered="_tpBHkOS_Ee-4RJx51cpgiw" message="_j0b10OTEEe-4RJx51cpgiw"/>
+    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_j0drAOTEEe-4RJx51cpgiw" name="Message10ReceiveEvent" covered="_dAVEwOTEEe-4RJx51cpgiw" message="_j0b10OTEEe-4RJx51cpgiw"/>
+    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_yXAucOTEEe-4RJx51cpgiw" name="Message13SendEvent" covered="_dAVEwOTEEe-4RJx51cpgiw"/>
+    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_yXBVgOTEEe-4RJx51cpgiw" name="Message13ReceiveEvent" covered="_dAVEwOTEEe-4RJx51cpgiw"/>
+    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_BVzpAOTFEe-4RJx51cpgiw" name="Message15SendEvent" covered="_dAVEwOTEEe-4RJx51cpgiw" message="_BVya4OTFEe-4RJx51cpgiw"/>
+    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_BV0QEOTFEe-4RJx51cpgiw" name="Message15ReceiveEvent" covered="_dAVEwOTEEe-4RJx51cpgiw" message="_BVya4OTFEe-4RJx51cpgiw"/>
+    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_W3QYQOTFEe-4RJx51cpgiw" name="Message19SendEvent" covered="_dAVEwOTEEe-4RJx51cpgiw" message="_W3PxMOTFEe-4RJx51cpgiw"/>
+    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_W3QYQeTFEe-4RJx51cpgiw" name="Message19ReceiveEvent" covered="_QLAisOTFEe-4RJx51cpgiw" message="_W3PxMOTFEe-4RJx51cpgiw"/>
+    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_XlYXoOTHEe-4RJx51cpgiw" name="Message25SendEvent" covered="_QLAisOTFEe-4RJx51cpgiw" message="_XlXJgOTHEe-4RJx51cpgiw"/>
+    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_XlY-sOTHEe-4RJx51cpgiw" name="Message25ReceiveEvent" covered="_smWFcOTGEe-4RJx51cpgiw" message="_XlXJgOTHEe-4RJx51cpgiw"/>
+    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_jPX5kOTHEe-4RJx51cpgiw" name="Message28SendEvent" covered="_QLAisOTFEe-4RJx51cpgiw" message="_jPWEYOTHEe-4RJx51cpgiw"/>
+    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_jPYgoOTHEe-4RJx51cpgiw" name="Message28ReceiveEvent" covered="_QLAisOTFEe-4RJx51cpgiw" message="_jPWEYOTHEe-4RJx51cpgiw"/>
+    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_znQG8OTHEe-4RJx51cpgiw" name="Message31SendEvent" covered="_smWFcOTGEe-4RJx51cpgiw" message="_znO40OTHEe-4RJx51cpgiw"/>
+    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_znQuAOTHEe-4RJx51cpgiw" name="Message31ReceiveEvent" covered="_smWFcOTGEe-4RJx51cpgiw" message="_znO40OTHEe-4RJx51cpgiw"/>
+    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_Ad4bIOTIEe-4RJx51cpgiw" name="Message35SendEvent" covered="_smWFcOTGEe-4RJx51cpgiw" message="_Ad3NAOTIEe-4RJx51cpgiw"/>
+    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_Ad5CMOTIEe-4RJx51cpgiw" name="Message35ReceiveEvent" covered="_QLAisOTFEe-4RJx51cpgiw" message="_Ad3NAOTIEe-4RJx51cpgiw"/>
+    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_Ifm14OTIEe-4RJx51cpgiw" name="Message38SendEvent" covered="_QLAisOTFEe-4RJx51cpgiw" message="_IfmO0OTIEe-4RJx51cpgiw"/>
+    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_Ifnc8OTIEe-4RJx51cpgiw" name="Message38ReceiveEvent" covered="_dAVEwOTEEe-4RJx51cpgiw" message="_IfmO0OTIEe-4RJx51cpgiw"/>
+    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_NSWMIOTIEe-4RJx51cpgiw" name="Message41SendEvent" covered="_dAVEwOTEEe-4RJx51cpgiw" message="_NSU-AOTIEe-4RJx51cpgiw"/>
+    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_NSWzMOTIEe-4RJx51cpgiw" name="Message41ReceiveEvent" covered="_tpBHkOS_Ee-4RJx51cpgiw" message="_NSU-AOTIEe-4RJx51cpgiw"/>
+    <message xmi:type="uml:Message" xmi:id="_j0b10OTEEe-4RJx51cpgiw" name="1.0: invite(personName)" messageSort="asynchCall" receiveEvent="_j0drAOTEEe-4RJx51cpgiw" sendEvent="_j0cc4OTEEe-4RJx51cpgiw"/>
+    <message xmi:type="uml:Message" xmi:id="_BVya4OTFEe-4RJx51cpgiw" name="1.1: checkEmptyFields()" messageSort="asynchCall" receiveEvent="_BV0QEOTFEe-4RJx51cpgiw" sendEvent="_BVzpAOTFEe-4RJx51cpgiw"/>
+    <message xmi:type="uml:Message" xmi:id="_W3PxMOTFEe-4RJx51cpgiw" name="1.2: getNewInvitationCode(laundryPersonId, personName)" messageSort="asynchCall" receiveEvent="_W3QYQeTFEe-4RJx51cpgiw" sendEvent="_W3QYQOTFEe-4RJx51cpgiw"/>
+    <message xmi:type="uml:Message" xmi:id="_XlXJgOTHEe-4RJx51cpgiw" name="1.4: addInvite(laundryPersonId, personName, invitationCode)" messageSort="asynchCall" receiveEvent="_XlY-sOTHEe-4RJx51cpgiw" sendEvent="_XlYXoOTHEe-4RJx51cpgiw"/>
+    <message xmi:type="uml:Message" xmi:id="_jPWEYOTHEe-4RJx51cpgiw" name="1.3: generateUniqueCode()" messageSort="asynchCall" receiveEvent="_jPYgoOTHEe-4RJx51cpgiw" sendEvent="_jPX5kOTHEe-4RJx51cpgiw"/>
+    <message xmi:type="uml:Message" xmi:id="_znO40OTHEe-4RJx51cpgiw" name="1.5: queries()" messageSort="asynchCall" receiveEvent="_znQuAOTHEe-4RJx51cpgiw" sendEvent="_znQG8OTHEe-4RJx51cpgiw"/>
+    <message xmi:type="uml:Message" xmi:id="_Ad3NAOTIEe-4RJx51cpgiw" name="2.0: queriesResult" messageSort="asynchCall" receiveEvent="_Ad5CMOTIEe-4RJx51cpgiw" sendEvent="_Ad4bIOTIEe-4RJx51cpgiw"/>
+    <message xmi:type="uml:Message" xmi:id="_IfmO0OTIEe-4RJx51cpgiw" name="2.1:result" messageSort="asynchCall" receiveEvent="_Ifnc8OTIEe-4RJx51cpgiw" sendEvent="_Ifm14OTIEe-4RJx51cpgiw"/>
+    <message xmi:type="uml:Message" xmi:id="_NSU-AOTIEe-4RJx51cpgiw" name="2.2:successOrError" messageSort="asynchCall" receiveEvent="_NSWzMOTIEe-4RJx51cpgiw" sendEvent="_NSWMIOTIEe-4RJx51cpgiw"/>
+  </packagedElement>
+  <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_hLtVgOTDEe-4RJx51cpgiw">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_hLtVgeTDEe-4RJx51cpgiw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <references xmi:type="ecore:EPackage" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ"/>
+    </eAnnotations>
+    <appliedProfile xmi:type="uml:Profile" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#ActionLanguage"/>
+  </profileApplication>
+</uml:Model>
