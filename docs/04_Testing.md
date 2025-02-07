@@ -44,21 +44,25 @@ Verifica che un lavaggio venga creato con le opzioni di lavaggio impostate corre
 ![alt text](https://github.com/UniGiu/Washine/blob/testing/docs/Immagini/WashineCoreCommunityTest.png)  
 
 #### addInviteTest1
-
+Verifica che un particolare utente sia nella lista degli inviti di partecipazione della community.
 #### addInviteTest
-Verifica l'impossibilità di invitare un'tente già appartennete a una specifica community.
+Verifica l'impossibilità di invitare un utente già appartenete a una specifica community.
 #### nameInInvitationsTest
 Verifica che un nome non esistente non sia presente tra gli inviti. 
 #### nameInCommunityTest2  
 Verifica che un nome non esista nella comunità specificata.   
 #### getIdThroughCodeTest1
+Verifica che il recupero dell'Id di una comunità tramite un codice inesistente restituisca null. 
 #### updateCodeTest2
-#### generateUniqueCodeTest
-#### joinCommunityTest1
+Verifica che un nome non esista nella comunità specificata.   
+#### joinCommunityTest1  
+Verifica che un partecipante non possa unirsi con un codice errato.
 #### joinCommunityTest2
+Verifica un intero flusso di adesione a una comunità.
 #### nameInJoinedCommunitiesTest
+Verifica che un nome inesistente non sia presente nelle comunità a cui l'utente ha aderito.
 #### userInCommunityTest
-Verifica che 
+Verifica che un utente non possa far parte di una community che non esiste.
 #### removeUserTest1
 Verifica che dati due parametri errati, non venga effettuata la rimozione dell'utente dalla community. 
 
@@ -90,6 +94,7 @@ Verifica che l'inserimento di un utente avvenga in modo corretto.
 Verifica che l'inserimento di un utente già registrato fallisca.  
 
 #### updateUserEmail  
+Verifica che l'aggiornamento dell'Email di un'utente avvenga in modo corretto. 
 
 #### authenticateAdminTest1  
 Verifica la corretta autenticazione del profilo Admin (identificato con id = 0).  
@@ -114,5 +119,4 @@ Verifica la correttezza dello sblocco di un utente da parte di Admin.
 
 ![alt text](https://github.com/UniGiu/Washine/blob/testing/docs/Immagini/CoverageCore.png)
 
-
-
+Poco più di metà del codice è stato testato (54,5 %) . I test sono stati effettuati principalmente su funzionalità centrali quali lavaggi, gestione delle comunità e gestione degli utenti.
