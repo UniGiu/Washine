@@ -1,10 +1,16 @@
 # Software Testing 
 
-Descrizione dei casi di test implementati per le classi WashineCoreWashing e WashineCoreCommunity.
-Lo scopo è verificare il corretto funzionamento delle operazioni principali del sistema garantendo una corretto utilizzo dei dati e gestione degli errori.
+Descrizione dei casi di test implementati per le classi:
+- WashineCoreWashing
+- WashineCoreCommunity
+- WashineCoreAuth
 
-Con WashineCoreWashingTest abbiamo verificato la corretta creazione e gestione dei lavaggi della classe WashineCoreWashing.
-Invece con washineCoreCommunityTest il corretto funzionamento delle funzionalità di invito e partecipazione della community della classe WashineCorecommunity.  
+Abbiamo verificato il corretto funzionamento delle operazioni principali del sistema in modo da garantire una corretto utilizzo dei dati e gestione degli errori.
+
+I casi di test sono stati effettuati nei seguenti file:
+- WashineCoreWashingTest in cui abbiamo verificato la corretta creazione e gestione dei lavaggi della classe WashineCoreWashing
+- WashineCoreCommunityTest per verififcare il corretto funzionamento delle funzionalità di invito e partecipazione della community della classe WashineCorecommunity
+- WashineCoreAuthTest per verificare la correttezza autenticazioni degli utenti e i vari metodi di modifica password, Email, ...  
 
 ## Casi di Test  
 
@@ -12,34 +18,27 @@ Invece con washineCoreCommunityTest il corretto funzionamento delle funzionalit�
 
 ![alt text](https://github.com/UniGiu/Washine/blob/testing/docs/Immagini/WashineCoreWashingTest.png)  
 
-#### Esempi
-
 #### createWashingTest
 
-Verifica che la creazione di un lavaggio abbia successo in modo corretto.
+![alt text](https://github.com/UniGiu/Washine/blob/testing/docs/Immagini/createWashingTest.png) 
 
-Dato l'id dell'utente e opzioni di lavaggio, se il lavaggio viene correttamente creato, ci si aspetta che venga ritornato il valore True.
+Verifica che la creazione di un lavaggio abbia successo in modo corretto.Dato l'id dell'utente e opzioni di lavaggio, se il lavaggio viene correttamente creato, ci si aspetta che venga ritornato il valore True.
 
-#### getLaundryPersonWashingIdsTest
+#### getLaundryPersonWashingIdsTest  
 
-Verifica che si possa risalire alla lista di lavaggi si uno specifico utente.
+![alt text](https://github.com/UniGiu/Washine/blob/testing/docs/Immagini/ListWashingTest.png) 
 
-Dato l'id utente (testUserId) il metodo deve restituire una lista non vuota contentente i vari Id dei lavaggi a cui un'utente ha partecipato.
+Verifica che si possa risalire alla lista di lavaggi si uno specifico utente. Dato l'id utente (testUserId) il metodo deve restituire una lista non vuota contentente i vari Id dei lavaggi a cui un'utente ha partecipato.
 
 ### WashineCorecommunityTest  
 
 ![alt text](https://github.com/UniGiu/Washine/blob/testing/docs/Immagini/WashineCoreCommunityTest.png)
 
-#### Esempi  
-
-#### createWashingTest  
-#### createWashingTest
-
 ### WashineCoreAuthTest
 
 ![alt text](https://github.com/UniGiu/Washine/blob/testing/docs/Immagini/WashineCoreAuthTest.png)
 
-#### UpdateUserPassword  
+#### updateUserPassword  
 
 ![alt text](https://github.com/UniGiu/Washine/blob/testing/docs/Immagini/UpdatePw.png)  
 
@@ -55,7 +54,7 @@ Data la mail e la password, l'autenticazione dovrebbe restituire un oggetto non 
 
 ## Copertura del codice 
 
-![alt text](https://github.com/UniGiu/Washine/blob/testing/docs/Immagini/Coverage.png)
+![alt text](https://github.com/UniGiu/Washine/blob/testing/docs/Immagini/CoverageCore.png)
 
 
 
