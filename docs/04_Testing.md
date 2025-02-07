@@ -6,9 +6,13 @@ Lo scopo è verificare il corretto funzionamento delle operazioni principali del
 Con WashineCoreWashingTest abbiamo verificato la corretta creazione e gestione dei lavaggi della classe WashineCoreWashing.
 Invece con washineCoreCommunityTest il corretto funzionamento delle funzionalità di invito e partecipazione della community della classe WashineCorecommunity.  
 
-## Esempio di alcuni casi di Test  
+## Casi di Test  
 
 ### WashineCoreWashingTest
+
+![alt text](https://github.com/UniGiu/Washine/blob/testing/docs/Immagini/WashineCoreWashingTest.png)  
+
+#### Esempi
 
 #### createWashingTest
 
