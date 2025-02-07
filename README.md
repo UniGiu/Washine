@@ -1,4 +1,7 @@
-# Washine
+# Washine  
+
+![alt text](https://github.com/UniGiu/Washine/blob/main/docs/immagini/Logo.png)
+
 Progetto per l'esame di Ingegneria del Software a.a. 2024/2025
 
 ## Contributors
