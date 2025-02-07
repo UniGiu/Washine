@@ -58,7 +58,7 @@
         <ownedAttribute xmi:type="uml:Port" xmi:id="_Mdr78OU_Ee-b8uGOzjIcoA" name="Vaadin" aggregation="composite"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Component" xmi:id="_drImwOU8Ee-b8uGOzjIcoA" name="web API">
-        <ownedAttribute xmi:type="uml:Port" xmi:id="_yTijQOU-Ee-b8uGOzjIcoA" name="API port" aggregation="composite"/>
+        <ownedAttribute xmi:type="uml:Port" xmi:id="_yTijQOU-Ee-b8uGOzjIcoA" name="Web API" aggregation="composite"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Usage" xmi:id="_K2ulMOU_Ee-b8uGOzjIcoA" client="_yTijQOU-Ee-b8uGOzjIcoA" supplier="_iznHAOU9Ee-b8uGOzjIcoA"/>
       <packagedElement xmi:type="uml:Usage" xmi:id="_QI4bUOU_Ee-b8uGOzjIcoA" client="_Mdr78OU_Ee-b8uGOzjIcoA" supplier="_iznHAOU9Ee-b8uGOzjIcoA"/>
