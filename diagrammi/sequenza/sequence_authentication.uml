@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_L4LAMOMzEe-MkPfZGn1hTg" name="sequence_authentication">
+  <ownedRule xmi:type="uml:InteractionConstraint" xmi:id="_UVmhsONCEe-MkPfZGn1hTg" name="Invalid email or password"/>
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_L59v8OMzEe-MkPfZGn1hTg">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Interaction" xmi:id="_gbbB0OMzEe-MkPfZGn1hTg" name="Interaction2">
+    <ownedComment xmi:type="uml:Comment" xmi:id="_zmTyQONHEe-SOdIRgZGpIQ">
+      <body>Every intereaction partner is activated from the start&#xD;
+</body>
+    </ownedComment>
+    <ownedComment xmi:type="uml:Comment" xmi:id="_OOgcwOSkEe-4RJx51cpgiw">
+      <body>The diagram describes the sequence of messages that the components of the application need to exchange in order to authenticate a user&#xD;
+</body>
+    </ownedComment>
+    <lifeline xmi:type="uml:Lifeline" xmi:id="_r_38cOMzEe-MkPfZGn1hTg" name="User" coveredBy="_PiAvgONFEe-MkPfZGn1hTg _PiDLwONFEe-MkPfZGn1hTg _OfqU8OM1Ee-MkPfZGn1hTg _GrEukONGEe-MkPfZGn1hTg _GrHK0ONGEe-MkPfZGn1hTg _RVADAeM4Ee-MkPfZGn1hTg _JHftsONGEe-MkPfZGn1hTg _uYRckONGEe-MkPfZGn1hTg _uYT40ONGEe-MkPfZGn1hTg _TVsoEOM7Ee-MkPfZGn1hTg _vpIngONGEe-MkPfZGn1hTg _O6LBgONHEe-MkPfZGn1hTg _O6NdwONHEe-MkPfZGn1hTg _NhFdwOM-Ee-MkPfZGn1hTg _Q_PQkONHEe-MkPfZGn1hTg"/>
+    <lifeline xmi:type="uml:Lifeline" xmi:id="_tC0nMOMzEe-MkPfZGn1hTg" name="WashineGUI" coveredBy="_PiAvgONFEe-MkPfZGn1hTg _PiDLwONFEe-MkPfZGn1hTg _Ofq8AOM1Ee-MkPfZGn1hTg _Q1BNUOM2Ee-MkPfZGn1hTg _Q1BNUeM2Ee-MkPfZGn1hTg _GrEukONGEe-MkPfZGn1hTg _GrHK0ONGEe-MkPfZGn1hTg _RVADAOM4Ee-MkPfZGn1hTg _JHftsONGEe-MkPfZGn1hTg _uYRckONGEe-MkPfZGn1hTg _uYT40ONGEe-MkPfZGn1hTg _QfLG4OM7Ee-MkPfZGn1hTg _TVsBAOM7Ee-MkPfZGn1hTg _vpIngONGEe-MkPfZGn1hTg _O6LBgONHEe-MkPfZGn1hTg _O6NdwONHEe-MkPfZGn1hTg _LxrVoOM-Ee-MkPfZGn1hTg _NhE2sOM-Ee-MkPfZGn1hTg _Q_PQkONHEe-MkPfZGn1hTg _pUjvQOM_Ee-MkPfZGn1hTg"/>
+    <lifeline xmi:type="uml:Lifeline" xmi:id="_tsB8QOMzEe-MkPfZGn1hTg" name="WashineCoreAuth" coveredBy="_PiAvgONFEe-MkPfZGn1hTg _PiDLwONFEe-MkPfZGn1hTg _GrEukONGEe-MkPfZGn1hTg _GrHK0ONGEe-MkPfZGn1hTg _JHftsONGEe-MkPfZGn1hTg _L14yIOM8Ee-MkPfZGn1hTg _uYRckONGEe-MkPfZGn1hTg _uYT40ONGEe-MkPfZGn1hTg _Gm7Y8ONHEe-MkPfZGn1hTg _QfKf0OM7Ee-MkPfZGn1hTg _vpIngONGEe-MkPfZGn1hTg _B5x44OM9Ee-MkPfZGn1hTg _O6LBgONHEe-MkPfZGn1hTg _O6NdwONHEe-MkPfZGn1hTg _JJnHMOM-Ee-MkPfZGn1hTg _LxqukOM-Ee-MkPfZGn1hTg _Q_PQkONHEe-MkPfZGn1hTg"/>
+    <lifeline xmi:type="uml:Lifeline" xmi:id="_74EkMOMzEe-MkPfZGn1hTg" name="WashineDatabase" coveredBy="_PiAvgONFEe-MkPfZGn1hTg _PiDLwONFEe-MkPfZGn1hTg _GrEukONGEe-MkPfZGn1hTg _GrHK0ONGEe-MkPfZGn1hTg _JHftsONGEe-MkPfZGn1hTg _uYRckONGEe-MkPfZGn1hTg _uYT40ONGEe-MkPfZGn1hTg _Gm5jwONHEe-MkPfZGn1hTg _vpIngONGEe-MkPfZGn1hTg _B5xR0OM9Ee-MkPfZGn1hTg _J5sVwOM9Ee-MkPfZGn1hTg _RP_08OM9Ee-MkPfZGn1hTg _RP_08eM9Ee-MkPfZGn1hTg _O6LBgONHEe-MkPfZGn1hTg _O6NdwONHEe-MkPfZGn1hTg _JJl5EOM-Ee-MkPfZGn1hTg _Q_PQkONHEe-MkPfZGn1hTg"/>
+    <lifeline xmi:type="uml:Lifeline" xmi:id="_0tzHIOM5Ee-MkPfZGn1hTg" name="WashineUserDb" coveredBy="_GrEukONGEe-MkPfZGn1hTg _GrHK0ONGEe-MkPfZGn1hTg _JHftsONGEe-MkPfZGn1hTg _L14yIeM8Ee-MkPfZGn1hTg _uYRckONGEe-MkPfZGn1hTg _uYT40ONGEe-MkPfZGn1hTg _vpIngONGEe-MkPfZGn1hTg _J5rusOM9Ee-MkPfZGn1hTg _O6LBgONHEe-MkPfZGn1hTg _O6NdwONHEe-MkPfZGn1hTg _Q_PQkONHEe-MkPfZGn1hTg"/>
+    <lifeline xmi:type="uml:Lifeline" xmi:id="_AiPMQOM_Ee-MkPfZGn1hTg" name="WashineUser"/>
+    <fragment xmi:type="uml:CombinedFragment" xmi:id="_PiAvgONFEe-MkPfZGn1hTg" name="CombinedFragment61" covered="_r_38cOMzEe-MkPfZGn1hTg _tsB8QOMzEe-MkPfZGn1hTg _tC0nMOMzEe-MkPfZGn1hTg _74EkMOMzEe-MkPfZGn1hTg" interactionOperator="loop">
+      <operand xmi:type="uml:InteractionOperand" xmi:id="_PiDLwONFEe-MkPfZGn1hTg" name="InteractionOperand0" covered="_r_38cOMzEe-MkPfZGn1hTg _tsB8QOMzEe-MkPfZGn1hTg _tC0nMOMzEe-MkPfZGn1hTg _74EkMOMzEe-MkPfZGn1hTg">
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_OfqU8OM1Ee-MkPfZGn1hTg" name="Message6SendEvent" covered="_r_38cOMzEe-MkPfZGn1hTg" message="_OfofwOM1Ee-MkPfZGn1hTg"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_Ofq8AOM1Ee-MkPfZGn1hTg" name="Message6ReceiveEvent" covered="_tC0nMOMzEe-MkPfZGn1hTg" message="_OfofwOM1Ee-MkPfZGn1hTg"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_Q1BNUOM2Ee-MkPfZGn1hTg" name="Message8SendEvent" covered="_tC0nMOMzEe-MkPfZGn1hTg" message="_Q0__MOM2Ee-MkPfZGn1hTg"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_Q1BNUeM2Ee-MkPfZGn1hTg" name="Message8ReceiveEvent" covered="_tC0nMOMzEe-MkPfZGn1hTg" message="_Q0__MOM2Ee-MkPfZGn1hTg"/>
+        <fragment xmi:type="uml:CombinedFragment" xmi:id="_GrEukONGEe-MkPfZGn1hTg" name="CombinedFragment38" covered="_r_38cOMzEe-MkPfZGn1hTg _tsB8QOMzEe-MkPfZGn1hTg _0tzHIOM5Ee-MkPfZGn1hTg _tC0nMOMzEe-MkPfZGn1hTg _74EkMOMzEe-MkPfZGn1hTg" interactionOperator="alt">
+          <operand xmi:type="uml:InteractionOperand" xmi:id="_GrHK0ONGEe-MkPfZGn1hTg" name="InteractionOperand0" covered="_r_38cOMzEe-MkPfZGn1hTg _tsB8QOMzEe-MkPfZGn1hTg _0tzHIOM5Ee-MkPfZGn1hTg _tC0nMOMzEe-MkPfZGn1hTg _74EkMOMzEe-MkPfZGn1hTg">
+            <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_RVADAOM4Ee-MkPfZGn1hTg" name="Message10SendEvent" covered="_tC0nMOMzEe-MkPfZGn1hTg" message="_L-9LYOM4Ee-MkPfZGn1hTg"/>
+            <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_RVADAeM4Ee-MkPfZGn1hTg" name="Message10ReceiveEvent" covered="_r_38cOMzEe-MkPfZGn1hTg" message="_L-9LYOM4Ee-MkPfZGn1hTg"/>
+            <guard xmi:type="uml:InteractionConstraint" xmi:id="_GrHK0eNGEe-MkPfZGn1hTg" name="guard">
+              <specification xmi:type="uml:LiteralString" xmi:id="_Tw-N0ONGEe-MkPfZGn1hTg" value="empty fields or incorrect format]&#xD;&#xA;"/>
+            </guard>
+          </operand>
+          <operand xmi:type="uml:InteractionOperand" xmi:id="_JHftsONGEe-MkPfZGn1hTg" name="InteractionOperand2" covered="_r_38cOMzEe-MkPfZGn1hTg _tsB8QOMzEe-MkPfZGn1hTg _0tzHIOM5Ee-MkPfZGn1hTg _tC0nMOMzEe-MkPfZGn1hTg _74EkMOMzEe-MkPfZGn1hTg">
+            <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_L14yIOM8Ee-MkPfZGn1hTg" name="Message22SendEvent" covered="_tsB8QOMzEe-MkPfZGn1hTg" message="_L13kAOM8Ee-MkPfZGn1hTg"/>
+            <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_L14yIeM8Ee-MkPfZGn1hTg" name="Message22ReceiveEvent" covered="_0tzHIOM5Ee-MkPfZGn1hTg" message="_L13kAOM8Ee-MkPfZGn1hTg"/>
+            <fragment xmi:type="uml:CombinedFragment" xmi:id="_uYRckONGEe-MkPfZGn1hTg" name="CombinedFragment38" covered="_r_38cOMzEe-MkPfZGn1hTg _tsB8QOMzEe-MkPfZGn1hTg _0tzHIOM5Ee-MkPfZGn1hTg _tC0nMOMzEe-MkPfZGn1hTg _74EkMOMzEe-MkPfZGn1hTg" interactionOperator="alt">
+              <operand xmi:type="uml:InteractionOperand" xmi:id="_uYT40ONGEe-MkPfZGn1hTg" name="InteractionOperand0" covered="_r_38cOMzEe-MkPfZGn1hTg _tsB8QOMzEe-MkPfZGn1hTg _0tzHIOM5Ee-MkPfZGn1hTg _tC0nMOMzEe-MkPfZGn1hTg _74EkMOMzEe-MkPfZGn1hTg">
+                <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_Gm5jwONHEe-MkPfZGn1hTg" name="Message37SendEvent" covered="_74EkMOMzEe-MkPfZGn1hTg" message="_Gm3HgONHEe-MkPfZGn1hTg"/>
+                <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_Gm7Y8ONHEe-MkPfZGn1hTg" name="Message37ReceiveEvent" covered="_tsB8QOMzEe-MkPfZGn1hTg" message="_Gm3HgONHEe-MkPfZGn1hTg"/>
+                <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_QfKf0OM7Ee-MkPfZGn1hTg" name="Message19SendEvent" covered="_tsB8QOMzEe-MkPfZGn1hTg" message="_QfHcgOM7Ee-MkPfZGn1hTg"/>
+                <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_QfLG4OM7Ee-MkPfZGn1hTg" name="Message19ReceiveEvent" covered="_tC0nMOMzEe-MkPfZGn1hTg" message="_QfHcgOM7Ee-MkPfZGn1hTg"/>
+                <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_TVsBAOM7Ee-MkPfZGn1hTg" name="Message20SendEvent" covered="_tC0nMOMzEe-MkPfZGn1hTg" message="_TVqy4OM7Ee-MkPfZGn1hTg"/>
+                <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_TVsoEOM7Ee-MkPfZGn1hTg" name="Message20ReceiveEvent" covered="_r_38cOMzEe-MkPfZGn1hTg" message="_TVqy4OM7Ee-MkPfZGn1hTg"/>
+                <guard xmi:type="uml:InteractionConstraint" xmi:id="_uYT40eNGEe-MkPfZGn1hTg" name="guard">
+                  <specification xmi:type="uml:LiteralString" xmi:id="_8mf10ONGEe-MkPfZGn1hTg" value="Incorrect email or password&#xD;&#xA;"/>
+                </guard>
+              </operand>
+              <operand xmi:type="uml:InteractionOperand" xmi:id="_vpIngONGEe-MkPfZGn1hTg" name="InteractionOperand2" covered="_r_38cOMzEe-MkPfZGn1hTg _tsB8QOMzEe-MkPfZGn1hTg _0tzHIOM5Ee-MkPfZGn1hTg _tC0nMOMzEe-MkPfZGn1hTg _74EkMOMzEe-MkPfZGn1hTg">
+                <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_B5xR0OM9Ee-MkPfZGn1hTg" name="Message23SendEvent" covered="_74EkMOMzEe-MkPfZGn1hTg" message="_B5u1kOM9Ee-MkPfZGn1hTg"/>
+                <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_B5x44OM9Ee-MkPfZGn1hTg" name="Message23ReceiveEvent" covered="_tsB8QOMzEe-MkPfZGn1hTg" message="_B5u1kOM9Ee-MkPfZGn1hTg"/>
+                <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_J5rusOM9Ee-MkPfZGn1hTg" name="Message24SendEvent" covered="_0tzHIOM5Ee-MkPfZGn1hTg" message="_J5qgkOM9Ee-MkPfZGn1hTg"/>
+                <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_J5sVwOM9Ee-MkPfZGn1hTg" name="Message24ReceiveEvent" covered="_74EkMOMzEe-MkPfZGn1hTg" message="_J5qgkOM9Ee-MkPfZGn1hTg"/>
+                <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_RP_08OM9Ee-MkPfZGn1hTg" name="Message25SendEvent" covered="_74EkMOMzEe-MkPfZGn1hTg" message="_RP-m0OM9Ee-MkPfZGn1hTg"/>
+                <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_RP_08eM9Ee-MkPfZGn1hTg" name="Message25ReceiveEvent" covered="_74EkMOMzEe-MkPfZGn1hTg" message="_RP-m0OM9Ee-MkPfZGn1hTg"/>
+                <fragment xmi:type="uml:CombinedFragment" xmi:id="_O6LBgONHEe-MkPfZGn1hTg" name="CombinedFragment38" covered="_r_38cOMzEe-MkPfZGn1hTg _tsB8QOMzEe-MkPfZGn1hTg _0tzHIOM5Ee-MkPfZGn1hTg _tC0nMOMzEe-MkPfZGn1hTg _74EkMOMzEe-MkPfZGn1hTg" interactionOperator="alt">
+                  <operand xmi:type="uml:InteractionOperand" xmi:id="_O6NdwONHEe-MkPfZGn1hTg" name="InteractionOperand0" covered="_r_38cOMzEe-MkPfZGn1hTg _tsB8QOMzEe-MkPfZGn1hTg _0tzHIOM5Ee-MkPfZGn1hTg _tC0nMOMzEe-MkPfZGn1hTg _74EkMOMzEe-MkPfZGn1hTg">
+                    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_JJl5EOM-Ee-MkPfZGn1hTg" name="Message24SendEvent" covered="_74EkMOMzEe-MkPfZGn1hTg" message="_JJlSAOM-Ee-MkPfZGn1hTg"/>
+                    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_JJnHMOM-Ee-MkPfZGn1hTg" name="Message24ReceiveEvent" covered="_tsB8QOMzEe-MkPfZGn1hTg" message="_JJlSAOM-Ee-MkPfZGn1hTg"/>
+                    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_LxqukOM-Ee-MkPfZGn1hTg" name="Message25SendEvent" covered="_tsB8QOMzEe-MkPfZGn1hTg" message="_LxpgcOM-Ee-MkPfZGn1hTg"/>
+                    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_LxrVoOM-Ee-MkPfZGn1hTg" name="Message25ReceiveEvent" covered="_tC0nMOMzEe-MkPfZGn1hTg" message="_LxpgcOM-Ee-MkPfZGn1hTg"/>
+                    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_NhE2sOM-Ee-MkPfZGn1hTg" name="Message26SendEvent" covered="_tC0nMOMzEe-MkPfZGn1hTg" message="_NhEPoOM-Ee-MkPfZGn1hTg"/>
+                    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_NhFdwOM-Ee-MkPfZGn1hTg" name="Message26ReceiveEvent" covered="_r_38cOMzEe-MkPfZGn1hTg" message="_NhEPoOM-Ee-MkPfZGn1hTg"/>
+                    <guard xmi:type="uml:InteractionConstraint" xmi:id="_O6NdweNHEe-MkPfZGn1hTg" name="guard">
+                      <specification xmi:type="uml:LiteralString" xmi:id="_WPbX0ONHEe-MkPfZGn1hTg" value="User is blocked&#xD;&#xA;"/>
+                    </guard>
+                  </operand>
+                  <operand xmi:type="uml:InteractionOperand" xmi:id="_Q_PQkONHEe-MkPfZGn1hTg" name="InteractionOperand2" covered="_r_38cOMzEe-MkPfZGn1hTg _tsB8QOMzEe-MkPfZGn1hTg _0tzHIOM5Ee-MkPfZGn1hTg _tC0nMOMzEe-MkPfZGn1hTg _74EkMOMzEe-MkPfZGn1hTg">
+                    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_pUjvQOM_Ee-MkPfZGn1hTg" name="Message34SendEvent" covered="_tC0nMOMzEe-MkPfZGn1hTg" message="_pUihIOM_Ee-MkPfZGn1hTg"/>
+                    <guard xmi:type="uml:InteractionConstraint" xmi:id="_Q_RFwONHEe-MkPfZGn1hTg" name="guard"/>
+                  </operand>
+                </fragment>
+                <guard xmi:type="uml:InteractionConstraint" xmi:id="_vpKcsONGEe-MkPfZGn1hTg" name="guard"/>
+              </operand>
+            </fragment>
+            <guard xmi:type="uml:InteractionConstraint" xmi:id="_JHhi4ONGEe-MkPfZGn1hTg" name="guard">
+              <specification xmi:type="uml:LiteralString" xmi:id="_aDk0UONGEe-MkPfZGn1hTg" value="else"/>
+            </guard>
+          </operand>
+        </fragment>
+        <guard xmi:type="uml:InteractionConstraint" xmi:id="_PiDLweNFEe-MkPfZGn1hTg" name="guard" visibility="public">
+          <specification xmi:type="uml:LiteralString" xmi:id="_iS9tEONFEe-MkPfZGn1hTg" value="User not logged in"/>
+          <maxint xmi:type="uml:StringExpression" xmi:id="_7Y_9YONFEe-MkPfZGn1hTg">
+            <operand xmi:type="uml:LiteralString" xmi:id="_7Y_9YeNFEe-MkPfZGn1hTg" value="*"/>
+          </maxint>
+          <minint xmi:type="uml:LiteralInteger" xmi:id="_2stNYONFEe-MkPfZGn1hTg"/>
+        </guard>
+      </operand>
+    </fragment>
+    <fragment xmi:type="uml:Interaction" xmi:id="_4_YYcOM2Ee-MkPfZGn1hTg">
+      <ownedRule xmi:type="uml:InteractionConstraint" xmi:id="_IfmFYeM0Ee-MkPfZGn1hTg" name="user not logged in">
+        <specification xmi:type="uml:Duration" xmi:id="_7DcFcOM3Ee-MkPfZGn1hTg" name="*" observation="_WF2YUOM3Ee-MkPfZGn1hTg"/>
+        <maxint xmi:type="uml:Duration" xmi:id="_8k67wOM2Ee-MkPfZGn1hTg"/>
+        <minint xmi:type="uml:Duration" xmi:id="_7xLxsOM2Ee-MkPfZGn1hTg" observation="_WF2YUOM3Ee-MkPfZGn1hTg"/>
+      </ownedRule>
+      <fragment xmi:type="uml:Interaction" xmi:id="_DDilAOM3Ee-MkPfZGn1hTg">
+        <ownedRule xmi:type="uml:InteractionConstraint" xmi:id="_Wi4IAeM2Ee-MkPfZGn1hTg" visibility="protected"/>
+      </fragment>
+    </fragment>
+    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_pUk9YOM_Ee-MkPfZGn1hTg" name="Message34ReceiveEvent" message="_pUihIOM_Ee-MkPfZGn1hTg"/>
+    <message xmi:type="uml:Message" xmi:id="_OfofwOM1Ee-MkPfZGn1hTg" name="Login(email,password)" messageSort="asynchCall" receiveEvent="_Ofq8AOM1Ee-MkPfZGn1hTg" sendEvent="_OfqU8OM1Ee-MkPfZGn1hTg"/>
+    <message xmi:type="uml:Message" xmi:id="_Q0__MOM2Ee-MkPfZGn1hTg" name="Check empty fields" messageSort="asynchCall" receiveEvent="_Q1BNUeM2Ee-MkPfZGn1hTg" sendEvent="_Q1BNUOM2Ee-MkPfZGn1hTg"/>
+    <message xmi:type="uml:Message" xmi:id="_L-9LYOM4Ee-MkPfZGn1hTg" name="Invalid input" messageSort="reply" receiveEvent="_RVADAeM4Ee-MkPfZGn1hTg" sendEvent="_RVADAOM4Ee-MkPfZGn1hTg"/>
+    <message xmi:type="uml:Message" xmi:id="_QM5ygOM4Ee-MkPfZGn1hTg"/>
+    <message xmi:type="uml:Message" xmi:id="_UEcr0OM4Ee-MkPfZGn1hTg"/>
+    <message xmi:type="uml:Message" xmi:id="_onUBAOM6Ee-MkPfZGn1hTg" name="Authenticate user(email,password)" messageSort="asynchCall"/>
+    <message xmi:type="uml:Message" xmi:id="_v0A4QOM6Ee-MkPfZGn1hTg" name="Check credentials" messageSort="asynchCall"/>
+    <message xmi:type="uml:Message" xmi:id="_QfHcgOM7Ee-MkPfZGn1hTg" name="Authentication error" messageSort="reply" receiveEvent="_QfLG4OM7Ee-MkPfZGn1hTg" sendEvent="_QfKf0OM7Ee-MkPfZGn1hTg"/>
+    <message xmi:type="uml:Message" xmi:id="_TVqy4OM7Ee-MkPfZGn1hTg" name="incorrect email or password" messageSort="reply" receiveEvent="_TVsoEOM7Ee-MkPfZGn1hTg" sendEvent="_TVsBAOM7Ee-MkPfZGn1hTg"/>
+    <message xmi:type="uml:Message" xmi:id="_L13kAOM8Ee-MkPfZGn1hTg" name="&lt;&lt;create>>" messageSort="createMessage" receiveEvent="_L14yIeM8Ee-MkPfZGn1hTg" sendEvent="_L14yIOM8Ee-MkPfZGn1hTg"/>
+    <message xmi:type="uml:Message" xmi:id="_B5u1kOM9Ee-MkPfZGn1hTg" name="User authenticated" messageSort="reply" receiveEvent="_B5x44OM9Ee-MkPfZGn1hTg" sendEvent="_B5xR0OM9Ee-MkPfZGn1hTg"/>
+    <message xmi:type="uml:Message" xmi:id="_J5qgkOM9Ee-MkPfZGn1hTg" name="Check if blocked" messageSort="reply" receiveEvent="_J5sVwOM9Ee-MkPfZGn1hTg" sendEvent="_J5rusOM9Ee-MkPfZGn1hTg"/>
+    <message xmi:type="uml:Message" xmi:id="_RP-m0OM9Ee-MkPfZGn1hTg" name="Check user status" messageSort="asynchCall" receiveEvent="_RP_08eM9Ee-MkPfZGn1hTg" sendEvent="_RP_08OM9Ee-MkPfZGn1hTg"/>
+    <message xmi:type="uml:Message" xmi:id="_xGUGQOM9Ee-MkPfZGn1hTg" name="Authenticate user(email,password)" messageSort="asynchCall"/>
+    <message xmi:type="uml:Message" xmi:id="_JJlSAOM-Ee-MkPfZGn1hTg" name="User blocked" messageSort="reply" receiveEvent="_JJnHMOM-Ee-MkPfZGn1hTg" sendEvent="_JJl5EOM-Ee-MkPfZGn1hTg"/>
+    <message xmi:type="uml:Message" xmi:id="_LxpgcOM-Ee-MkPfZGn1hTg" name="User blocked" messageSort="reply" receiveEvent="_LxrVoOM-Ee-MkPfZGn1hTg" sendEvent="_LxqukOM-Ee-MkPfZGn1hTg"/>
+    <message xmi:type="uml:Message" xmi:id="_NhEPoOM-Ee-MkPfZGn1hTg" name="User blocked" messageSort="reply" receiveEvent="_NhFdwOM-Ee-MkPfZGn1hTg" sendEvent="_NhE2sOM-Ee-MkPfZGn1hTg"/>
+    <message xmi:type="uml:Message" xmi:id="_Tiip4OM-Ee-MkPfZGn1hTg" name="Authentication successful" messageSort="asynchCall"/>
+    <message xmi:type="uml:Message" xmi:id="_ZfRHAOM-Ee-MkPfZGn1hTg" name="getId(email)" messageSort="asynchCall"/>
+    <message xmi:type="uml:Message" xmi:id="_l_ZmwOM-Ee-MkPfZGn1hTg" name="Selects user id" messageSort="asynchCall"/>
+    <message xmi:type="uml:Message" xmi:id="_a1D_0OM_Ee-MkPfZGn1hTg" name="User credentials" messageSort="asynchCall"/>
+    <message xmi:type="uml:Message" xmi:id="_mKow8OM_Ee-MkPfZGn1hTg" name="Set user session" messageSort="asynchCall"/>
+    <message xmi:type="uml:Message" xmi:id="_pUihIOM_Ee-MkPfZGn1hTg" name="Login successful" messageSort="asynchCall" receiveEvent="_pUk9YOM_Ee-MkPfZGn1hTg" sendEvent="_pUjvQOM_Ee-MkPfZGn1hTg"/>
+    <message xmi:type="uml:Message" xmi:id="_gMQRgONAEe-MkPfZGn1hTg" name="&lt;&lt;delete>>" messageSort="deleteMessage"/>
+    <message xmi:type="uml:Message" xmi:id="_p0604ONAEe-MkPfZGn1hTg" name="Id" messageSort="reply"/>
+    <message xmi:type="uml:Message" xmi:id="_uaaZUONAEe-MkPfZGn1hTg" name="&lt;&lt;create>>(email,id)" messageSort="createMessage"/>
+    <message xmi:type="uml:Message" xmi:id="_4zg7IONAEe-MkPfZGn1hTg" name="&lt;&lt;delete>>" messageSort="deleteMessage"/>
+    <message xmi:type="uml:Message" xmi:id="_Gm3HgONHEe-MkPfZGn1hTg" name="Failed to authenticate" messageSort="reply" receiveEvent="_Gm7Y8ONHEe-MkPfZGn1hTg" sendEvent="_Gm5jwONHEe-MkPfZGn1hTg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:DurationObservation" xmi:id="_WF2YUOM3Ee-MkPfZGn1hTg"/>
+</uml:Model>

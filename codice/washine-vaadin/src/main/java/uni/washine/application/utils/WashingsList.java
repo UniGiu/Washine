@@ -8,35 +8,38 @@ import com.vaadin.flow.server.VaadinSession;
 
 import washine.washineCore.AbstractCoreFactory;
 import washine.washineCore.WashineCoreWashingIf;
+import washine.washineCore.exceptions.WashineCoreException;
 import washine.washineCore.user.WashineUserIf;
 import washine.washineCore.washing.WashineLaundryWashingIf;
 
 public class WashingsList extends VerticalLayout{
-    final WashineCoreWashingIf wCore;
-
+    protected final WashineCoreWashingIf wCore;
+    protected final WashineUserIf userData;
+    
    public  WashingsList(){
-    wCore= AbstractCoreFactory.getInstance("vaadin").createCoreWashing();
-  
-		
+    wCore= AbstractCoreFactory.getInstance("vaadin").createCoreWashing();  		
+	userData = (WashineUserIf) VaadinSession.getCurrent().getAttribute("currentUser");
         setPadding(false);
-            setSpacing(true);           
+        setSpacing(true);           
     }
     public void removeItems(){
         removeAll();
     }
-    //TODO: usare WashineCoreException quando aggiornato nel core
+ 
     public void refreshData(){
-        WashineUserIf userData = (WashineUserIf) VaadinSession.getCurrent().getAttribute("currentUser");
-        try{
-            removeItems();
-            List<WashineLaundryWashingIf> washings = wCore.getLaunderWashings(userData.getId());
-            for (WashineLaundryWashingIf washing : washings) {
-            	addItem(washing);
-            }
-        }catch(Exception e){
-            UiNotifier.showErrorNotification(e.getMessage());
-        }
-      
+        
+        removeItems();
+        fetchData();      
+    }
+    protected void fetchData() {
+    	 try{         
+             List<WashineLaundryWashingIf> washings = wCore.getLaunderWashings(userData.getId());
+             for (WashineLaundryWashingIf washing : washings) {
+             	addItem(washing);
+             }
+         }catch(WashineCoreException e){
+             UiNotifier.showErrorNotification(e.getMessage());
+         }
     }
     
 	protected void addItem(WashineLaundryWashingIf washing) {
