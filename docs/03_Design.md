@@ -11,7 +11,7 @@ I tre livelli che costituiscono il nostro sistema sono:
 Livello inferiore dell'architettura, responsabile della gestione e memorizzazione dei dati. È stato realizzato con il supporto di JOOQ.
 - **Logico (Core):**  
 Livello intermedio, responsabile di gestire la logica applicativa del sistema e rappresenta il punto di collegamento tra il database e l'interfaccia grafica.
-- **UI:**  
+- **UI/GUI:**  
 Livello superiore dell'architettura che rappresenta il punto di interazione con l'utente. Realizzato utilizzando il framework Vaadin.
 
 Abbiamo anche deciso di seguire il pattern architetturale MVC nello sviluppo livelli e abbiamo quindi individuato 4 componenti principali:
@@ -22,43 +22,68 @@ Abbiamo anche deciso di seguire il pattern architetturale MVC nello sviluppo liv
 Nell'implementazione attuale abbiamo utilizzato il framework Vaadin (Vaadin Flow) in modo da poter implementare un'interfaccia grafica che risponda ai principali requisiti requisiti di usabilità e di interfaccia utente previsti.
 In virtù della sua modularità questo componente in alternativa potrebbe anche essere un sito web sviluppato con un altro framework, magari più accessibile per  categorie di utenti, o un'API a cui potrebbero connettersi appplicazioni di terze parti o dispositivi intelligenti, ad esempio un cesto della biancheria IOT. 
 
-![alt text](https://github.com/UniGiu/Washine/blob/main/docs/immagini/vaadin-application-architecture.PNG)
+![alt text](https://github.com/UniGiu/Washine/blob/main/docs/immagini/vaadin-application-architecture.png)
 
 
 - **Un componente controller**
 Anche questo è un componente, che appartiene al livello Logico (Core), prevede la modularità sia per rispondere ai requisiti i di adattabilità che di manutenibilità. Oltre ad essere fortemente disaccoppiato dai livelli superiore e inferiore anche al suo interno è composto da componenti modulari cui è affidata la responsabilità di una parte del servizio. Abbiamo previsto che per la stessa responsabilità sia possibile avere componenti diversi che in diverse combinazioni possano fornire gli stessi servizi al livello superiore in base al tipo di componente di presentazione utilizzato. Ciò oltre a rispondere al requisito di adattabilità in fase di sviluppo di rende possibile fornire transitoriamente dei servizi fittizi al componente di presentazione.
-Questi componenti interni sono senza memoria, nel senso che la responsabilità della coerenza di stato del sistema gestito dal software è delegata al livello Database, non esiste uno stato intermedio: dato un particolare input dal livello UI questi componenti ne controlleranno la validità, ne cureranno l'elaborazione, genereranno un nuovo stato da portare al livello inferiore e si prenderanno carico di fornire una risposta appropriata al livello UI. Dopo questo nulla di ciò che è stato viene tenuto e il componente è pronto per rispondere a un nuovo input come se fosse il primo.
-Il componente controller comunica anche con il livello Database, sempre tramite un'interfaccia astratta.
+Questi componenti interni sono senza memoria, nel senso che la responsabilità della coerenza di stato del sistema gestito dal software è delegata al livello Database, non esiste uno stato intermedio: dato un particolare input dal livello UI questi componenti ne controlleranno la validità, ne cureranno l'elaborazione, genereranno un nuovo stato da portare al livello inferiore e si prenderanno carico di fornire una risposta appropriata al livello UI per rispecchiare l'attuale stato del sistem<a. Dopo questo nulla di ciò che è stato viene tenuto e il componente è pronto per rispondere a un nuovo input come se fosse il primo.
+Il componente controller comunica anche con il livello Database tramite un'interfaccia astratta.
 
 
 - **Un componente modello logico**
-Questo componente del livello Logico (Core) è quello che permette di rappresentare gli oggetti della business logic che vengono utilizzati dal componente controller. Viene poi esposto dal controller al livello Ui esclusivamente tramite le interfacce degli oggetti. Si tratta di un componente passivo che modella e stuttura l'informazione del dominio dell'applicazione e ne permette la manipolazione.
+Questo componente del livello Logico (Core) è quello che permette di rappresentare gli oggetti della business logic che vengono utilizzati dal componente controller. Viene poi esposto dal controller al livello Ui esclusivamente tramite le interfacce dei suoi oggetti. Si tratta di un componente passivo che supporta modelli e stuttura dell'informazione del dominio dell'applicazione per permetterne la manipolazione.
 
 
 - **Un componente modello fisico**-Anche questo è un componente che può essere sostituito, grazie a dei servizi di interrogazione modulari. Rispetto al componente di presentazione in questo caso il sistema è meno complesso perché più stabile e meno potenzialmente esposto alla varietà dell'ambiente esterno. I requisiti di manutenibilità adattabiltià e di portabilità hanno comunque pesato nella scelta della modularità. Il database che abbiamo utilizzato è SQLLite
-e il servizio di interrogazione dell'applicazione vi accede tramite la libreria di mapping JOOQ. 
+e il servizio di interrogazione dell'applicazione vi accede tramite la libreria di mapping JOOQ. Se si desiderasse utilizzare altri DBMS e altre librerie basterà aggiungere un gestore che implementi la setessa interfaccia senza dover cambiare nulla a nei livelli superiori. 
 
-Nell'immagine è possibile vedere i tre livelli e i componenti che li realizzano secondo MVC.
+Nel diagramma dei componenti è possibile vedere i tre livelli e i componenti che li realizzano, le loro interazioni e gerarchie.
 
 ![alt text](https://github.com/UniGiu/Washine/blob/main/docs/immagini/ComponentiWashineBig.SVG)
 
- decisioni progettuali da notare:
+ ###decisioni progettuali da notare:###
  
-Implementazione autenticazione
+**Implementazione autenticazione**
 
 |Elemento   |Descrizione   |
 |---|---|
 | Problema  | Per fornire il servizio è necessario identificare l'utente che compie le operazioni  |
-| Decisione  | Implementare un sistema di autenticazione minimale e indipendente dalla scelta di componente di presentazione, lo stato dell'autenticazione è memorizzato a livello di sessione ||
-| Stato  | Approvato ||
-| Presupposti  | Il sistema è accessibile da web e utilizza HTTP/HTTPS |   |
-| Alternative  |  Vaadin ha un sistema di autenticazione utente raffinato che permette di gestire aspetti come il routing e privilegi ||
-| Motivazione  | Un sistema implementato utilizzando le variabili di sessione del componente e che salvi le credenziali è indipendente dal framework utilizzato per la presentazione. Inoltre è più semplice integrare la gestione degli utenti anche a livello di business logic in quanto le relazioni tra gli utenti sono parte del dominio dell'applicazione e facilitare e organizzare la loro interazione è tra i requisiti ||
-| Implicazioni  | Vanno implementate funzionalità già fornite da Vaadin  ||
+| Decisione  | Implementare un sistema di autenticazione minimale e indipendente dalla scelta di componente di presentazione, lo stato dell'autenticazione è memorizzato a livello di sessione |
+| Stato  | Approvato |
+| Presupposti  | Il sistema è accessibile da web e utilizza HTTP/HTTPS |
+| Alternative  |  Vaadin ha un sistema di autenticazione utente raffinato che permette di gestire aspetti come il routing e privilegi |
+| Motivazione  | Un sistema implementato utilizzando le variabili di sessione del componente e che salvi le credenziali è indipendente dal framework utilizzato per la presentazione. Inoltre è più semplice integrare la gestione degli utenti anche a livello di business logic in quanto le relazioni tra gli utenti sono parte del dominio dell'applicazione e facilitare e organizzare la loro interazione è tra i requisiti |
+| Implicazioni  | Vanno implementate funzionalità già fornite da Vaadin  |
 | Appunti  | /  ||
 
-bb
+
+|Elemento   |Descrizione   |
+|---|---|
+| Problema  | Fornire un livello di presentazione che possa essere internazionalizzato  |
+| Decisione  | Utilizzare la lingua inglese e dare al livello presentazione la responsabilità su unità di misura, convenzioni e standard locali  |
+| Stato  | Approvato  |
+| Presupposti  | Altre versioni locali possono essere derivate da quella originale senza dover modificare i livelli sottostanti  |
+| Alternative  |  Vaadin supporta il sistema i18n |
+| Motivazione  | Era necessario un compromesso tra i requisiti di budget, e il requisito di comprensibilità e installabilità cioè limitare lo sforzo degli utenti nel comprendere l'interfaccia e quello dell'utente installatore per riadattare il software in base al contesto di utilizzo  |
+| Implicazioni  | Sarà più complicato, lungo e dispendioso tradurre l'interfaccia Vaadin  |
+| Appunti  | Le date sono gestite logicamente come date gregoriane anche nei livelli core e database anche se potrebbero usare senza particolari accorgimenti un numero intero |
+
+
 ### Viste architettoniche
+
+
+- **Vista utente installatore/admin**
+Nel file readme.md vengono date le istruzioni per eseguire l'applicazione in modalità sviluppo e per preparare il bundle eseguibile. Vengono date anche indicazioni sui requisiti minimi dell'ambiente in cui verrà installato il software. 
+I diagrammi dei componenti e dei package inoltre danno una vista di insieme dell'architettura del sistema come descritta prima e delle relazioni e gerarchie tra i componenti in modo da avere una prima idea di dove mettere le mani in caso di malfunzionamenti o manutenzione perfettiva/adattiva.
+Una volta capito l'insieme questo utente prima di mettere lavorare sul codice potrà consultare, se disponibili, gli altri diagrammi più specifici come i diagrammi delle classi, di comunicazione e di sequenza. 
+Tutti questi aspetti rispondono ai requisiti di installabilità e adattabilità.
+
+
+-**Vista utente**
+Gli utenti veri e propri dell'applicazione per orientarsi nell'interfaccia grafica avranno a disposizione il menu di navigazione, le cui voci sono corredate di icone.   Inoltre è prevista una pagina di Help che illustri i casi d'uso dei vari requisiti funzionali, dove ogni descrizione è in forma testuale e illustrata da un video screen capture. Abbiamo immaginato un'utenza piuttosto variegata, gli utenti più esperti e curiosi possono consultare nel repository la documentazione e i diagrammi. Questo risponde ai requisiti di comprensibilità e apprendibilità.
+
+
 
 ## 2. Software Design
 ### Descrizione Design
