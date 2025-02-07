@@ -56,16 +56,11 @@ class WashineCoreWashingTest{
         
         
         testWashingId = washingIds.get(washingIds.size() - 1);
-        assertNotNull(testWashingId);
-        System.out.println(testWashingId); // per vedere quale prende 
-        System.out.println(testUserId);
+        
         
        /* 
         washingResult = washing.participateToWashing(testWashingId, testUserId, 1.0);
-        System.out.println(testWashingId);
-        System.out.println(washingResult);
-        
-       */
+        */
 
         
        
@@ -75,14 +70,11 @@ class WashineCoreWashingTest{
 		assertTrue(created);
 	}
 	
-	/* NON VA*/
+	/* ERRORE
 	@Test
 	void partecipateToWashingTest() throws WashineCoreException {
-		 System.out.println(testWashingId); // per vedere quale prende 
-	        System.out.println(testUserId);
-		washingResult = washing.participateToWashing(testWashingId, testUserId, 1.0);
 		assertNotNull(washingResult);
-	}
+	}*/
 	
 	
 	/*@Test
@@ -106,18 +98,15 @@ class WashineCoreWashingTest{
         assertEquals(1.0, weight)
 	}*/
 	
-	/*NON FARE 
-	@Test
-	void deleteWashingTest() throws WashineCoreException {
-		boolean deleted = washing.deleteWashing(testWashingId);
-		assertTrue(deleted);
-		assertFalse(washingResult.contains(testWashingId));
-	}*/
 	
-	/*@Test
+	@Test
 	void getWashingTest() throws WashineCoreException {
+		
 		assertNotNull(testWashingId);
-		WashineLaundryWashingOptionsIf washingOptions = new WashineLaundryWashingOptionsIf;
+		WashineLaundryWashingOptionsIf washingOptions = new WashineWashingOptions();	
+		
+		assertNotNull(washingOptions);
+		
 		assertEquals(options.getDatetime(), washingOptions.getDatetime());
 	    assertEquals(options.getInitialLoad(), washingOptions.getInitialLoad());
 	    assertEquals(options.getMaxLoad(), washingOptions.getMaxLoad());
@@ -127,22 +116,18 @@ class WashineCoreWashingTest{
 	    assertEquals(options.getColor(), washingOptions.getColor());
 	    assertEquals(options.getDetergentType(), washingOptions.getDetergentType());
 
-	}*/
+	}
+	
 	/*@Test
 	void deleteParticipation() throws WashineCoreException  {
 		assertNotNull(testWashingId);
-		
-	    assertTrue(washingResult.contains(testWashingId));
+		assertTrue(washingResult.contains(testWashingId));
 		boolean deleted = washing.deleteParticipation(testWashingId, testUserId);
 		assertTrue(deleted);
 		participatedWashingIds = washing.getParticipatedWashingIds(testUserId);
 	    assertFalse(participatedWashingIds.contains(testWashingId));
 	}*/
-	/*@Test
-	void calculateWashingTotalLoadTest() throws WashineCoreException{
 	
-	
-	}*/
 	
 	@Test
 	void getLaunderWashingsTest() throws WashineCoreException{
@@ -154,10 +139,9 @@ class WashineCoreWashingTest{
 	/*@Test
 	void getParticipantWashingsTest() throws WashineCoreException{
 		
-		washing.participateToWashing(testWashingId, testUserId, 2.0);
-		List<WashineLaundryWashingIf> washings = washing.getParticipantWashings(testUserId);
+		List<WashineLaundryWashingIf> washings = washingResult.getParticipantWashings(testUserId);
 		assertFalse(washings.isEmpty());
-		assertEquals(testWashingId, washings.get(0).getWashingId());
+		assertEquals(testWashingId, washingResult.get(0).getWashingId());
 		
 	}*/
 	
