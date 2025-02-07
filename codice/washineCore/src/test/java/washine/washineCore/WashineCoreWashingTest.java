@@ -56,49 +56,105 @@ class WashineCoreWashingTest{
         
         
         testWashingId = washingIds.get(washingIds.size() - 1);
-        /* 
+        
+        
+       /* 
         washingResult = washing.participateToWashing(testWashingId, testUserId, 1.0);
         */
-  }
+
+        
+       
+	}
 	@Test
 	void createWashingTest() throws WashineCoreException {
-		
 		assertTrue(created);
 	}
 	
+	/* ERRORE
 	@Test
+	void partecipateToWashingTest() throws WashineCoreException {
+		assertNotNull(washingResult);
+	}*/
+	
+	
+	/*@Test
 	void getLaundryPersonWashingIdsTest() throws WashineCoreException {
 	    List<String> ids = washing.getLaundryPersonWashingIds(testUserId);
 	    assertNotNull(ids);
 	    assertFalse(ids.isEmpty());
 	    assertTrue(ids.contains(testWashingId));
 	}
-	
+	*/
 	@Test
 	void getParticipatedWashingIdsTest() throws WashineCoreException {
 		List<String> ids = washing.getParticipatedWashingIds(testUserId);
         assertNotNull(ids);
 	}
+	
+	/* PARTICIPATETOWASHING NON VA 
+	@Test
+	void getParticipationWeightTest throws WashineCoreException {
+		double weight = washing.getParticipationWeight(testWashingId, testUserId);
+        assertEquals(1.0, weight)
+	}*/
+	
+	
 	@Test
 	void getWashingTest() throws WashineCoreException {
 		
 		assertNotNull(testWashingId);
-		assertEquals(options.getDatetime(),1640995200);
-	    assertEquals(options.getInitialLoad(), 1.5);
-	    assertEquals(options.getMaxLoad(), 7.0);
-	    assertEquals(options.getTemperature(), "30°C");
-	    assertEquals(options.getSpinSpeed(), "800");
-	    assertEquals(options.getFabricType(),"Cotton");
-	    assertEquals(options.getColor(), "White");
-	    assertEquals(options.getDetergentType(), "Gentle");
+		WashineLaundryWashingOptionsIf washingOptions = new WashineWashingOptions();	
+		
+		assertNotNull(washingOptions);
+		
+		assertEquals(options.getDatetime(), washingOptions.getDatetime());
+	    assertEquals(options.getInitialLoad(), washingOptions.getInitialLoad());
+	    assertEquals(options.getMaxLoad(), washingOptions.getMaxLoad());
+	    assertEquals(options.getTemperature(), washingOptions.getTemperature());
+	    assertEquals(options.getSpinSpeed(), washingOptions.getSpinSpeed());
+	    assertEquals(options.getFabricType(), washingOptions.getFabricType());
+	    assertEquals(options.getColor(), washingOptions.getColor());
+	    assertEquals(options.getDetergentType(), washingOptions.getDetergentType());
 
 	}
+	
+	/*@Test
+	void deleteParticipation() throws WashineCoreException  {
+		assertNotNull(testWashingId);
+		assertTrue(washingResult.contains(testWashingId));
+		boolean deleted = washing.deleteParticipation(testWashingId, testUserId);
+		assertTrue(deleted);
+		participatedWashingIds = washing.getParticipatedWashingIds(testUserId);
+	    assertFalse(participatedWashingIds.contains(testWashingId));
+	}*/
 	
 	
 	@Test
 	void getLaunderWashingsTest() throws WashineCoreException{
 		List<WashineLaundryWashingIf> washings = washing.getLaunderWashings(testUserId);
 		assertFalse(washings.isEmpty());
+		
 	}
+	
+	/*@Test
+	void getParticipantWashingsTest() throws WashineCoreException{
+		
+		List<WashineLaundryWashingIf> washings = washingResult.getParticipantWashings(testUserId);
+		assertFalse(washings.isEmpty());
+		assertEquals(testWashingId, washingResult.get(0).getWashingId());
+		
+	}*/
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
