@@ -14,7 +14,7 @@ class WashineCoreAuthTest {
 	@BeforeAll
 	@AfterAll
 	static void setUp() throws WashineCoreException {
-		user = new WashineCoreAuth();
+		user = (WashineCoreAuth) AbstractCoreFactory.getInstance("vaadin").createCoreAuth();
 		user.removeUserByEmail("test3@gmail.com");
 
 	}
