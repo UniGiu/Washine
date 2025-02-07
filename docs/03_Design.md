@@ -22,7 +22,7 @@ Abbiamo anche deciso di seguire il pattern architetturale MVC nello sviluppo liv
 Nell'implementazione attuale abbiamo utilizzato il framework Vaadin (Vaadin Flow) in modo da poter implementare un'interfaccia grafica che risponda ai principali requisiti requisiti di usabilità e di interfaccia utente previsti.
 In virtù della sua modularità questo componente in alternativa potrebbe anche essere un sito web sviluppato con un altro framework, magari più accessibile per  categorie di utenti, o un'API a cui potrebbero connettersi appplicazioni di terze parti o dispositivi intelligenti, ad esempio un cesto della biancheria IOT. 
 
-![alt text](https://github.com/UniGiu/Washine/blob/main/diagrammi/immagini/vaadin-application-architecture.PNG)
+![alt text](https://github.com/UniGiu/Washine/blob/main/docs/immagini/vaadin-application-architecture.PNG)
 
 
 - **Un componente controller**
@@ -40,6 +40,7 @@ e il servizio di interrogazione dell'applicazione vi accede tramite la libreria 
 
 Nell'immagine è possibile vedere i tre livelli e i componenti che li realizzano secondo MVC.
 
+![alt text](https://github.com/UniGiu/Washine/blob/main/docs/immagini/ComponentiWashineBig.SVG)
 
  decisioni progettuali da notare:
  
