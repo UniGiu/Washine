@@ -10,11 +10,11 @@ Abbiamo verificato il corretto funzionamento delle operazioni principali del sis
 I casi di test sono stati effettuati nei seguenti file:
 - WashineCoreWashingTest in cui abbiamo verificato la corretta creazione e gestione dei lavaggi della classe WashineCoreWashing
 - WashineCoreCommunityTest per verififcare il corretto funzionamento delle funzionalità di invito e partecipazione della community della classe WashineCorecommunity
-- WashineCoreAuthTest per verificare la correttezza autenticazioni degli utenti e i vari metodi di modifica password, Email, ...  
+- WashineCoreAuthTest per verificare la correttezza autenticazioni degli utenti e i vari metodi di autenticazione del profilo utente, modifica password, Email, e le varie funzionalità del profilo Admin. 
 
-## Casi di Test  
+## 1. Casi di Test  
 
-### WashineCoreWashingTest
+### 1.1. WashineCoreWashingTest
 
 ![alt text](https://github.com/UniGiu/Washine/blob/testing/docs/Immagini/WashineCoreWashingTest.png)  
 
@@ -28,13 +28,41 @@ Verifica che la creazione di un lavaggio abbia successo in modo corretto.Dato l'
 
 ![alt text](https://github.com/UniGiu/Washine/blob/testing/docs/Immagini/ListWashingTest.png) 
 
-Verifica che si possa risalire alla lista di lavaggi si uno specifico utente. Dato l'id utente (testUserId) il metodo deve restituire una lista non vuota contentente i vari Id dei lavaggi a cui un'utente ha partecipato.
+Verifica che si possa risalire alla lista di lavaggi di uno specifico utente. Dato l'id utente (testUserId) il metodo deve restituire una lista non vuota contentente i vari Id dei lavaggi a cui un'utente ha partecipato.  
 
-### WashineCorecommunityTest  
+#### getParticipatedWashingIdsTest  
+Verifica che si possa risalire alla lista di lavaggi di uno specifico utente. 
 
-![alt text](https://github.com/UniGiu/Washine/blob/testing/docs/Immagini/WashineCoreCommunityTest.png)
+#### getLaunderWashingsTest  
+Verifica che venga restituita correttamente la lsita di lavaggi attivi di un lavandaio specifico.  
 
-### WashineCoreAuthTest
+#### getWashingTest  
+Verifica che un lavaggio venga creato con le opzioni di lavaggio impostate correttamente. 
+
+### 1.2. WashineCorecommunityTest  
+
+![alt text](https://github.com/UniGiu/Washine/blob/testing/docs/Immagini/WashineCoreCommunityTest.png)  
+
+#### addInviteTest1
+
+#### addInviteTest
+Verifica l'impossibilità di invitare un'tente già appartennete a una specifica community.
+#### nameInInvitationsTest
+Verifica che un nome non esistente non sia presente tra gli inviti. 
+#### nameInCommunityTest2  
+Verifica che un nome non esista nella comunità specificata.   
+#### getIdThroughCodeTest1
+#### updateCodeTest2
+#### generateUniqueCodeTest
+#### joinCommunityTest1
+#### joinCommunityTest2
+#### nameInJoinedCommunitiesTest
+#### userInCommunityTest
+Verifica che 
+#### removeUserTest1
+Verifica che dati due parametri errati, non venga effettuata la rimozione dell'utente dalla community. 
+
+### 1.3. WashineCoreAuthTest
 
 ![alt text](https://github.com/UniGiu/Washine/blob/testing/docs/Immagini/WashineCoreAuthTest.png)
 
@@ -52,7 +80,37 @@ Dato l'id dell'utente e la nuova password, il metodo dovrà restituire un valore
 Verifica che un utente possa autenticarsi con le sue credenziali e che esse siano valide.
 Data la mail e la password, l'autenticazione dovrebbe restituire un oggetto non nullo.
 
-## Copertura del codice 
+#### authenticateUserTest2  
+Verifica che data una mail e una password errate l'utente non venga autentificato.
+Ci si aspetta quindi che venga restituito un oggetto non nullo.  
+#### addUserTest1  
+Verifica che l'inserimento di un utente avvenga in modo corretto.  
+
+#### addUserTest2  
+Verifica che l'inserimento di un utente già registrato fallisca.  
+
+#### updateUserEmail  
+
+#### authenticateAdminTest1  
+Verifica la corretta autenticazione del profilo Admin (identificato con id = 0).  
+
+#### authenticateAdminTest2  
+Verifica che l'autenticazione di un iutente Admin fallisca se viene fornito un id non valido.  
+
+#### blockUserTest1  
+Verifica l'impossibilità di bloccare un profilo Admin.  
+
+#### blockUserTest2  
+Verifica la correttezza del blocco di un utente da parte di Admin.  
+
+#### unblockUserTest1  
+Verifica l'impossibilità di bloccare un profilo Admin da parte di un qualsiasi User.  
+
+#### unblockUserTest2
+Verifica la correttezza dello sblocco di un utente da parte di Admin.  
+
+
+## 2. Copertura del codice 
 
 ![alt text](https://github.com/UniGiu/Washine/blob/testing/docs/Immagini/CoverageCore.png)
 
