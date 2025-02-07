@@ -26,11 +26,36 @@ Verifica che si possa risalire alla lista di lavaggi si uno specifico utente.
 
 Dato l'id utente (testUserId) il metodo deve restituire una lista non vuota contentente i vari Id dei lavaggi a cui un'utente ha partecipato.
 
+### WashineCorecommunityTest  
 
+![alt text](https://github.com/UniGiu/Washine/blob/testing/docs/Immagini/WashineCoreCommunityTest.png)
 
-### WashineCorecommunityTest
+#### Esempi  
 
-#### 
+#### createWashingTest  
+#### createWashingTest
+
+### WashineCoreAuthTest
+
+![alt text](https://github.com/UniGiu/Washine/blob/testing/docs/Immagini/WashineCoreAuthTest.png)
+
+#### UpdateUserPassword  
+
+![alt text](https://github.com/UniGiu/Washine/blob/testing/docs/Immagini/UpdatePw.png)  
+
+Verifica che un utente possa modificare la propria password con successo.
+Dato l'id dell'utente e la nuova password, il metodo dovrà restituire un valore non nullo per verificare che l'aggiornamento sia andato a buon fine. 
+
+#### authenticateUserTest1
+
+![alt text](https://github.com/UniGiu/Washine/blob/testing/docs/Immagini/AuthUser.png)
+
+Verifica che un utente possa autenticarsi con le sue credenziali e che esse siano valide.
+Data la mail e la password, l'autenticazione dovrebbe restituire un oggetto non nullo.
+
+## Copertura del codice 
+
+![alt text](https://github.com/UniGiu/Washine/blob/testing/docs/Immagini/Coverage.png)
 
 
 
