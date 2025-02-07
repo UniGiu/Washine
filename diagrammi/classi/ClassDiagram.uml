@@ -38,20 +38,7 @@
         <ownedAttribute xmi:type="uml:Property" xmi:id="_MDQV8MtlEe-HSNBCTkCQdQ" name="blocked">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
         </ownedAttribute>
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_UbCU4MuUEe-HSNBCTkCQdQ" name="group" type="_x_dc4MtkEe-HSNBCTkCQdQ" association="_Ua2HoMuUEe-HSNBCTkCQdQ">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_UbExIMuUEe-HSNBCTkCQdQ"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_UbFYMMuUEe-HSNBCTkCQdQ" value="*"/>
-        </ownedAttribute>
         <ownedAttribute xmi:type="uml:Property" xmi:id="_c88hAMuTEe-HSNBCTkCQdQ" name="invitation" type="_dlpDIMqrEe-HSNBCTkCQdQ" association="_c8kGgMuTEe-HSNBCTkCQdQ"/>
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_8DfvoNAwEe-FRLYPDeOYTA" name="usergroup" type="_kOzLYNAwEe-FRLYPDeOYTA" association="_8Dd6cNAwEe-FRLYPDeOYTA">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_8DfvodAwEe-FRLYPDeOYTA"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_8DfvotAwEe-FRLYPDeOYTA" value="*"/>
-        </ownedAttribute>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_x_dc4MtkEe-HSNBCTkCQdQ" name="Group">
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_TW_pUMtlEe-HSNBCTkCQdQ" name="group_name">
-          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-        </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_dlpDIMqrEe-HSNBCTkCQdQ" name="Invitation">
         <ownedAttribute xmi:type="uml:Property" xmi:id="_uuMD8MtlEe-HSNBCTkCQdQ" name="invitee_name">
@@ -129,11 +116,6 @@
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
         </ownedAttribute>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_kOzLYNAwEe-FRLYPDeOYTA" name="UserGroup">
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_0SNkoNAwEe-FRLYPDeOYTA" name="name">
-          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-        </ownedAttribute>
-      </packagedElement>
       <packagedElement xmi:type="uml:Interface" xmi:id="_dlCJYOR5Ee-rJLsUqljYRw" name="UserIf">
         <ownedOperation xmi:type="uml:Operation" xmi:id="_czyyUOR8Ee-rJLsUqljYRw" name="getEmail"/>
         <ownedOperation xmi:type="uml:Operation" xmi:id="_g9bhMOR8Ee-rJLsUqljYRw" name="getId"/>
@@ -154,6 +136,32 @@
       </packagedElement>
       <packagedElement xmi:type="uml:Dependency" xmi:id="_kTpuwOR_Ee-rJLsUqljYRw" client="_e4ZEcMqrEe-HSNBCTkCQdQ" supplier="_mTj4YOR8Ee-rJLsUqljYRw"/>
       <packagedElement xmi:type="uml:Dependency" xmi:id="_yM4IYOR_Ee-rJLsUqljYRw" client="_wrLxkMtkEe-HSNBCTkCQdQ" supplier="_dlCJYOR5Ee-rJLsUqljYRw"/>
+      <packagedElement xmi:type="uml:Interface" xmi:id="_aWNKAOSGEe-rJLsUqljYRw" name="LaundryWashingOptions">
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_vJ7QkOSGEe-rJLsUqljYRw" name="getVisibilityTime"/>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_y0sSIOSGEe-rJLsUqljYRw" name="getDateTime"/>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_1ZApAOSGEe-rJLsUqljYRw" name="getDurationMinutes"/>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_5Jf4EOSGEe-rJLsUqljYRw" name="getInitialLoad"/>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_8z7icOSGEe-rJLsUqljYRw" name="getMaxLoad"/>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="__VC0UOSGEe-rJLsUqljYRw" name="getTemperature"/>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_Ca1gkOSHEe-rJLsUqljYRw" name="getSpinSpeed"/>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_FaOC0OSHEe-rJLsUqljYRw" name="getFabricType"/>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_H0K8wOSHEe-rJLsUqljYRw" name="getColor"/>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_JqrycOSHEe-rJLsUqljYRw" name="getDetergentType"/>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_MyOyMOSHEe-rJLsUqljYRw" name="isUnderwear"/>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_QLPVYOSHEe-rJLsUqljYRw" name="getRefundType"/>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_T7O1MOSHEe-rJLsUqljYRw" name="getPickupAddress"/>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_WNLpsOSHEe-rJLsUqljYRw" name="getDeliveryAddress"/>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_YYOk8OSHEe-rJLsUqljYRw" name="getDryingType"/>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_khtfQOSHEe-rJLsUqljYRw" name="getPickupAvailability"/>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_Ft3ogOSQEe-rJLsUqljYRw" name="getDeliveryAvailability"/>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_IXTI4OSQEe-rJLsUqljYRw" name="isIroning"/>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_KmngIOSQEe-rJLsUqljYRw" name="getMaxLoadParticipant "/>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_Nh_FEOSQEe-rJLsUqljYRw" name="getWashingAccessOpenDate"/>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_RVpj8OSQEe-rJLsUqljYRw" name="getWashingAccessCloseDate"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Interface" xmi:id="_eg_IYOSGEe-rJLsUqljYRw" name="LaundryWashingOptionsLaunder"/>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_0RE9UOSWEe-rJLsUqljYRw" client="_Dg7dcNAkEe-FRLYPDeOYTA" supplier="_aWNKAOSGEe-rJLsUqljYRw"/>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_4k90YOSWEe-rJLsUqljYRw" client="_Dg7dcNAkEe-FRLYPDeOYTA" supplier="_eg_IYOSGEe-rJLsUqljYRw"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_c8kGgMuTEe-HSNBCTkCQdQ" memberEnd="_c8spYMuTEe-HSNBCTkCQdQ _c88hAMuTEe-HSNBCTkCQdQ">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_c8rbQMuTEe-HSNBCTkCQdQ" source="org.eclipse.papyrus">
@@ -162,14 +170,6 @@
       <ownedEnd xmi:type="uml:Property" xmi:id="_c8spYMuTEe-HSNBCTkCQdQ" name="user" type="_wrLxkMtkEe-HSNBCTkCQdQ" association="_c8kGgMuTEe-HSNBCTkCQdQ">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_c8zXEMuTEe-HSNBCTkCQdQ"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_c86r0MuTEe-HSNBCTkCQdQ" value="*"/>
-      </ownedEnd>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_Ua2HoMuUEe-HSNBCTkCQdQ" memberEnd="_UbCU4MuUEe-HSNBCTkCQdQ _UbFYMcuUEe-HSNBCTkCQdQ">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Ua_RkMuUEe-HSNBCTkCQdQ" source="org.eclipse.papyrus">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_UbBt0MuUEe-HSNBCTkCQdQ" key="nature" value="UML_Nature"/>
-      </eAnnotations>
-      <ownedEnd xmi:type="uml:Property" xmi:id="_UbFYMcuUEe-HSNBCTkCQdQ" name="user" type="_wrLxkMtkEe-HSNBCTkCQdQ" association="_Ua2HoMuUEe-HSNBCTkCQdQ">
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_bXABcMuUEe-HSNBCTkCQdQ" value="*"/>
       </ownedEnd>
     </packagedElement>
     <packagedElement xmi:type="uml:AssociationClass" xmi:id="_USJzwMuWEe-HSNBCTkCQdQ" name="Participation" memberEnd="_USvpoMuWEe-HSNBCTkCQdQ _US6BsMuWEe-HSNBCTkCQdQ">
@@ -187,12 +187,6 @@
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_I17MMdAkEe-FRLYPDeOYTA" key="nature" value="UML_Nature"/>
       </eAnnotations>
       <ownedEnd xmi:type="uml:Property" xmi:id="_I18aUtAkEe-FRLYPDeOYTA" name="washing" type="_e4ZEcMqrEe-HSNBCTkCQdQ" association="_I1xbMNAkEe-FRLYPDeOYTA"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_8Dd6cNAwEe-FRLYPDeOYTA" memberEnd="_8DfvoNAwEe-FRLYPDeOYTA _8DgWsNAwEe-FRLYPDeOYTA">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_8DfIkNAwEe-FRLYPDeOYTA" source="org.eclipse.papyrus">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_8DfIkdAwEe-FRLYPDeOYTA" key="nature" value="UML_Nature"/>
-      </eAnnotations>
-      <ownedEnd xmi:type="uml:Property" xmi:id="_8DgWsNAwEe-FRLYPDeOYTA" name="user" type="_wrLxkMtkEe-HSNBCTkCQdQ" association="_8Dd6cNAwEe-FRLYPDeOYTA"/>
     </packagedElement>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_FxjHUMtlEe-HSNBCTkCQdQ">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_FxtfYMtlEe-HSNBCTkCQdQ" source="http://www.eclipse.org/uml2/2.0.0/UML">

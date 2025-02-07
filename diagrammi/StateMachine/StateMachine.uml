@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_0QxT8OSZEe-rJLsUqljYRw" name="StateMachine">
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_0Sr_gOSZEe-rJLsUqljYRw">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:StateMachine" xmi:id="_3HaJ4OSZEe-rJLsUqljYRw" name="Washing">
+    <region xmi:type="uml:Region" xmi:id="_5DDXMOSZEe-rJLsUqljYRw" name="Region">
+      <transition xmi:type="uml:Transition" xmi:id="__4beIOSaEe-rJLsUqljYRw" source="_9aHeEOSZEe-rJLsUqljYRw" target="_KJD14OSaEe-rJLsUqljYRw"/>
+      <transition xmi:type="uml:Transition" xmi:id="_JVyJYOSbEe-rJLsUqljYRw" source="_KJD14OSaEe-rJLsUqljYRw" target="_Q1re4OSaEe-rJLsUqljYRw"/>
+      <transition xmi:type="uml:Transition" xmi:id="_JKaNkOSgEe-rJLsUqljYRw" source="_lEs88OSaEe-rJLsUqljYRw" target="_r0o_sOSaEe-rJLsUqljYRw"/>
+      <transition xmi:type="uml:Transition" xmi:id="_R_kQYOSgEe-rJLsUqljYRw" source="_r0o_sOSaEe-rJLsUqljYRw" target="_MI-3gOSgEe-rJLsUqljYRw"/>
+      <transition xmi:type="uml:Transition" xmi:id="_mWOAcOSgEe-rJLsUqljYRw" source="_XYnAYOSaEe-rJLsUqljYRw" target="_fYVQAOSaEe-rJLsUqljYRw"/>
+      <transition xmi:type="uml:Transition" xmi:id="_oJtXUOSgEe-rJLsUqljYRw" source="_fYVQAOSaEe-rJLsUqljYRw" target="_UsrJIOSbEe-rJLsUqljYRw"/>
+      <transition xmi:type="uml:Transition" xmi:id="_qHf5sOSgEe-rJLsUqljYRw" guard="_R3axQOSxEe-Y_qwtt1cnTA" kind="local" source="_UsrJIOSbEe-rJLsUqljYRw" target="_lEs88OSaEe-rJLsUqljYRw">
+        <ownedRule xmi:type="uml:InteractionConstraint" xmi:id="_R3axQOSxEe-Y_qwtt1cnTA" name="Washing Completed Succesfully "/>
+      </transition>
+      <transition xmi:type="uml:Transition" xmi:id="_n3jI8OSjEe-rJLsUqljYRw" name="User add Load" guard="_UDQYcOU6Ee-Y_qwtt1cnTA" source="_Q1re4OSaEe-rJLsUqljYRw" target="_g_iIQOSjEe-rJLsUqljYRw">
+        <ownedRule xmi:type="uml:InteractionConstraint" xmi:id="_owPOAOSvEe-Y_qwtt1cnTA" name="Load &lt; (MaxLoad - TotalLoad)" visibility="public">
+          <specification xmi:type="uml:Expression" xmi:id="_LNqQwOU6Ee-Y_qwtt1cnTA"/>
+        </ownedRule>
+        <ownedRule xmi:type="uml:InteractionConstraint" xmi:id="_UDQYcOU6Ee-Y_qwtt1cnTA" name="Load &lt; (MaxLoad - TotalLoad)"/>
+      </transition>
+      <transition xmi:type="uml:Transition" xmi:id="_46z1oOSjEe-rJLsUqljYRw" guard="_4DgZMOSuEe-Y_qwtt1cnTA" source="_g_iIQOSjEe-rJLsUqljYRw" target="_q9zvQOSjEe-rJLsUqljYRw">
+        <ownedRule xmi:type="uml:InteractionConstraint" xmi:id="_4DgZMOSuEe-Y_qwtt1cnTA" name="Total Load &lt; Max Load"/>
+      </transition>
+      <transition xmi:type="uml:Transition" xmi:id="_9QWSgOSjEe-rJLsUqljYRw" guard="_jYI2AOSxEe-Y_qwtt1cnTA" source="_g_iIQOSjEe-rJLsUqljYRw" target="_XYnAYOSaEe-rJLsUqljYRw">
+        <ownedRule xmi:type="uml:InteractionConstraint" xmi:id="_jYI2AOSxEe-Y_qwtt1cnTA" name="Total Load = Max Load "/>
+      </transition>
+      <transition xmi:type="uml:Transition" xmi:id="_X-quQOSvEe-Y_qwtt1cnTA" source="_q9zvQOSjEe-rJLsUqljYRw" target="_Q1re4OSaEe-rJLsUqljYRw"/>
+      <transition xmi:type="uml:Transition" xmi:id="_2wF-oOSwEe-Y_qwtt1cnTA" guard="_EMPasOSxEe-Y_qwtt1cnTA" source="_nF5kYOS1Ee-Y_qwtt1cnTA" target="_fT-FsOSgEe-rJLsUqljYRw">
+        <ownedRule xmi:type="uml:InteractionConstraint" xmi:id="_EMPasOSxEe-Y_qwtt1cnTA" name="Current time >= close Date &amp; No participant "/>
+      </transition>
+      <transition xmi:type="uml:Transition" xmi:id="_GUdZgOSzEe-Y_qwtt1cnTA" guard="_LsuesOSzEe-Y_qwtt1cnTA" source="_nF5kYOS1Ee-Y_qwtt1cnTA" target="_XYnAYOSaEe-rJLsUqljYRw">
+        <ownedRule xmi:type="uml:InteractionConstraint" xmi:id="_LsuesOSzEe-Y_qwtt1cnTA" name="Current Time>= close Date &amp; Participant"/>
+      </transition>
+      <transition xmi:type="uml:Transition" xmi:id="_VBrJ8OS1Ee-Y_qwtt1cnTA" source="_fT-FsOSgEe-rJLsUqljYRw" target="_RbRD8OS1Ee-Y_qwtt1cnTA"/>
+      <transition xmi:type="uml:Transition" xmi:id="_tH_psOS1Ee-Y_qwtt1cnTA" source="_Q1re4OSaEe-rJLsUqljYRw" target="_nF5kYOS1Ee-Y_qwtt1cnTA"/>
+      <subvertex xmi:type="uml:Pseudostate" xmi:id="_9aHeEOSZEe-rJLsUqljYRw"/>
+      <subvertex xmi:type="uml:State" xmi:id="_KJD14OSaEe-rJLsUqljYRw" name="Created">
+        <doActivity xmi:type="uml:Activity" xmi:id="_VNgEoOSjEe-rJLsUqljYRw" name="ShowAsActive"/>
+      </subvertex>
+      <subvertex xmi:type="uml:State" xmi:id="_Q1re4OSaEe-rJLsUqljYRw" name="Waiting"/>
+      <subvertex xmi:type="uml:State" xmi:id="_XYnAYOSaEe-rJLsUqljYRw" name="Confirmed">
+        <doActivity xmi:type="uml:Activity" xmi:id="_qaUfUOSxEe-Y_qwtt1cnTA" name="ShowAsClosed"/>
+      </subvertex>
+      <subvertex xmi:type="uml:State" xmi:id="_fYVQAOSaEe-rJLsUqljYRw" name="Programmed"/>
+      <subvertex xmi:type="uml:State" xmi:id="_lEs88OSaEe-rJLsUqljYRw" name="Finished"/>
+      <subvertex xmi:type="uml:State" xmi:id="_r0o_sOSaEe-rJLsUqljYRw" name="Stored"/>
+      <subvertex xmi:type="uml:State" xmi:id="_UsrJIOSbEe-rJLsUqljYRw" name="InProgress"/>
+      <subvertex xmi:type="uml:FinalState" xmi:id="_MI-3gOSgEe-rJLsUqljYRw"/>
+      <subvertex xmi:type="uml:State" xmi:id="_fT-FsOSgEe-rJLsUqljYRw" name="Canceled">
+        <exit xmi:type="uml:Activity" xmi:id="_lKItMOSzEe-Y_qwtt1cnTA" name="DeleteWashing"/>
+      </subvertex>
+      <subvertex xmi:type="uml:Pseudostate" xmi:id="_g_iIQOSjEe-rJLsUqljYRw" kind="choice"/>
+      <subvertex xmi:type="uml:State" xmi:id="_q9zvQOSjEe-rJLsUqljYRw" name="Update ">
+        <entry xmi:type="uml:Activity" xmi:id="_1JD58OSxEe-Y_qwtt1cnTA" name="UpdateTotalLoad"/>
+      </subvertex>
+      <subvertex xmi:type="uml:Pseudostate" xmi:id="_RbRD8OS1Ee-Y_qwtt1cnTA" kind="terminate"/>
+      <subvertex xmi:type="uml:Pseudostate" xmi:id="_nF5kYOS1Ee-Y_qwtt1cnTA" kind="choice"/>
+    </region>
+  </packagedElement>
+  <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_CmifoOSaEe-rJLsUqljYRw">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Cm0McOSaEe-rJLsUqljYRw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <references xmi:type="ecore:EPackage" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ"/>
+    </eAnnotations>
+    <appliedProfile xmi:type="uml:Profile" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#ActionLanguage"/>
+  </profileApplication>
+</uml:Model>
