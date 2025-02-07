@@ -16,18 +16,18 @@ Livello superiore dell'architettura che rappresenta il punto di interazione con 
 
 Abbiamo anche deciso di seguire il pattern architetturale MVC nello sviluppo livelli e abbiamo quindi individuato 4 componenti principali:
 
-
 - **Un componente di presentazione:**
  Questo componente appartiene al livello UI e abbiamo deciso che trattandosi di applicazione web interagisca con gli utenti attraverso il protocollo HTTP e con i livelli sottostanti esclusivamente attraverso interfacce astratte in modo da essere il più possibile modulare e disaccoppiato dal livello inferiore. 
 Nell'implementazione attuale abbiamo utilizzato il framework Vaadin (Vaadin Flow) in modo da poter implementare un'interfaccia grafica che risponda ai principali requisiti requisiti di usabilità e di interfaccia utente previsti.
 In virtù della sua modularità questo componente in alternativa potrebbe anche essere un sito web sviluppato con un altro framework, magari più accessibile per  categorie di utenti, o un'API a cui potrebbero connettersi appplicazioni di terze parti o dispositivi intelligenti, ad esempio un cesto della biancheria IOT. 
+Bisgna considerare che in sé anche il componente Vaadin che per brevità consideriamo un'unico componente ha in sè diversi componenti e una sua architettura.
 
 ![alt text](https://github.com/UniGiu/Washine/blob/main/docs/immagini/vaadin-application-architecture.png)
-
+ fonte: https://vaadin.com/docs/latest/flow/application +
 
 - **Un componente controller**
-Anche questo è un componente, che appartiene al livello Logico (Core), prevede la modularità sia per rispondere ai requisiti i di adattabilità che di manutenibilità. Oltre ad essere fortemente disaccoppiato dai livelli superiore e inferiore anche al suo interno è composto da componenti modulari cui è affidata la responsabilità di una parte del servizio. Abbiamo previsto che per la stessa responsabilità sia possibile avere componenti diversi che in diverse combinazioni possano fornire gli stessi servizi al livello superiore in base al tipo di componente di presentazione utilizzato. Ciò oltre a rispondere al requisito di adattabilità in fase di sviluppo di rende possibile fornire transitoriamente dei servizi fittizi al componente di presentazione.
-Questi componenti interni sono senza memoria, nel senso che la responsabilità della coerenza di stato del sistema gestito dal software è delegata al livello Database, non esiste uno stato intermedio: dato un particolare input dal livello UI questi componenti ne controlleranno la validità, ne cureranno l'elaborazione, genereranno un nuovo stato da portare al livello inferiore e si prenderanno carico di fornire una risposta appropriata al livello UI per rispecchiare l'attuale stato del sistem<a. Dopo questo nulla di ciò che è stato viene tenuto e il componente è pronto per rispondere a un nuovo input come se fosse il primo.
+Lo stile architetturale interno di questo componente, che appartiene al livello Logico (Core), è quello "tipo di dati astratto" e prevede la modularità sia per rispondere ai requisiti i di adattabilità che di manutenibilità. Oltre ad essere fortemente disaccoppiato dai livelli superiore e inferiore anche al suo interno è composto da componenti modulari cui è affidata la responsabilità di una parte del servizio tramite interfacce. Abbiamo previsto che per la stessa responsabilità sia possibile avere componenti diversi che in diverse combinazioni possano fornire gli stessi servizi al livello superiore in base al tipo di componente di presentazione utilizzato. Ciò oltre a rispondere al requisito di adattabilità rende possibile fornire transitoriamente dei servizi fittizi al componente di presentazione a supporto della fase di sviluppo, quando non tutti i pezzi da cui la GUI dipende sono pronti e funzionanti.
+Questi componenti interni sono di tipo computazionale, senza memoria, nel senso che la responsabilità della coerenza di stato del sistema gestito dal software è delegata al livello Database, non esiste uno stato intermedio: dato un particolare input dal livello UI questi componenti ne controlleranno la validità, ne cureranno l'elaborazione, genereranno un nuovo stato da portare al livello inferiore e si prenderanno carico di fornire una risposta appropriata al livello UI per rispecchiare l'attuale stato del sistema. Dopo questo nulla di ciò che è stato viene tenuto e il componente è pronto per rispondere a un nuovo input come se fosse il primo. 
 Il componente controller comunica anche con il livello Database tramite un'interfaccia astratta.
 
 
@@ -35,14 +35,14 @@ Il componente controller comunica anche con il livello Database tramite un'inter
 Questo componente del livello Logico (Core) è quello che permette di rappresentare gli oggetti della business logic che vengono utilizzati dal componente controller. Viene poi esposto dal controller al livello Ui esclusivamente tramite le interfacce dei suoi oggetti. Si tratta di un componente passivo che supporta modelli e stuttura dell'informazione del dominio dell'applicazione per permetterne la manipolazione.
 
 
-- **Un componente modello fisico**-Anche questo è un componente che può essere sostituito, grazie a dei servizi di interrogazione modulari. Rispetto al componente di presentazione in questo caso il sistema è meno complesso perché più stabile e meno potenzialmente esposto alla varietà dell'ambiente esterno. I requisiti di manutenibilità adattabiltià e di portabilità hanno comunque pesato nella scelta della modularità. Il database che abbiamo utilizzato è SQLLite
-e il servizio di interrogazione dell'applicazione vi accede tramite la libreria di mapping JOOQ. Se si desiderasse utilizzare altri DBMS e altre librerie basterà aggiungere un gestore che implementi la setessa interfaccia senza dover cambiare nulla a nei livelli superiori. 
+- **Un componente modello fisico**
+Anche questo è un componente che può essere sostituito, grazie a dei servizi di interrogazione modulari. Rispetto al componente di presentazione in questo caso il sistema è meno complesso perché più stabile e meno potenzialmente esposto alla varietà dell'ambiente esterno. I requisiti di manutenibilità adattabiltià e di portabilità hanno comunque pesato nella scelta della modularità. I componenti che lo compongono sono componenti di memoria e di di gestione della memoria. Il database che abbiamo utilizzato è SQLLite e il servizio di interrogazione dell'applicazione vi accede tramite la libreria di mapping JOOQ. Se si desiderasse utilizzare altri DBMS e altre librerie basterà aggiungere un gestore che implementi la setessa interfaccia senza dover cambiare nulla a nei livelli superiori. 
 
 Nel diagramma dei componenti è possibile vedere i tre livelli e i componenti che li realizzano, le loro interazioni e gerarchie.
 
 ![alt text](https://github.com/UniGiu/Washine/blob/main/docs/immagini/ComponentiWashineBig.SVG)
 
- ###decisioni progettuali da notare:###
+ ### Decisioni progettuali particolari:
  
 **Implementazione autenticazione**
 
@@ -80,7 +80,7 @@ Una volta capito l'insieme questo utente prima di mettere lavorare sul codice po
 Tutti questi aspetti rispondono ai requisiti di installabilità e adattabilità.
 
 
--**Vista utente**
+- **Vista utente**
 Gli utenti veri e propri dell'applicazione per orientarsi nell'interfaccia grafica avranno a disposizione il menu di navigazione, le cui voci sono corredate di icone.   Inoltre è prevista una pagina di Help che illustri i casi d'uso dei vari requisiti funzionali, dove ogni descrizione è in forma testuale e illustrata da un video screen capture. Abbiamo immaginato un'utenza piuttosto variegata, gli utenti più esperti e curiosi possono consultare nel repository la documentazione e i diagrammi. Questo risponde ai requisiti di comprensibilità e apprendibilità.
 
 
