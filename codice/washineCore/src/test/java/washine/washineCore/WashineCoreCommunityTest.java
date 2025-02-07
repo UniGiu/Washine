@@ -73,7 +73,7 @@ class WashineCoreCommunityTest {
     assertTrue(user.nameInJoinedCommunities("test-nome-gruppo", "2000"));
     assertTrue(user.nameInCommunity("test-partecipante", "5444046707115218308"));
     assertTrue(user.userInCommunity("2000", "5444046707115218308"));
-    assertNotNull(user.getCommunityMembersIds("5444046707115218308"));
+    assertNotNull(user.getCommunityMemberId("5444046707115218308"));
   }
 
   @Test
