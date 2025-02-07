@@ -22,7 +22,7 @@ Nell'implementazione attuale abbiamo utilizzato il framework Vaadin (Vaadin Flow
 In virtù della sua modularità questo componente in alternativa potrebbe anche essere un sito web sviluppato con un altro framework, magari più accessibile per  categorie di utenti, o un'API a cui potrebbero connettersi appplicazioni di terze parti o dispositivi intelligenti, ad esempio un cesto della biancheria IOT. 
 Bisgna considerare che in sé anche il componente Vaadin che per brevità consideriamo un'unico componente ha in sè diversi componenti e una sua architettura.
 
-![alt text]([(https://github.com/UniGiu/Washine/blob/main/docs/Immagini/vaadin-application-architecture.png?raw=true) ])
+![alt text](https://raw.githubusercontent.com/UniGiu/Washine/refs/heads/main/docs/Immagini/vaadin-application-architecture.png)
 
  fonte: https://vaadin.com/docs/latest/flow/application +
 
@@ -41,7 +41,7 @@ Anche questo è un componente che può essere sostituito, grazie a dei servizi d
 
 Nel diagramma dei componenti è possibile vedere i tre livelli e i componenti che li realizzano, le loro interazioni e gerarchie.
 
-![alt text](https://github.com/UniGiu/Washine/blob/testing/docs/Immagini/ComponentiWashineBig.SVG)
+![alt text](https://raw.githubusercontent.com/UniGiu/Washine/refs/heads/main/docs/Immagini/ComponentiWashineBig.SVG)
 
  ### Decisioni progettuali particolari:
  
