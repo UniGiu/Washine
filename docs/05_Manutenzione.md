@@ -13,10 +13,31 @@ Prevediamo sicuramente che in futuro si possa applicare il Refactoring per migli
 Abbiamo effettuato diverse operazioni di refactoring per migliorare il funzionamento del sistema nel suo complesso.
 A tale scopo diversi strumenti(sotto forma di plugin di eclipse) ci hanno aiutato in queste attività. Grazie ai suggerimenti del tool SonarLint che individua i "bad-smells" abbiamo rimosso delle variabili che potevano essere omesse, semplificato delle condizioni da valutare o eliminato codice duplicato. Tramite l'analisi statica proposto da StanIDE abbiamo cercato di aumentare l'astrazione, diminuire l'accoppiamento e la complessità dei package.
 ### Esempi di attività di refactoring
-Abbiamo sostituito il metodo con cui vengono istanziati gli oggetti del core dell'applicazione nella parte di codice relativa all'interfaccia grafica: se prima gli oggetti venivano istanziati direttamente dalla "GUI" tramite costruttore, il compito della creazione degli oggetti è stato trasferito, grazie all'implementazione del pattern Factory, a una classe apposita AbstractFactory presente lato core.
-![alt text](https://github.com/UniGiu/Washine/blob/main/docs/Immagini/AbstractFactory.png)
+#### Pattern Factory
+Abbiamo sostituito il metodo con cui vengono istanziati gli oggetti del core dell'applicazione nella parte di codice relativa all'interfaccia grafica: se prima gli oggetti venivano istanziati direttamente dalla "GUI" tramite costruttore, il compito della creazione degli oggetti è stato trasferito, grazie all'implementazione del pattern Factory, a una classe apposita AbstractCoreFactory presente lato core.
 
+##### Classe AbstractCoreFactory
 
+![alt text](https://github.com/UniGiu/Washine/blob/Manutenzione/docs/Immagini/AbstractFatory.png)
+
+#### Gestione delle eccezioni
+Oltre a ciò abbiamo cambiato il sistema di gestione delle eccezioni. Inizialmente esisteva un unico tipo di eccezione che veniva sollevata a livello del database e propagata per tutto il sistema, dal database all'interfaccia grafica su tutti e tre i livello. Questo è stato modificato introducendo un metodo di gestione disaccoppiato trai vari componenti: qualora viene rilevato un problema database questo lancia una tipologia di eccezione che si cerca di catturare a livello del core, una volta che questa è catturata a sua volta il core lancia un'altra tipologia di eccezione che viene catturata poi dal componente che gestisce la GUI(il quale poi notifica l'errore all'utente). Questo favorisce la compartimentazione l'indipendeza trai componenti.
+
+##### Classe del database che cattura una SQLException e lancia una WashineDataException
+
+![alt text](https://github.com/UniGiu/Washine/blob/Manutenzione/docs/Immagini/Exception1.png)
+
+###### Classe del core che cattura la WashineDataException e lancia una WashineCoreException
+
+![alt text](https://github.com/UniGiu/Washine/blob/Manutenzione/docs/Immagini/Exception2.png)
+
+##### Classe della GUI che cattura la WashineCoreException e notifica l'utente dell'errore
+
+![alt text](https://github.com/UniGiu/Washine/blob/Manutenzione/docs/Immagini/Exception3.png)
+#### Conversione delle date
+Un altro possibile esempio di Refactoring da noi fatto può essere la creazione di una classe apposita per la conversione delle date piuttosto che la ripetizione costante del codice.
+##### Classe WashineTimeUtils
+![alt text](https://github.com/UniGiu/Washine/blob/Manutenzione/docs/Immagini/TimeConverter.png)
 
 
 
