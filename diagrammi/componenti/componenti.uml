@@ -1,80 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ActionLanguage="http://www.omg.org/spec/ALF/20120827/ActionLanguage-Profile" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.omg.org/spec/ALF/20120827/ActionLanguage-Profile pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ">
-  <uml:Model xmi:id="_alT_8OUpEe-W2-tiACQv9w" name="componenti">
-    <packageImport xmi:type="uml:PackageImport" xmi:id="_apwbEOUpEe-W2-tiACQv9w">
-      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
-    </packageImport>
-    <packagedElement xmi:type="uml:Model" xmi:id="_VKSFMOUqEe-b8uGOzjIcoA" name="Database (phisical model)">
-      <packagedElement xmi:type="uml:Component" xmi:id="_VXKpoOU1Ee-b8uGOzjIcoA" name="JOOQ">
-        <packagedElement xmi:type="uml:Usage" xmi:id="_E966kOVGEe-b8uGOzjIcoA" client="_VXKpoOU1Ee-b8uGOzjIcoA" supplier="_oaP7MOVEEe-b8uGOzjIcoA"/>
-        <packagedElement xmi:type="uml:Usage" xmi:id="_xHvVIOVXEe-b8uGOzjIcoA" client="_VXKpoOU1Ee-b8uGOzjIcoA" supplier="_XnGr8OU1Ee-b8uGOzjIcoA"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Component" xmi:id="_XnGr8OU1Ee-b8uGOzjIcoA" name="OTHER"/>
-      <packagedElement xmi:type="uml:Component" xmi:id="_XeVMoOVEEe-b8uGOzjIcoA" name="Abstract data interfaces">
-        <ownedAttribute xmi:type="uml:Port" xmi:id="_0k5TIOVEEe-b8uGOzjIcoA" visibility="public" aggregation="composite"/>
-        <packagedElement xmi:type="uml:Abstraction" xmi:id="_3BZx0OVEEe-b8uGOzjIcoA" client="_XeVMoOVEEe-b8uGOzjIcoA" supplier="_wE8WAOVEEe-b8uGOzjIcoA"/>
-        <packagedElement xmi:type="uml:Abstraction" xmi:id="_Dc35YOVYEe-b8uGOzjIcoA" client="_XeVMoOVEEe-b8uGOzjIcoA" supplier="_1IVcwOVXEe-b8uGOzjIcoA"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Component" xmi:id="_oaP7MOVEEe-b8uGOzjIcoA" name="SQLite"/>
-      <packagedElement xmi:type="uml:Component" xmi:id="_wE8WAOVEEe-b8uGOzjIcoA" name="OTHER Data manager"/>
-      <packagedElement xmi:type="uml:Component" xmi:id="_1IVcwOVXEe-b8uGOzjIcoA" name="JOOQ query managers">
-        <packagedElement xmi:type="uml:Usage" xmi:id="_E6XLEOVYEe-b8uGOzjIcoA" client="_1IVcwOVXEe-b8uGOzjIcoA" supplier="_VXKpoOU1Ee-b8uGOzjIcoA"/>
-      </packagedElement>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_alT_8OUpEe-W2-tiACQv9w" name="componenti">
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_apwbEOUpEe-W2-tiACQv9w">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Model" xmi:id="_VKSFMOUqEe-b8uGOzjIcoA" name="Database (phisical model)">
+    <packagedElement xmi:type="uml:Component" xmi:id="_VXKpoOU1Ee-b8uGOzjIcoA" name="JOOQ">
+      <packagedElement xmi:type="uml:Usage" xmi:id="_E966kOVGEe-b8uGOzjIcoA" client="_VXKpoOU1Ee-b8uGOzjIcoA" supplier="_oaP7MOVEEe-b8uGOzjIcoA"/>
+      <packagedElement xmi:type="uml:Usage" xmi:id="_xHvVIOVXEe-b8uGOzjIcoA" client="_VXKpoOU1Ee-b8uGOzjIcoA" supplier="_XnGr8OU1Ee-b8uGOzjIcoA"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Model" xmi:id="_Y3pHwOUqEe-b8uGOzjIcoA" name="Core">
-      <packagedElement xmi:type="uml:Component" xmi:id="_24GG0OUuEe-b8uGOzjIcoA" name="Core controller interfaces">
-        <ownedAttribute xmi:type="uml:Port" xmi:id="_iznHAOU9Ee-b8uGOzjIcoA" name="Abstract Contollers" aggregation="composite"/>
-        <packagedElement xmi:type="uml:Component" xmi:id="_ZtYDoOUvEe-b8uGOzjIcoA" name="Controllers set Default">
-          <packagedElement xmi:type="uml:Abstraction" xmi:id="_6Y6ScOU_Ee-b8uGOzjIcoA" client="_ZtYDoOUvEe-b8uGOzjIcoA" supplier="_Wfr4QOUyEe-b8uGOzjIcoA"/>
-          <packagedElement xmi:type="uml:Abstraction" xmi:id="_9eMoYOU_Ee-b8uGOzjIcoA" client="_ZtYDoOUvEe-b8uGOzjIcoA" supplier="_6GKBcOUyEe-b8uGOzjIcoA"/>
-          <packagedElement xmi:type="uml:Abstraction" xmi:id="__uIqsOU_Ee-b8uGOzjIcoA" client="_ZtYDoOUvEe-b8uGOzjIcoA" supplier="_dwPUwOUyEe-b8uGOzjIcoA"/>
-        </packagedElement>
-        <packagedElement xmi:type="uml:Component" xmi:id="_tu7GYOUvEe-b8uGOzjIcoA" name="Controllers set Vaadin">
-          <packagedElement xmi:type="uml:Usage" xmi:id="_tNFxYOU_Ee-b8uGOzjIcoA" client="_tu7GYOUvEe-b8uGOzjIcoA" supplier="_ZtYDoOUvEe-b8uGOzjIcoA"/>
-        </packagedElement>
-        <packagedElement xmi:type="uml:Component" xmi:id="_0OhnEOUvEe-b8uGOzjIcoA" name="Controllers set OTHER">
-          <packagedElement xmi:type="uml:Abstraction" xmi:id="_HzXFYOVAEe-b8uGOzjIcoA" name="different authentication" client="_0OhnEOUvEe-b8uGOzjIcoA" supplier="__JSkIOUyEe-b8uGOzjIcoA"/>
-          <packagedElement xmi:type="uml:Usage" xmi:id="_xpxGIOVBEe-b8uGOzjIcoA" name="washing and community" client="_0OhnEOUvEe-b8uGOzjIcoA" supplier="_ZtYDoOUvEe-b8uGOzjIcoA"/>
-        </packagedElement>
-        <packagedElement xmi:type="uml:DataType" xmi:id="_Ec5HkOU6Ee-b8uGOzjIcoA" name="DataType4"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Model" xmi:id="_bOaOAOUuEe-b8uGOzjIcoA" name="Logical model layer">
-        <packagedElement xmi:type="uml:Component" xmi:id="_mqk44OU6Ee-b8uGOzjIcoA" name="Logical model"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Model" xmi:id="_QxwB4OUuEe-b8uGOzjIcoA" name="Controller layer">
-        <packagedElement xmi:type="uml:Component" xmi:id="_L5IJQOUyEe-b8uGOzjIcoA" name="Core controllers">
-          <ownedAttribute xmi:type="uml:Port" xmi:id="_cb3mMOVbEe-b8uGOzjIcoA" name="Port6" aggregation="composite"/>
-          <packagedElement xmi:type="uml:Component" xmi:id="_Wfr4QOUyEe-b8uGOzjIcoA" name="Authentication"/>
-          <packagedElement xmi:type="uml:Component" xmi:id="_dwPUwOUyEe-b8uGOzjIcoA" name="Community"/>
-          <packagedElement xmi:type="uml:Component" xmi:id="_6GKBcOUyEe-b8uGOzjIcoA" name="Washing"/>
-          <packagedElement xmi:type="uml:Component" xmi:id="__JSkIOUyEe-b8uGOzjIcoA" name="Authentication OTHER"/>
-          <packagedElement xmi:type="uml:Usage" xmi:id="_-gzYEOVDEe-b8uGOzjIcoA" client="_L5IJQOUyEe-b8uGOzjIcoA" supplier="_mqk44OU6Ee-b8uGOzjIcoA"/>
-        </packagedElement>
-        <packagedElement xmi:type="uml:Usage" xmi:id="_hMPk8OVbEe-b8uGOzjIcoA" client="_cb3mMOVbEe-b8uGOzjIcoA" supplier="_0k5TIOVEEe-b8uGOzjIcoA"/>
-      </packagedElement>
+    <packagedElement xmi:type="uml:Component" xmi:id="_XnGr8OU1Ee-b8uGOzjIcoA" name="OTHER"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_XeVMoOVEEe-b8uGOzjIcoA" name="Abstract data interfaces">
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_0k5TIOVEEe-b8uGOzjIcoA" visibility="public" aggregation="composite"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_3BZx0OVEEe-b8uGOzjIcoA" client="_XeVMoOVEEe-b8uGOzjIcoA" supplier="_wE8WAOVEEe-b8uGOzjIcoA"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_Dc35YOVYEe-b8uGOzjIcoA" client="_XeVMoOVEEe-b8uGOzjIcoA" supplier="_1IVcwOVXEe-b8uGOzjIcoA"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Model" xmi:id="_wa4ZgOUzEe-b8uGOzjIcoA" name="Presentation">
-      <packagedElement xmi:type="uml:Component" xmi:id="_Ub6eIOU8Ee-b8uGOzjIcoA" name="Vaadin website">
-        <ownedAttribute xmi:type="uml:Port" xmi:id="_Mdr78OU_Ee-b8uGOzjIcoA" name="Vaadin" aggregation="composite"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_oaP7MOVEEe-b8uGOzjIcoA" name="SQLite"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_wE8WAOVEEe-b8uGOzjIcoA" name="OTHER Data manager"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_1IVcwOVXEe-b8uGOzjIcoA" name="JOOQ query managers">
+      <packagedElement xmi:type="uml:Usage" xmi:id="_E6XLEOVYEe-b8uGOzjIcoA" client="_1IVcwOVXEe-b8uGOzjIcoA" supplier="_VXKpoOU1Ee-b8uGOzjIcoA"/>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Model" xmi:id="_Y3pHwOUqEe-b8uGOzjIcoA" name="Core">
+    <packagedElement xmi:type="uml:Component" xmi:id="_24GG0OUuEe-b8uGOzjIcoA" name="Core controller interfaces">
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_iznHAOU9Ee-b8uGOzjIcoA" name="Abstract Contollers" aggregation="composite"/>
+      <packagedElement xmi:type="uml:Component" xmi:id="_ZtYDoOUvEe-b8uGOzjIcoA" name="Controllers set Default">
+        <packagedElement xmi:type="uml:Abstraction" xmi:id="_6Y6ScOU_Ee-b8uGOzjIcoA" client="_ZtYDoOUvEe-b8uGOzjIcoA" supplier="_Wfr4QOUyEe-b8uGOzjIcoA"/>
+        <packagedElement xmi:type="uml:Abstraction" xmi:id="_9eMoYOU_Ee-b8uGOzjIcoA" client="_ZtYDoOUvEe-b8uGOzjIcoA" supplier="_6GKBcOUyEe-b8uGOzjIcoA"/>
+        <packagedElement xmi:type="uml:Abstraction" xmi:id="__uIqsOU_Ee-b8uGOzjIcoA" client="_ZtYDoOUvEe-b8uGOzjIcoA" supplier="_dwPUwOUyEe-b8uGOzjIcoA"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Component" xmi:id="_drImwOU8Ee-b8uGOzjIcoA" name="web API">
-        <ownedAttribute xmi:type="uml:Port" xmi:id="_yTijQOU-Ee-b8uGOzjIcoA" name="Web API" aggregation="composite"/>
+      <packagedElement xmi:type="uml:Component" xmi:id="_tu7GYOUvEe-b8uGOzjIcoA" name="Controllers set Vaadin">
+        <packagedElement xmi:type="uml:Usage" xmi:id="_tNFxYOU_Ee-b8uGOzjIcoA" client="_tu7GYOUvEe-b8uGOzjIcoA" supplier="_ZtYDoOUvEe-b8uGOzjIcoA"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Usage" xmi:id="_K2ulMOU_Ee-b8uGOzjIcoA" client="_yTijQOU-Ee-b8uGOzjIcoA" supplier="_iznHAOU9Ee-b8uGOzjIcoA"/>
-      <packagedElement xmi:type="uml:Usage" xmi:id="_QI4bUOU_Ee-b8uGOzjIcoA" client="_Mdr78OU_Ee-b8uGOzjIcoA" supplier="_iznHAOU9Ee-b8uGOzjIcoA"/>
+      <packagedElement xmi:type="uml:Component" xmi:id="_0OhnEOUvEe-b8uGOzjIcoA" name="Controllers set OTHER">
+        <packagedElement xmi:type="uml:Abstraction" xmi:id="_HzXFYOVAEe-b8uGOzjIcoA" name="different authentication" client="_0OhnEOUvEe-b8uGOzjIcoA" supplier="__JSkIOUyEe-b8uGOzjIcoA"/>
+        <packagedElement xmi:type="uml:Usage" xmi:id="_xpxGIOVBEe-b8uGOzjIcoA" name="washing and community" client="_0OhnEOUvEe-b8uGOzjIcoA" supplier="_ZtYDoOUvEe-b8uGOzjIcoA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_Ec5HkOU6Ee-b8uGOzjIcoA" name="DataType4"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Component" xmi:id="_BXM3EOU8Ee-b8uGOzjIcoA" name="Domotic dirty laundry basket">
-      <packagedElement xmi:type="uml:Usage" xmi:id="_QGXkwOU9Ee-b8uGOzjIcoA" name="IOT Devices" client="_BXM3EOU8Ee-b8uGOzjIcoA" supplier="_drImwOU8Ee-b8uGOzjIcoA"/>
+    <packagedElement xmi:type="uml:Model" xmi:id="_bOaOAOUuEe-b8uGOzjIcoA" name="Logical model layer">
+      <packagedElement xmi:type="uml:Component" xmi:id="_mqk44OU6Ee-b8uGOzjIcoA" name="Logical model"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Component" xmi:id="_Qn4y4OU8Ee-b8uGOzjIcoA" name="Human">
-      <packagedElement xmi:type="uml:Usage" xmi:id="_UGoVMOU9Ee-b8uGOzjIcoA" name="Browser interaction" client="_Qn4y4OU8Ee-b8uGOzjIcoA" supplier="_Ub6eIOU8Ee-b8uGOzjIcoA"/>
+    <packagedElement xmi:type="uml:Model" xmi:id="_QxwB4OUuEe-b8uGOzjIcoA" name="Controller layer">
+      <packagedElement xmi:type="uml:Component" xmi:id="_L5IJQOUyEe-b8uGOzjIcoA" name="Core controllers">
+        <ownedAttribute xmi:type="uml:Port" xmi:id="_cb3mMOVbEe-b8uGOzjIcoA" name="Port6" aggregation="composite"/>
+        <packagedElement xmi:type="uml:Component" xmi:id="_Wfr4QOUyEe-b8uGOzjIcoA" name="Authentication"/>
+        <packagedElement xmi:type="uml:Component" xmi:id="_dwPUwOUyEe-b8uGOzjIcoA" name="Community"/>
+        <packagedElement xmi:type="uml:Component" xmi:id="_6GKBcOUyEe-b8uGOzjIcoA" name="Washing"/>
+        <packagedElement xmi:type="uml:Component" xmi:id="__JSkIOUyEe-b8uGOzjIcoA" name="Authentication OTHER"/>
+        <packagedElement xmi:type="uml:Usage" xmi:id="_-gzYEOVDEe-b8uGOzjIcoA" client="_L5IJQOUyEe-b8uGOzjIcoA" supplier="_mqk44OU6Ee-b8uGOzjIcoA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Usage" xmi:id="_hMPk8OVbEe-b8uGOzjIcoA" client="_cb3mMOVbEe-b8uGOzjIcoA" supplier="_0k5TIOVEEe-b8uGOzjIcoA"/>
     </packagedElement>
-    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_Yo1i0OVCEe-b8uGOzjIcoA">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Yo5NMOVCEe-b8uGOzjIcoA" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ"/>
-      </eAnnotations>
-      <appliedProfile xmi:type="uml:Profile" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#ActionLanguage"/>
-    </profileApplication>
-  </uml:Model>
-  <ActionLanguage:TextualRepresentation xmi:id="_Yo83kOVCEe-b8uGOzjIcoA" language="org.eclipse.papyrus.uml.textedit.port.xtext.UmlPort"/>
-</xmi:XMI>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Model" xmi:id="_wa4ZgOUzEe-b8uGOzjIcoA" name="Presentation">
+    <packagedElement xmi:type="uml:Component" xmi:id="_Ub6eIOU8Ee-b8uGOzjIcoA" name="Vaadin website">
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_Mdr78OU_Ee-b8uGOzjIcoA" name="Vaadin" aggregation="composite"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Component" xmi:id="_drImwOU8Ee-b8uGOzjIcoA" name="web API">
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_yTijQOU-Ee-b8uGOzjIcoA" name="Web API" aggregation="composite"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_K2ulMOU_Ee-b8uGOzjIcoA" client="_yTijQOU-Ee-b8uGOzjIcoA" supplier="_iznHAOU9Ee-b8uGOzjIcoA"/>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_QI4bUOU_Ee-b8uGOzjIcoA" client="_Mdr78OU_Ee-b8uGOzjIcoA" supplier="_iznHAOU9Ee-b8uGOzjIcoA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Component" xmi:id="_BXM3EOU8Ee-b8uGOzjIcoA" name="Domotic dirty laundry basket">
+    <packagedElement xmi:type="uml:Usage" xmi:id="_QGXkwOU9Ee-b8uGOzjIcoA" name="IOT Devices" client="_BXM3EOU8Ee-b8uGOzjIcoA" supplier="_drImwOU8Ee-b8uGOzjIcoA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Component" xmi:id="_Qn4y4OU8Ee-b8uGOzjIcoA" name="Human">
+    <packagedElement xmi:type="uml:Usage" xmi:id="_UGoVMOU9Ee-b8uGOzjIcoA" name="Browser interaction" client="_Qn4y4OU8Ee-b8uGOzjIcoA" supplier="_Ub6eIOU8Ee-b8uGOzjIcoA"/>
+  </packagedElement>
+  <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_Yo1i0OVCEe-b8uGOzjIcoA">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Yo5NMOVCEe-b8uGOzjIcoA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <references xmi:type="ecore:EPackage" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ"/>
+    </eAnnotations>
+    <appliedProfile xmi:type="uml:Profile" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#ActionLanguage"/>
+  </profileApplication>
+</uml:Model>
