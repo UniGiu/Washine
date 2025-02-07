@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/gmfdiag/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_s3La8OS_Ee-4RJx51cpgiw" type="PapyrusUMLCommunicationDiagram" name="Communication Diagram" measurementUnit="Pixel">
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/gmfdiag/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_s3La8OS_Ee-4RJx51cpgiw" type="PapyrusUMLCommunicationDiagram" name="Communication Diagram" measurementUnit="Pixel">
   <children xmi:type="notation:Shape" xmi:id="_s3La8eS_Ee-4RJx51cpgiw" type="Interaction_Shape">
     <children xmi:type="notation:DecorationNode" xmi:id="_s3La8uS_Ee-4RJx51cpgiw" type="Interaction_NameLabel"/>
     <children xmi:type="notation:DecorationNode" xmi:id="_s3La8-S_Ee-4RJx51cpgiw" type="Interaction_FloatingNameLabel">
       <layoutConstraint xmi:type="notation:Location" xmi:id="_s3La9OS_Ee-4RJx51cpgiw" x="50"/>
     </children>
     <children xmi:type="notation:BasicCompartment" xmi:id="_s3La9eS_Ee-4RJx51cpgiw" type="Interaction_SubfragmentCompartment">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_KvWsEOWmEe-7Zrstd_YAaA" source="PapyrusCSSForceValue">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_KvXTIOWmEe-7Zrstd_YAaA" key="collapsed" value="true"/>
+      </eAnnotations>
       <children xmi:type="notation:Shape" xmi:id="_tpGAEOS_Ee-4RJx51cpgiw" type="Lifeline_Shape">
         <children xmi:type="notation:DecorationNode" xmi:id="_tpGAEuS_Ee-4RJx51cpgiw" type="Lifeline_NameLabel"/>
         <children xmi:type="notation:DecorationNode" xmi:id="_tpGAE-S_Ee-4RJx51cpgiw" type="Lifeline_FloatingNameLabel">
