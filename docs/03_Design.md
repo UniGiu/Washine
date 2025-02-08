@@ -120,6 +120,11 @@ Sempre tramite STAN abbiamo avuto modo di valutare il codice secondo diverse met
 
 ### Design Pattern 
 
-Abbiamo utilizzato dei design pattern sia in fase di progettazione che durante lo sviluppo quando ci siamo accorti che erano la soluzione migliore. Di notevole abbiamo l'abstract factory pattern che fornisce al componente di presentazione delle interfacce per i servizi che possono variare in base alla richiesta.
-Questi servizi sono dei singleton pattern.
-Un pattern che vorremmo utilizzare è il builder pattern per costruire gli elementi delle liste dei lavaggi che per ora utilizzano l'ereditarietà.
+Abbiamo utilizzato dei design pattern sia in fase di progettazione che durante lo sviluppo quando ci siamo accorti che erano la soluzione migliore. Di notevole c' l'utilizzo dell'abstract factory pattern che fornisce al componente di presentazione delle interfacce per i servizi che possono variare in base alla richiesta. Questi servizi sono dei singleton pattern.
+Altri pattern che abbiamo utilizzato più o meno consapevolmente e in maniera più o meno stretta possono essere:
+Chain of reponsability pattern ad esempio nel percorso che fanno i dati inseriti dall'utente dal browser al database, dove ogni passaggio verifica un aspetto: il livello presentazione valida l'input e produce messaggi di errore e cambia lo stato di singoli input della pagina, il livello core fa un'ulteriore validazione dell'input anche in relazione allla busines logic.
+Strategy pattern nella UI, in particolare per il form di partecipazione ai lavaggi, a seconda del contesto il componente della pulsantiera mostra i bottoni per partecipare a un lavaggio, oppure per modificare il carico o rinunciare alla partecipazione. 
+Façade quando si tratta di mostrare le opzioni di lavaggio nelle liste dei lavaggi disponibili viene usata un'interfaccia dell'oggetto con i dati del lavaggio che è di sola lettura.
+Un pattern che vorremmo utilizzare è il builder pattern per costruire gli elementi delle liste dei lavaggi che per ora utilizzano l'ereditarietà, ci siamo riservati di farlo come refactoring una volta stabilizzato anche il form di partecipazioen ai lavaggi.
+
+![alt text](https://raw.githubusercontent.com/UniGiu/Washine/refs/heads/main/docs/Immagini/AbstractFatory.png)
