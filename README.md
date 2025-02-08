@@ -22,21 +22,23 @@ For more information :  [https://vaadin.com/docs/latest/compatibility](https://v
 ### Run the application
 
 To run it from the command line,
-from washine-vaadin folder and type `mvnw spring-boot:run` (Windows), or `./mvnw spring-boot:run` (Mac & Linux), then open
-http://localhost:8080 in your browser.
+from washine-vaadin folder and type 
+```mvnw spring-boot:run``` (Windows)
+or ```./mvnw spring-boot:run``` (Mac & Linux)
+then open http://localhost:8080 in your browser.
 
-Before running the project the first time you should install the dependencies
-from washineCore/ and washine_db/ you should type type `maven install`
+Before running the project the first time you should install the dependencies:
+from washineCore/ and washine_db/ you should type type ```maven install```
 
 ### Ready made users ###
 To get acquainted with the application the database is already set up  with an example user:
  
  email: nonnapina@washine.uni
- password: password123
+ password: Password123
 
 
 
-## Deploying to Production (not reccomended as the software is not yet production ready)
+## Deploying to Production (not recommended as the software is not yet production ready)
 
-Read the official documenrtation: [https://vaadin.com/docs/latest/getting-started/tutorial/production-build](https://vaadin.com/docs/latest/getting-started/tutorial/production-build) and 
+Read the official documentation: [https://vaadin.com/docs/latest/getting-started/tutorial/production-build](https://vaadin.com/docs/latest/getting-started/tutorial/production-build) and 
 [https://vaadin.com/docs/latest/flow/production](https://vaadin.com/docs/latest/flow/production)
