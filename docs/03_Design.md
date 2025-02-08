@@ -86,8 +86,24 @@ Gli utenti veri e propri dell'applicazione per orientarsi nell'interfaccia grafi
 
 
 ## 2. Software Design
+
 ### Descrizione Design
+
+Il principi che hanno ispirato la progettazione dell'applicazione nei livelli Core e Database sono quelli di coesione interna e disaccoppiamento e information hiding. La nostra conoscenza poco profonda del linguaggio Java ha dato al risultato una forma un po'rozza (basti vedere l'utilizzo quasi esclusivo di public e private come indicatori di visibilità) ma l'orientamento ideale di questa esperienza è stato quello.
+
+Inizialmente abbiamo individuato gli oggetti principali del dominio dell'applicazione e le loro relazioni e ne abbiamo fatto il diagramma delle classi. Successivamente abbiamo preso in considerazione i casi d'uso e i requisiti funzionali e abbiamo progettato le classi e le interfacce che utilizzano questi oggetti suddividendoli principalmente per coesione logica e comunicativa individuando le tre funzioni di servizio principali: proposta e partecipazione ai lavaggi (che inizialmente pensavamo di tenere separati), messa in relazione tra utenti, e autenticazione.
+
+Questa suddivisione si è mantenuta a livello di interfaccia e componenti su tutti e due i livelli considerati.
+Laddove abbiamo visto la possibilità e l'utilità di usare interfacce invece che oggetti concreti lo abbiamo fatto, soprattutto quando si trattava di passare dati e comandi tra uno strato e l'altro, privilegiando forme di accoppiamento minimo (francobolli e dati) Il disaccoppiamento, oltre che una buon principio del design ci ha anche aiutato a non intralciarci nella fase di implementazione.
+
+Riguardo all'interfaccia Vaadin la progettazione è consistita nell'utilizzare lo strumento di editing visuale che abbiamo trovato online per implementare le pagine web cercando di utilizzare i componenti "COT" disponibili in base ai requisiti di interfaccia.
+Ottenuto lo scheletro dell'applicazione abbiamo cercato di seguire gli stessi principi utilizzati per gli strati inferiori nel contesto di una struttura già impostata e un ambiente pressoché ignoto che ha richiesto una buona dose di di lerning by doing per capire bene il lifecyle delle pagine e il funzionamento generale del framework. Molti dei componenti inseriti non sono sono stati utilizzati in favore di soluzioni custom perché si sono rivelati troppo rigidi o complicati per le nostre necessità.  
+
+![alt text](https://github.com/UniGiu/Washine/blob/main/docs/immagini/ClassDiagram.SVG)
+
 ### Calcolo Complessità
+
 ### Misurazione Codice
+
 ### Design Pattern 
 
