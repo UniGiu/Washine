@@ -99,13 +99,28 @@ Questa suddivisione si è mantenuta a livello di interfaccia e componenti su tut
 Laddove abbiamo visto la possibilità e l'utilità di usare interfacce invece che oggetti concreti lo abbiamo fatto, soprattutto quando si trattava di passare dati e comandi tra uno strato e l'altro, privilegiando forme di accoppiamento minimo (francobolli e dati) Il disaccoppiamento, oltre che una buon principio del design ci ha anche aiutato a non intralciarci nella fase di implementazione.
 
 Riguardo all'interfaccia Vaadin la progettazione è consistita nell'utilizzare lo strumento di editing visuale che abbiamo trovato online per implementare le pagine web cercando di utilizzare i componenti "COT" disponibili in base ai requisiti di interfaccia.
-Ottenuto lo scheletro dell'applicazione abbiamo cercato di seguire gli stessi principi utilizzati per gli strati inferiori nel contesto di una struttura già impostata e un ambiente pressoché ignoto che ha richiesto una buona dose di di lerning by doing per capire bene il lifecyle delle pagine e il funzionamento generale del framework. Molti dei componenti inseriti non sono sono stati utilizzati in favore di soluzioni custom perché si sono rivelati troppo rigidi o complicati per le nostre necessità.  
+Ottenuto lo scheletro dell'applicazione abbiamo cercato di seguire gli stessi principi utilizzati per gli strati inferiori nel contesto di una struttura già impostata e un ambiente pressoché ignoto che ha richiesto una buona dose di di lerning by doing per capire bene il lifecyle delle pagine e il funzionamento generale del framework. Molti dei componenti inseriti non sono sono stati utilizzati in favore di soluzioni custom perché si sono rivelati troppo rigidi o complicati per le nostre necessità. Questo in parte spiega la presenza nel package "utils" di alcuni componenti che sono cresciuti di numero e meriterebbero un package a parte. 
 
 ![alt text](https://github.com/UniGiu/Washine/blob/main/docs/immagini/ClassDiagram.SVG)
 
 ### Calcolo Complessità
 
+Per il calcolo della complessità facciamo riferimento alle metriche fornite dal tool STAN e in particolare la complessità ciclomatica media, abbiamo:
++ washine_db/src/main/java 
+  + complessità ciclomatica media 1.16
++ washineCore/src/main/java
+  + complessità ciclomatica media 1.08, particolare complessità si ha dove c'è da creare e modificare i lavaggi per via dell'elevato numerodi opzioni.
++ washine-vaadin/src/main/java
+  + complessità ciclomatica 1.91. Notevole complessità nelle classi che gestiscono il componente con il modulo di inserimento dei lavaggi (sempre perché ci sono parecchie opzioni di lavaggio) e il corrispondente elemento della lista lavaggi. Non è una sorpresa, nelle interfacce abbiamo delle opzioni principali e altre che si possono mostrare a espansione. 
+
 ### Misurazione Codice
+
+Sempre tramite STAN abbiamo avuto modo di valutare il codice secondo diverse metriche. Lo strumento permette di individuare in maniera puntuale le parti di codice che ottengono una valutazione negativa. Per avere un'idea generale è interessante guardare i Pollution Graph:
+
+![alt text](https://github.com/UniGiu/Washine/blob/main/docs/immagini/pollution.png)
 
 ### Design Pattern 
 
+Abbiamo utilizzato dei design pattern sia in fase di progettazione che durante lo sviluppo quando ci siamo accorti che erano la soluzione migliore. Di notevole abbiamo l'abstract factory pattern che fornisce al componente di presentazione delle interfacce per i servizi che possono variare in base alla richiesta.
+Questi servizi sono dei singleton pattern.
+Un pattern che vorremmo utilizzare è il builder pattern per costruire gli elementi delle liste dei lavaggi che per ora utilizzano l'ereditarietà.
