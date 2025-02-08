@@ -22,7 +22,7 @@ For more information :  [https://vaadin.com/docs/latest/compatibility](https://v
 ### Run the application
 
 To run it from the command line,
-from washine-vaadin folder and type `mvnw` (Windows), or `./mvnw spring-boot:run` (Mac & Linux), then open
+from washine-vaadin folder and type `mvnw spring-boot:run` (Windows), or `./mvnw spring-boot:run` (Mac & Linux), then open
 http://localhost:8080 in your browser.
 
 Before running the project the first time you should install the dependencies
