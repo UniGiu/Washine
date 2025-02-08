@@ -32,7 +32,6 @@ public class WashineGroupDb implements WashineGroupDbIf {
 
     /* this constructor is empty */
   }
-  ;
 
   /**
    * Creates a new group/community tuple in the database
@@ -479,8 +478,10 @@ public class WashineGroupDb implements WashineGroupDbIf {
       throw new WashineDataException("Error fetching community member ids");
     }
   }
+
   @Override
-  public List<String> getCommunityName(String communityId,String userId) throws WashineDataException {
+  public List<String> getCommunityName(String communityId, String userId)
+      throws WashineDataException {
     Connection conn;
     try {
       conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);

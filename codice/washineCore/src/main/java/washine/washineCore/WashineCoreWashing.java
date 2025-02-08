@@ -125,10 +125,9 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
         throw new WashineCoreException("Washing closed");
       }
 
-      if (options.getMaxLoadParticipant() != 0) {
-        if (load > options.getMaxLoadParticipant()) {
-          throw new WashineCoreException("Exceded maximum load");
-        }
+      if (options.getMaxLoadParticipant() != 0 && load > options.getMaxLoadParticipant()) {
+
+        throw new WashineCoreException("Exceded maximum load");
       }
 
       if (washing.getLoad() >= options.getMaxLoad()) {

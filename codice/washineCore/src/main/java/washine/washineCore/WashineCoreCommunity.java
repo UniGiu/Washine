@@ -175,8 +175,7 @@ public class WashineCoreCommunity implements WashineCoreCommunityIf {
 		  if(communityNames.isEmpty()) {
 			  throw new WashineCoreException("Community not found");
 		  }
-		  String communuityName=communityNames.get(0);
-		  return communuityName;
+		  return communityNames.get(0);
 		  
 	  }catch (WashineDataException e) {
 	      throw new WashineCoreException("Community doesn not exist");

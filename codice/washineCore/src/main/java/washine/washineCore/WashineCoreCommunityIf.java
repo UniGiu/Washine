@@ -1,10 +1,10 @@
 package washine.washineCore;
 
-import java.sql.SQLException;
+
 import java.util.List;
 
 import washine.washineCore.exceptions.WashineCoreException;
-import washine.washineCore.user.WashineUserIf;
+
 
 /** Community management interface */
 public interface WashineCoreCommunityIf {
