@@ -80,7 +80,7 @@ I diagrammi dei componenti e dei package inoltre danno una vista di insieme dell
 Una volta capito l'insieme questo utente prima di mettere lavorare sul codice potrà consultare, se disponibili, gli altri diagrammi più specifici come i diagrammi delle classi, di comunicazione e di sequenza. 
 Tutti questi aspetti rispondono ai requisiti di installabilità e adattabilità.
 
-![alt text](https://github.com/UniGiu/Washine/blob/testing/docs/Immagini/package.SVG)
+![alt text](https://raw.githubusercontent.com/UniGiu/Washine/refs/heads/main/docs/Immagini/package.SVG)
 
 - **Vista utente**
 Gli utenti veri e propri dell'applicazione per orientarsi nell'interfaccia grafica avranno a disposizione il menu di navigazione, le cui voci sono corredate di icone.   Inoltre è prevista una pagina di Help che illustri i casi d'uso dei vari requisiti funzionali, dove ogni descrizione è in forma testuale e illustrata da un video screen capture. Abbiamo immaginato un'utenza piuttosto variegata, gli utenti più esperti e curiosi possono consultare nel repository la documentazione e i diagrammi. Questo risponde ai requisiti di comprensibilità e apprendibilità.
@@ -101,7 +101,7 @@ Laddove abbiamo visto la possibilità e l'utilità di usare interfacce invece ch
 Riguardo all'interfaccia Vaadin la progettazione è consistita nell'utilizzare lo strumento di editing visuale che abbiamo trovato online per implementare le pagine web cercando di utilizzare i componenti "COT" disponibili in base ai requisiti di interfaccia.
 Ottenuto lo scheletro dell'applicazione abbiamo cercato di seguire gli stessi principi utilizzati per gli strati inferiori nel contesto di una struttura già impostata e un ambiente pressoché ignoto che ha richiesto una buona dose di di lerning by doing per capire bene il lifecyle delle pagine e il funzionamento generale del framework. Molti dei componenti inseriti non sono sono stati utilizzati in favore di soluzioni custom perché si sono rivelati troppo rigidi o complicati per le nostre necessità. Questo in parte spiega la presenza nel package "utils" di alcuni componenti che sono cresciuti di numero e meriterebbero un package a parte. 
 
-![alt text](https://github.com/UniGiu/Washine/blob/main/docs/immagini/ClassDiagram.SVG)
+![alt text](https://raw.githubusercontent.com/UniGiu/Washine/refs/heads/main/docs/Immagini/ClassDiagram.SVG)
 
 ### Calcolo Complessità
 
@@ -117,7 +117,7 @@ Per il calcolo della complessità facciamo riferimento alle metriche fornite dal
 
 Sempre tramite STAN abbiamo avuto modo di valutare il codice secondo diverse metriche. Lo strumento permette di individuare in maniera puntuale le parti di codice che ottengono una valutazione negativa. Per avere un'idea generale è interessante guardare i Pollution Graph:
 
-![alt text](https://github.com/UniGiu/Washine/blob/main/docs/immagini/pollution.png)
+![alt text](https://raw.githubusercontent.com/UniGiu/Washine/refs/heads/main/docs/Immagini/pollution.png)
 
 ### Design Pattern 
 
