@@ -23,7 +23,7 @@ In virtù della sua modularità questo componente in alternativa potrebbe anche 
 
 ![alt text](https://raw.githubusercontent.com/UniGiu/Washine/refs/heads/main/docs/Immagini/vaadin-application-architecture.png)
 
- _ architettura di un'appliczione vaadin flow. Fonte immagine: https://vaadin.com/docs/latest/flow/application _
+ _architettura di un'appliczione vaadin flow. Fonte immagine: https://vaadin.com/docs/latest/flow/application_
 
 - **Un componente controller**
 Lo stile architetturale interno di questo componente, che appartiene al livello Logico (Core), è quello "tipo di dati astratto" e prevede la modularità sia per rispondere ai requisiti i di adattabilità che di manutenibilità. Oltre ad essere fortemente disaccoppiato dai livelli superiore e inferiore anche al suo interno è composto da componenti modulari cui è affidata la responsabilità di una parte del servizio tramite interfacce. Abbiamo previsto che per la stessa responsabilità sia possibile avere componenti diversi che in diverse combinazioni possano fornire gli stessi servizi al livello superiore in base al tipo di componente di presentazione utilizzato. Ciò oltre a rispondere al requisito di adattabilità rende possibile fornire transitoriamente dei servizi fittizi al componente di presentazione a supporto della fase di sviluppo, quando non tutti i pezzi da cui la GUI dipende sono pronti e funzionanti.
