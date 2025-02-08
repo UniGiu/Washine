@@ -26,13 +26,15 @@ from washine-vaadin folder and type `mvnw` (Windows), or `./mvnw spring-boot:run
 http://localhost:8080 in your browser.
 
 Before running the project the first time you should install the dependencies
-from washineCore and washine_db you should type type `maven install`
+from washineCore/ and washine_db/ you should type type `maven install`
 
 ### Ready made users ###
 To get acquainted with the application the database is already set up  with an example user:
  
  email: nonnapina@washine.uni
  password: password123
+
+
 
 ## Deploying to Production (not reccomended as the software is not yet production ready)
 
