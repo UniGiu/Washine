@@ -23,13 +23,13 @@ public class HelpView extends Composite<VerticalLayout> {
   public HelpView() {
 
     HelpViewParagraph paragraph1 =
-        new HelpViewParagraph("Registration and log in", "video url", "600px");
+        new HelpViewParagraph("Registration and log in", "videos/register_login_logout.mp4", "600px");
 
     paragraph1.setAnchor("", "Home page");
     paragraph1.setText(
         new Paragraph(
             new Text("To get started with Washine go to the "),
-            paragraph1.getAnchor(),
+           // paragraph1.getAnchor(),
             new Text(
                 ". First of all you need to register a new account, you can do that by inserting a valid email and a safe password in the specific fields in the bottom part of the page and clicking the subscribe button. Make sure that the email is correct and that your password is at least 8 characters long. After successfully creating an account you can go ahead and insert the same email and password you just entered in the fields in the top part of the page. Make sure you are entering the same credentials you registerred with. By clicking on the login button you should be set to use Washine. Watch the video below for further clarification")));
     Details details1 = new Details(paragraph1.getTitle(), paragraph1);

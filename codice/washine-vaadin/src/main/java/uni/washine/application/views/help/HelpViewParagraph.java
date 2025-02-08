@@ -20,9 +20,9 @@ public class HelpViewParagraph extends Composite<VerticalLayout> {
     getContent().getStyle().set("flex-grow", "1");
     title = new H2(paragraphTitle);
     paragraph = new Paragraph();
-    Details detail = new Details("Example", video);
     video = new WashineVideo(videoUrl);
     video.setWidth(videoWidth);
+    Details detail = new Details("Example", video);
     getContent().add(title, paragraph, detail);
   }
 
