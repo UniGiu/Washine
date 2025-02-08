@@ -22,7 +22,8 @@ Nell'implementazione attuale abbiamo utilizzato il framework Vaadin (Vaadin Flow
 In virtù della sua modularità questo componente in alternativa potrebbe anche essere un sito web sviluppato con un altro framework, magari più accessibile per  categorie di utenti, o un'API a cui potrebbero connettersi appplicazioni di terze parti o dispositivi intelligenti, ad esempio un cesto della biancheria IOT. 
 Bisgna considerare che in sé anche il componente Vaadin che per brevità consideriamo un'unico componente ha in sè diversi componenti e una sua architettura.
 
-![alt text](https://github.com/UniGiu/Washine/blob/main/docs/immagini/vaadin-application-architecture.png)
+![alt text](https://raw.githubusercontent.com/UniGiu/Washine/refs/heads/main/docs/Immagini/vaadin-application-architecture.png)
+
  fonte: https://vaadin.com/docs/latest/flow/application +
 
 - **Un componente controller**
@@ -40,7 +41,7 @@ Anche questo è un componente che può essere sostituito, grazie a dei servizi d
 
 Nel diagramma dei componenti è possibile vedere i tre livelli e i componenti che li realizzano, le loro interazioni e gerarchie.
 
-![alt text](https://github.com/UniGiu/Washine/blob/main/docs/immagini/ComponentiWashineBig.SVG)
+![alt text](https://raw.githubusercontent.com/UniGiu/Washine/refs/heads/main/docs/Immagini/ComponentiWashineBig.SVG)
 
  ### Decisioni progettuali particolari:
  
@@ -79,6 +80,7 @@ I diagrammi dei componenti e dei package inoltre danno una vista di insieme dell
 Una volta capito l'insieme questo utente prima di mettere lavorare sul codice potrà consultare, se disponibili, gli altri diagrammi più specifici come i diagrammi delle classi, di comunicazione e di sequenza. 
 Tutti questi aspetti rispondono ai requisiti di installabilità e adattabilità.
 
+![alt text](https://github.com/UniGiu/Washine/blob/testing/docs/Immagini/package.SVG)
 
 - **Vista utente**
 Gli utenti veri e propri dell'applicazione per orientarsi nell'interfaccia grafica avranno a disposizione il menu di navigazione, le cui voci sono corredate di icone.   Inoltre è prevista una pagina di Help che illustri i casi d'uso dei vari requisiti funzionali, dove ogni descrizione è in forma testuale e illustrata da un video screen capture. Abbiamo immaginato un'utenza piuttosto variegata, gli utenti più esperti e curiosi possono consultare nel repository la documentazione e i diagrammi. Questo risponde ai requisiti di comprensibilità e apprendibilità.

@@ -5,7 +5,6 @@ import washine_db.exceptions.WashineDataException;
 import washine_db.user.WashineUserDb;
 import washine.washineCore.exceptions.WashineCoreException;
 
-import java.sql.SQLException;
 
 import washine.washineCore.user.WashineUser;
 
@@ -83,8 +82,7 @@ public class WashineCoreAuth implements WashineCoreAuthIf {
       userDb.updateUserPassword(userId, newPassword);
       String email = userDb.getUserEmail(userId);
       // new login
-      WashineUserIf userWithNewPassword = authenticateUser(email, newPassword);
-      return userWithNewPassword;
+      return  authenticateUser(email, newPassword);
     } catch (WashineDataException e) {
       throw new WashineCoreException("Core error updating user password");
     }    
