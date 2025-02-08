@@ -1,6 +1,7 @@
 package uni.washine.application.views.help;
 
 import com.vaadin.flow.component.Composite;
+import com.vaadin.flow.component.details.Details;
 import com.vaadin.flow.component.html.Anchor;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Paragraph;
@@ -9,7 +10,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import uni.washine.application.utils.WashineVideo;
 
 public class HelpViewParagraph extends Composite<VerticalLayout> {
-  public H2 title;
+  H2 title;
   Anchor link;
   Paragraph paragraph;
   WashineVideo video;
@@ -19,9 +20,10 @@ public class HelpViewParagraph extends Composite<VerticalLayout> {
     getContent().getStyle().set("flex-grow", "1");
     title = new H2(paragraphTitle);
     paragraph = new Paragraph();
-    video = new WashineVideo();
+    Details detail = new Details("Example", video);
+    video = new WashineVideo(videoUrl);
     video.setWidth(videoWidth);
-    getContent().add(title, paragraph, video);
+    getContent().add(title, paragraph, detail);
   }
 
   public void setAnchor(String ref, String name) {
@@ -34,5 +36,9 @@ public class HelpViewParagraph extends Composite<VerticalLayout> {
 
   public Anchor getAnchor() {
     return this.link;
+  }
+
+  public H2 getTitle() {
+    return this.title;
   }
 }
