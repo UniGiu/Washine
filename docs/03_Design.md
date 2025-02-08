@@ -108,7 +108,7 @@ Per il calcolo della complessità facciamo riferimento alle metriche fornite dal
 + washine_db/src/main/java 
   + complessità ciclomatica media 1.16
 + washineCore/src/main/java
-  + complessità ciclomatica media 1.08, particolare complessità si ha dove c'è da creare e modificare i lavaggi per via dell'elevato numerodi opzioni.
+  + complessità ciclomatica media 1.08, particolare complessità si ha dove c'è da creare e modificare i lavaggi per via dell'elevato numerodi opzioni. Questo è un aspetto per il quale andrebbe valutata un'attività di refactoring.
 + washine-vaadin/src/main/java
   + complessità ciclomatica 1.91. Notevole complessità nelle classi che gestiscono il componente con il modulo di inserimento dei lavaggi (sempre perché ci sono parecchie opzioni di lavaggio) e il corrispondente elemento della lista lavaggi. Non è una sorpresa, nelle interfacce abbiamo delle opzioni principali e altre che si possono mostrare a espansione. 
 
