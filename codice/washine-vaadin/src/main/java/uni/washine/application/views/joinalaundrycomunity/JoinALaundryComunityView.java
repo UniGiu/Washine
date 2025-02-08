@@ -163,7 +163,7 @@ public class JoinALaundryComunityView extends Composite<VerticalLayout> implemen
 		Paragraph paragraphInvitationCode = new Paragraph();
 		Span spanInvitationCode = new Span();
 		h3Generate.setText(
-				"Press the generate button and share the code with the invitee. Choose a meaningful namename of the person you want to add to your washing community,");
+				"Press the generate button and share the code with the invitee. Choose a meaningful name of the person you want to add to your washing community,");
 		formLayout2Col.setWidth("100%");
 		textFieldParticipant.setLabel("Participant name");
 		textFieldParticipant.setWidth("min-content");
