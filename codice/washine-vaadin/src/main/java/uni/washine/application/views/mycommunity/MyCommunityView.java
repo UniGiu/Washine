@@ -100,7 +100,7 @@ public class MyCommunityView extends Composite<VerticalLayout> implements Before
     textLarge.getStyle().set("font-size", "var(--lumo-font-size-xl)");
     h3.setText("Community members");
     h3.setWidth("max-content");
-    buttonPrimary.setText("Remove selected members from the community");
+    buttonPrimary.setText("Remove selected members");
     buttonPrimary.setWidth("min-content");
     buttonPrimary.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
     buttonPrimary.addClickListener(event -> removeSelectedMembers());
@@ -130,7 +130,7 @@ public class MyCommunityView extends Composite<VerticalLayout> implements Before
   }
 
   private void configureGrid() {
-    multiSelectGrid.addColumn(data -> data[0]).setHeader("ID");
+ //   multiSelectGrid.addColumn(data -> data[0]).setHeader("ID");
     multiSelectGrid.addColumn(data -> data[1]).setHeader("Name");
   }
 
