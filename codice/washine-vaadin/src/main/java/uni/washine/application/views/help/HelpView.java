@@ -61,6 +61,20 @@ public class HelpView extends Composite<VerticalLayout> {
             "To organize your group washing, once your community is set, go to the my machine page. There you'll have to fill the form (that appears by clicking on the create a washing button) with essential informations to schedule the washing: the date and time the washing will take place, the initial load for your laundry, the load ceiling, the time in days that the washing will remain visible to the community members and all the washing characteristics. In addition to that you can also add some optional information to your washing by filling the form that is reveiled when clicking the 'non required otions' button. When you're done, to make your washing joinable by your community, click the create washing button again. In this page you can always check all of your scheduled washings' informations (date and time, number of participants, available load...), update them or, if you changed your mind, delete  the scheduled washing. Watch the video below for further clarification"));
     Details details5 = new Details(paragraph5.getTitle(), paragraph5);
 
-    getContent().add(details1, details2, details3, details4, details5);
+    HelpViewParagraph paragraph6 =
+        new HelpViewParagraph("Change credentials", "videos/newemail.mp4", "500px");
+    paragraph6.setText(
+        new Paragraph(
+            "If you want to change your email or password for any reason, you can do that by going to the my credentials view. To change your account's email enter the new one in the specific field in the top part of the page and click the change my email button (make sure to enter an email that has never been used for Washine). To change your password, enter the new one in the appropriate field at the bottom of the page and repeat it a second time in the field alongside, then click on the button that says change my password. Remember to enter a password that is at least 8 characters long. After seeing the success notification your email or password should be updated. Watch the video below for further clarification"));
+    Details details6 = new Details(paragraph6.getTitle(), paragraph6);
+
+    HelpViewParagraph paragraph7 =
+        new HelpViewParagraph("Handle community", "videos/mycommunity_remove.mp4", "500px");
+    paragraph7.setText(
+        new Paragraph(
+            "You can see all your Washine community members in the my community page. There you can see the name you saved them with and you can also remove a member by checking the chekbox next to the name of the person you want to remove and clicking the remove button.  Watch the video below for further clarification"));
+    Details details7 = new Details(paragraph7.getTitle(), paragraph7);
+
+    getContent().add(details1, details2, details3, details4, details5, details6, details7);
   }
 }
