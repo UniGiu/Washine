@@ -17,12 +17,13 @@ I casi di test sono stati effettuati nei seguenti file:
 ### 1.1. WashineCoreWashingTest
 
 ![alt text](https://github.com/UniGiu/Washine/blob/testing/docs/Immagini/WashineCoreWashingTest.png)  
+*Risultato casi di test WashineCoreWashingTest*
 
 #### createWashingTest
 
 ![alt text](https://github.com/UniGiu/Washine/blob/testing/docs/Immagini/createWashingTest.png) 
 
-Verifica che la creazione di un lavaggio abbia successo in modo corretto.Dato l'id dell'utente e opzioni di lavaggio, se il lavaggio viene correttamente creato, ci si aspetta che venga ritornato il valore True.
+Verifica che la creazione di un lavaggio avvenga correttamente, estituendo True quando il processo è completato con successo.  
 
 #### getLaundryPersonWashingIdsTest  
 
@@ -42,11 +43,12 @@ Verifica che un lavaggio venga creato con le opzioni di lavaggio impostate corre
 ### 1.2. WashineCorecommunityTest  
 
 ![alt text](https://github.com/UniGiu/Washine/blob/testing/docs/Immagini/WashineCoreCommunityTest.png)  
+*Risultato casi di test WashineCoreCommunityTest*
 
 #### addInviteTest1
 Verifica che un particolare utente sia nella lista degli inviti di partecipazione della community.
 #### addInviteTest
-Verifica l'impossibilità di invitare un utente già appartenete a una specifica community.
+Verifica che venga restituito un messaggio di errore se si tenta di invitare un utente già membro della community.  
 #### nameInInvitationsTest
 Verifica che un nome non esistente non sia presente tra gli inviti. 
 #### nameInCommunityTest2  
@@ -69,6 +71,7 @@ Verifica che dati due parametri errati, non venga effettuata la rimozione dell'u
 ### 1.3. WashineCoreAuthTest
 
 ![alt text](https://github.com/UniGiu/Washine/blob/testing/docs/Immagini/WashineCoreAuthTest.png)
+*Risultato casi di test WashineCoreAuthTest*
 
 #### updateUserPassword  
 
