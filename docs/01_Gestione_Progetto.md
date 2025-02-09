@@ -29,12 +29,11 @@ Ogni membro ha lavorato sullo sviluppo del codice, in base alle esigenze e funzi
 
 Oltre all'utilizzo di GitHub per la condizione del codice, in particolare dopo la fine delle lezioni, ci siamo tenuti costantemente aggiornati tramite un gruppo Whatsapp per monitorare il lavoro che ognuno stata portando avanti, discutere sulle modifiche, risolvere eventuali dubbi e confrontarci su problemi tecnici.  
 
-![alt text](https://github.com/UniGiu/Washine/blob/main/docs/Immagini/Statistica.png)
-
+![alt text](https://github.com/UniGiu/Washine/blob/main/docs/Immagini/FoglioOre.png)  
 Come si può vedere dall'immagine sopra abbiamo cercato di monitorare le ore dedicate allo sviluppo del progetto, divise per attività:
 - p: progetto
 - s: sviluppo
-- m:manutenzione  
+- m: manutenzione  
 
 
 Le percentuali si basano su un numero totali di 120 ore, 40 per ciascun membro. Il totale delle ore lavorate è significativamente al di sopra delle ore previste a budget, circa il 81,67% in più. Oltre a queste vanno considerate anche quelle che riguardano i problemi tecnici che purtruppo non abbiamo tracciato. Hanno avuto anch'essi un grande impatto sullo svolgimento e la gestione del nostro lavoro. 
