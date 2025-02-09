@@ -27,4 +27,14 @@ Abbiamo utilizzato GitHub per gestire il codice e il controllo delle versioni. T
 Abbiamo adottato un approccio di gestione del team orientato  alla collaborazione e comunicazione continua.
 Ogni membro ha lavorato sullo sviluppo del codice, in base alle esigenze e funzionalità da implementare. Anche per la modellazione(UML) e lo sviluppo della documentazione ci siamo divisi il lavoro in modo equo sempre in base alle necessità e preferenze dei memebri. 
 
-Oltre all'utilizzo di GitHub per la condizione del codice, in particolare dopo la fine delle lezioni, ci siamo tenuti costantemente aggiornati tramite un gruppo Whatsapp per monitorare il lavoro che ognuno stata portando avanti, discutere sulle modifiche, risolvere eventuali dubbi e confrontarci su problemi tecnici. 
+Oltre all'utilizzo di GitHub per la condizione del codice, in particolare dopo la fine delle lezioni, ci siamo tenuti costantemente aggiornati tramite un gruppo Whatsapp per monitorare il lavoro che ognuno stata portando avanti, discutere sulle modifiche, risolvere eventuali dubbi e confrontarci su problemi tecnici.  
+
+![alt text](https://github.com/UniGiu/Washine/blob/testing/docs/Immagini/Statistica.png)  
+
+Come si può vedere dall'immagine sopra abbiamo cercato di monitorare le ore dedicate allo sviluppo del progetto, divise per attività:
+- p: progetto
+- s: sviluppo
+- m:manutenzione  
+
+
+Le percentuali si basano su un numero totali di 120 ore, 40 per ciascun membro. Il totale delle ore lavorate è significativamente al di sopra delle ore previste a budget, circa il 81,67% in più. Oltre a queste vanno considerate anche quelle che riguardano i problemi tecnici che purtruppo non abbiamo tracciato. Hanno avuto anch'essi un grande impatto sullo svolgimento e la gestione del nostro lavoro. 
