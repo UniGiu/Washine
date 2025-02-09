@@ -20,7 +20,7 @@ public interface WashineWashingDbIf {
    */
   public boolean participateToWashing(String washingId, String participantId, double load)
       throws WashineDataException;
-
+  
   /**
    * Creates a new washing tuple in the washing table
    *
@@ -150,6 +150,15 @@ public interface WashineWashingDbIf {
   public Result<WashingoptionsRecord> getWashingOptions(String washingId)
       throws WashineDataException;
 
+      /**
+   * Selects a washing owner (washing creator) given the id of the washing
+   *
+   * @throws WashineDataException
+   * @param washingId id of the washing
+   * @return the id of the washing owner
+   */
+  public String getWashingOwner(String washingId) throws WashineDataException;
+
   /**
    * Gets the load that a person participated to a washing with from the database
    *
@@ -158,6 +167,7 @@ public interface WashineWashingDbIf {
    * @return the load in kg
    * @throws WashineDataException
    */
+  
   public double getParticipationWeight(String washingId, String userId) throws WashineDataException;
 
   /**

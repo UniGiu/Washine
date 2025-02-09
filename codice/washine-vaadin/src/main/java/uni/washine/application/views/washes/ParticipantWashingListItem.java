@@ -17,7 +17,7 @@ public class ParticipantWashingListItem extends WashingListItem {
 	public ParticipantWashingListItem(WashineLaundryWashingIf washing) {	
 		super(washing);
 		WashineUserIf userData = (WashineUserIf) VaadinSession.getCurrent().getAttribute("currentUser");
-		String washingId = washing.getId();
+		String washingId = washing.getId();		
 		String userId=userData.getId();
 		List<String> participatedWashings=washing.getParticipantIds();		
 		boolean participates= participatedWashings.contains(userId);
@@ -32,7 +32,7 @@ public class ParticipantWashingListItem extends WashingListItem {
 		add (layoutUi);
 		WashineCoreCommunityIf cCore = AbstractCoreFactory.getInstance("vaadin").createCoreWashineCommunity();
 		try{
-			h2Title.setText(cCore.getCommunityName(washingId, userId));
+			h2Title.setText(cCore.getWashingCommunityName(washingId, userId));
 		}catch (WashineCoreException e){
 			UiNotifier.showErrorNotification(e.getMessage());
 		}

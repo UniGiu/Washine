@@ -10,6 +10,7 @@ import java.time.Instant;
 import washine_db.exceptions.WashineDataException;
 import washine_db.groups.WashineGroupDb;
 import washine_db.groups.WashineGroupDbIf;
+import washine_db.washings.WashineWashingDb;
 
 public class WashineCoreCommunity implements WashineCoreCommunityIf {
 
@@ -167,18 +168,33 @@ public class WashineCoreCommunity implements WashineCoreCommunityIf {
       return null;
     }
   }
-  public String getCommunityName(String communityId, String participantId)  throws WashineCoreException
+  public String getCommunityName(String communityId, String participantId )  throws WashineCoreException
   {
 	  try {
 		  WashineGroupDbIf groupDb=new WashineGroupDb();
 		  List<String> communityNames=groupDb.getCommunityName(communityId,participantId);
 		  if(communityNames.isEmpty()) {
-			  throw new WashineCoreException("Community not found");
+			  throw new WashineCoreException("Community not found"+ " c id:"+communityId+" part id:"+participantId);
 		  }
 		  return communityNames.get(0);
 		  
 	  }catch (WashineDataException e) {
-	      throw new WashineCoreException("Community doesn not exist");
+	      throw new WashineCoreException("Community does not exist"+ " c id:"+communityId+" part id:"+participantId);
+	    }
+  }
+  public String getWashingCommunityName(String washingId, String participantId )  throws WashineCoreException
+  {
+	  try {
+      WashineWashingDb washingDb = new WashineWashingDb();
+		 
+		  String communityId=washingDb.getWashingOwner(washingId);
+		  if(communityId.isEmpty()) {
+			  throw new WashineCoreException("Community Owner not found");
+		  }
+		  return getCommunityName(communityId,participantId);
+		  
+	  }catch (WashineDataException e) {
+	      throw new WashineCoreException("Community does not exist");
 	    }
   }
 }
