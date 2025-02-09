@@ -29,7 +29,7 @@ Ogni membro ha lavorato sullo sviluppo del codice, in base alle esigenze e funzi
 
 Oltre all'utilizzo di GitHub per la condizione del codice, in particolare dopo la fine delle lezioni, ci siamo tenuti costantemente aggiornati tramite un gruppo Whatsapp per monitorare il lavoro che ognuno stata portando avanti, discutere sulle modifiche, risolvere eventuali dubbi e confrontarci su problemi tecnici.  
 
-![alt text](https://github.com/UniGiu/Washine/blob/testing/docs/Immagini/Statistica.png)  
+![alt text](https://github.com/UniGiu/Washine/blob/main/docs/Immagini/Statistica.png)
 
 Come si può vedere dall'immagine sopra abbiamo cercato di monitorare le ore dedicate allo sviluppo del progetto, divise per attività:
 - p: progetto
