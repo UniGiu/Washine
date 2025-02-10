@@ -167,8 +167,8 @@ public class WashineWashingDb implements WashineWashingDbIf {
                       .PARTICIPANTID
                       .eq(userId)
                       .and(Washingparticipation.WASHINGPARTICIPATION.WASHINGID.eq(washingId)))
-              .fetchOne();
-      return weight.getValue(Washingparticipation.WASHINGPARTICIPATION.LOAD);
+              .fetchOne();            
+              return weight==null?0: weight.getValue(Washingparticipation.WASHINGPARTICIPATION.LOAD);
 
     } catch (SQLException e) {
       throw new WashineDataException("WashineDataException");
@@ -210,7 +210,31 @@ public class WashineWashingDb implements WashineWashingDbIf {
       throw new WashineDataException("WashineDataException");
     }
   }
-
+/**
+   * Selects a washing owner (washing creator) given the id of the washing
+   *
+   * @throws WashineDataException
+   * @param washingId id of the washing
+   * @return the id of the washing owner
+   */
+  public String getWashingOwner(String washingId) throws WashineDataException {
+    try {
+      Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
+      DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
+      Record1<String> id =
+          create
+              .select(Washing.WASHING.LAUNDRYPERSONID)
+              .from(Washing.WASHING)
+              .where(Washing.WASHING.WASHINGID.eq(washingId))
+              .fetchOne();
+      if (id != null) {
+        return id.getValue(Washing.WASHING.LAUNDRYPERSONID);
+      }
+      return null;
+    } catch (SQLException e) {
+      throw new WashineDataException("Error fetching laundry person ID");
+    }
+  }
   @Override
   public boolean deleteParticipation(String washingId, String userId) throws WashineDataException {
     try {
@@ -324,7 +348,7 @@ public class WashineWashingDb implements WashineWashingDbIf {
           .select()
           .from(Washingparticipation.WASHINGPARTICIPATION)
           .where(Washingparticipation.WASHINGPARTICIPATION.WASHINGID.eq(washingId))
-          .fetch(Washingparticipation.WASHINGPARTICIPATION.WASHINGID);
+          .fetch(Washingparticipation.WASHINGPARTICIPATION.PARTICIPANTID);
     } catch (SQLException e) {
       throw new WashineDataException("WashineDataException");
     }
