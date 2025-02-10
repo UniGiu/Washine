@@ -22,10 +22,7 @@ public class ParticipantWashingListItem extends WashingListItem {
 		String userId=userData.getId();
 		
 		List<String> participatedWashings=washing.getParticipantIds();		
-		for (String participantId : participatedWashings) {
-		  
-			UiNotifier.showErrorNotification(userId+" : "+participantId);
-		}
+		
 		boolean participates= participatedWashings.contains(userId);		
 		ParticipantWeightDisplay weightDisplay=new ParticipantWeightDisplay();
 		

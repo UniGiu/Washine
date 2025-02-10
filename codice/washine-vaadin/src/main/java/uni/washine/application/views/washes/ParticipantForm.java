@@ -162,13 +162,12 @@ public class ParticipantForm  extends VerticalLayout{
 	private void submitWashingUpdate() {
 		
 		boolean result = false;
-		//TODO to be implemented
-		/*try {	
-			
-			result=wCore.updateWashingLoad(washingId, userId, participantLoad);
+		
+		try {				
+			result=wCore.updateParticipantWashingLoad(washingId, userId, participantLoad)!=null;
 		} catch (WashineCoreException e) {
 			UiNotifier.showErrorNotification(e.getMessage());
-		}*/
+		}
 		if (result) {			
 			UiNotifier.showSuccessNotification("Your washing has been updated");
 			fireCustomEvent("participantjoinupdated");

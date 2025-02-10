@@ -20,7 +20,17 @@ public interface WashineWashingDbIf {
    */
   public boolean participateToWashing(String washingId, String participantId, double load)
       throws WashineDataException;
-  
+     /**
+   * Update a participation tuple to the washing participation table
+   *
+   * @param washingId id of the washing
+   * @param participantId id of the participant
+   * @param load load in kg of the participant
+   * @return true if only one tuple is added
+   * @throws WashineDataException
+   */  
+      public boolean updateParticipationToWashing(String washingId, String participantId, double load)
+      throws WashineDataException;
   /**
    * Creates a new washing tuple in the washing table
    *

@@ -41,7 +41,25 @@ public class WashineWashingDb implements WashineWashingDbIf {
       throw new WashineDataException("WashineDataException");
     }
   }
-
+  @Override
+  public boolean updateParticipationToWashing(String washingId, String participantId, double load)
+  throws WashineDataException{
+    try {
+      Connection conn = DriverManager.getConnection(JOOQCodeGeneration.DB_URL);
+      DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
+      int result =
+          create
+              .update(Washingparticipation.WASHINGPARTICIPATION)
+              .set(Washingparticipation.WASHINGPARTICIPATION.LOAD, load)
+              .where(Washingparticipation.WASHINGPARTICIPATION.WASHINGID.eq(washingId))
+              .and(Washingparticipation.WASHINGPARTICIPATION.PARTICIPANTID.eq(participantId))
+              .execute();
+      return result == 1;
+    } catch (SQLException e) {
+      throw new WashineDataException("WashineDataException");
+    }
+  }
+ 
   @Override
   public boolean createWashing(String washingId, String laundryPersonId)
       throws WashineDataException {
