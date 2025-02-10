@@ -167,8 +167,8 @@ public class WashineWashingDb implements WashineWashingDbIf {
                       .PARTICIPANTID
                       .eq(userId)
                       .and(Washingparticipation.WASHINGPARTICIPATION.WASHINGID.eq(washingId)))
-              .fetchOne();
-      return weight.getValue(Washingparticipation.WASHINGPARTICIPATION.LOAD);
+              .fetchOne();            
+              return weight==null?0: weight.getValue(Washingparticipation.WASHINGPARTICIPATION.LOAD);
 
     } catch (SQLException e) {
       throw new WashineDataException("WashineDataException");
@@ -348,7 +348,7 @@ public class WashineWashingDb implements WashineWashingDbIf {
           .select()
           .from(Washingparticipation.WASHINGPARTICIPATION)
           .where(Washingparticipation.WASHINGPARTICIPATION.WASHINGID.eq(washingId))
-          .fetch(Washingparticipation.WASHINGPARTICIPATION.WASHINGID);
+          .fetch(Washingparticipation.WASHINGPARTICIPATION.PARTICIPANTID);
     } catch (SQLException e) {
       throw new WashineDataException("WashineDataException");
     }
