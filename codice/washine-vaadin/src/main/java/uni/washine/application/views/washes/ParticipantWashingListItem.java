@@ -2,6 +2,7 @@ package uni.washine.application.views.washes;
 
 import java.util.List;
 
+import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.server.VaadinSession;
 
 import uni.washine.application.utils.UiNotifier;
@@ -19,17 +20,26 @@ public class ParticipantWashingListItem extends WashingListItem {
 		WashineUserIf userData = (WashineUserIf) VaadinSession.getCurrent().getAttribute("currentUser");
 		String washingId = washing.getId();		
 		String userId=userData.getId();
+		
 		List<String> participatedWashings=washing.getParticipantIds();		
-		boolean participates= participatedWashings.contains(userId);
-		
+		for (String participantId : participatedWashings) {
+		  
+			UiNotifier.showErrorNotification(userId+" : "+participantId);
+		}
+		boolean participates= participatedWashings.contains(userId);		
 		ParticipantWeightDisplay weightDisplay=new ParticipantWeightDisplay();
-		weightDisplay.refresh(userId,washingId);
-		weightDisplay.setVisible(false);
 		
+		weightDisplay.refresh(washingId,userId);
+		weightDisplay.setVisible(participates);
+		
+		add(weightDisplay);
+				
+
 		ParticipantWashngItemUi layoutUi=new ParticipantWashngItemUi(washingId);	
 		layoutUi.setEmpty(participates);
 		layoutUi.setWidthFull();
-		add (layoutUi);
+		add (layoutUi,weightDisplay);
+		
 		WashineCoreCommunityIf cCore = AbstractCoreFactory.getInstance("vaadin").createCoreWashineCommunity();
 		try{
 			h2Title.setText(cCore.getWashingCommunityName(washingId, userId));
@@ -37,6 +47,10 @@ public class ParticipantWashingListItem extends WashingListItem {
 			UiNotifier.showErrorNotification(e.getMessage());
 		}
 		
+		//change backgrount to mark participation
+		if(participates){
+			getStyle().set("background-image", "linear-gradient(#0000 , #EEFD)");
+		}
 	}
 	
 }

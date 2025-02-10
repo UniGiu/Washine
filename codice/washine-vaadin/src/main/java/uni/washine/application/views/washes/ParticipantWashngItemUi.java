@@ -13,7 +13,7 @@ public class ParticipantWashngItemUi extends HorizontalLayout {
 	private String washingId;
 	
 	ParticipantWashngItemUi(String washingId){
-
+		this.washingId=washingId;
 		editButton = new Button();
 		joinButton = new Button();	
 		retireButton = new Button();
@@ -21,7 +21,7 @@ public class ParticipantWashngItemUi extends HorizontalLayout {
 		
 		joinButton.setWidth("min-content");
 		joinButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-		joinButton.setText("Edit");
+		joinButton.setText("Join");
 		joinButton.addClickListener(event -> {			
 			fireCustomEvent("washingjoin");
 		});
@@ -65,17 +65,10 @@ public class ParticipantWashngItemUi extends HorizontalLayout {
 	private void retireFromWashing(){		
 		fireCustomEvent("retirefromwashing");
 	}
-	public void setEmpty(boolean value) {
-		if(value) {
-			joinButton.setVisible(value);
-			editButton.setVisible(!value);
-			retireButton.setVisible(!value);
-		}else {
+	public void setEmpty(boolean value) {		
 			joinButton.setVisible(!value);
 			editButton.setVisible(value);
-			retireButton.setVisible(value);
-		}
-		
+			retireButton.setVisible(value);	
 	}
 	
 	/**

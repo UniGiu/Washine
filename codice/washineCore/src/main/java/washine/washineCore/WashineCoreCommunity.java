@@ -174,12 +174,12 @@ public class WashineCoreCommunity implements WashineCoreCommunityIf {
 		  WashineGroupDbIf groupDb=new WashineGroupDb();
 		  List<String> communityNames=groupDb.getCommunityName(communityId,participantId);
 		  if(communityNames.isEmpty()) {
-			  throw new WashineCoreException("Community not found"+ " c id:"+communityId+" part id:"+participantId);
+			  throw new WashineCoreException("Community not found");
 		  }
 		  return communityNames.get(0);
 		  
 	  }catch (WashineDataException e) {
-	      throw new WashineCoreException("Community does not exist"+ " c id:"+communityId+" part id:"+participantId);
+	      throw new WashineCoreException("Community does not exist");
 	    }
   }
   public String getWashingCommunityName(String washingId, String participantId )  throws WashineCoreException

@@ -91,6 +91,7 @@ public class WashesView extends Composite<VerticalLayout> implements BeforeEnter
 
 				UiNotifier.showErrorNotification(e.getMessage());
 			}
+			showList();
 			UiNotifier.showSuccessNotification("You successfully retired from this washing");
 		}).addEventData("event.detail");
 
@@ -107,12 +108,17 @@ public class WashesView extends Composite<VerticalLayout> implements BeforeEnter
 			JsonObject evtDetails = evtData.getObject("event.detail");
 			String washingId = evtDetails.getString("washingId");
 			showForm();
+			UiNotifier.showSuccessNotification(washingId);
 			washingForm.init(washingId, false);
 		}).addEventData("event.detail");
 		washingForm.getElement().addEventListener("participantjoincancelled", event -> {
-			
+			showList();			
+		}).addEventData("event.detail");
+		washingForm.getElement().addEventListener("participantjoincreated", event -> {
 			showList();
-			
+		}).addEventData("event.detail");
+		washingForm.getElement().addEventListener("participantjoinupdated", event -> {
+			showList();
 		}).addEventData("event.detail");
 	}
 	/**
@@ -130,8 +136,9 @@ public class WashesView extends Composite<VerticalLayout> implements BeforeEnter
 	 */
 	private void showList() {
 		washingForm.setVisible(false);
-		layoutAvailWashListContainer.setVisible(true);
 		layoutAvailWashingsList.refreshData();
+		layoutAvailWashListContainer.setVisible(true);
+		
 	}
 	private void start(){
 		userId = userData.getId();

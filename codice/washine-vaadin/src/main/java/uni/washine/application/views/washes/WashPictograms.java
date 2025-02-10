@@ -44,7 +44,7 @@ public class WashPictograms extends VerticalLayout {
         add(button, popover);
         
     }
-
+    //TODO: in production save the images to use them as static asset
     private List<GalleryItem> getGalleryItems() {
         return List.of(
             new GalleryItem("https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Waschen.svg/40px-Waschen.svg.png", "Washing symbol"),

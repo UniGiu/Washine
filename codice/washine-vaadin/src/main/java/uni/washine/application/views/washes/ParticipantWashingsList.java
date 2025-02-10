@@ -19,7 +19,10 @@ public class ParticipantWashingsList extends WashingsList{
 		  
 		userData = (WashineUserIf) VaadinSession.getCurrent().getAttribute("currentUser");
 	}
-	@Override
+	/**
+	 *  Fetches the available washings data
+	 */
+	@Override	
 	protected void fetchData() {
 		String userId=userData.getId();
 
@@ -27,27 +30,19 @@ public class ParticipantWashingsList extends WashingsList{
 					
 			List<WashineLaundryWashingIf> washings = wCore.getCommunitiesWashings(userId);
 			
-			for (WashineLaundryWashingIf washing : washings) {	
-						
-				//boolean particpates=participatedWashings.contains(washing.getId());
-				//addItem(washing,particpates);
+			for (WashineLaundryWashingIf washing : washings) {		
 				addItem(washing);
 			}
 		}catch(WashineCoreException e){
 			UiNotifier.showErrorNotification(e.getMessage());
 		}
    }
+   /**
+	* adds an item to the list
+    */
    @Override
-   protected void addItem(WashineLaundryWashingIf washing) {
-   // this.addItem(washing,false);
-	 
+   protected void addItem(WashineLaundryWashingIf washing) {	 
 	   ParticipantWashingListItem item = new ParticipantWashingListItem(washing);
 	   add(item);
-	}
-	/*protected void addItem(WashineLaundryWashingIf washing, boolean participates) {
-		ParticipantWashingListItem item = new ParticipantWashingListItem(washing,participates);
-		 
-		add(item);
-		}
-		*/
+	}	
 }
