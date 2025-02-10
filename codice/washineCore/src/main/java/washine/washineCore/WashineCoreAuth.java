@@ -13,11 +13,12 @@ public class WashineCoreAuth implements WashineCoreAuthIf {
   @Override
   public WashineUserIf authenticateUser(String email, String password) throws WashineCoreException {
     // crea il gestore utenti
+    String lwcEmail=email.toLowerCase();
     WashineUserDbIf userDb = new WashineUserDb();
     try {
-      if (userDb.authenticateUser(email, password) && !userDb.isBlocked(userDb.getUserId(email))) {
-        String id = userDb.getUserId(email);
-        return new WashineUser(email, id);
+      if (userDb.authenticateUser(lwcEmail, password) && !userDb.isBlocked(userDb.getUserId(lwcEmail))) {
+        String id = userDb.getUserId(lwcEmail);
+        return new WashineUser(lwcEmail, id);
       }
     } catch (WashineDataException e) {
       throw new WashineCoreException("Core error authenticating user");
@@ -28,11 +29,12 @@ public class WashineCoreAuth implements WashineCoreAuthIf {
   @Override
   public WashineUserIf addUser(String email, String password) throws WashineCoreException {
     // crea il gestore utenti
+    String lwcEmail=email.toLowerCase();
     WashineUserDbIf userDb = new WashineUserDb();
     try {
-      if (!userDb.alreadyAddedUser(email) && userDb.addUser(email, password)) {
-        String id = userDb.getUserId(email);
-        return new WashineUser(email, id);
+      if (!userDb.alreadyAddedUser(lwcEmail) && userDb.addUser(lwcEmail, password)) {
+        String id = userDb.getUserId(lwcEmail);
+        return new WashineUser(lwcEmail, id);
       }
     } catch (WashineDataException e) {
       throw new WashineCoreException("Core error adding user");
@@ -42,10 +44,11 @@ public class WashineCoreAuth implements WashineCoreAuthIf {
 
   // Not already in interface - for test only
   public boolean removeUserByEmail(String email) throws WashineCoreException {
+    String lwcEmail=email.toLowerCase();
     WashineUserDbIf userDb = new WashineUserDb();
     boolean result;
     try {
-      result = userDb.removeUserByEmail(email);
+      result = userDb.removeUserByEmail(lwcEmail);
     } catch (WashineDataException e) {
       throw new WashineCoreException("Core error removing user by email");
     }
@@ -61,11 +64,12 @@ public class WashineCoreAuth implements WashineCoreAuthIf {
   @Override
   public WashineUserIf updateUserEmail(String userId, String newEmail) throws WashineCoreException {
     WashineUserDbIf userDb = new WashineUserDb();
+    String lwcEmail=newEmail.toLowerCase();
     try {
-      if (!userDb.alreadyAddedUser(newEmail)) {
-        userDb.updateUserEmail(userId, newEmail);
-        if (userDb.getUserEmail(userId).equals(newEmail)) {
-          return new WashineUser(newEmail, userId);
+      if (!userDb.alreadyAddedUser(lwcEmail)) {
+        userDb.updateUserEmail(userId, lwcEmail);
+        if (userDb.getUserEmail(userId).equals(lwcEmail)) {
+          return new WashineUser(lwcEmail, userId);
         }
       }
 

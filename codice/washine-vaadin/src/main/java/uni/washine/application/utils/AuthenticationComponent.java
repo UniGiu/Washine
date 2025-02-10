@@ -50,7 +50,7 @@ public class AuthenticationComponent extends VerticalLayout {
 	        layoutColumnLogin.add(buttonLogin);
 
 	        buttonLogin.addClickListener(e -> {
-	            String email = emailFieldLogin.getValue();
+	            String email = emailFieldLogin.getValue().toLowerCase();
 	            String password = passwordFieldLogin.getValue();
 	            
 	            if (validateAuthInput(email, password)) {
@@ -90,7 +90,7 @@ public class AuthenticationComponent extends VerticalLayout {
 	        layoutColumnSignIn.add(buttonSignIn);
 
 	        buttonSignIn.addClickListener(e -> {
-	            String email = emailFieldSignIn.getValue();
+	            String email = emailFieldSignIn.getValue().toLowerCase();
 	            String password = passwordFieldSignIn.getValue();
 	            
 	            if (validateAuthInput(email, password)) {

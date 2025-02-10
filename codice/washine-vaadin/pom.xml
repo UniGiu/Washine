@@ -193,6 +193,14 @@
 						</exclusion>
 					</exclusions>
 				</dependency>
+				<!-- WASHINE CORE-->
+		<dependency>
+			<groupId>washine</groupId>
+			<artifactId>washineCore</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
+		<!-- /WASHINE CORE-->
 			</dependencies>
 			<build>
 				<plugins>

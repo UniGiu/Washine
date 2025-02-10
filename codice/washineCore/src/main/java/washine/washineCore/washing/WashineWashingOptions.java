@@ -1,7 +1,7 @@
 package washine.washineCore.washing;
 
 public class WashineWashingOptions
-    implements WashineLaundryWashingOptionsIf, WashineLaundryWashingOptionsLaunderIf {
+    implements WashineLaundryWashingOptionsLaunderIf {
 
   private int dateTime;
   private int visibilityTime;
