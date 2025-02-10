@@ -135,15 +135,21 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
 
   @Override
   public WashineLaundryWashingIf participateToWashing(
-      String washingId, String participantId, double load) throws WashineCoreException {
+      String washingId, String participantId, double newLoad) throws WashineCoreException {
     WashineWashingDbIf washingDb = new WashineWashingDb();
     try {
       if (!washingDb.existsWashing(washingId)) {
         throw new WashineCoreException("Washing does not exists");
       }
       WashineLaundryWashingIf washing = getWashing(washingId);
-      validateWashingParticipation(washing, load);
-      washingDb.participateToWashing(washingId, participantId, load);
+      double currentLoad = washingDb.getParticipationWeight(washingId, participantId);
+
+      if(washing.getLoad()-currentLoad+newLoad >  washing.getWashingOptions().getMaxLoad()){
+        throw new WashineCoreException("Too much load");
+      }
+
+      validateWashingParticipation(washing, newLoad);
+      washingDb.participateToWashing(washingId, participantId, newLoad);
       return washing;
     } catch (WashineDataException e) {
       throw new WashineCoreException("WashineCoreException");
@@ -152,15 +158,15 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
 
   @Override
   public WashineLaundryWashingIf updateParticipantWashingLoad(
-      String washingId, String participantId, double load) throws WashineCoreException {
+      String washingId, String participantId, double newLoad) throws WashineCoreException {
     WashineWashingDbIf washingDb = new WashineWashingDb();
     try {
       if (!washingDb.existsWashing(washingId)) {
         throw new WashineCoreException("Washing does not exists");
       }
       WashineLaundryWashingIf washing = getWashing(washingId);
-      validateWashingParticipation(washing, load);
-      washingDb.updateParticipationToWashing(washingId, participantId, load);
+      validateWashingParticipation(washing, newLoad);
+      washingDb.updateParticipationToWashing(washingId, participantId, newLoad);
       return washing;
     } catch (WashineDataException e) {
       throw new WashineCoreException("WashineCoreException");

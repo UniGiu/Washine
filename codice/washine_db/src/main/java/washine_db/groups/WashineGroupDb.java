@@ -488,7 +488,7 @@ public class WashineGroupDb implements WashineGroupDbIf {
       DSLContext create = DSL.using(conn, SQLDialect.SQLITE);
 
       return create
-          .select(Communityuserslist.COMMUNITYUSERSLIST.USERNAME)
+          .select(Communityuserslist.COMMUNITYUSERSLIST.COMMUNITYNAME)
           .from(Communityuserslist.COMMUNITYUSERSLIST)
           .where(Communityuserslist.COMMUNITYUSERSLIST.LAUNDRYPERSONID.eq(communityId))
           .and(Communityuserslist.COMMUNITYUSERSLIST.PARTICIPANTID.eq(userId))
