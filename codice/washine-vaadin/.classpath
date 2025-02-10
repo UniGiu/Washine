@@ -54,5 +54,15 @@
 			<attribute name="test" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="src" path="/washine_db"/>
+	<classpathentry kind="lib" path="C:/Users/poldo/.m2/repository/org/jooq/jooq/3.18.7/jooq-3.18.7.jar" sourcepath="C:/Users/poldo/.m2/repository/org/jooq/jooq/3.18.7/jooq-3.18.7-sources.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="org.jooq"/>
+			<attribute name="maven.artifactId" value="jooq"/>
+			<attribute name="maven.version" value="3.18.7"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

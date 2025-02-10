@@ -15,9 +15,11 @@ import washine.washineCore.washing.WashineWashing;
 import washine.washineCore.washing.WashineWashingOptions;
 import washine_db.exceptions.WashineDataException;
 import washine_db.groups.WashineGroupDb;
+import washine_db.groups.WashineGroupDbIf;
 import washine_db.jooq.generated.tables.Washingoptions;
 import washine_db.jooq.generated.tables.records.WashingoptionsRecord;
 import washine_db.washings.WashineWashingDb;
+import washine_db.washings.WashineWashingDbIf;
 
 public class WashineCoreWashing implements WashineCoreWashingIf {
 
@@ -25,7 +27,7 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
   public boolean createWashing(
       String laundryPersonId, WashineLaundryWashingOptionsLaunderIf options)
       throws WashineCoreException {
-    WashineWashingDb washingDb = new WashineWashingDb();
+    WashineWashingDbIf washingDb = new WashineWashingDb();
     String washingId = generateUniqueCode();
 
     try {
@@ -105,7 +107,7 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
   @Override
   public WashineLaundryWashingIf participateToWashing(
       String washingId, String participantId, double load) throws WashineCoreException {
-    WashineWashingDb washingDb = new WashineWashingDb();
+    WashineWashingDbIf washingDb = new WashineWashingDb();
     try {
       if (!washingDb.existsWashing(washingId)) {
         throw new WashineCoreException("Washing does not exists");
@@ -148,7 +150,7 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
   @Override
   public List<String> getLaundryPersonWashingIds(String laundryPersonId)
       throws WashineCoreException {
-    WashineWashingDb washineDb = new WashineWashingDb();
+    WashineWashingDbIf washineDb = new WashineWashingDb();
     try {
       return washineDb.getLaundryPersonWashingIds(laundryPersonId);
     } catch (WashineDataException e) {
@@ -158,7 +160,7 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
 
   @Override
   public List<String> getParticipatedWashingIds(String userId) throws WashineCoreException {
-    WashineWashingDb washineDb = new WashineWashingDb();
+    WashineWashingDbIf washineDb = new WashineWashingDb();
     try {
       return washineDb.getParticipatedWashingIds(userId);
     } catch (WashineDataException e) {
@@ -169,7 +171,7 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
   @Override
   public double getParticipationWeight(String washingId, String userId)
       throws WashineCoreException {
-    WashineWashingDb washingDb = new WashineWashingDb();
+    WashineWashingDbIf washingDb = new WashineWashingDb();
     try {
       if (!washingDb.existsWashing(washingId)) {
         throw new WashineCoreException("Washing does not exists");
@@ -183,7 +185,7 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
 
   @Override
   public boolean deleteWashing(String washingId) throws WashineCoreException {
-    WashineWashingDb washingDb = new WashineWashingDb();
+    WashineWashingDbIf washingDb = new WashineWashingDb();
     try {
       if (!washingDb.existsWashing(washingId)) {
         throw new WashineCoreException("Washing does not exists");
@@ -200,7 +202,7 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
 
   @Override
   public WashineLaundryWashingIf getWashing(String washingId) throws WashineCoreException {
-    WashineWashingDb washingDb = new WashineWashingDb();
+    WashineWashingDbIf washingDb = new WashineWashingDb();
     try {
       if (!washingDb.existsWashing(washingId)) {
         throw new WashineCoreException("Washing does not exists");
@@ -244,7 +246,7 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
 
   @Override
   public boolean updateWashingOptions(WashineLaundryWashingIf washing) throws WashineCoreException {
-    WashineWashingDb washingDb = new WashineWashingDb();
+    WashineWashingDbIf washingDb = new WashineWashingDb();
     WashineLaundryWashingOptionsIf options = washing.getWashingOptions();
     String washingId = washing.getId();
     try {
@@ -320,7 +322,7 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
 
   @Override
   public boolean deleteParticipation(String washingId, String userId) throws WashineCoreException {
-    WashineWashingDb washineDb = new WashineWashingDb();
+    WashineWashingDbIf washineDb = new WashineWashingDb();
     try {
       if (!washineDb.existsWashing(washingId)) {
         throw new WashineCoreException("Washing does not exists");
@@ -356,7 +358,7 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
    */
   public double calculateWashingTotalLoad(WashineLaundryWashingIf washing)
       throws WashineCoreException {
-    WashineWashingDb washingDb = new WashineWashingDb();
+    WashineWashingDbIf washingDb = new WashineWashingDb();
     String id = washing.getId();
     WashineLaundryWashingOptionsIf options = washing.getWashingOptions();
     List<String> participantIds = washing.getParticipantIds();
@@ -374,7 +376,7 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
   @Override
   public List<WashineLaundryWashingIf> getLaunderWashings(String laundryPersonId)
       throws WashineCoreException {
-    WashineWashingDb washingDb = new WashineWashingDb();
+    WashineWashingDbIf washingDb = new WashineWashingDb();
     List<WashineLaundryWashingIf> washings = new ArrayList<WashineLaundryWashingIf>();
     Result<?> records;
     try {
@@ -406,7 +408,7 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
   @Override
   public List<WashineLaundryWashingIf> getParticipantWashings(String participantId)
       throws WashineCoreException {
-    WashineWashingDb washingDb = new WashineWashingDb();
+    WashineWashingDbIf washingDb = new WashineWashingDb();
     List<WashineLaundryWashingIf> washings = new ArrayList<WashineLaundryWashingIf>();
     Result<?> records;
     try {
@@ -436,8 +438,8 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
   public List<WashineLaundryWashingIf> getCommunitiesWashings(String uId)
       throws WashineCoreException {
     List<WashineLaundryWashingIf> washings = new ArrayList<WashineLaundryWashingIf>();
-    WashineWashingDb washingDb = new WashineWashingDb();
-    WashineGroupDb groupDb = new WashineGroupDb();
+    WashineWashingDbIf washingDb = new WashineWashingDb();
+    WashineGroupDbIf groupDb = new WashineGroupDb();
     Result<?> records;
     try {
       List<String> communities = groupDb.getParticipatedGroups(uId);

@@ -11,6 +11,7 @@ import washine_db.exceptions.WashineDataException;
 import washine_db.groups.WashineGroupDb;
 import washine_db.groups.WashineGroupDbIf;
 import washine_db.washings.WashineWashingDb;
+import washine_db.washings.WashineWashingDbIf;
 
 public class WashineCoreCommunity implements WashineCoreCommunityIf {
 
@@ -18,7 +19,7 @@ public class WashineCoreCommunity implements WashineCoreCommunityIf {
 
   @Override
   public boolean userInCommunity(String uid, String communityUid) {
-    WashineGroupDb washineCommunity = new WashineGroupDb();
+    WashineGroupDbIf washineCommunity = new WashineGroupDb();
     try {
       return washineCommunity.alreadyAdded(communityUid, uid);
     } catch (WashineDataException e) {
@@ -28,7 +29,7 @@ public class WashineCoreCommunity implements WashineCoreCommunityIf {
 
   @Override
   public boolean nameInCommunity(String name, String communityUid) {
-    WashineGroupDb washineCommunity = new WashineGroupDb();
+    WashineGroupDbIf washineCommunity = new WashineGroupDb();
 
     try {
       washineCommunity.clearExpiredInvitations(INVITATIONS_TIME_TO_LIVE);
@@ -41,7 +42,7 @@ public class WashineCoreCommunity implements WashineCoreCommunityIf {
   @Override
   public String getNewInvitationCode(String communityUid, String name) {
     String code = generateUniqueCode();
-    WashineGroupDb washineCommunity = new WashineGroupDb();
+    WashineGroupDbIf washineCommunity = new WashineGroupDb();
     try {
       if (washineCommunity.alreadyInvited(communityUid, name)) {
         return null;
@@ -56,7 +57,7 @@ public class WashineCoreCommunity implements WashineCoreCommunityIf {
 
   @Override
   public boolean nameInJoinedCommunities(String name, String userId) {
-    WashineGroupDb washineCommunity = new WashineGroupDb();
+    WashineGroupDbIf washineCommunity = new WashineGroupDb();
     try {
       return washineCommunity.nameInJoinedCommunities(name, userId);
     } catch (WashineDataException e) {
@@ -67,7 +68,7 @@ public class WashineCoreCommunity implements WashineCoreCommunityIf {
   @Override
   public String getInvitationCodeCommunityId(String code) {
 
-    WashineGroupDb washineCommunity = new WashineGroupDb();
+    WashineGroupDbIf washineCommunity = new WashineGroupDb();
 
     try {
       washineCommunity.clearExpiredInvitations(INVITATIONS_TIME_TO_LIVE);
@@ -79,7 +80,7 @@ public class WashineCoreCommunity implements WashineCoreCommunityIf {
 
   @Override
   public boolean joinCommunity(String uid, String invitationCode, String communityName) {
-    WashineGroupDb washineCommunity = new WashineGroupDb();
+    WashineGroupDbIf washineCommunity = new WashineGroupDb();
     try {
       String communityUid = washineCommunity.getLaundryPersonId(invitationCode);
       if (communityUid.equals(uid)
@@ -98,7 +99,7 @@ public class WashineCoreCommunity implements WashineCoreCommunityIf {
 
   @Override
   public boolean removeUserFromCommunity(String uid, String communityUid) {
-    WashineGroupDb washineCommunity = new WashineGroupDb();
+    WashineGroupDbIf washineCommunity = new WashineGroupDb();
     try {
       if (washineCommunity.alreadyAdded(communityUid, uid)) {
         return washineCommunity.removeGroupMember(uid);
@@ -123,7 +124,7 @@ public class WashineCoreCommunity implements WashineCoreCommunityIf {
 
   public String updateCode(String invitedName) {
     String newCode = generateUniqueCode();
-    WashineGroupDb washineCommunity = new WashineGroupDb();
+    WashineGroupDbIf washineCommunity = new WashineGroupDb();
     try {
       if (washineCommunity.updateCode(invitedName, newCode)) {
         return newCode;
@@ -135,7 +136,7 @@ public class WashineCoreCommunity implements WashineCoreCommunityIf {
   }
 
   public boolean nameInInvitations(String name, String communityId) {
-    WashineGroupDb washineCommunity = new WashineGroupDb();
+    WashineGroupDbIf washineCommunity = new WashineGroupDb();
     try {
       return washineCommunity.nameInInvitations(name, communityId);
     } catch (WashineDataException e) {
@@ -146,7 +147,7 @@ public class WashineCoreCommunity implements WashineCoreCommunityIf {
   @Override
   public List<String> getCommunityMemberId(String userId) {
 
-    WashineGroupDb communityDb = new WashineGroupDb();
+    WashineGroupDbIf communityDb = new WashineGroupDb();
 
     try {
       return communityDb.getCommunityMemberIds(userId);
@@ -159,7 +160,7 @@ public class WashineCoreCommunity implements WashineCoreCommunityIf {
   @Override
   public List<String> getCommunityMemberName(String userId) {
 
-    WashineGroupDb communityDb = new WashineGroupDb();
+    WashineGroupDbIf communityDb = new WashineGroupDb();
 
     try {
       return communityDb.getCommunityMemberNames(userId);
@@ -168,33 +169,35 @@ public class WashineCoreCommunity implements WashineCoreCommunityIf {
       return null;
     }
   }
-  public String getCommunityName(String communityId, String participantId )  throws WashineCoreException
-  {
-	  try {
-		  WashineGroupDbIf groupDb=new WashineGroupDb();
-		  List<String> communityNames=groupDb.getCommunityName(communityId,participantId);
-		  if(communityNames.isEmpty()) {
-			  throw new WashineCoreException("Community not found");
-		  }
-		  return communityNames.get(0);
-		  
-	  }catch (WashineDataException e) {
-	      throw new WashineCoreException("Community does not exist");
-	    }
+
+  public String getCommunityName(String communityId, String participantId)
+      throws WashineCoreException {
+    try {
+      WashineGroupDbIf groupDb = new WashineGroupDb();
+      List<String> communityNames = groupDb.getCommunityName(communityId, participantId);
+      if (communityNames.isEmpty()) {
+        throw new WashineCoreException("Community not found");
+      }
+      return communityNames.get(0);
+
+    } catch (WashineDataException e) {
+      throw new WashineCoreException("Community does not exist");
+    }
   }
-  public String getWashingCommunityName(String washingId, String participantId )  throws WashineCoreException
-  {
-	  try {
-      WashineWashingDb washingDb = new WashineWashingDb();
-		 
-		  String communityId=washingDb.getWashingOwner(washingId);
-		  if(communityId.isEmpty()) {
-			  throw new WashineCoreException("Community Owner not found");
-		  }
-		  return getCommunityName(communityId,participantId);
-		  
-	  }catch (WashineDataException e) {
-	      throw new WashineCoreException("Community does not exist");
-	    }
+
+  public String getWashingCommunityName(String washingId, String participantId)
+      throws WashineCoreException {
+    try {
+      WashineWashingDbIf washingDb = new WashineWashingDb();
+
+      String communityId = washingDb.getWashingOwner(washingId);
+      if (communityId.isEmpty()) {
+        throw new WashineCoreException("Community Owner not found");
+      }
+      return getCommunityName(communityId, participantId);
+
+    } catch (WashineDataException e) {
+      throw new WashineCoreException("Community does not exist");
+    }
   }
 }
