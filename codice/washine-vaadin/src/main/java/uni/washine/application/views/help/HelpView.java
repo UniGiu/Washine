@@ -37,7 +37,7 @@ public class HelpView extends Composite<VerticalLayout> {
     paragraph2.setText(
         new Paragraph(
             new Text(
-                "Washine let you invite your friends and family to your washing community so they can participate to your group washings. Once you are logged in go to the invitations page, to create an invitation for a person write his/her name in the 'participant name' field (remember to choose a meaningful name) and click the generate button. You can then copy the code or the link as instructed and send it directly to the invitee (through messagings apps, email...). Watch the video below for further clarification")));
+                "Washine lets you invite your friends and family to your washing community so they can participate to your group washings. Once you are logged in go to the invitations page, to create an invitation for a person write his/her name in the 'participant name' field (remember to choose a meaningful name) and click the generate button. You can then copy the code or the link as instructed and send it directly to the invitee (through messagings apps, email...). Watch the video below for further clarification")));
     Details details2 = new Details(paragraph2.getTitle(), paragraph2);
 
     HelpViewParagraph paragraph3 = new HelpViewParagraph("Log out", "videos/logout.mp4", "500px");
