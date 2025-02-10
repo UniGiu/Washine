@@ -167,8 +167,8 @@ public class WashineWashingDb implements WashineWashingDbIf {
                       .PARTICIPANTID
                       .eq(userId)
                       .and(Washingparticipation.WASHINGPARTICIPATION.WASHINGID.eq(washingId)))
-              .fetchOne();            
-              return weight==null?0: weight.getValue(Washingparticipation.WASHINGPARTICIPATION.LOAD);
+              .fetchOne();
+      return weight == null ? 0 : weight.getValue(Washingparticipation.WASHINGPARTICIPATION.LOAD);
 
     } catch (SQLException e) {
       throw new WashineDataException("WashineDataException");
@@ -210,7 +210,8 @@ public class WashineWashingDb implements WashineWashingDbIf {
       throw new WashineDataException("WashineDataException");
     }
   }
-/**
+
+  /**
    * Selects a washing owner (washing creator) given the id of the washing
    *
    * @throws WashineDataException
@@ -235,6 +236,7 @@ public class WashineWashingDb implements WashineWashingDbIf {
       throw new WashineDataException("Error fetching laundry person ID");
     }
   }
+
   @Override
   public boolean deleteParticipation(String washingId, String userId) throws WashineDataException {
     try {
