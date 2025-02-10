@@ -2,7 +2,6 @@ package uni.washine.application.views.washes;
 
 import java.util.List;
 
-import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.server.VaadinSession;
 
 import uni.washine.application.utils.UiNotifier;

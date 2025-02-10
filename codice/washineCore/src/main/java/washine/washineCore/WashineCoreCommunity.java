@@ -169,7 +169,7 @@ public class WashineCoreCommunity implements WashineCoreCommunityIf {
       return null;
     }
   }
-
+  @Override
   public String getCommunityName(String communityId, String participantId)
       throws WashineCoreException {
     try {
@@ -184,7 +184,7 @@ public class WashineCoreCommunity implements WashineCoreCommunityIf {
       throw new WashineCoreException("Community does not exist");
     }
   }
-
+  @Override
   public String getWashingCommunityName(String washingId, String participantId)
       throws WashineCoreException {
     try {
