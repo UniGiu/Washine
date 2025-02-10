@@ -60,7 +60,7 @@ public class WashingListItem extends HorizontalLayout {
         
         // Progress bar
         ProgressBar progressBar = new ProgressBar();
-        double progress = options.getInitialLoad() / options.getMaxLoad();
+        double progress = (currentLoad+ options.getInitialLoad()) / options.getMaxLoad();
         progressBar.setValue(progress);
         progressBar.setWidth("100%");
         progressBar.setHeight("10px");

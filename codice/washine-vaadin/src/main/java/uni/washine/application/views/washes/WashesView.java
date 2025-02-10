@@ -108,7 +108,6 @@ public class WashesView extends Composite<VerticalLayout> implements BeforeEnter
 			JsonObject evtDetails = evtData.getObject("event.detail");
 			String washingId = evtDetails.getString("washingId");
 			showForm();
-			UiNotifier.showSuccessNotification(washingId);
 			washingForm.init(washingId, false);
 		}).addEventData("event.detail");
 		washingForm.getElement().addEventListener("participantjoincancelled", event -> {
