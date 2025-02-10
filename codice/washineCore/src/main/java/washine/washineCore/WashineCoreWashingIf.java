@@ -32,6 +32,17 @@ public interface WashineCoreWashingIf {
    */
   public WashineLaundryWashingIf participateToWashing(
       String washingId, String participantId, double load) throws WashineCoreException;
+  /**
+   * Allows participants to update the load of a washing they participate to.
+   *
+   * @param washingId The ID of the washing.
+   * @param participantId The ID of the participant.
+   * @param load The load weight the participant wants to contribute.
+   * @return the washing
+   * @throws WashineCoreException
+   */
+    public WashineLaundryWashingIf updateParticipantWashingLoad(
+        String washingId, String participantId, double load) throws WashineCoreException;
 
   /**
    * Retrieves the list of washing IDs associated with a specific laundry person.

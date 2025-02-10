@@ -104,6 +104,35 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
     }
   }
 
+  private void validateWashingParticipation(WashineLaundryWashingIf washing, double load) throws WashineCoreException {
+    WashineLaundryWashingOptionsIf options = washing.getWashingOptions();
+    if (options.getDatetime() < (int) Instant.now().getEpochSecond()) {
+        throw new WashineCoreException("Washing expired");
+    }
+
+    if (options.getWashingAccessOpenDate() != 0
+        && options.getWashingAccessOpenDate() > (int) Instant.now().getEpochSecond()) {
+        throw new WashineCoreException("Access date has yet to happen");
+    }
+    if (options.getWashingAccessCloseDate() != 0
+        && options.getWashingAccessCloseDate() < (int) Instant.now().getEpochSecond()) {
+        throw new WashineCoreException("Washing closed");
+    }
+
+    if (options.getMaxLoadParticipant() != 0 && load > options.getMaxLoadParticipant()) {
+        throw new WashineCoreException("Exceeded participant maximum load");
+    }
+    if (load > options.getMaxLoad()) {
+        throw new WashineCoreException("Exceeded maximum load");
+    }
+    if (load > (options.getMaxLoad() - washing.getLoad())) {
+        throw new WashineCoreException("Your load is heavier than the possible room left");
+    }
+    if (washing.getLoad() >= options.getMaxLoad()) {
+        throw new WashineCoreException("Max load Reached");
+    }
+  }
+
   @Override
   public WashineLaundryWashingIf participateToWashing(
       String washingId, String participantId, double load) throws WashineCoreException {
@@ -113,33 +142,7 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
         throw new WashineCoreException("Washing does not exists");
       }
       WashineLaundryWashingIf washing = getWashing(washingId);
-      WashineLaundryWashingOptionsIf options = washing.getWashingOptions();
-      if (options.getDatetime() < (int) Instant.now().getEpochSecond()) {
-        throw new WashineCoreException("Washing expired");
-      }
-
-      if (options.getWashingAccessOpenDate() != 0
-          && options.getWashingAccessOpenDate() > (int) Instant.now().getEpochSecond()) {
-        throw new WashineCoreException("Access date has yet to happen");
-      }
-      if (options.getWashingAccessCloseDate() != 0
-          && options.getWashingAccessCloseDate() < (int) Instant.now().getEpochSecond()) {
-        throw new WashineCoreException("Washing closed");
-      }
-
-      if (options.getMaxLoadParticipant() != 0 && load > options.getMaxLoadParticipant()) {
-
-        throw new WashineCoreException("Exceded participant maximum load");
-      }
-      if (load > options.getMaxLoad()) {
-        throw new WashineCoreException("Exceded maximum load");
-      }
-      if (load > (options.getMaxLoad() - washing.getLoad())) {
-        throw new WashineCoreException("Your load is heavier than the possible room left");
-      }
-      if (washing.getLoad() >= options.getMaxLoad()) {
-        throw new WashineCoreException("Max load Reached");
-      }
+      validateWashingParticipation(washing, load);
       washingDb.participateToWashing(washingId, participantId, load);
       return washing;
     } catch (WashineDataException e) {
@@ -147,6 +150,23 @@ public class WashineCoreWashing implements WashineCoreWashingIf {
     }
   }
 
+  @Override
+  public WashineLaundryWashingIf updateParticipantWashingLoad(
+      String washingId, String participantId, double load) throws WashineCoreException {
+    WashineWashingDbIf washingDb = new WashineWashingDb();
+    try {
+      if (!washingDb.existsWashing(washingId)) {
+        throw new WashineCoreException("Washing does not exists");
+      }
+      WashineLaundryWashingIf washing = getWashing(washingId);
+      validateWashingParticipation(washing, load);
+      washingDb.updateParticipationToWashing(washingId, participantId, load);
+      return washing;
+    } catch (WashineDataException e) {
+      throw new WashineCoreException("WashineCoreException");
+    }
+  }
+  
   @Override
   public List<String> getLaundryPersonWashingIds(String laundryPersonId)
       throws WashineCoreException {
