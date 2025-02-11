@@ -16,18 +16,18 @@ I casi di test sono stati effettuati nei seguenti file:
 
 ### 1.1. WashineCoreWashingTest
 
-![alt text](https://github.com/UniGiu/Washine/blob/testing/docs/Immagini/WashineCoreWashingTest.png)  
+![alt text](https://github.com/UniGiu/Washine/blob/main/docs/Immagini/WashineCoreWashingTest.png)  
 *Risultato casi di test WashineCoreWashingTest*
 
 #### createWashingTest
 
-![alt text](https://github.com/UniGiu/Washine/blob/testing/docs/Immagini/createWashingTest.png) 
+![alt text](https://github.com/UniGiu/Washine/blob/main/docs/Immagini/createWashingTest.png) 
 
 Verifica che la creazione di un lavaggio avvenga correttamente, estituendo True quando il processo è completato con successo.  
 
 #### getLaundryPersonWashingIdsTest  
 
-![alt text](https://github.com/UniGiu/Washine/blob/testing/docs/Immagini/ListWashingTest.png) 
+![alt text](https://github.com/UniGiu/Washine/blob/main/docs/Immagini/ListWashingTest.png) 
 
 Verifica che si possa risalire alla lista di lavaggi di uno specifico utente. Dato l'id utente (testUserId) il metodo deve restituire una lista non vuota contentente i vari Id dei lavaggi a cui un'utente ha partecipato.  
 
@@ -42,7 +42,7 @@ Verifica che un lavaggio venga creato con le opzioni di lavaggio impostate corre
 
 ### 1.2. WashineCorecommunityTest  
 
-![alt text](https://github.com/UniGiu/Washine/blob/testing/docs/Immagini/WashineCoreCommunityTest.png)  
+![alt text](https://github.com/UniGiu/Washine/blob/main/docs/Immagini/WashineCoreCommunityTest.png)  
 *Risultato casi di test WashineCoreCommunityTest*
 
 #### addInviteTest1
@@ -70,19 +70,19 @@ Verifica che dati due parametri errati, non venga effettuata la rimozione dell'u
 
 ### 1.3. WashineCoreAuthTest
 
-![alt text](https://github.com/UniGiu/Washine/blob/testing/docs/Immagini/WashineCoreAuthTest.png)
+![alt text](https://github.com/UniGiu/Washine/blob/main/docs/Immagini/WashineCoreAuthTest.png)
 *Risultato casi di test WashineCoreAuthTest*
 
 #### updateUserPassword  
 
-![alt text](https://github.com/UniGiu/Washine/blob/testing/docs/Immagini/UpdatePw.png)  
+![alt text](https://github.com/UniGiu/Washine/blob/main/docs/Immagini/UpdatePw.png)  
 
 Verifica che un utente possa modificare la propria password con successo.
 Dato l'id dell'utente e la nuova password, il metodo dovrà restituire un valore non nullo per verificare che l'aggiornamento sia andato a buon fine. 
 
 #### authenticateUserTest1
 
-![alt text](https://github.com/UniGiu/Washine/blob/testing/docs/Immagini/AuthUser.png)
+![alt text](https://github.com/UniGiu/Washine/blob/main/docs/Immagini/AuthUser.png)
 
 Verifica che un utente possa autenticarsi con le sue credenziali e che esse siano valide.
 Data la mail e la password, l'autenticazione dovrebbe restituire un oggetto non nullo.
@@ -120,6 +120,6 @@ Verifica la correttezza dello sblocco di un utente da parte di Admin.
 
 ## 2. Copertura del codice 
 
-![alt text](https://github.com/UniGiu/Washine/blob/testing/docs/Immagini/CoverageCore.png)
+![alt text](https://github.com/UniGiu/Washine/blob/main/docs/Immagini/CoverageCore.png)
 
 Poco più di metà del codice è stato testato (54,5 %) . I test sono stati effettuati principalmente su funzionalità centrali quali lavaggi, gestione delle comunità e gestione degli utenti.
