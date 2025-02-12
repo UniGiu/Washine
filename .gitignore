@@ -53,8 +53,6 @@ out/
 bin/
 tmp/
 .metadata
-.classpath
-.project
 *.tmp
 *.bak
 *.swp
@@ -90,3 +88,5 @@ nb-configuration.xml
 ##############################
 *.log
 
+#vaadin
+generated/
